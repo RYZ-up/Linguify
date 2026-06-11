@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linguify</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.2/dist/lottie-player.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #1a1a1c; --s1: #222224; --s2: #2a2a2c; --s3: #323234;
+      --y: #FFDE59; --text: #ffffff; --muted: rgba(255,255,255,0.38);
+      --bdr: rgba(255,222,89,0.16); --bhi: rgba(255,222,89,0.48);
+      --btn-h: 2.5rem;
+      --ok1: #2dd4bf; --ok-bg: rgba(45,212,191,.07); --ok-bd: rgba(45,212,191,.25);
+    }
+    html { height: 100%; }
+    body {
+      height: 100%; font-family: 'Inter', sans-serif; color: var(--text); overflow-x: hidden;
+      background-color: var(--bg);
+      background-image: radial-gradient(rgba(255,222,89,0.16) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+    }
+
+    /* ════════ 3D Button base ════════ */
+    .btn3d {
+      --br: 0.65em; --bbg: var(--bg); --bol: var(--y);
+      font-size: 14px; font-weight: 700; font-family: 'Inter', sans-serif;
+      border: none; cursor: pointer; border-radius: var(--br);
+      background: var(--bol); text-decoration: none; display: inline-block;
+      vertical-align: middle; overflow: visible;
+    }
+    .btn3d:disabled { opacity: .4; cursor: not-allowed; }
+    .btn3d .bt {
+      display: flex; align-items: center; justify-content: center;
+      gap: .4rem;
+      border: 2px solid var(--bol); border-radius: var(--br);
+      padding: 0 1.4em; height: var(--btn-h);
+      background: var(--bbg); color: var(--y);
+      transform: translateY(-.22em); transition: transform .1s ease;
+      white-space: nowrap; letter-spacing: .02em; user-select: none;
+    }
+    .btn3d:not(:disabled):hover .bt  { transform: translateY(-.36em); }
+    .btn3d:not(:disabled):active .bt { transform: translateY(0); }
+    /* Icon-only square */
+    .btn3d.sq .bt { padding: 0; width: var(--btn-h); }
+    .btn3d.wht { --bol: #fff; } .btn3d.wht .bt { color: #fff; }
+
+    /* ════════ Logo 3D button ════════ */
+    .btn-logo { --bol: var(--y); --bbg: var(--bg); --br: 0.55em; }
+    .btn-logo .bt {
+      font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 900;
+      color: var(--y); letter-spacing: .05em; padding: 0 .85em;
+      text-shadow: 0 0 16px rgba(255,222,89,.3);
+    }
+
+    /* ════════ GitHub 3D button ════════ */
+    .btn-gh { --bol: var(--bdr); --bbg: var(--bg); --br: 0.55em; }
+    .btn-gh .bt {
+      color: var(--y); font-size: .82rem;
+      border-color: var(--bdr);
+      transition: transform .1s ease, box-shadow .25s ease;
+    }
+    .btn-gh:not(:disabled):hover .bt { box-shadow: none; }
+    .gh-sep { width: 1px; height: 13px; background: var(--bdr); flex-shrink: 0; }
+    .gh-star-ico { color: rgba(255,222,89,0.45); transition: color .25s; flex-shrink: 0; }
+    .btn-gh:hover .gh-star-ico { color: var(--y); }
+
+    /* ════════ User toggle (header right) ════════ */
+    .btn-user { --bol: var(--bdr); --bbg: var(--bg); --br: 0.55em; }
+    .btn-user .bt { color: var(--muted); font-size: .82rem; gap: .45rem; }
+    .btn-user.online .bt { color: var(--text); }
+    .btn-user.online { --bol: var(--bdr); }
+    .btn-user.guest { opacity: .35; cursor: not-allowed; pointer-events: none; }
+    /* Guest banner on home */
+    .guest-banner { display: none; align-items: center; gap: .45rem; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: .55rem; padding: .4rem .85rem; font-size: .75rem; color: rgba(255,255,255,.45); }
+    .guest-banner.v { display: flex; }
+    .guest-banner i { flex-shrink: 0; }
+
+    /* ════════ User panel card ════════ */
+    #user-panel {
+      position: fixed; top: 70px; right: 1.2rem; z-index: 400;
+      background: var(--s1); border: 1px solid var(--bdr);
+      border-radius: 1.1rem; padding: 1.1rem 1.2rem 1rem;
+      min-width: 210px; max-width: 260px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.55), 0 0 0 1px rgba(255,222,89,.06);
+      display: none;
+      animation: panelIn .18s ease;
+    }
+    #user-panel.open { display: block; }
+    @keyframes panelIn { from { opacity:0; transform: translateY(-6px) scale(.97); } to { opacity:1; transform: none; } }
+    .panel-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--s3); border: 2px solid var(--bdr); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 1.1rem; flex-shrink: 0; }
+    .panel-head { display: flex; align-items: center; gap: .7rem; margin-bottom: .9rem; }
+    .panel-name { font-size: .88rem; font-weight: 700; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .panel-role { font-size: .7rem; color: var(--muted); margin-top: .05rem; }
+    .panel-divider { height: 1px; background: var(--bdr); margin-bottom: .8rem; }
+    .panel-best { font-size: .78rem; color: var(--muted); margin-bottom: .8rem; display: flex; align-items: center; gap: .4rem; }
+    .panel-best strong { color: var(--y); }
+    .panel-no-account { font-size: .8rem; color: var(--muted); text-align: center; padding: .3rem 0 .5rem; }
+
+    /* ════════ 3D Input ════════ */
+    .inp3d { background: var(--y); border-radius: .65em; display: block; width: 100%; overflow: visible; }
+    .inp3d input {
+      display: block; width: 100%; border: 2px solid var(--y); border-radius: .65em;
+      padding: 0 1em; height: var(--btn-h); background: var(--bg); color: var(--text);
+      font-size: 14px; font-family: 'Inter', sans-serif; font-weight: 600;
+      transform: translateY(-.22em); transition: transform .1s ease; outline: none; caret-color: var(--y);
+    }
+    .inp3d input:focus { transform: translateY(-.36em); }
+    .inp3d input::placeholder { color: var(--muted); font-weight: 400; }
+
+    /* ════════ 3D Card ════════ */
+    .card3d { background: var(--y); border-radius: 1rem; display: block; }
+    .card3d-in {
+      background: var(--s1); border: 2px solid var(--y); border-radius: 1rem;
+      transform: translateY(-.28em); transition: transform .1s;
+    }
+
+    /* ════════ Toggle 3D ════════ */
+    .toggle-wrap { display: flex; align-items: center; gap: .55rem; cursor: pointer; user-select: none; }
+    .toggle-wrap input { display: none; }
+    /* 3D outer track = yellow floor */
+    .tog-outer { background: var(--s3); border-radius: 12px; flex-shrink: 0; }
+    /* 3D inner track = dark face shifted up */
+    .tog-track {
+      width: 42px; height: 23px; border-radius: 12px;
+      background: var(--s2); border: 1.5px solid var(--bdr);
+      position: relative; transition: background .2s, border-color .2s, transform .1s;
+      transform: translateY(-.15em);
+    }
+    .tog-thumb { width: 15px; height: 15px; border-radius: 50%; background: var(--muted); position: absolute; top: 3px; left: 3px; transition: left .2s, background .2s; }
+    .toggle-wrap input:checked + .tog-outer .tog-track { background: rgba(255,222,89,.12); border-color: var(--y); }
+    .toggle-wrap input:checked + .tog-outer .tog-track .tog-thumb { left: 20px; background: var(--y); }
+    .toggle-wrap:active .tog-track { transform: translateY(0); }
+
+    /* ════════ Mode choice (2-option picker) ════════ */
+    .mode-choice-row { display: flex; gap: .55rem; width: 100%; }
+    .mode-choice { flex: 1; cursor: pointer; }
+    .mode-choice input[type=radio] { display: none; }
+    .mc-box {
+      border: 1.5px solid var(--bdr); border-radius: .65rem; padding: .65rem .75rem;
+      background: var(--s2); transition: border-color .15s, background .15s, opacity .15s;
+      display: flex; flex-direction: column; gap: .35rem;
+    }
+    .mode-choice input:not(:checked) ~ .mc-box { opacity: .45; }
+    .mode-choice input:checked ~ .mc-box { border-color: var(--y); background: rgba(255,222,89,.06); opacity: 1; }
+    .mc-title { font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--y); }
+    .mode-choice input:not(:checked) ~ .mc-box .mc-title { color: var(--muted); }
+    .mc-input-wrap { display: flex; align-items: center; gap: .35rem; font-size: .78rem; color: var(--muted); }
+    .mc-input-wrap input[type=number] {
+      width: 52px; background: var(--s3); border: 1.5px solid var(--bdr); border-radius: .4rem;
+      padding: .25em .4em; color: var(--text); font-family: 'Inter', sans-serif;
+      font-size: .85rem; font-weight: 700; outline: none; text-align: center;
+    }
+    .mode-choice input:checked ~ .mc-box .mc-input-wrap input[type=number] { border-color: rgba(255,222,89,.4); }
+
+    /* ════════ Slider ════════ */
+    .slid-wrap { display: flex; align-items: center; gap: .7rem; width: 100%; }
+    .slid-val { font-size: .88rem; font-weight: 800; color: var(--y); min-width: 1.5rem; text-align: right; }
+    input[type=range] {
+      -webkit-appearance: none; appearance: none; flex: 1; height: 4px;
+      background: var(--s3); border-radius: 2px; outline: none; cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+      background: var(--y); border: 2px solid var(--bg); cursor: pointer;
+      box-shadow: 0 0 0 3px rgba(255,222,89,.2);
+    }
+    input[type=range]::-moz-range-thumb {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--y); border: 2px solid var(--bg); cursor: pointer;
+    }
+
+    /* ════════ Leaderboard Sidebar ════════ */
+    #lb-sidebar {
+      position: fixed; right: 10px; top: 74px; bottom: 10px; width: 268px;
+      background: var(--s1); border: 2px solid var(--y); border-radius: 1.1rem;
+      display: flex; flex-direction: column; z-index: 150; overflow: hidden;
+      box-shadow: 4px 4px 0 rgba(255,222,89,.28);
+    }
+    .lb-side-header { padding: .9rem 1rem .7rem; border-bottom: 1px solid var(--bdr); flex-shrink: 0; }
+    .lb-side-title { font-size: .7rem; font-weight: 800; letter-spacing: .12em; color: var(--y); text-transform: uppercase; display: flex; align-items: center; gap: .3rem; }
+    .lb-side-lottie { flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--bdr); padding: .3rem 0; pointer-events: none; }
+    #lb-sidebar-list { flex: 1; overflow-y: auto; padding: .4rem .55rem; }
+    /* Animations */
+    @keyframes lbSlideIn { from { opacity:0; transform:translateX(18px); } to { opacity:1; transform:none; } }
+    @keyframes lbBounce {
+      0%   { transform: translateY(0) scale(1); }
+      28%  { transform: translateY(-12px) scale(1.04); box-shadow: 0 10px 22px rgba(255,222,89,.3); }
+      60%  { transform: translateY(3px) scale(.99); }
+      100% { transform: translateY(0) scale(1); box-shadow: none; }
+    }
+    .lb-row-new { animation: lbSlideIn .35s ease forwards; }
+    .lb-row-up { animation: lbBounce .55s cubic-bezier(.36,.07,.19,.97); position: relative; z-index: 10; }
+    .lb-row.me { background: rgba(255,222,89,.08); border-radius: .5rem; }
+    /* Leaderboard cards in sidebar */
+    .lb-side-card {
+      background: var(--s2); border: 1px solid var(--bdr); border-radius: .6rem;
+      padding: .5rem .75rem; margin-bottom: .3rem;
+      display: flex; align-items: center; gap: .55rem;
+      transition: border-color .15s;
+    }
+    .lb-side-card.me { border-color: rgba(255,222,89,.45); background: rgba(255,222,89,.06); }
+    .lb-side-card .lb-rk { font-size: .78rem; font-weight: 800; width: 1.3rem; text-align: center; flex-shrink: 0; color: var(--muted); }
+    .lb-side-card .lb-nm { flex: 1; font-size: .82rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .lb-side-card .lb-nm.me { color: var(--y); }
+    .lb-side-card .lb-sc { font-size: .82rem; font-weight: 800; color: var(--y); flex-shrink: 0; }
+    /* Desktop: push all screens left of sidebar */
+    @media(min-width:861px){ .screen { padding-right: 290px; } }
+    @media(max-width:860px){ #lb-sidebar { display: none; } }
+
+    /* ════════ Settings card ════════ */
+    .set-content { padding: 1.5rem 1.5rem 1.3rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .set-content > * { width: 100%; }
+    .set-row { display: flex; flex-direction: column; align-items: center; gap: .45rem; }
+    .set-row > * { width: 100%; }
+    .set-label { font-size: .72rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); text-align: center; }
+    .set-inline { flex-direction: row; align-items: center; justify-content: space-between; }
+    .set-inline .set-label { text-align: left; }
+    .set-inline > .toggle-wrap { width: auto; flex-shrink: 0; }
+    .set-extra { display: flex; align-items: center; gap: .5rem; font-size: .82rem; color: var(--muted); }
+    .set-extra input[type=number] { width: 60px; background: var(--s2); border: 1.5px solid var(--bdr); border-radius: .4rem; padding: .28em .5em; color: var(--text); font-family: 'Inter', sans-serif; font-size: .85rem; font-weight: 700; outline: none; text-align: center; }
+    .set-extra input[type=number]:focus { border-color: var(--y); }
+    .set-div { height: 1px; background: var(--bdr); }
+    .set-section-title { font-size: .63rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; color: rgba(255,222,89,.4); text-align: left; }
+
+    /* ════════ Header ════════ */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 62px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 1.4rem;
+      background: var(--bg);
+      border-bottom: 2px solid var(--y);
+    }
+    .header-l { display: flex; align-items: center; gap: .8rem; }
+    .header-r { display: flex; align-items: center; gap: .55rem; }
+    /* Hide gh star text on small screens */
+    @media(max-width:620px){ .gh-label,.gh-sep,.gh-right{display:none!important} }
+
+    /* ════════ Screens ════════ */
+    .screen { display: none; min-height: 100vh; padding-top: 62px; align-items: center; justify-content: center; flex-direction: column; }
+    .screen.active { display: flex; }
+
+    /* ════════ Auth ════════ */
+    #s-auth { gap: 0; padding-right: 0 !important; }
+    .auth-content { padding: 2rem 1.8rem 1.6rem; display: flex; flex-direction: column; align-items: stretch; gap: 1rem; width: 100%; }
+    .auth-content > * { width: 100%; }
+    .auth-logo { display: flex; justify-content: center; margin-bottom: .1rem; }
+    .auth-badge { display: inline-flex; align-items: center; gap: .5rem; background: rgba(255,222,89,.08); border: 1px solid rgba(255,222,89,.22); border-radius: 2rem; padding: .35rem 1.2rem; font-size: .85rem; font-weight: 700; color: rgba(255,222,89,.9); }
+    .auth-features { display: flex; flex-direction: column; gap: .3rem; background: var(--s2); border: 1px solid var(--bdr); border-radius: .65rem; padding: .75rem 1rem; }
+    .auth-feat { display: flex; align-items: center; gap: .5rem; font-size: .78rem; color: var(--muted); }
+    .auth-feat i { color: var(--y); width: 14px; text-align: center; flex-shrink: 0; }
+    .auth-div { display: flex; align-items: center; gap: .6rem; color: var(--muted); font-size: .74rem; }
+    .auth-div::before, .auth-div::after { content: ''; flex: 1; height: 1px; background: var(--bdr); }
+    .guest-label { font-size: .76rem; color: var(--muted); font-weight: 700; }
+    .guest-row { display: flex; gap: .5rem; align-items: flex-end; }
+    .guest-row .inp3d { flex: 1; }
+    .guest-notice { font-size: .72rem; color: rgba(255,255,255,.3); display: flex; align-items: center; gap: .3rem; }
+    .guest-notice i { font-size: .68rem; }
+    .auth-err { font-size: .76rem; color: #f87171; text-align: center; min-height: 1rem; }
+
+    /* ════════ Home ════════ */
+    #s-home { gap: 1.5rem; text-align: center; padding: 80px 1rem 2rem; }
+    .home-title { font-size: clamp(2rem,8vw,4.2rem); font-weight: 900; color: var(--y); line-height: 1.1; letter-spacing: .05em; font-family: 'Inter', sans-serif; }
+    .home-sub { font-size: .92rem; color: var(--muted); max-width: 340px; }
+    .home-best { display: none; align-items: center; gap: .4rem; background: var(--s1); border: 1px solid var(--bdr); border-radius: .65rem; padding: .4rem .9rem; font-size: .78rem; color: var(--muted); }
+    .home-best strong { color: var(--y); }
+    .home-best.v { display: flex; }
+    .set-wrap { width: min(90%, 560px); max-width: 560px; }
+    .home-btns { display: flex; gap: .6rem; align-items: stretch; width: 100%; }
+    .home-btns .btn3d { flex: 1; }
+    .home-btns .btn3d .bt { width: 100%; }
+
+    /* ════════ Game screen ════════ */
+    #s-game { justify-content: flex-start; }
+    .game-inner { width: 100%; max-width: 600px; padding: 1.6rem 1.4rem 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
+    /* Inline progress bar */
+    .g-progress-wrap { height: 2px; background: rgba(255,255,255,.07); border-radius: 1px; overflow: visible; }
+    .g-progress-fill { height: 100%; border-radius: 1px; width: 0%; background: var(--y); transition: width .4s cubic-bezier(.4,0,.2,1); box-shadow: 0 0 6px rgba(255,222,89,.5); }
+    @keyframes pbar-ok  { 0%{box-shadow:0 0 0 rgba(45,212,191,0)}  20%{box-shadow:0 0 0 3px rgba(45,212,191,.35),0 0 12px rgba(45,212,191,.4)}  100%{box-shadow:0 0 6px rgba(255,222,89,.5)} }
+    @keyframes pbar-ko  { 0%{box-shadow:0 0 0 rgba(248,113,113,0)} 20%{box-shadow:0 0 0 3px rgba(248,113,113,.35),0 0 12px rgba(248,113,113,.4)} 100%{box-shadow:0 0 6px rgba(255,222,89,.5)} }
+    .g-progress-fill.pulse-ok { animation: pbar-ok .7s ease forwards; }
+    .g-progress-fill.pulse-ko { animation: pbar-ko .7s ease forwards; }
+    /* Top row */
+    .game-top { display: flex; justify-content: space-between; align-items: center; }
+    .game-top-r { display: flex; align-items: center; gap: .55rem; }
+    /* quit confirm modal */
+    .quit-modal { display:none; position:fixed; inset:0; z-index:600; background:rgba(0,0,0,.6); backdrop-filter:blur(3px); align-items:center; justify-content:center; }
+    .quit-modal.open { display:flex; }
+    .quit-box { background:var(--s1); border:2px solid var(--y); border-radius:1.1rem; padding:1.6rem 1.8rem; max-width:300px; width:90%; display:flex; flex-direction:column; gap:1rem; box-shadow:4px 4px 0 rgba(255,222,89,.25); }
+    .quit-box p { font-size:.92rem; font-weight:600; color:var(--text); text-align:center; }
+    .quit-box-btns { display:flex; gap:.55rem; }
+    .quit-box-btns .btn3d { flex:1; } .quit-box-btns .btn3d .bt { width:100%; }
+    .g-cnt { font-size: .8rem; font-weight: 700; color: var(--muted); letter-spacing: .06em; }
+    .g-timer { font-size: .95rem; font-weight: 800; color: var(--text); font-variant-numeric: tabular-nums; transition: filter .2s; }
+    .g-timer i { color: var(--y); margin-right: .28rem; }
+    .g-timer.blur-t { filter: blur(5px); cursor: pointer; }
+    .g-timer.blur-t:hover { filter: blur(0); }
+    /* Phrase card */
+    .phrase-card { background: var(--s1); border: 1px solid var(--bdr); border-top: 3px solid var(--y); border-radius: 1rem; padding: 1.4rem 1.7rem 1.6rem; box-shadow: 0 4px 0 rgba(255,229,0,.07), 0 10px 28px rgba(0,0,0,.45); }
+    .p-lbl { font-size: .65rem; font-weight: 800; letter-spacing: .14em; color: var(--y); text-transform: uppercase; margin-bottom: .5rem; opacity: .5; }
+    .p-txt { font-size: clamp(1.1rem,4vw,1.55rem); font-weight: 700; color: var(--text); line-height: 1.4; animation: fadeUp .3s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    /* Input row */
+    .input-row { display: flex; gap: .55rem; align-items: flex-end; }
+    .input-row .inp3d { flex: 1; }
+    /* Live translation */
+    #live-trans { min-height: 1.5rem; font-size: .82rem; font-weight: 500; display: flex; flex-wrap: wrap; gap: .15rem .38rem; align-items: center; padding: 0 .1rem; color: var(--muted); }
+    .lt-ok { color: var(--text); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--y); text-decoration-thickness: 2px; }
+    .lt-neutral { color: var(--muted); }
+    /* Feedback */
+    .feedback { display: none; }
+
+    /* ════════ Results ════════ */
+    #s-results { gap: 1.3rem; text-align: center; padding-bottom: 2rem; }
+    .res-card { width: 90%; max-width: 420px; background: var(--s1); border: 1px solid var(--bdr); border-radius: 1.1rem; padding: 2rem 1.7rem 1.7rem; }
+    .res-lbl { font-size: .68rem; font-weight: 800; letter-spacing: .13em; color: var(--muted); text-transform: uppercase; margin-bottom: .6rem; }
+    .res-score { font-size: clamp(4rem,14vw,6.5rem); font-weight: 900; color: var(--y); line-height: 1; font-family: 'Inter', sans-serif; }
+    .res-sub { font-size: .78rem; color: var(--muted); margin-bottom: 1.4rem; }
+    .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem 2rem; margin-bottom: 1.2rem; width: 100%; }
+    .stat { display: flex; flex-direction: column; align-items: center; gap: .1rem; background: var(--s2); border: 1px solid var(--bdr); border-radius: .65rem; padding: .7rem .5rem; }
+    .stat-v { font-size: 1.25rem; font-weight: 800; }
+    .stat-l { font-size: .62rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; text-align: center; }
+    .new-best { display: none; background: rgba(255,229,0,.06); border: 1px solid rgba(255,229,0,.22); border-radius: .5rem; padding: .35rem .85rem; font-size: .78rem; font-weight: 800; color: var(--y); margin-bottom: 1.1rem; }
+    .res-actions { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.4rem; }
+    .res-actions .btn3d { flex: 1; min-width: 140px; max-width: 200px; }
+    .res-actions .btn3d .bt { width: 100%; }
+    #charts-wrap { display: flex; gap: 1.1rem; justify-content: center; flex-wrap: wrap; width: 100%; padding: 0 1rem 1rem; }
+    .chart-box { display: flex; flex-direction: column; align-items: center; gap: .4rem; }
+    .chart-lbl { font-size: .66rem; font-weight: 700; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; }
+    #chart-donut { max-width: 125px; max-height: 125px; }
+    #chart-bar   { max-width: 250px; max-height: 125px; }
+
+    /* ════════ Leaderboard ════════ */
+    #s-lb { gap: 1.3rem; }
+    .lb-card { width: 90%; max-width: 480px; background: var(--s1); border: 1px solid var(--bdr); border-radius: 1.1rem; padding: 1.7rem 1.5rem; }
+    .lb-title { font-size: .95rem; font-weight: 800; color: var(--y); margin-bottom: .9rem; display: flex; align-items: center; gap: .4rem; }
+    .lb-row { display: flex; align-items: center; gap: .65rem; padding: .55rem 0; border-bottom: 1px solid var(--bdr); font-size: .85rem; }
+    .lb-row:last-child { border-bottom: none; }
+    .lb-rk { font-weight: 800; width: 1.5rem; text-align: center; flex-shrink: 0; color: var(--muted); }
+    .lb-rk.r1{color:#FFD700}.lb-rk.r2{color:#C0C0C0}.lb-rk.r3{color:#CD7F32}
+    .lb-nm { flex: 1; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .lb-nm.me { color: var(--y); }
+    .lb-dt { font-size: .7rem; color: var(--muted); flex-shrink: 0; }
+    .lb-sc { font-weight: 800; color: var(--y); flex-shrink: 0; min-width: 2.4rem; text-align: right; }
+    .lb-empty { color: var(--muted); font-size: .83rem; text-align: center; padding: 1.8rem; }
+
+    /* ════════ Confetti ════════ */
+    @keyframes confetti-slow   { 0%{transform:translate3d(0,0,0) rotateX(0) rotateY(0)} 100%{transform:translate3d(25px,105vh,0) rotateX(360deg) rotateY(180deg)} }
+    @keyframes confetti-medium { 0%{transform:translate3d(0,0,0) rotateX(0) rotateY(0)} 100%{transform:translate3d(100px,105vh,0) rotateX(100deg) rotateY(360deg)} }
+    @keyframes confetti-fast   { 0%{transform:translate3d(0,0,0) rotateX(0) rotateY(0)} 100%{transform:translate3d(-50px,105vh,0) rotateX(10deg) rotateY(250deg)} }
+    #confetti-root { position: fixed; inset: 0; z-index: 500; pointer-events: none; }
+    .confetti-container { perspective: 700px; position: absolute; overflow: hidden; inset: 0; }
+    .confetti { position: absolute; z-index: 1; top: -10px; border-radius: 0; }
+    .confetti--animation-slow   { animation: confetti-slow   2.25s linear 1 forwards; }
+    .confetti--animation-medium { animation: confetti-medium 1.75s linear 1 forwards; }
+    .confetti--animation-fast   { animation: confetti-fast   1.25s linear 1 forwards; }
+
+    /* ════════ 3D Correct Notif ════════ */
+    #notif-ok {
+      position: fixed; top: 78px; left: 50%; z-index: 501; pointer-events: none;
+      opacity: 0; transform: translateX(-50%) translateY(-10px) scale(.88);
+      transition: opacity .18s, transform .26s cubic-bezier(.34,1.56,.64,1);
+    }
+    #notif-ok.show { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+    @media(min-width:861px){ #notif-ok { left: calc(50% - 145px); } }
+    .nf-floor { background: var(--y); border-radius: .65em; display: inline-block; }
+    .nf-face {
+      display: flex; align-items: center; gap: .4rem;
+      height: 2.3rem; padding: 0 1em;
+      background: var(--bg); border: 2px solid var(--y); border-radius: .65em;
+      transform: translateY(-.22em); white-space: nowrap;
+      font-weight: 800; font-size: .8rem; font-family: 'Inter', sans-serif;
+    }
+    .nf-txt {
+      background: linear-gradient(90deg, var(--ok1), var(--y));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    /* ════════ Avatar picker ════════ */
+    .avatar-picker { display:none; margin-bottom: .6rem; }
+    .avatar-picker.open { display: block; }
+    .av-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: .28rem; }
+    .av-btn { border: 1.5px solid var(--bdr); background: var(--s2); border-radius: .4rem; cursor: pointer; font-size: 1.15rem; padding: .25rem; text-align: center; transition: border-color .15s, background .15s; }
+    .av-btn:hover { border-color: var(--bhi); background: rgba(255,222,89,.08); }
+    .av-btn.sel { border-color: var(--y); background: rgba(255,222,89,.1); }
+    /* ════════ Misc ════════ */
+    .spinner { display: inline-block; width: 15px; height: 15px; border: 2px solid rgba(255,229,0,.15); border-top-color: var(--y); border-radius: 50%; animation: spin .6s linear infinite; vertical-align: middle; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-5px)} 40%{transform:translateX(5px)} 60%{transform:translateX(-3px)} 80%{transform:translateX(3px)} }
+    .shake { animation: shake .3s ease; }
+    @media(max-width:480px){
+      .auth-content,.set-content,.res-card,.lb-card{padding:1.2rem 1rem}
+      .game-inner{padding:1.1rem .9rem 1.5rem}
+      #gh-fixed{bottom:1rem;right:1rem}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ LEADERBOARD SIDEBAR ══════════ -->
+<div id="lb-sidebar">
+  <div class="lb-side-header">
+    <div class="lb-side-title"><i class="fa-solid fa-trophy"></i>&nbsp;Classement live</div>
+  </div>
+  <div class="lb-side-lottie">
+    <lottie-player src="./068f1bec-1166-11ee-9994-df347a5320d0.json"
+      background="transparent" speed="0.7"
+      style="width:180px;height:130px;transform:scaleX(-1);filter:hue-rotate(-55deg) saturate(1.4)"
+      loop autoplay>
+    </lottie-player>
+  </div>
+  <div id="lb-sidebar-list"><div style="padding:1.2rem;text-align:center;color:var(--muted)"><span class="spinner"></span></div></div>
+</div>
+
+<!-- ══════════ HEADER ══════════ -->
+<header>
+  <div class="header-l">
+    <button class="btn3d btn-logo" id="logo-btn"><span class="bt">Linguify</span></button>
+  </div>
+  <div class="header-r">
+    <a class="btn3d btn-gh" href="https://github.com/RYZ-up/Linguify" target="_blank" rel="noopener">
+      <span class="bt">
+        <span style="display:flex;align-items:center;gap:.3rem">
+          <svg width="14" height="14" viewBox="0 0 438.549 438.549" fill="currentColor"><path d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z"/></svg>
+          <span class="gh-label">Star on GitHub</span>
+        </span>
+        <span class="gh-sep"></span>
+        <span class="gh-right" style="display:flex;align-items:center;gap:.25rem;font-size:.75rem;color:rgba(255,222,89,.5)">
+          <svg class="gh-star-ico" width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" fill-rule="evenodd"/></svg>
+          <span>6</span>
+        </span>
+      </span>
+    </a>
+    <button class="btn3d btn-user" id="user-toggle">
+      <span class="bt">
+        <span id="panel-avatar-hdr" style="font-size:1rem;display:flex;align-items:center"><i class="fa-solid fa-user"></i></span>
+        <span id="user-name-hdr">Compte</span>
+      </span>
+    </button>
+  </div>
+</header>
+
+<!-- ══════════ USER PANEL ══════════ -->
+<div id="user-panel">
+  <div class="panel-head">
+    <div class="panel-avatar" id="panel-avatar-el" title="Changer l'avatar" style="cursor:pointer;font-size:1.1rem;user-select:none"><i class="fa-solid fa-user"></i></div>
+    <div style="flex:1;min-width:0">
+      <div class="panel-name" id="panel-name-txt">—</div>
+      <div class="panel-role" id="panel-role-txt">Invité</div>
+    </div>
+  </div>
+  <div class="avatar-picker" id="avatar-picker">
+    <div class="av-grid" id="av-grid"></div>
+  </div>
+  <div class="panel-divider"></div>
+  <div class="panel-best" id="panel-best" style="display:none">
+    <i class="fa-solid fa-star" style="color:var(--y)"></i>
+    Meilleur : <strong id="panel-best-val"></strong>
+  </div>
+  <div class="panel-no-account" id="panel-no-account" style="display:none">Connecte-toi pour sauvegarder tes scores.</div>
+  <button class="btn3d" id="panel-logout" style="display:none;width:100%">
+    <span class="bt" style="width:100%"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</span>
+  </button>
+</div>
+
+<!-- ══════════ 3D CORRECT NOTIF ══════════ -->
+<div id="notif-ok">
+  <div class="nf-floor"><div class="nf-face">
+    <span class="nf-txt"><i class="fa-solid fa-check"></i> Correct !</span>
+  </div></div>
+</div>
+
+
+<div id="confetti-root"></div>
+
+<!-- ══════════ QUIT MODAL ══════════ -->
+<div class="quit-modal" id="quit-modal">
+  <div class="quit-box">
+    <p>Quitter la session en cours ?</p>
+    <div class="quit-box-btns">
+      <button class="btn3d wht" id="btn-quit-cancel"><span class="bt" style="width:100%">Annuler</span></button>
+      <button class="btn3d" id="btn-quit-confirm"><span class="bt" style="width:100%"><i class="fa-solid fa-xmark"></i> Quitter</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ AUTH ══════════ -->
+<div id="s-auth" class="screen active">
+  <div class="card3d" style="width:90%;max-width:400px">
+    <div class="card3d-in">
+      <div class="auth-content">
+        <div class="auth-logo">
+          <span class="auth-badge">
+            <span style="font-weight:900;letter-spacing:.04em">EN</span>
+            <i class="fa-solid fa-arrow-right" style="font-size:.75rem;opacity:.7"></i>
+            <span style="font-weight:900;letter-spacing:.04em">FR</span>
+          </span>
+        </div>
+        <div class="auth-features">
+          <div class="auth-feat"><i class="fa-solid fa-bolt"></i>Traduction flash en temps réel</div>
+          <div class="auth-feat"><i class="fa-solid fa-fire"></i>Streak & effets sonores dynamiques</div>
+          <div class="auth-feat"><i class="fa-solid fa-trophy"></i>Classement global en live</div>
+        </div>
+        <button class="btn3d wht" style="width:100%" id="btn-google">
+          <span class="bt" style="width:100%">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            Continuer avec Google
+          </span>
+        </button>
+        <div class="auth-div">jouer sans compte</div>
+        <div class="guest-label">Pseudo</div>
+        <div class="guest-row">
+          <div class="inp3d"><input type="text" id="pseudo-input" placeholder="Pseudo (max 16)" maxlength="16" autocomplete="off" /></div>
+          <button class="btn3d sq" id="btn-guest"><span class="bt"><i class="fa-solid fa-arrow-right"></i></span></button>
+        </div>
+        <div class="guest-notice"><i class="fa-solid fa-circle-info"></i>Aucun score ni record enregistré en mode invité</div>
+        <div class="auth-err" id="auth-err"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ HOME ══════════ -->
+<div id="s-home" class="screen">
+  <h1 class="home-title">Linguify</h1>
+  <p class="home-sub">10 phrases anglaises. Traduis en français. Vite et bien.</p>
+  <div class="guest-banner" id="guest-banner"><i class="fa-solid fa-circle-info"></i>Mode invité — aucun score ni record enregistré</div>
+  <div class="home-best" id="home-best"><i class="fa-solid fa-star" style="color:var(--y)"></i>Meilleur : <strong id="best-val"></strong></div>
+  <div class="set-wrap">
+    <div class="card3d">
+      <div class="card3d-in">
+        <div class="set-content">
+
+          <div class="set-section-title">Gameplay</div>
+
+          <div class="set-row">
+            <span class="set-label">Mode de fin</span>
+            <div class="mode-choice-row">
+              <label class="mode-choice" id="mc-count">
+                <input type="radio" name="mode-choice" value="count" />
+                <div class="mc-box">
+                  <span class="mc-title">N phrases</span>
+                  <div class="mc-input-wrap">
+                    <input type="number" id="set-count" value="10" min="5" max="50" />
+                    <span>questions</span>
+                  </div>
+                </div>
+              </label>
+              <label class="mode-choice" id="mc-time">
+                <input type="radio" name="mode-choice" value="time" checked />
+                <div class="mc-box">
+                  <span class="mc-title">Chrono</span>
+                  <div class="mc-input-wrap">
+                    <input type="number" id="set-duration" value="60" min="20" max="300" step="10" />
+                    <span>secondes</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="set-row">
+            <span class="set-label">Niveau — <span id="lvl-label">3</span></span>
+            <div class="slid-wrap">
+              <span style="font-size:.75rem;color:var(--muted)">1</span>
+              <input type="range" id="set-level" min="1" max="5" value="3" />
+              <span style="font-size:.75rem;color:var(--muted)">5</span>
+            </div>
+          </div>
+
+          <div class="set-div"></div>
+          <div class="set-section-title">Options</div>
+
+          <div class="set-row set-inline">
+            <span class="set-label">Flouter le timer</span>
+            <label class="toggle-wrap"><input type="checkbox" id="set-blur" /><div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div></label>
+          </div>
+          <div class="set-row set-inline">
+            <span class="set-label">Son (bip)</span>
+            <label class="toggle-wrap"><input type="checkbox" id="set-sound" checked /><div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div></label>
+          </div>
+          <div class="set-row set-inline">
+            <span class="set-label">Mots en vert live</span>
+            <label class="toggle-wrap"><input type="checkbox" id="set-hints" checked /><div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div></label>
+          </div>
+          <div class="set-row set-inline">
+            <span class="set-label">Correction souple</span>
+            <label class="toggle-wrap"><input type="checkbox" id="set-loose" checked /><div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div></label>
+          </div>
+          <div class="set-row set-inline">
+            <span class="set-label">Barre de progression</span>
+            <label class="toggle-wrap"><input type="checkbox" id="set-progress" checked /><div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div></label>
+          </div>
+
+          <div class="set-div"></div>
+          <div class="home-btns">
+            <button class="btn3d" id="btn-lb-home" style="display:none"></button>
+            <button class="btn3d" id="btn-start"><span class="bt"><i class="fa-solid fa-play"></i>START</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ GAME ══════════ -->
+<div id="s-game" class="screen">
+  <div class="game-inner">
+    <div class="game-top">
+      <span class="g-cnt" id="g-cnt">1 / 10</span>
+      <div class="game-top-r">
+        <span class="g-timer" id="g-timer"><i class="fa-regular fa-clock"></i><span id="g-time">0:00</span></span>
+        <button class="btn3d sq wht" id="btn-quit" title="Quitter" style="--btn-h:2rem"><span class="bt"><i class="fa-solid fa-xmark"></i></span></button>
+      </div>
+    </div>
+    <div class="g-progress-wrap" id="g-progress-wrap">
+      <div class="g-progress-fill" id="g-progress-fill"></div>
+    </div>
+    <div class="phrase-card" id="phrase-card">
+      <div class="p-lbl">Traduisez en français</div>
+      <div class="p-txt" id="p-txt"></div>
+    </div>
+    <div class="input-row">
+      <div class="inp3d"><input type="text" id="ans-input" placeholder="Votre traduction..." autocomplete="off" spellcheck="false" /></div>
+      <button class="btn3d sq" id="btn-val"><span class="bt" id="btn-val-ico"><i class="fa-solid fa-arrow-right"></i></span></button>
+    </div>
+    <div id="live-trans"></div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+</div>
+
+<!-- ══════════ RESULTS ══════════ -->
+<div id="s-results" class="screen">
+  <div class="res-card">
+    <div style="display:flex;justify-content:center;margin-bottom:.2rem">
+      <lottie-player id="res-lottie-check" src="./lottie-checkmark.json" background="transparent" speed="1" style="width:70px;height:70px;pointer-events:none;display:none" autoplay></lottie-player>
+    </div>
+    <div class="res-lbl">Score final</div>
+    <div class="res-score" id="res-score">0</div>
+    <div class="res-sub">/ 100 points</div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-v" id="res-bonnes">—</div><div class="stat-l">Bonnes rép.</div></div>
+      <div class="stat"><div class="stat-v" id="res-precision">—</div><div class="stat-l">Précision</div></div>
+      <div class="stat"><div class="stat-v" id="res-temps">—</div><div class="stat-l">Temps</div></div>
+      <div class="stat"><div class="stat-v" id="res-streak">—</div><div class="stat-l">Streak max</div></div>
+    </div>
+    <div class="new-best" id="new-best"><i class="fa-solid fa-trophy" style="margin-right:.3rem"></i>Nouveau record !</div>
+    <div class="res-actions">
+      <button class="btn3d" id="btn-replay"><span class="bt"><i class="fa-solid fa-rotate-right"></i>Rejouer</span></button>
+      <button class="btn3d" id="btn-res-home"><span class="bt"><i class="fa-solid fa-sliders"></i>Paramètres</span></button>
+    </div>
+  </div>
+  <div id="charts-wrap">
+    <div class="chart-box"><canvas id="chart-donut"></canvas><div class="chart-lbl">Précision</div></div>
+    <div class="chart-box"><canvas id="chart-bar"></canvas><div class="chart-lbl">Question par question</div></div>
+  </div>
+</div>
+
+<!-- ══════════ LEADERBOARD ══════════ -->
+<div id="s-lb" class="screen">
+  <div class="lb-card">
+    <div class="lb-title"><i class="fa-solid fa-trophy"></i>Classement global</div>
+    <div id="lb-list"><div style="text-align:center;padding:1.5rem;color:var(--muted)"><span class="spinner"></span></div></div>
+  </div>
+  <button class="btn3d" id="btn-lb-back"><span class="bt"><i class="fa-solid fa-arrow-left"></i>Retour</span></button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script>
+firebase.initializeApp({
+  apiKey:"REDACTED_API_KEY",
+  authDomain:"REDACTED-PROJECT.firebaseapp.com",
+  databaseURL:"https://REDACTED-PROJECT-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId:"REDACTED-PROJECT",
+  storageBucket:"REDACTED-PROJECT.firebasestorage.app",
+  messagingSenderId:"REDACTED-SENDER",
+  appId:"1:REDACTED-SENDER:web:REDACTED-APP"
+});
+const auth=firebase.auth(),db=firebase.database();
+
+const PHRASES_ALL=[
+  /* ── LEVEL 1 ── */
+  {level:1,en:"The sun is shining today.",hint:"Le soleil brille aujourd'hui.",answers:["le soleil brille aujourd'hui","il fait soleil aujourd'hui","aujourd'hui le soleil brille","le soleil brille ce jour"]},
+  {level:1,en:"Where is the train station?",hint:"Où est la gare ?",answers:["ou est la gare","ou se trouve la gare","ou est la gare ferroviaire"]},
+  {level:1,en:"I am happy.",hint:"Je suis heureux.",answers:["je suis heureux","je suis heureuse","je suis content","je suis contente"]},
+  {level:1,en:"The cat is black.",hint:"Le chat est noir.",answers:["le chat est noir","le chat est de couleur noire"]},
+  {level:1,en:"Good morning!",hint:"Bonjour !",answers:["bonjour","bonne matinee"]},
+  {level:1,en:"I am hungry.",hint:"J'ai faim.",answers:["j'ai faim","je suis affame","je suis affamee"]},
+  {level:1,en:"Thank you very much.",hint:"Merci beaucoup.",answers:["merci beaucoup","merci infiniment","merci bien"]},
+  {level:1,en:"I love you.",hint:"Je t'aime.",answers:["je t'aime","je vous aime"]},
+  {level:1,en:"What is your name?",hint:"Comment tu t'appelles ?",answers:["comment tu t'appelles","comment vous appelez-vous","quel est ton nom","quel est votre nom","tu t'appelles comment"]},
+  {level:1,en:"I speak French.",hint:"Je parle français.",answers:["je parle francais","je parle le francais"]},
+  {level:1,en:"The house is big.",hint:"La maison est grande.",answers:["la maison est grande","la maison est grande","c'est une grande maison"]},
+  {level:1,en:"Close the door.",hint:"Ferme la porte.",answers:["ferme la porte","fermez la porte","ferme la porte s'il te plait","fermez la porte s'il vous plait"]},
+  {level:1,en:"I am tired.",hint:"Je suis fatigué.",answers:["je suis fatigue","je suis fatiguee","je suis epuise","je suis epuisee"]},
+  {level:1,en:"It is cold today.",hint:"Il fait froid aujourd'hui.",answers:["il fait froid aujourd'hui","il fait froid ce matin","c'est froid aujourd'hui"]},
+  {level:1,en:"I do not understand.",hint:"Je ne comprends pas.",answers:["je ne comprends pas","je comprends pas","je ne comprend pas"]},
+  {level:1,en:"Where do you live?",hint:"Où est-ce que tu habites ?",answers:["ou habites-tu","ou est-ce que tu habites","ou vivez-vous","tu habites ou","vous habitez ou"]},
+  {level:1,en:"She is beautiful.",hint:"Elle est belle.",answers:["elle est belle","elle est jolie","elle est magnifique","c'est une belle femme"]},
+  {level:1,en:"How much does it cost?",hint:"Combien ça coûte ?",answers:["combien ca coute","c'est combien","ca coute combien","quel est le prix"]},
+  {level:1,en:"I am sorry.",hint:"Je suis désolé.",answers:["je suis desole","je suis desolee","desole","desolee","pardon","excuse-moi"]},
+  {level:1,en:"The water is cold.",hint:"L'eau est froide.",answers:["l'eau est froide","l'eau est tres froide","cette eau est froide"]},
+  /* ── LEVEL 2 ── */
+  {level:2,en:"She loves reading books.",hint:"Elle aime lire des livres.",answers:["elle aime lire des livres","elle adore lire des livres","elle aime lire","elle adore lire","elle aime la lecture","elle adore la lecture"]},
+  {level:2,en:"It is a beautiful day.",hint:"C'est une belle journée.",answers:["c'est une belle journee","il fait beau aujourd'hui","quelle belle journee","il fait beau","c'est un beau jour"]},
+  {level:2,en:"I would like a coffee, please.",hint:"Je voudrais un café, s'il vous plaît.",answers:["je voudrais un cafe s'il vous plait","je voudrais un cafe s'il te plait","j'aimerais un cafe s'il vous plait","j'aimerais un cafe s'il te plait","un cafe s'il vous plait","un cafe s'il te plait"]},
+  {level:2,en:"He is my best friend.",hint:"C'est mon meilleur ami.",answers:["c'est mon meilleur ami","il est mon meilleur ami","c'est mon ami","il est mon ami"]},
+  {level:2,en:"The dog is very tired.",hint:"Le chien est très fatigué.",answers:["le chien est tres fatigue","le chien est vraiment fatigue","le chien est fatigue"]},
+  {level:2,en:"I need to buy some bread.",hint:"Je dois acheter du pain.",answers:["je dois acheter du pain","j'ai besoin d'acheter du pain","il faut que j'achete du pain"]},
+  {level:2,en:"She works at the hospital.",hint:"Elle travaille à l'hôpital.",answers:["elle travaille a l'hopital","elle est infirmiere a l'hopital","elle travaille dans un hopital"]},
+  {level:2,en:"We eat dinner at seven.",hint:"Nous dînons à sept heures.",answers:["nous dinons a sept heures","on dine a sept heures","nous mangeons a sept heures","on mange a sept heures","on dine a 7 heures"]},
+  {level:2,en:"Do you speak English?",hint:"Parlez-vous anglais ?",answers:["parlez-vous anglais","tu parles anglais","est-ce que tu parles anglais","vous parlez anglais","vous parlez l'anglais","tu parles l'anglais"]},
+  {level:2,en:"I am going to the supermarket.",hint:"Je vais au supermarché.",answers:["je vais au supermarche","je me rends au supermarche","je vais faire des courses"]},
+  {level:2,en:"She has two children.",hint:"Elle a deux enfants.",answers:["elle a deux enfants","elle a 2 enfants"]},
+  {level:2,en:"He is a doctor.",hint:"Il est médecin.",answers:["il est medecin","c'est un medecin","il est docteur","c'est un docteur"]},
+  {level:2,en:"I like to go for a walk.",hint:"J'aime me promener.",answers:["j'aime me promener","j'aime aller me promener","j'adore me promener","j'adore les promenades"]},
+  {level:2,en:"The coffee is too hot.",hint:"Le café est trop chaud.",answers:["le cafe est trop chaud","ce cafe est trop chaud","mon cafe est trop chaud"]},
+  {level:2,en:"It is raining outside.",hint:"Il pleut dehors.",answers:["il pleut dehors","il pleut a l'exterieur","il pleut","il est en train de pleuvoir"]},
+  {level:2,en:"I am reading a good book.",hint:"Je lis un bon livre.",answers:["je lis un bon livre","je suis en train de lire un bon livre","je lis un livre interessant"]},
+  {level:2,en:"She is cooking dinner.",hint:"Elle prépare le dîner.",answers:["elle prepare le diner","elle fait a manger","elle cuisine","elle est en train de cuisiner","elle fait la cuisine"]},
+  {level:2,en:"He calls his mother every day.",hint:"Il appelle sa mère tous les jours.",answers:["il appelle sa mere tous les jours","il telephone a sa mere tous les jours","il appelle sa mere chaque jour"]},
+  {level:2,en:"I enjoy watching movies.",hint:"J'aime regarder des films.",answers:["j'aime regarder des films","j'adore regarder des films","j'aime les films","j'adore le cinema"]},
+  {level:2,en:"The weather is nice today.",hint:"Il fait beau aujourd'hui.",answers:["il fait beau aujourd'hui","le temps est beau aujourd'hui","il fait un beau temps","quel beau temps"]},
+  /* ── LEVEL 3 ── */
+  {level:3,en:"We are going to the beach.",hint:"Nous allons à la plage.",answers:["nous allons a la plage","on va a la plage","nous nous rendons a la plage","on se rend a la plage"]},
+  {level:3,en:"He forgot his keys at home.",hint:"Il a oublié ses clés à la maison.",answers:["il a oublie ses cles a la maison","il a oublie ses cles chez lui","il a oublie ses cles"]},
+  {level:3,en:"I am learning French.",hint:"J'apprends le français.",answers:["j'apprends le francais","je suis en train d'apprendre le francais","j'etudie le francais"]},
+  {level:3,en:"She goes to work every day.",hint:"Elle va au travail tous les jours.",answers:["elle va au travail tous les jours","elle travaille tous les jours","elle se rend au travail chaque jour","elle va travailler tous les jours"]},
+  {level:3,en:"Can you help me, please?",hint:"Pouvez-vous m'aider, s'il vous plaît ?",answers:["pouvez-vous m'aider s'il vous plait","peux-tu m'aider s'il te plait","tu peux m'aider","vous pouvez m'aider","aide-moi s'il te plait","aidez-moi s'il vous plait"]},
+  {level:3,en:"She did not sleep well last night.",hint:"Elle n'a pas bien dormi la nuit dernière.",answers:["elle n'a pas bien dormi la nuit derniere","elle a mal dormi la nuit derniere","elle a mal dormi cette nuit","elle n'a pas bien dormi cette nuit"]},
+  {level:3,en:"He went to the doctor this morning.",hint:"Il est allé chez le médecin ce matin.",answers:["il est alle chez le medecin ce matin","il a consulte un medecin ce matin","il est alle voir le medecin ce matin"]},
+  {level:3,en:"I think it is going to rain.",hint:"Je pense qu'il va pleuvoir.",answers:["je pense qu'il va pleuvoir","je crois qu'il va pleuvoir","il va pleuvoir je pense","il va probablement pleuvoir"]},
+  {level:3,en:"They finished the project on time.",hint:"Ils ont terminé le projet à temps.",answers:["ils ont termine le projet a temps","ils ont fini le projet a temps","ils ont rendu le projet dans les temps","elles ont termine le projet a temps"]},
+  {level:3,en:"She gave me a wonderful gift.",hint:"Elle m'a offert un cadeau magnifique.",answers:["elle m'a offert un cadeau magnifique","elle m'a donne un beau cadeau","elle m'a offert un tres beau cadeau","elle m'a fait un beau cadeau"]},
+  {level:3,en:"He was born in Paris.",hint:"Il est né à Paris.",answers:["il est ne a paris","il est originaire de paris","il vient de paris","il a ete ne a paris"]},
+  {level:3,en:"I have never been to Japan.",hint:"Je ne suis jamais allé au Japon.",answers:["je ne suis jamais alle au japon","je n'ai jamais visite le japon","je ne suis jamais allee au japon","je n'ai jamais mis les pieds au japon"]},
+  {level:3,en:"We spent the weekend at the beach.",hint:"Nous avons passé le week-end à la plage.",answers:["nous avons passe le week-end a la plage","on a passe le week-end a la plage","nous avons passe le weekend a la plage"]},
+  {level:3,en:"She told me she was not feeling well.",hint:"Elle m'a dit qu'elle ne se sentait pas bien.",answers:["elle m'a dit qu'elle ne se sentait pas bien","elle m'a dit qu'elle allait pas bien","elle m'a dit ne pas se sentir bien"]},
+  {level:3,en:"I woke up late this morning.",hint:"Je me suis réveillé tard ce matin.",answers:["je me suis reveille tard ce matin","je me suis reveillee tard ce matin","je me suis leve tard ce matin","je me suis levee tard ce matin"]},
+  {level:3,en:"He bought a new car last week.",hint:"Il a acheté une nouvelle voiture la semaine dernière.",answers:["il a achete une nouvelle voiture la semaine derniere","il a acquis une nouvelle voiture la semaine derniere","il s'est achete une voiture la semaine derniere"]},
+  {level:3,en:"The train was delayed by twenty minutes.",hint:"Le train avait vingt minutes de retard.",answers:["le train avait vingt minutes de retard","le train etait en retard de vingt minutes","le train avait 20 minutes de retard","le train avait du retard"]},
+  {level:3,en:"She explained the problem clearly.",hint:"Elle a expliqué le problème clairement.",answers:["elle a explique le probleme clairement","elle a bien explique le probleme","elle a clairement explique le probleme"]},
+  {level:3,en:"I forgot to call him back.",hint:"J'ai oublié de le rappeler.",answers:["j'ai oublie de le rappeler","j'ai oublie de lui rappeler","j'ai oublie de l'appeler","j'ai oublie de le recontacter"]},
+  {level:3,en:"They met for the first time at school.",hint:"Ils se sont rencontrés pour la première fois à l'école.",answers:["ils se sont rencontres pour la premiere fois a l'ecole","ils se sont rencontres a l'ecole","elles se sont rencontrees pour la premiere fois a l'ecole"]},
+  /* ── LEVEL 4 ── */
+  {level:4,en:"The meeting starts at nine.",hint:"La réunion commence à neuf heures.",answers:["la reunion commence a neuf heures","la reunion commence a 9h","la reunion commence a 9 heures","le meeting commence a neuf heures"]},
+  {level:4,en:"He has been working here for five years.",hint:"Il travaille ici depuis cinq ans.",answers:["il travaille ici depuis cinq ans","il travaille ici depuis 5 ans","il est ici depuis cinq ans"]},
+  {level:4,en:"The children were playing in the park.",hint:"Les enfants jouaient dans le parc.",answers:["les enfants jouaient dans le parc","les enfants etaient en train de jouer dans le parc","les enfants jouent dans le parc"]},
+  {level:4,en:"She asked me to close the window.",hint:"Elle m'a demandé de fermer la fenêtre.",answers:["elle m'a demande de fermer la fenetre","elle m'a dit de fermer la fenetre","elle a demande que je ferme la fenetre"]},
+  {level:4,en:"I could not find my keys anywhere.",hint:"Je ne trouvais mes clés nulle part.",answers:["je ne trouvais mes cles nulle part","je n'arrivais pas a trouver mes cles","je ne pouvais pas trouver mes cles"]},
+  {level:4,en:"If I had more time, I would travel more.",hint:"Si j'avais plus de temps, je voyagerais davantage.",answers:["si j'avais plus de temps je voyagerais plus","si j'avais plus de temps je voyagerais davantage","si j'avais le temps je voyagerais plus","avec plus de temps je voyagerais davantage"]},
+  {level:4,en:"The report was submitted yesterday.",hint:"Le rapport a été soumis hier.",answers:["le rapport a ete soumis hier","le rapport a ete remis hier","le rapport a ete depose hier","on a soumis le rapport hier"]},
+  {level:4,en:"He suggested that we leave early.",hint:"Il a suggéré que nous partions tôt.",answers:["il a suggere que nous partions tot","il a propose de partir tot","il a propose qu'on parte tot","il nous a suggere de partir tot"]},
+  {level:4,en:"The building was built in the nineteenth century.",hint:"Le bâtiment a été construit au XIXe siècle.",answers:["le batiment a ete construit au xixe siecle","l'immeuble a ete construit au dix-neuvieme siecle","ce batiment date du xix siecle","le batiment a ete construit au 19eme siecle"]},
+  {level:4,en:"He managed to solve the problem on his own.",hint:"Il a réussi à résoudre le problème seul.",answers:["il a reussi a resoudre le probleme seul","il a reussi a regler le probleme tout seul","il a resolu le probleme par lui-meme","il a reussi a resoudre le probleme tout seul"]},
+  {level:4,en:"She had just arrived when the phone rang.",hint:"Elle venait juste d'arriver quand le téléphone a sonné.",answers:["elle venait juste d'arriver quand le telephone a sonne","elle arrivait a peine quand le telephone a sonne","elle venait d'arriver quand le telephone a sonne"]},
+  {level:4,en:"We should have prepared better for the exam.",hint:"Nous aurions dû mieux nous préparer pour l'examen.",answers:["nous aurions du mieux nous preparer pour l'examen","on aurait du mieux se preparer pour l'examen","il aurait fallu mieux se preparer","nous aurions du mieux preparer l'examen"]},
+  {level:4,en:"He claims that he saw the accident.",hint:"Il affirme avoir vu l'accident.",answers:["il affirme avoir vu l'accident","il pretend avoir vu l'accident","il dit qu'il a vu l'accident","il soutient avoir ete temoin de l'accident"]},
+  {level:4,en:"She has been waiting for an answer for two weeks.",hint:"Elle attend une réponse depuis deux semaines.",answers:["elle attend une reponse depuis deux semaines","elle attend une reponse depuis quinze jours","elle attend une reponse depuis 2 semaines","cela fait deux semaines qu'elle attend une reponse"]},
+  {level:4,en:"I was told that the project had been cancelled.",hint:"On m'a dit que le projet avait été annulé.",answers:["on m'a dit que le projet avait ete annule","j'ai appris que le projet etait annule","on m'a informe que le projet etait annule","il m'a ete dit que le projet avait ete annule"]},
+  {level:4,en:"They had already left by the time we arrived.",hint:"Ils étaient déjà partis quand nous sommes arrivés.",answers:["ils etaient deja partis quand nous sommes arrives","ils etaient deja partis a notre arrivee","quand nous sommes arrives ils etaient deja partis","ils etaient deja repartis quand on est arrives"]},
+  {level:4,en:"She was promoted because of her excellent work.",hint:"Elle a été promue grâce à son excellent travail.",answers:["elle a ete promue grace a son excellent travail","elle a obtenu une promotion grace a son travail","elle a ete promue pour son excellent travail","sa promotion est due a son excellent travail"]},
+  {level:4,en:"I would appreciate it if you could call me back.",hint:"Je vous serais reconnaissant de me rappeler.",answers:["je vous serais reconnaissant de me rappeler","j'apprecierais que vous me rappeliez","pourriez-vous me rappeler s'il vous plait","serait-il possible que vous me rappeliez"]},
+  {level:4,en:"She asked whether we would be coming to the party.",hint:"Elle a demandé si nous allions venir à la fête.",answers:["elle a demande si nous allions venir a la fete","elle a demande si on viendrait a la fete","elle voulait savoir si nous viendrions","elle m'a demande si j'allais venir a la fete"]},
+  {level:4,en:"The decision was made without consulting the team.",hint:"La décision a été prise sans consulter l'équipe.",answers:["la decision a ete prise sans consulter l'equipe","la decision a ete prise sans l'avis de l'equipe","on a pris la decision sans consulter l'equipe","cette decision n'a pas ete concertee avec l'equipe"]},
+  /* ── LEVEL 5 ── */
+  {level:5,en:"Despite the traffic, he arrived on time.",hint:"Malgré le trafic, il est arrivé à l'heure.",answers:["malgre le trafic il est arrive a l'heure","malgre les embouteillages il est arrive a l'heure","en depit du trafic il est arrive a l'heure","il est arrive a l'heure malgre le trafic"]},
+  {level:5,en:"She has been living in Paris for more than ten years.",hint:"Elle vit à Paris depuis plus de dix ans.",answers:["elle vit a paris depuis plus de dix ans","elle habite a paris depuis plus de dix ans","elle vit a paris depuis plus de 10 ans","elle habite a paris depuis plus de 10 ans"]},
+  {level:5,en:"We should have left earlier to avoid the traffic.",hint:"Nous aurions dû partir plus tôt pour éviter les embouteillages.",answers:["nous aurions du partir plus tot pour eviter les embouteillages","on aurait du partir plus tot","nous aurions du partir plus tot","il aurait fallu partir plus tot pour eviter les embouteillages"]},
+  {level:5,en:"The results were better than we had expected.",hint:"Les résultats étaient meilleurs que prévu.",answers:["les resultats etaient meilleurs que prevu","les resultats etaient meilleurs que ce que nous attendions","les resultats ont ete meilleurs que prevu","les resultats se sont reveles meilleurs que prevu"]},
+  {level:5,en:"It is important to take care of yourself every day.",hint:"Il est important de prendre soin de soi chaque jour.",answers:["il est important de prendre soin de soi chaque jour","il faut prendre soin de soi chaque jour","il est important de s'occuper de soi chaque jour","prendre soin de soi chaque jour est important"]},
+  {level:5,en:"The more you practice, the better you become.",hint:"Plus vous pratiquez, meilleur vous devenez.",answers:["plus vous pratiquez meilleur vous devenez","plus tu pratiques mieux tu deviens","plus on pratique mieux on devient","plus on s'entraine meilleur on devient"]},
+  {level:5,en:"Had I known, I would have acted differently.",hint:"Si j'avais su, j'aurais agi différemment.",answers:["si j'avais su j'aurais agi differemment","si j'avais su les choses auraient ete differentes","si j'avais su ca j'aurais agi autrement","j'aurais agi differemment si j'avais su"]},
+  {level:5,en:"The company announced that it would be restructuring its operations.",hint:"L'entreprise a annoncé qu'elle allait restructurer ses activités.",answers:["l'entreprise a annonce qu'elle allait restructurer ses activites","la societe a annonce une restructuration de ses activites","la societe a annonce qu'elle allait se reorganiser","l'entreprise a annonce une reorganisation"]},
+  {level:5,en:"She could not bring herself to tell him the truth.",hint:"Elle ne pouvait pas se résoudre à lui dire la vérité.",answers:["elle ne pouvait pas se resoudre a lui dire la verite","elle n'arrivait pas a lui dire la verite","elle etait incapable de lui dire la verite","elle ne parvenait pas a lui avouer la verite"]},
+  {level:5,en:"The evidence suggests that the theory may not be correct.",hint:"Les indices laissent penser que la théorie est peut-être incorrecte.",answers:["les indices laissent penser que la theorie est peut-etre incorrecte","les preuves semblent indiquer que la theorie est fausse","les elements semblent montrer que la theorie est incorrecte","il semblerait que la theorie soit inexacte"]},
+  {level:5,en:"He was so exhausted that he fell asleep immediately.",hint:"Il était tellement épuisé qu'il s'est endormi immédiatement.",answers:["il etait tellement epuise qu'il s'est endormi immediatement","il etait si fatigue qu'il s'est endormi aussitot","il etait tellement epuise qu'il a immediatement sombre dans le sommeil","tellement epuise il s'est endormi des qu'il a pose la tete"]},
+  {level:5,en:"It goes without saying that honesty is important.",hint:"Il va sans dire que l'honnêteté est importante.",answers:["il va sans dire que l'honnetete est importante","il va de soi que l'honnetete est importante","il est evident que l'honnetete est importante","l'importance de l'honnetete va sans dire"]},
+  {level:5,en:"The renovation took longer than anticipated due to unexpected complications.",hint:"La rénovation a pris plus de temps que prévu en raison de complications imprévues.",answers:["la renovation a pris plus de temps que prevu en raison de complications imprevisibles","les travaux ont dure plus longtemps que prevu a cause de problemes imprevus","la renovation s'est avere plus longue que prevu suite a des complications","la renovation a pris plus de temps que prevu"]},
+  {level:5,en:"Rather than giving up, she found an alternative solution.",hint:"Plutôt que d'abandonner, elle a trouvé une solution alternative.",answers:["plutot que d'abandonner elle a trouve une solution alternative","au lieu d'abandonner elle a trouve une autre solution","elle a prefere trouver une solution plutot que d'abandonner","au lieu de capituler elle a trouve une solution de rechange"]},
+  {level:5,en:"The situation is more complex than it appears at first glance.",hint:"La situation est plus complexe qu'il n'y paraît à première vue.",answers:["la situation est plus complexe qu'il n'y parait a premiere vue","la situation est plus complexe qu'elle ne le semble","la situation est bien plus complexe qu'il n'y parait","les apparences sont trompeuses la situation est plus complexe"]},
+  {level:5,en:"He insisted that every detail be checked twice.",hint:"Il a insisté pour que chaque détail soit vérifié deux fois.",answers:["il a insiste pour que chaque detail soit verifie deux fois","il a exige que l'on verifie chaque detail deux fois","il tenait a ce que chaque detail soit verifie deux fois","il a voulu que chaque element soit controle deux fois"]},
+  {level:5,en:"She takes pride in her ability to remain calm under pressure.",hint:"Elle est fière de sa capacité à rester calme sous pression.",answers:["elle est fiere de sa capacite a rester calme sous pression","elle se targue de rester calme en toute circonstance","elle est fiere de pouvoir garder son calme sous pression","elle est connue pour rester calme sous pression"]},
+  {level:5,en:"The conference was postponed indefinitely owing to unforeseen circumstances.",hint:"La conférence a été reportée indéfiniment en raison de circonstances imprévues.",answers:["la conference a ete reportee indefiniment en raison de circonstances imprevues","la conference a ete annulee jusqu'a nouvel ordre","la conference a ete repoussee pour des raisons imprevues","la conference a ete indefiniment reportee"]},
+  {level:5,en:"She raised an objection that nobody had thought of before.",hint:"Elle a soulevé une objection à laquelle personne n'avait pensé.",answers:["elle a souleve une objection a laquelle personne n'avait pense","elle a formule une objection que personne n'avait envisagee","elle a emis une objection que nul n'avait anticipee","elle a avance un argument que personne n'avait considere"]},
+  {level:5,en:"The outcome depends largely on how well we coordinate.",hint:"Le résultat dépend en grande partie de notre coordination.",answers:["le resultat depend en grande partie de notre coordination","l'issue depend largement de la qualite de notre coordination","tout depend de notre capacite a coordonner nos efforts","le resultat depend essentiellement de notre coordination"]},
+];
+
+/* ══ CORRECTION ══ */
+function norm(s){
+  return s.toLowerCase()
+    .replace(/[''`´]/g,"'")
+    .replace(/œ/g,'oe').replace(/æ/g,'ae')
+    .normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/[.,!?;:…\-]+$/,'').replace(/[.,!?;:…]+/g,' ')
+    .replace(/\s+/g,' ').trim();
+}
+function lev(a,b){
+  const m=a.length,n=b.length;if(!m)return n;if(!n)return m;
+  const dp=Array.from({length:m+1},(_,i)=>Array.from({length:n+1},(_,j)=>j?(i?0:j):i));
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);
+  return dp[m][n];
+}
+function isCorrect(raw,phrase){
+  const u=norm(raw);if(!u)return false;
+  for(const acc of phrase.answers){
+    const a=norm(acc);if(u===a)return true;
+    if(settings.looseCorrection){const d=Math.min(2,Math.floor(a.length/9));if(d>0&&lev(u,a)<=d)return true;}
+  }
+  return false;
+}
+
+/* ══ SOUND ══ */
+let audioCtx=null,sfx={};
+async function loadSfx(){
+  try{
+    if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    const files={correct:'correct.mp3',incorrect:'incorrect.mp3',achievement:'achievement.mp3'};
+    await Promise.all(Object.entries(files).map(async([k,f])=>{
+      try{const r=await fetch(f);const ab=await r.arrayBuffer();sfx[k]=await audioCtx.decodeAudioData(ab);}catch(e){}
+    }));
+  }catch(e){}
+}
+function playSfx(key,rate=1){
+  if(!settings.sound||!audioCtx||!sfx[key])return;
+  try{
+    if(audioCtx.state==='suspended')audioCtx.resume();
+    const src=audioCtx.createBufferSource(),g=audioCtx.createGain();
+    src.buffer=sfx[key];src.playbackRate.value=rate;
+    g.gain.value=0.85;src.connect(g);g.connect(audioCtx.destination);src.start();
+  }catch(e){}
+}
+function playBip(ok,streak=0){
+  if(ok){
+    const rate=0.75+(streak/10)*0.75;
+    playSfx('correct',rate);
+  }else{
+    playSfx('incorrect');
+  }
+}
+/* init sfx on first user gesture */
+document.addEventListener('click',()=>{if(!audioCtx)loadSfx();else if(audioCtx.state==='suspended')audioCtx.resume();},{once:true});
+
+/* ══ LIVE TRANSLATION ══ */
+function renderLiveTrans(raw,phrase){
+  const el=document.getElementById('live-trans');
+  if(!settings.liveHints||!raw.trim()){el.innerHTML='';return;}
+  const words=raw.split(/\s+/).filter(Boolean);
+  const accWords=new Set();
+  phrase.answers.forEach(a=>norm(a).split(/\s+/).forEach(w=>accWords.add(w)));
+  el.innerHTML=words.map(w=>{
+    const nw=norm(w);
+    const hit=accWords.has(nw)||[...accWords].some(a=>a.length>3&&lev(nw,a)<=1);
+    return`<span class="${hit?'lt-ok':'lt-neutral'}">${escHtml(w)}</span>`;
+  }).join(' ');
+}
+
+/* ══ SCORE ══ */
+function calcScore(bonnes,total,secs){
+  return Math.round((bonnes/total)*70+Math.max(0,Math.min(1,1-(secs-30)/120))*30);
+}
+
+/* ══ PROGRESS BAR (inline, inside game) ══ */
+function heatColor(r){
+  const c=[79,172,254],w=[247,127,0],h=[214,40,40];
+  let a,b,t;
+  if(r<=.5){t=r*2;a=c;b=w;}else{t=(r-.5)*2;a=w;b=h;}
+  return`rgb(${a[0]+(b[0]-a[0])*t|0},${a[1]+(b[1]-a[1])*t|0},${a[2]+(b[2]-a[2])*t|0})`;
+}
+function setPbar(idx,correct,total){
+  const wrap=document.getElementById('g-progress-wrap');
+  const fill=document.getElementById('g-progress-fill');
+  if(!wrap||!fill)return;
+  wrap.style.display=settings.showProgress?'block':'none';
+  if(!settings.showProgress)return;
+  const col=heatColor(idx===0?0:correct/idx);
+  fill.style.width=(idx/total*100)+'%';
+  fill.style.background=col;
+  fill.style.boxShadow=idx>0?`0 0 7px ${col},0 0 14px ${col}55`:'none';
+}
+
+/* ══ CONFETTI ══ */
+const Confettiful=function(el){
+  this.el=el;this.containerEl=null;
+  this.confettiColors=['#FFE500','#ff726d','#b48def','#4ade80','#f4306d','#60a5fa'];
+  this.confettiAnimations=['slow','medium','fast'];
+  this._setupElements();this._renderConfetti();
+};
+Confettiful.prototype._setupElements=function(){
+  const c=document.createElement('div');
+  if(this.el.style.position!=='relative'&&this.el.style.position!=='absolute')this.el.style.position='relative';
+  c.classList.add('confetti-container');this.el.appendChild(c);this.containerEl=c;
+};
+Confettiful.prototype._renderConfetti=function(){
+  this.confettiInterval=setInterval(()=>{
+    const el=document.createElement('div');
+    const sz=(Math.floor(Math.random()*3)+7)+'px';
+    const bg=this.confettiColors[Math.floor(Math.random()*this.confettiColors.length)];
+    const left=(Math.floor(Math.random()*(this.el.offsetWidth||window.innerWidth)))+'px';
+    const anim=this.confettiAnimations[Math.floor(Math.random()*this.confettiAnimations.length)];
+    el.classList.add('confetti','confetti--animation-'+anim);
+    el.style.cssText=`left:${left};width:${sz};height:${sz};background-color:${bg}`;
+    setTimeout(()=>{if(el.parentNode)el.parentNode.removeChild(el);},3000);
+    this.containerEl.appendChild(el);
+  },25);
+};
+function fireConfetti(){
+  const root=document.getElementById('confetti-root');root.innerHTML='';
+  const c=new Confettiful(root);
+  setTimeout(()=>{clearInterval(c.confettiInterval);setTimeout(()=>{root.innerHTML='';},3500);},3000);
+}
+
+/* ══ CHARTS ══ */
+let chartDonut=null,chartBar=null;
+function destroyCharts(){
+  if(chartDonut){chartDonut.destroy();chartDonut=null;}
+  if(chartBar){chartBar.destroy();chartBar=null;}
+}
+function renderCharts(results){
+  destroyCharts();
+  const bonnes=results.filter(Boolean).length,mauvaises=results.length-bonnes;
+  chartDonut=new Chart(document.getElementById('chart-donut'),{
+    type:'doughnut',
+    data:{labels:['Correct','Incorrect'],datasets:[{data:[bonnes,mauvaises],backgroundColor:['#2dd4bf','#f87171'],borderColor:['#2dd4bf','#f87171'],borderWidth:0,hoverOffset:4}]},
+    options:{responsive:true,maintainAspectRatio:true,cutout:'70%',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${ctx.raw}`}}},animation:{duration:800,easing:'easeOutQuart'}}
+  });
+  chartBar=new Chart(document.getElementById('chart-bar'),{
+    type:'bar',
+    data:{labels:results.map((_,i)=>`Q${i+1}`),datasets:[{data:results.map(r=>r?1:0),backgroundColor:results.map(r=>r?'#2dd4bf':'#f87171'),borderWidth:0,borderRadius:3}]},
+    options:{responsive:true,maintainAspectRatio:true,scales:{x:{grid:{color:'rgba(255,229,0,0.07)'},ticks:{color:'rgba(255,255,255,0.4)',font:{size:9}}},y:{display:false,min:0,max:1.2}},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw===1?'✓ Correct':'✗ Incorrect'}}},animation:{duration:700,easing:'easeOutQuart'}}
+  });
+}
+
+/* ══ SETTINGS ══ */
+const settings={blurTimer:false,mode:'time',count:10,duration:60,level:3,sound:true,liveHints:true,looseCorrection:true,showProgress:true};
+
+/* ══ HELPERS ══ */
+function showScreen(id){
+  ['s-auth','s-home','s-game','s-results','s-lb'].forEach(s=>document.getElementById(s).classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  closePanel();
+}
+function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function fmtTime(s){return`${Math.floor(s/60)}:${(s%60).toString().padStart(2,'0')}`;}
+function setErr(m){document.getElementById('auth-err').textContent=m;}
+function setBtnLoad(btn,on){
+  btn.disabled=on;
+  if(on){btn._h=btn.querySelector('.bt').innerHTML;btn.querySelector('.bt').innerHTML='<span class="spinner"></span>';}
+  else if(btn._h)btn.querySelector('.bt').innerHTML=btn._h;
+}
+
+/* ══ USER PANEL ══ */
+let panelOpen=false;
+function openPanel(){panelOpen=true;document.getElementById('user-panel').classList.add('open');}
+function closePanel(){panelOpen=false;document.getElementById('user-panel').classList.remove('open');}
+function togglePanel(){panelOpen?closePanel():openPanel();}
+function updatePanel(user,best){
+  const name=user?getDisplayName():'';
+  document.getElementById('panel-name-txt').textContent=name||'Non connecté';
+  document.getElementById('panel-role-txt').textContent=user?(user.isAnonymous?'Invité':'Google'):'—';
+  document.getElementById('panel-logout').style.display=(user&&!user.isAnonymous)?'block':'none';
+  document.getElementById('panel-no-account').style.display=user?'none':'block';
+  const bestEl=document.getElementById('panel-best');
+  if(user&&best?.score!=null){
+    document.getElementById('panel-best-val').textContent=`${best.score}/100`;
+    bestEl.style.display='flex';
+  }else{bestEl.style.display='none';}
+}
+document.getElementById('user-toggle').addEventListener('click',e=>{e.stopPropagation();togglePanel();});
+document.getElementById('panel-logout').addEventListener('click',async()=>{isGuestSession=false;guestName=null;await auth.signOut();document.getElementById('pseudo-input').value='';closePanel();});
+document.addEventListener('click',e=>{if(panelOpen&&!document.getElementById('user-panel').contains(e.target))closePanel();});
+
+/* ══ FIREBASE DB ══ */
+async function saveBest(uid,data){
+  const ref=db.ref(`users/${uid}/best`);
+  const ex=(await ref.once('value')).val();
+  if(!ex||data.score>ex.score){await ref.set(data);return true;}return false;
+}
+async function pushEntry(uid,displayName,data){
+  await Promise.all([db.ref('leaderboard').push({uid,displayName,...data}),db.ref(`users/${uid}/history`).push(data)]);
+}
+async function loadBest(uid){return(await db.ref(`users/${uid}/best`).once('value')).val();}
+
+/* ══ REALTIME LEADERBOARD ══ */
+let lbPrevRanks=null,lbStarted=false;
+function startLbListener(){
+  if(lbStarted)return;lbStarted=true;
+  db.ref('leaderboard').orderByChild('score').limitToLast(10).on('value',snap=>{
+    const rows=[];snap.forEach(c=>rows.push({key:c.key,...c.val()}));rows.reverse();
+    renderLbSidebar(rows);
+    lbPrevRanks=new Map(rows.map((r,i)=>[r.uid,i]));
+  });
+}
+function renderLbSidebar(rows){
+  const list=document.getElementById('lb-sidebar-list');if(!list)return;
+  if(!rows.length){list.innerHTML='<div class="lb-empty">Aucun score.</div>';return;}
+  const rk=i=>i===0?'r1':i===1?'r2':i===2?'r3':'';
+  list.innerHTML=rows.map((e,i)=>{
+    const isMe=currentUser&&e.uid===currentUser.uid;
+    const prev=lbPrevRanks?lbPrevRanks.get(e.uid):undefined;
+    const movedUp=prev!==undefined&&i<prev;
+    const isNew=!lbPrevRanks||!lbPrevRanks.has(e.uid);
+    const anim=isNew?'lb-row-new':movedUp?'lb-row-up':'';
+    return`<div class="lb-side-card ${anim}${isMe?' me':''}">
+      <span class="lb-rk ${rk(i)}">${i+1}</span>
+      <span class="lb-nm${isMe?' me':''}">${escHtml(e.displayName||'Invité')}</span>
+      <span class="lb-sc">${e.score}</span>
+    </div>`;
+  }).join('');
+  /* also refresh the full-screen #s-lb if visible */
+  const sl=document.getElementById('lb-list');
+  if(sl&&document.getElementById('s-lb').classList.contains('active')){
+    sl.innerHTML=rows.map((e,i)=>{
+      const isMe=currentUser&&e.uid===currentUser.uid;
+      const m2=Math.floor((e.temps||0)/60),s2=(e.temps||0)%60;
+      const ts=m2>0?`${m2}m${s2.toString().padStart(2,'0')}s`:`${e.temps||'?'}s`;
+      return`<div class="lb-row"><span class="lb-rk ${rk(i)}">${i+1}</span><span class="lb-nm${isMe?' me':''}">${escHtml(e.displayName||'Invité')}</span><span class="lb-dt">${e.bonnes||0}/10 · ${ts}</span><span class="lb-sc">${e.score}</span></div>`;
+    }).join('');
+  }
+}
+
+/* ══ AUTH ══ */
+let currentUser=null,guestName=null,isGuestSession=false;
+function getDisplayName(){
+  if(!currentUser)return'';
+  if(currentUser.isAnonymous)return guestName||'Invité';
+  return currentUser.displayName||currentUser.email||'Joueur';
+}
+
+auth.onAuthStateChanged(async user=>{
+  /* Sign out any anonymous user that survived a page refresh (no persistence) */
+  if(user?.isAnonymous&&!isGuestSession){await auth.signOut();return;}
+  currentUser=user;
+  const toggle=document.getElementById('user-toggle');
+  if(user){
+    const name=getDisplayName();
+    document.getElementById('user-name-hdr').textContent=name;
+    if(user.isAnonymous){
+      toggle.classList.remove('online');
+      toggle.classList.add('guest');
+      document.getElementById('guest-banner').classList.add('v');
+    }else{
+      toggle.classList.add('online');
+      toggle.classList.remove('guest');
+      document.getElementById('guest-banner').classList.remove('v');
+    }
+    if(!user.isAnonymous){
+      const [best,profile]=await Promise.all([
+        loadBest(user.uid).catch(()=>null),
+        db.ref(`users/${user.uid}/profile`).once('value').then(s=>s.val()).catch(()=>null)
+      ]);
+      if(profile?.avatar)applyAvatar(profile.avatar);
+      updatePanel(user,best);
+      if(best?.score!=null){
+        document.getElementById('best-val').textContent=`${best.score}/100`;
+        document.getElementById('home-best').classList.add('v');
+      }
+    }else{
+      updatePanel(user,null);
+    }
+    showScreen('s-home');
+  }else{
+    document.getElementById('user-name-hdr').textContent='Compte';
+    toggle.classList.remove('online','guest');
+    document.getElementById('guest-banner').classList.remove('v');
+    updatePanel(null,null);
+    showScreen('s-auth');
+  }
+});
+
+document.getElementById('btn-google').addEventListener('click',async()=>{
+  setErr('');const btn=document.getElementById('btn-google');setBtnLoad(btn,true);
+  try{await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());}
+  catch(e){setBtnLoad(btn,false);if(!['auth/popup-closed-by-user','auth/cancelled-popup-request'].includes(e.code))setErr('Erreur Google : '+(e.message||e.code));}
+});
+async function guestLogin(){
+  setErr('');
+  const pseudo=document.getElementById('pseudo-input').value.trim();
+  if(!pseudo){setErr('Entre un pseudo pour jouer en invité.');return;}
+  const btn=document.getElementById('btn-guest');setBtnLoad(btn,true);
+  try{
+    guestName=pseudo.slice(0,16);
+    isGuestSession=true;
+    await auth.setPersistence(firebase.auth.Auth.Persistence.NONE);
+    await auth.signInAnonymously();
+  }catch(e){isGuestSession=false;setBtnLoad(btn,false);setErr('Erreur : '+(e.message||e.code));}
+}
+document.getElementById('btn-guest').addEventListener('click',guestLogin);
+document.getElementById('pseudo-input').addEventListener('keydown',e=>{if(e.key==='Enter')guestLogin();});
+
+/* ══ SETTINGS EVENTS ══ */
+document.getElementById('set-blur').addEventListener('change',function(){settings.blurTimer=this.checked;});
+document.getElementById('set-sound').addEventListener('change',function(){settings.sound=this.checked;});
+document.getElementById('set-hints').addEventListener('change',function(){settings.liveHints=this.checked;});
+document.getElementById('set-loose').addEventListener('change',function(){settings.looseCorrection=this.checked;});
+document.getElementById('set-progress').addEventListener('change',function(){settings.showProgress=this.checked;});
+function syncModeInputs(){
+  const countChecked=document.querySelector('input[name="mode-choice"][value="count"]').checked;
+  document.getElementById('set-count').disabled=!countChecked;
+  document.getElementById('set-duration').disabled=countChecked;
+}
+document.querySelectorAll('input[name="mode-choice"]').forEach(r=>{
+  r.addEventListener('change',function(){settings.mode=this.value==='count'?'count':'time';syncModeInputs();});
+});
+document.getElementById('set-count').addEventListener('change',function(){settings.count=Math.max(5,Math.min(50,parseInt(this.value)||10));this.value=settings.count;});
+document.getElementById('set-duration').addEventListener('change',function(){settings.duration=Math.max(20,Math.min(300,parseInt(this.value)||60));this.value=settings.duration;});
+/* sync settings from input values on load */
+settings.count=parseInt(document.getElementById('set-count').value)||10;
+settings.duration=parseInt(document.getElementById('set-duration').value)||60;
+syncModeInputs();
+document.getElementById('set-level').addEventListener('input',function(){
+  settings.level=parseInt(this.value);
+  document.getElementById('lvl-label').textContent=settings.level;
+});
+
+/* ══ PHRASES ══ */
+function getPhrasesForGame(){
+  const pool=[...PHRASES_ALL.filter(p=>p.level<=settings.level)].sort(()=>Math.random()-.5);
+  const total=settings.mode==='count'?settings.count:999;
+  if(settings.mode==='time'){
+    const big=[];while(big.length<60)big.push(...pool);return big.slice(0,60);
+  }
+  if(pool.length>=total)return pool.slice(0,total);
+  const result=[];while(result.length<total)result.push(...pool.slice(0,total-result.length));
+  return result.slice(0,total);
+}
+
+/* ══ GAME ══ */
+let gPhrases=[],gIdx=0,gCorrect=0,gResults=[];
+let gStart=0,gTimer=null,gCountdown=null,gTimeLeft=0,gTotalSecs=0,gWaiting=false,gStreak=0,gStreakMax=0;
+
+function startGame(){
+  destroyCharts();
+  gPhrases=getPhrasesForGame();gIdx=0;gCorrect=0;gResults=[];gWaiting=false;gStreak=0;gStreakMax=0;
+  clearInterval(gTimer);clearInterval(gCountdown);
+  showScreen('s-game');
+  setPbar(0,0,gPhrases.length);
+
+  const timerEl=document.getElementById('g-timer');
+  timerEl.className='g-timer'+(settings.blurTimer?' blur-t':'');
+  timerEl.onclick=settings.blurTimer?()=>{
+    timerEl.classList.toggle('blur-t');
+    if(!timerEl.classList.contains('blur-t'))setTimeout(()=>timerEl.classList.add('blur-t'),3000);
+  }:null;
+
+  if(settings.mode==='time'){
+    gTimeLeft=settings.duration;
+    document.getElementById('g-time').textContent=fmtTime(gTimeLeft);
+    gStart=Date.now();
+    gCountdown=setInterval(()=>{
+      gTimeLeft--;document.getElementById('g-time').textContent=fmtTime(gTimeLeft);
+      if(gTimeLeft<=0){clearInterval(gCountdown);endGame();}
+    },1000);
+  }else{
+    gStart=Date.now();
+    gTimer=setInterval(()=>{document.getElementById('g-time').textContent=fmtTime(Math.floor((Date.now()-gStart)/1000));},500);
+  }
+  loadPhrase(0);
+}
+
+function loadPhrase(idx){
+  const el=document.getElementById('p-txt');
+  el.style.animation='none';void el.offsetWidth;el.style.animation='fadeUp .3s ease';
+  el.textContent=gPhrases[idx].en;
+  document.getElementById('g-cnt').textContent=`${idx+1} / ${gPhrases.length}`;
+  const inp=document.getElementById('ans-input');
+  inp.value='';inp.disabled=false;inp.focus();
+  document.getElementById('live-trans').innerHTML='';
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('feedback').innerHTML='';
+  document.getElementById('btn-val-ico').innerHTML='<i class="fa-solid fa-arrow-right"></i>';
+  gWaiting=false;
+}
+
+function validate(){
+  if(gWaiting){
+    gIdx++;setPbar(gIdx,gCorrect,gPhrases.length);
+    if(gIdx>=gPhrases.length){endGame();return;}
+    loadPhrase(gIdx);return;
+  }
+  const raw=document.getElementById('ans-input').value.trim();
+  if(!raw){
+    const wrap=document.getElementById('ans-input').closest('.inp3d');
+    wrap.classList.remove('shake');void wrap.offsetWidth;wrap.classList.add('shake');
+    document.getElementById('ans-input').focus();return;
+  }
+  document.getElementById('ans-input').disabled=true;
+  const ok=isCorrect(raw,gPhrases[gIdx]);
+  if(ok){gCorrect++;gStreak=Math.min(gStreak+1,10);if(gStreak>gStreakMax)gStreakMax=gStreak;}else{gStreak=0;}
+  gResults.push(ok);
+  playBip(ok,gStreak);
+  const pf=document.getElementById('g-progress-fill');
+  if(pf){pf.classList.remove('pulse-ok','pulse-ko');void pf.offsetWidth;pf.classList.add(ok?'pulse-ok':'pulse-ko');}
+
+  const fb=document.getElementById('feedback');
+  if(ok){
+    fb.className='feedback';fb.innerHTML='';
+    showCorrectNotif();
+    const card=document.getElementById('phrase-card');card.style.borderTopColor='#2dd4bf';
+    setTimeout(()=>{card.style.borderTopColor='';},700);
+  }else{
+    fb.className='feedback ko show';
+    fb.innerHTML=`<i class="fa-solid fa-times-circle"></i> Incorrect. <span class="hint">Réponse : <strong>${escHtml(gPhrases[gIdx].hint)}</strong></span>`;
+    const wrap=document.getElementById('ans-input').closest('.inp3d');
+    wrap.classList.remove('shake');void wrap.offsetWidth;wrap.classList.add('shake');
+  }
+  gWaiting=true;
+  document.getElementById('btn-val-ico').innerHTML='<i class="fa-solid fa-chevron-right"></i>';
+  document.getElementById('btn-val').focus();
+}
+
+async function endGame(){
+  clearInterval(gTimer);clearInterval(gCountdown);
+  gTotalSecs=settings.mode==='time'?settings.duration-gTimeLeft:Math.floor((Date.now()-gStart)/1000);
+  const answered=settings.mode==='time'?gResults.length:gPhrases.length;
+  const score=calcScore(gCorrect,Math.max(answered,1),gTotalSecs);
+  showScreen('s-results');
+  document.getElementById('new-best').style.display='none';
+  const checkEl=document.getElementById('res-lottie-check');
+  if(checkEl){checkEl.style.display=score>=60?'block':'none';if(score>=60){checkEl.seek(0);checkEl.play();}}
+  const el=document.getElementById('res-score');let cur=0;
+  const iv=setInterval(()=>{cur=Math.min(cur+Math.ceil(score/40),score);el.textContent=cur;if(cur>=score)clearInterval(iv);},28);
+  const m=Math.floor(gTotalSecs/60),s=gTotalSecs%60;
+  document.getElementById('res-bonnes').textContent=`${gCorrect}/${answered}`;
+  document.getElementById('res-precision').textContent=answered>0?Math.round(gCorrect/answered*100)+'%':'—';
+  document.getElementById('res-temps').textContent=m>0?`${m}m${s.toString().padStart(2,'0')}s`:`${gTotalSecs}s`;
+  document.getElementById('res-streak').textContent=gStreakMax||0;
+  setTimeout(()=>renderCharts(gResults),200);
+  if(!currentUser||currentUser.isAnonymous)return;
+  const data={score,bonnes:gCorrect,temps:gTotalSecs,date:new Date().toISOString()};
+  try{
+    const[isNew]=await Promise.all([saveBest(currentUser.uid,data),pushEntry(currentUser.uid,getDisplayName(),data)]);
+    if(isNew){
+      playSfx('achievement');
+      document.getElementById('new-best').style.display='block';
+      document.getElementById('best-val').textContent=`${score}/100`;
+      document.getElementById('home-best').classList.add('v');
+      const best={score};updatePanel(currentUser,best);
+      fireConfetti();
+    }
+  }catch(e){console.error('Firebase:',e);}
+}
+
+function showLeaderboard(back){
+  /* On desktop the sidebar is always visible — on mobile show the full screen */
+  if(window.innerWidth>=861){
+    const lb=document.getElementById('lb-sidebar');
+    if(lb){lb.style.outline='2px solid var(--y)';setTimeout(()=>{lb.style.outline='';},800);}
+    return;
+  }
+  document.getElementById('lb-list').innerHTML='<div style="text-align:center;padding:1.5rem;color:var(--muted)"><span class="spinner"></span></div>';
+  document.getElementById('btn-lb-back')._back=back||'s-home';
+  showScreen('s-lb');
+  /* data already streaming — renderLbSidebar will fill lb-list on next update */
+}
+
+/* ══ CORRECT NOTIF ══ */
+let notifTimer=null;
+function showCorrectNotif(){
+  const n=document.getElementById('notif-ok');
+  n.classList.remove('show');void n.offsetWidth;
+  n.classList.add('show');
+  clearTimeout(notifTimer);
+  notifTimer=setTimeout(()=>n.classList.remove('show'),1400);
+}
+
+/* ══ AVATAR ══ */
+const AVATARS=['🦊','🐸','🐯','🦁','🐻','🐺','🦝','🐨','🦄','🐉','🐼','🦋'];
+let userAvatar=null;
+const DEFAULT_AVATAR_HTML='<i class="fa-solid fa-user"></i>';
+function initAvGrid(){
+  const g=document.getElementById('av-grid');if(!g)return;
+  g.innerHTML=AVATARS.map(a=>`<button class="av-btn${a===userAvatar?' sel':''}" data-av="${a}">${a}</button>`).join('');
+}
+function applyAvatar(av){
+  userAvatar=av;
+  document.getElementById('panel-avatar-el').innerHTML=av;
+  document.getElementById('panel-avatar-hdr').innerHTML=av;
+  initAvGrid();
+}
+async function saveAvatar(av){
+  applyAvatar(av);
+  if(currentUser){try{await db.ref(`users/${currentUser.uid}/profile`).update({avatar:av});}catch(e){}}
+}
+document.getElementById('panel-avatar-el').addEventListener('click',e=>{
+  e.stopPropagation();initAvGrid();
+  document.getElementById('avatar-picker').classList.toggle('open');
+});
+document.getElementById('av-grid').addEventListener('click',e=>{
+  const b=e.target.closest('.av-btn');if(!b)return;
+  saveAvatar(b.dataset.av);
+  document.getElementById('avatar-picker').classList.remove('open');
+});
+
+/* ══ EVENTS ══ */
+document.getElementById('btn-quit').addEventListener('click',()=>{document.getElementById('quit-modal').classList.add('open');});
+document.getElementById('btn-quit-cancel').addEventListener('click',()=>{document.getElementById('quit-modal').classList.remove('open');});
+document.getElementById('btn-quit-confirm').addEventListener('click',()=>{clearInterval(gTimer);clearInterval(gCountdown);document.getElementById('quit-modal').classList.remove('open');showScreen('s-home');});
+document.getElementById('btn-start').addEventListener('click',startGame);
+document.getElementById('btn-replay').addEventListener('click',startGame);
+document.getElementById('btn-val').addEventListener('click',validate);
+document.getElementById('ans-input').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();validate();}});
+document.getElementById('ans-input').addEventListener('input',function(){
+  if(!gWaiting&&gPhrases[gIdx])renderLiveTrans(this.value,gPhrases[gIdx]);
+  else document.getElementById('live-trans').innerHTML='';
+});
+document.getElementById('btn-lb-home').addEventListener('click',()=>showLeaderboard('s-home'));
+document.getElementById('btn-res-home').addEventListener('click',()=>showScreen('s-home'));
+document.getElementById('btn-lb-back').addEventListener('click',()=>showScreen(document.getElementById('btn-lb-back')._back||'s-home'));
+document.getElementById('logo-btn').addEventListener('click',()=>{if(currentUser)showScreen('s-home');});
+
+/* start lb listener even before auth (public read) */
+startLbListener();
+/* pre-load sfx */
+loadSfx();
+</script>
+</body>
+</html>
