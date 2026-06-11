@@ -1,0 +1,100 @@
+What is your name?|Comment tu t'appelles ?|comment tu t'appelles ?|comment vous appelez-vous ?|quel est ton nom ?|quel est votre nom ?
+Nice to meet you.|Enchanté(e).|enchanté|enchantée|ravi de vous rencontrer|ravie de vous rencontrer|ravi de te rencontrer
+How are you?|Comment tu vas ?|comment tu vas ?|comment allez-vous ?|comment vas-tu ?|ça va ?
+I am fine, thank you.|Je vais bien, merci.|je vais bien, merci|ça va bien, merci
+Where do you live?|Où tu habites ?|où tu habites ?|où habitez-vous ?|où est-ce que tu habites ?|où est-ce que vous habitez ?
+I live in Paris.|J'habite à Paris.|j'habite à paris|j'habite paris
+How old are you?|Quel âge as-tu ?|quel âge as-tu ?|quel âge avez-vous ?|tu as quel âge ?|vous avez quel âge ?
+I am twenty years old.|J'ai vingt ans.|j'ai vingt ans|j'ai 20 ans
+What do you do for work?|Qu'est-ce que tu fais comme travail ?|qu'est-ce que tu fais comme travail ?|qu'est-ce que vous faites comme travail ?|quel est ton métier ?|quel est votre métier ?
+I am a student.|Je suis étudiant.|je suis étudiant|je suis étudiante
+Do you speak French?|Tu parles français ?|tu parles français ?|vous parlez français ?|est-ce que tu parles français ?|est-ce que vous parlez français ?
+I speak a little French.|Je parle un peu français.|je parle un peu français|je parle un peu le français
+Can you help me?|Tu peux m'aider ?|tu peux m'aider ?|vous pouvez m'aider ?|est-ce que tu peux m'aider ?|est-ce que vous pouvez m'aider ?|pourriez-vous m'aider ?
+Where is the bathroom?|Où sont les toilettes ?|où sont les toilettes ?|où se trouvent les toilettes ?|où sont les wc ?
+What time is it?|Quelle heure est-il ?|quelle heure est-il ?|il est quelle heure ?|tu as l'heure ?|vous avez l'heure ?
+It is three o'clock.|Il est trois heures.|il est trois heures|il est 3 heures
+I don't understand.|Je ne comprends pas.|je ne comprends pas|je comprends pas
+Can you repeat that?|Tu peux répéter ?|tu peux répéter ?|vous pouvez répéter ?|pouvez-vous répéter ?|tu peux répéter ça ?
+I am sorry.|Je suis désolé.|je suis désolé|je suis désolée|excuse-moi|excusez-moi
+Thank you very much.|Merci beaucoup.|merci beaucoup|merci infiniment|je vous remercie
+You are welcome.|De rien.|de rien|avec plaisir|je vous en prie|il n'y a pas de quoi
+Good morning.|Bonjour.|bonjour
+Good evening.|Bonsoir.|bonsoir
+Goodbye.|Au revoir.|au revoir|bonne journée|à bientôt
+See you later.|À tout à l'heure.|à tout à l'heure|à plus tard|à plus|à toute
+See you tomorrow.|À demain.|à demain
+Have a good day.|Bonne journée.|bonne journée|passez une bonne journée|passe une bonne journée
+Have a good evening.|Bonne soirée.|bonne soirée|passez une bonne soirée
+Have a good weekend.|Bon week-end.|bon week-end|bon weekend|passez un bon week-end
+Do you have the time?|Tu as l'heure ?|tu as l'heure ?|vous avez l'heure ?|quelle heure est-il ?
+Where is the train station?|Où est la gare ?|où est la gare ?|où se trouve la gare ?|comment aller à la gare ?
+I am lost.|Je suis perdu.|je suis perdu|je suis perdue|je me suis perdu|je me suis perdue
+I need help.|J'ai besoin d'aide.|j'ai besoin d'aide|je besoin d'aide
+How much does it cost?|Combien ça coûte ?|combien ça coûte ?|c'est combien ?|quel est le prix ?|combien coûte-t-il ?
+It is too expensive.|C'est trop cher.|c'est trop cher
+Do you accept credit cards?|Vous acceptez les cartes bancaires ?|vous acceptez les cartes bancaires ?|est-ce que vous acceptez les cartes bancaires ?|je peux payer par carte ?
+I would like a coffee.|Je voudrais un café.|je voudrais un café|j'aimerais un café|un café s'il vous plaît
+I am hungry.|J'ai faim.|j'ai faim
+I am thirsty.|J'ai soif.|j'ai soif
+I like this.|J'aime ça.|j'aime ça|ça me plaît|j'apprécie ça
+I don't like this.|Je n'aime pas ça.|je n'aime pas ça|je n'aime pas|ça ne me plaît pas
+The weather is nice today.|Il fait beau aujourd'hui.|il fait beau aujourd'hui|le temps est beau aujourd'hui
+It is raining.|Il pleut.|il pleut|il est en train de pleuvoir
+It is cold today.|Il fait froid aujourd'hui.|il fait froid aujourd'hui|il fait froid
+It is hot.|Il fait chaud.|il fait chaud
+What is your phone number?|Quel est ton numéro de téléphone ?|quel est ton numéro de téléphone ?|quel est votre numéro de téléphone ?|c'est quoi ton numéro ?
+Can I have your email?|Je peux avoir ton email ?|je peux avoir ton email ?|je peux avoir votre email ?|tu peux me donner ton adresse email ?|vous pouvez me donner votre adresse email ?
+I have a meeting.|J'ai une réunion.|j'ai une réunion|j'ai un rendez-vous
+I am busy right now.|Je suis occupé en ce moment.|je suis occupé en ce moment|je suis occupée en ce moment|je suis pas libre là
+I am on my way.|Je suis en route.|je suis en route|j'arrive
+I am late.|Je suis en retard.|je suis en retard
+I am early.|Je suis en avance.|je suis en avance
+Do you have a pen?|Tu as un stylo ?|tu as un stylo ?|vous avez un stylo ?|est-ce que tu as un stylo ?
+Can I borrow your pen?|Je peux emprunter ton stylo ?|je peux emprunter ton stylo ?|je peux emprunter votre stylo ?|tu me prêtes ton stylo ?
+This is my friend.|C'est mon ami.|c'est mon ami|c'est mon amie|c'est ma copine|c'est mon copain|je te présente mon ami|je vous présente mon ami
+Nice to see you again.|Ravi de te revoir.|ravi de te revoir|ravie de te revoir|ravi de vous revoir|ça fait plaisir de te revoir
+Where are you from?|Tu viens d'où ?|tu viens d'où ?|vous venez d'où ?|d'où viens-tu ?|d'où venez-vous ?
+I am from England.|Je viens d'Angleterre.|je viens d'angleterre|je suis anglais|je suis anglaise|je suis d'angleterre
+My name is Marc.|Je m'appelle Marc.|je m'appelle marc
+I work here.|Je travaille ici.|je travaille ici
+I study French.|J'étudie le français.|j'étudie le français|j'apprends le français
+What class do you have?|Tu as quel cours ?|tu as quel cours ?|vous avez quel cours ?|c'est quoi ton prochain cours ?
+I have math class.|J'ai cours de maths.|j'ai cours de maths|j'ai un cours de mathématiques
+The class starts at nine.|Le cours commence à neuf heures.|le cours commence à neuf heures|le cours commence à 9h|le cours est à 9h
+Can you lend me a book?|Tu peux me prêter un livre ?|tu peux me prêter un livre ?|tu me prêtes un livre ?|vous pouvez me prêter un livre ?
+I forgot my notebook.|J'ai oublié mon cahier.|j'ai oublié mon cahier|j'ai oublié mon carnet
+Where is the classroom?|Où est la salle de classe ?|où est la salle de classe ?|où se trouve la salle ?|c'est quelle salle ?
+Do you live nearby?|Tu habites près d'ici ?|tu habites près d'ici ?|vous habitez près d'ici ?|tu habites pas loin ?
+I take the bus to work.|Je prends le bus pour aller au travail.|je prends le bus pour aller au travail|je vais au travail en bus
+What street is this?|C'est quelle rue ?|c'est quelle rue ?|c'est quoi cette rue ?|quelle est cette rue ?
+Is there a pharmacy nearby?|Il y a une pharmacie près d'ici ?|il y a une pharmacie près d'ici ?|est-ce qu'il y a une pharmacie ?|il y a une pharmacie dans le coin ?
+Excuse me, I am looking for the museum.|Excusez-moi, je cherche le musée.|excusez-moi, je cherche le musée|pardon, je cherche le musée
+Go straight ahead.|Allez tout droit.|allez tout droit|vas tout droit|continuez tout droit
+Turn left at the corner.|Tournez à gauche au coin.|tournez à gauche au coin|tourne à gauche au coin|au coin tournez à gauche
+Turn right.|Tournez à droite.|tournez à droite|tourne à droite
+It is on the right.|C'est sur la droite.|c'est sur la droite|c'est à droite
+It is on the left.|C'est sur la gauche.|c'est sur la gauche|c'est à gauche
+It is straight ahead.|C'est tout droit.|c'est tout droit
+How far is it?|C'est loin ?|c'est loin ?|c'est à quelle distance ?|il faut combien de temps ?
+It is five minutes away.|C'est à cinq minutes.|c'est à cinq minutes|c'est à 5 minutes
+I don't know.|Je ne sais pas.|je ne sais pas|je sais pas
+I think so.|Je crois que oui.|je crois que oui|je pense que oui|je crois
+I am not sure.|Je ne suis pas sûr.|je ne suis pas sûr|je ne suis pas sûre|je suis pas sûr(e)
+Of course.|Bien sûr.|bien sûr|évidemment|bien entendu
+No problem.|Pas de problème.|pas de problème|aucun problème|y a pas de souci
+That's fine.|Ça va.|ça va|c'est bon|c'est parfait
+Is everything okay?|Tout va bien ?|tout va bien ?|ça va ?|est-ce que tout va bien ?
+Can I sit here?|Je peux m'asseoir ici ?|je peux m'asseoir ici ?|je peux m'asseoir là ?|est-ce que cette place est libre ?|cette place est libre ?
+Is this seat taken?|Cette place est prise ?|cette place est prise ?|il y a quelqu'un ici ?|c'est occupé ?
+Do you want some water?|Tu veux de l'eau ?|tu veux de l'eau ?|vous voulez de l'eau ?|je peux t'offrir de l'eau ?
+I am going home.|Je rentre chez moi.|je rentre chez moi|je rentre à la maison
+I live with my parents.|J'habite avec mes parents.|j'habite avec mes parents|je vis avec mes parents
+My mother is at home.|Ma mère est à la maison.|ma mère est à la maison|ma mère est chez elle
+My father works a lot.|Mon père travaille beaucoup.|mon père travaille beaucoup
+I have two brothers.|J'ai deux frères.|j'ai deux frères
+I have one sister.|J'ai une sœur.|j'ai une sœur|j'ai une soeur
+Do you have siblings?|Tu as des frères et sœurs ?|tu as des frères et sœurs ?|tu as des frères et soeurs ?|vous avez des frères et sœurs ?
+I am an only child.|Je suis enfant unique.|je suis enfant unique|je n'ai ni frère ni sœur
+My boss is very kind.|Mon patron est très gentil.|mon patron est très gentil|mon chef est très gentil|mon responsable est très gentil
+I start work at eight.|Je commence le travail à huit heures.|je commence le travail à huit heures|je commence à 8h|je prends mon service à 8h

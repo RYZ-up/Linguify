@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Linguify — Import Questions</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a2e;color:#fff;font-family:'Segoe UI',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
+.card{background:#16213e;border:2px solid #ffe500;border-radius:16px;padding:2rem;max-width:520px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+h1{color:#ffe500;font-size:1.5rem;margin-bottom:.3rem}
+.sub{color:rgba(255,255,255,.5);font-size:.85rem;margin-bottom:1.5rem}
+.auth-section{margin-bottom:1.5rem}
+#btn-google{background:#ffe500;color:#1a1a2e;border:none;border-radius:8px;padding:.7rem 1.4rem;font-size:.95rem;font-weight:700;cursor:pointer;width:100%}
+#btn-google:hover{background:#ffd000}
+#user-info{display:none;padding:.5rem;background:rgba(255,229,0,.1);border-radius:8px;font-size:.85rem;color:#ffe500}
+.file-section{margin-bottom:1.5rem}
+.file-label{display:block;background:#0f3460;border:2px dashed rgba(255,229,0,.4);border-radius:10px;padding:1.5rem;text-align:center;cursor:pointer;transition:.2s}
+.file-label:hover{border-color:#ffe500;background:#0f3460cc}
+.file-label input{display:none}
+.file-hint{color:rgba(255,255,255,.5);font-size:.8rem;margin-top:.4rem}
+#file-list{margin-top:.8rem;font-size:.82rem}
+.file-item{padding:.2rem .4rem;background:rgba(255,229,0,.08);border-radius:4px;margin:.2rem 0;color:#ffe500}
+#btn-import{background:#ffe500;color:#1a1a2e;border:none;border-radius:8px;padding:.8rem;font-size:1rem;font-weight:700;cursor:pointer;width:100%;margin-bottom:1rem;display:none}
+#btn-import:disabled{opacity:.5;cursor:not-allowed}
+#btn-import:hover:not(:disabled){background:#ffd000}
+.progress-wrap{display:none;margin-top:.8rem}
+.prog-bar{background:#0f3460;border-radius:8px;height:14px;overflow:hidden;margin:.4rem 0}
+.prog-fill{background:#ffe500;height:100%;width:0%;transition:width .3s;border-radius:8px}
+#log{background:#0a0a1a;border-radius:8px;padding:.8rem;font-size:.78rem;max-height:140px;overflow-y:auto;font-family:monospace;margin-top:.6rem;color:#aaa}
+.log-ok{color:#4ade80}
+.log-err{color:#f87171}
+.log-info{color:#60a5fa}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>🗂 Linguify — Import Questions</h1>
+  <p class="sub">Outil d'administration · Réservé à j55211687@gmail.com</p>
+
+  <div class="auth-section">
+    <button id="btn-google">🔐 Se connecter avec Google</button>
+    <div id="user-info"></div>
+  </div>
+
+  <div class="file-section">
+    <label class="file-label">
+      <input type="file" id="file-input" accept=".txt" multiple>
+      📁 Sélectionner les fichiers de questions<br>
+      <span style="color:#ffe500;font-size:.9rem">level1.txt → level5.txt</span>
+    </label>
+    <div class="file-hint">Sélectionne les 5 fichiers depuis le dossier <code>questions/</code></div>
+    <div id="file-list"></div>
+  </div>
+
+  <button id="btn-import">⬆ Importer dans Firebase</button>
+
+  <div class="progress-wrap" id="progress-wrap">
+    <div id="prog-label">Initialisation...</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+    <div id="log"></div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+firebase.initializeApp({
+  apiKey:"REDACTED_API_KEY",
+  authDomain:"REDACTED-PROJECT.firebaseapp.com",
+  databaseURL:"https://REDACTED-PROJECT-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId:"REDACTED-PROJECT",
+  storageBucket:"REDACTED-PROJECT.firebasestorage.app",
+  messagingSenderId:"REDACTED-SENDER",
+  appId:"1:REDACTED-SENDER:web:REDACTED-APP"
+});
+const auth=firebase.auth(),db=firebase.database(),fs=firebase.firestore();
+
+const ALLOWED_EMAIL='j55211687@gmail.com';
+let currentUser=null;
+
+auth.onAuthStateChanged(u=>{
+  currentUser=u;
+  if(u&&u.email===ALLOWED_EMAIL){
+    document.getElementById('user-info').style.display='block';
+    document.getElementById('user-info').textContent='✅ Connecté : '+u.email;
+    document.getElementById('btn-google').style.display='none';
+    refreshImportBtn();
+  }else if(u){
+    document.getElementById('user-info').style.display='block';
+    document.getElementById('user-info').style.color='#f87171';
+    document.getElementById('user-info').textContent='❌ Compte non autorisé : '+u.email;
+    document.getElementById('btn-google').style.display='none';
+  }else{
+    document.getElementById('user-info').style.display='none';
+    document.getElementById('btn-google').style.display='block';
+    document.getElementById('btn-import').style.display='none';
+  }
+});
+
+document.getElementById('btn-google').addEventListener('click',async()=>{
+  try{await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());}
+  catch(e){alert('Erreur : '+e.message);}
+});
+
+let selectedFiles=[];
+document.getElementById('file-input').addEventListener('change',function(){
+  selectedFiles=[...this.files];
+  const list=document.getElementById('file-list');
+  list.innerHTML=selectedFiles.map(f=>`<div class="file-item">📄 ${f.name}</div>`).join('');
+  refreshImportBtn();
+});
+
+function refreshImportBtn(){
+  const btn=document.getElementById('btn-import');
+  const ok=currentUser&&currentUser.email===ALLOWED_EMAIL&&selectedFiles.length>0;
+  btn.style.display=ok?'block':'none';
+}
+
+function readFile(file){
+  return new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=e=>res(e.target.result);
+    r.onerror=rej;
+    r.readAsText(file,'UTF-8');
+  });
+}
+
+function detectLevel(filename){
+  const m=filename.match(/level(\d)/i);
+  return m?parseInt(m[1]):null;
+}
+
+function parseQuestions(content,level){
+  return content.split('\n')
+    .map(l=>l.trim()).filter(Boolean)
+    .map(line=>{
+      const parts=line.split('|');
+      if(parts.length<3)return null;
+      return{
+        level,
+        en:parts[0].trim(),
+        hint:parts[1].trim(),
+        answers:parts.slice(2).map(a=>a.trim()).filter(Boolean)
+      };
+    }).filter(Boolean);
+}
+
+function log(msg,cls=''){
+  const el=document.getElementById('log');
+  el.innerHTML+=`<div class="${cls}">${msg}</div>`;
+  el.scrollTop=el.scrollHeight;
+}
+
+async function uploadBatch(questions,onProgress){
+  const BATCH=400;
+  let uploaded=0;
+  for(let i=0;i<questions.length;i+=BATCH){
+    const slice=questions.slice(i,i+BATCH);
+    const batch=fs.batch();
+    slice.forEach(q=>batch.set(fs.collection('questions').doc(),q));
+    await batch.commit();
+    uploaded+=slice.length;
+    onProgress(uploaded,questions.length);
+    await new Promise(r=>setTimeout(r,50));
+  }
+}
+
+document.getElementById('btn-import').addEventListener('click',async()=>{
+  if(!currentUser||currentUser.email!==ALLOWED_EMAIL){alert('Non autorisé');return;}
+  const btn=document.getElementById('btn-import');
+  btn.disabled=true;
+  document.getElementById('progress-wrap').style.display='block';
+  document.getElementById('log').innerHTML='';
+
+  try{
+    log('🗑 Suppression des anciennes questions...','log-info');
+    const existing=await fs.collection('questions').get();
+    if(!existing.empty){
+      const delBatch=fs.batch();
+      existing.docs.forEach(d=>delBatch.delete(d.ref));
+      await delBatch.commit();
+    }
+    log('✅ Anciennes questions supprimées','log-ok');
+
+    let allQuestions=[];
+    for(const file of selectedFiles){
+      const level=detectLevel(file.name);
+      if(!level){log(`⚠ Impossible de détecter le niveau pour ${file.name}`),'';continue;}
+      const content=await readFile(file);
+      const qs=parseQuestions(content,level);
+      log(`📄 ${file.name} → ${qs.length} questions (niveau ${level})`, qs.length>0?'log-ok':'log-err');
+      allQuestions.push(...qs);
+    }
+
+    if(allQuestions.length===0){
+      log('❌ Aucune question trouvée. Vérifiez les fichiers.','log-err');
+      btn.disabled=false;return;
+    }
+
+    log(`⬆ Import de ${allQuestions.length} questions...`,'log-info');
+    const fill=document.getElementById('prog-fill');
+    const label=document.getElementById('prog-label');
+
+    await uploadBatch(allQuestions,(done,total)=>{
+      const pct=Math.round(done/total*100);
+      fill.style.width=pct+'%';
+      label.textContent=`Import en cours : ${done} / ${total} (${pct}%)`;
+    });
+
+    // Invalider le cache du jeu
+    localStorage.removeItem('lq_questions_v2');
+
+    fill.style.width='100%';
+    label.textContent='✅ Import terminé !';
+    log(`🎉 ${allQuestions.length} questions importées avec succès !`,'log-ok');
+    log('💾 Cache du jeu invalidé.','log-info');
+
+  }catch(e){
+    log('❌ Erreur : '+e.message,'log-err');
+    console.error(e);
+  }finally{
+    btn.disabled=false;
+  }
+});
+</script>
+</body>
+</html>
