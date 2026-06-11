@@ -15,7 +15,7 @@
       --bg: #1a1a1c; --s1: #222224; --s2: #2a2a2c; --s3: #323234;
       --y: #FFDE59; --text: #ffffff; --muted: rgba(255,255,255,0.38);
       --bdr: rgba(255,222,89,0.16); --bhi: rgba(255,222,89,0.48);
-      --btn-h: 2.5rem;
+      --btn-h: 2.75rem;
       --ok1: #2dd4bf; --ok-bg: rgba(45,212,191,.07); --ok-bd: rgba(45,212,191,.25);
     }
     html { height: 100%; }
@@ -144,7 +144,7 @@
     .mode-choice-row { display: flex; gap: .55rem; width: 100%; }
     .mode-choice { flex: 1; cursor: pointer; user-select: none; }
     .mode-choice input[type=radio] { display: none; }
-    .mc3d-floor { background: rgba(255,222,89,.18); border-radius: .72rem; transition: background .15s; }
+    .mc3d-floor { background: var(--s3); border-radius: .72rem; transition: background .15s; }
     .mode-choice input:checked ~ .mc3d-floor { background: var(--y); }
     .mc3d-face {
       background: var(--s2); border: 1.5px solid var(--bdr); border-radius: .72rem;
@@ -154,7 +154,7 @@
       opacity: .45;
     }
     .mode-choice input:checked ~ .mc3d-floor .mc3d-face {
-      border-color: var(--y); background: rgba(255,222,89,.07);
+      border-color: var(--y); background: var(--s2);
       transform: translateY(-.33em); opacity: 1;
     }
     .mode-choice:active .mc3d-face { transform: translateY(0) !important; }
@@ -192,16 +192,30 @@
     }
 
     /* ════════ Leaderboard Sidebar ════════ */
-    #lb-sidebar {
-      position: fixed; right: 10px; top: 74px; bottom: 10px; width: 268px;
-      background: var(--s1); border: 2px solid var(--y); border-radius: 1.1rem;
-      display: flex; flex-direction: column; z-index: 150; overflow: hidden;
-      box-shadow: 4px 4px 0 rgba(255,222,89,.28);
-    }
+    #lb-sidebar { display: none; }
     .lb-side-header { padding: .9rem 1rem .7rem; border-bottom: 1px solid var(--bdr); flex-shrink: 0; }
     .lb-side-title { font-size: .7rem; font-weight: 800; letter-spacing: .12em; color: var(--y); text-transform: uppercase; display: flex; align-items: center; gap: .3rem; }
     .lb-side-lottie { flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--bdr); padding: .3rem 0; pointer-events: none; }
     #lb-sidebar-list { flex: 1; overflow-y: auto; padding: .4rem .55rem; }
+
+    /* ════════ Sidebar always-on (grand écran) ════════ */
+    @media(min-width: 900px) {
+      :root { --sidebar-w: 240px; --btn-h: 3rem; }
+      #lb-sidebar {
+        display: flex; flex-direction: column;
+        position: fixed; top: 62px; right: 0;
+        width: var(--sidebar-w); height: calc(100vh - 62px);
+        background: var(--s1); border-left: 1px solid var(--bdr);
+        z-index: 100; overflow: hidden;
+      }
+      .screen.active, .screen.leaving { right: var(--sidebar-w); }
+      #btn-lb-home { display: none; }
+      .p-txt { font-size: clamp(1.5rem, 5vw, 2rem); }
+      .p-correct { font-size: clamp(1.1rem, 4vw, 1.5rem); }
+      .phrase-card { padding: 1.8rem 2rem; }
+      .game-inner { gap: 1.6rem; }
+      .set-content { padding: 2rem 2rem 1.8rem; }
+    }
     /* Animations */
     @keyframes lbSlideIn { from { opacity:0; transform:translateX(18px); } to { opacity:1; transform:none; } }
     @keyframes lbBounce {
@@ -215,8 +229,8 @@
     .lb-row.me { background: rgba(255,222,89,.08); border-radius: .5rem; }
     /* Leaderboard cards in sidebar */
     /* ── Leaderboard 3D cards ── */
-    .lb3d { background: rgba(255,222,89,.18); border-radius: .52rem; margin-bottom: .32rem; flex-shrink: 0; }
-    .lb3d.me { background: rgba(255,222,89,.38); }
+    .lb3d { background: var(--s3); border-radius: .52rem; margin-bottom: .32rem; flex-shrink: 0; }
+    .lb3d.me { background: rgba(255,222,89,.35); }
     .lb3d-in {
       display: flex; align-items: center; gap: .48rem;
       background: var(--s2); border: 1px solid var(--bdr); border-radius: .52rem;
@@ -232,18 +246,15 @@
     .lb3d .lb-sc { font-size: .8rem; font-weight: 800; color: var(--y); flex-shrink: 0; }
     .lb3d-av { width: 18px; height: 18px; border-radius: 50%; background: var(--s3); border: 1px solid var(--bdr); display: flex; align-items: center; justify-content: center; font-size: .62rem; font-weight: 700; flex-shrink: 0; color: var(--muted); }
     .lb3d.me .lb3d-av { border-color: rgba(255,222,89,.4); color: var(--y); }
-    /* Desktop: all screens shift left to center within non-sidebar space */
-    @media(min-width:861px){ .screen { padding-right: 290px; } }
-    @media(max-width:860px){ #lb-sidebar { display: none; } }
 
     /* ════════ Volume slider ════════ */
     .vol-pct { font-size: .72rem; font-weight: 800; color: var(--y); min-width: 2.4rem; text-align: right; }
     /* ════════ Settings card ════════ */
-    .set-content { padding: 1.5rem 1.5rem 1.3rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .set-content { padding: 1.8rem 1.8rem 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
     .set-content > * { width: 100%; }
     .set-row { display: flex; flex-direction: column; align-items: center; gap: .45rem; }
     .set-row > * { width: 100%; }
-    .set-label { font-size: .72rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); text-align: center; }
+    .set-label { font-size: .78rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); text-align: center; }
     .set-inline { flex-direction: row; align-items: center; justify-content: space-between; }
     .set-inline .set-label { text-align: left; }
     .set-inline > .toggle-wrap { width: auto; flex-shrink: 0; }
@@ -295,17 +306,45 @@
     #s-home { gap: .8rem; text-align: center; padding: 74px 1rem 2rem; justify-content: flex-start; }
     .home-title { font-size: clamp(2rem,8vw,4.2rem); font-weight: 900; color: var(--y); line-height: 1.1; letter-spacing: .05em; font-family: 'Inter', sans-serif; }
     .home-sub { font-size: .92rem; color: var(--muted); max-width: 340px; }
-    .home-best { display: none; align-items: center; gap: .4rem; background: var(--s1); border: 1px solid var(--bdr); border-radius: .65rem; padding: .4rem .9rem; font-size: .78rem; color: var(--muted); }
-    .home-best strong { color: var(--y); }
-    .home-best.v { display: flex; }
-    .set-wrap { width: min(90%, 560px); max-width: 560px; }
+    .home-best { display: none; width: 100%; margin-bottom: .55rem; }
+    .home-best.v { display: block; }
+    .home-best-floor {
+      background: var(--s3); border-radius: .65em; width: 100%;
+      transition: background .2s;
+    }
+    .home-best:hover .home-best-floor { background: rgba(255,222,89,.45); }
+    .home-best-face {
+      display: flex; align-items: center; justify-content: space-between; gap: .55rem;
+      height: var(--btn-h); padding: 0 1.1em;
+      background: var(--s1); border: 1.5px solid rgba(255,255,255,.07); border-radius: .65em;
+      transform: translateY(-.18em); transition: border-color .2s, transform .1s;
+    }
+    .home-best:hover .home-best-face { border-color: rgba(255,222,89,.55); transform: translateY(-.26em); }
+    .home-best-lbl {
+      font-size: .7rem; font-weight: 700; color: rgba(255,255,255,.28);
+      letter-spacing: .08em; text-transform: uppercase;
+      display: flex; align-items: center; gap: .35rem; flex: 1;
+      transition: color .2s;
+    }
+    .home-best-lbl i { color: rgba(255,255,255,.15); transition: color .2s; }
+    .home-best:hover .home-best-lbl { color: var(--muted); }
+    .home-best:hover .home-best-lbl i { color: var(--y); }
+    .home-best-r { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+    .home-best-val { font-size: .95rem; font-weight: 900; color: rgba(255,255,255,.22); transition: color .2s; }
+    .home-best:hover .home-best-val { color: var(--y); }
+    /* Stats button inside best card */
+    .btn-stats { --bol: rgba(255,255,255,.12); --bbg: var(--s1); --br: .45em; --btn-h: 1.9rem; }
+    .btn-stats .bt { font-size: .68rem; padding: 0 .75em; color: rgba(255,255,255,.3); border-color: rgba(255,255,255,.1); transition: color .15s, border-color .15s, transform .1s; }
+    .home-best:hover .btn-stats { --bol: rgba(255,222,89,.5); }
+    .home-best:hover .btn-stats .bt { color: var(--y); border-color: rgba(255,222,89,.45); }
+    .set-wrap { width: min(95%, 640px); max-width: 640px; }
     .home-btns { display: flex; gap: .6rem; align-items: stretch; width: 100%; }
     .home-btns .btn3d { flex: 1; }
     .home-btns .btn3d .bt { width: 100%; }
 
     /* ════════ Game screen ════════ */
     #s-game { justify-content: flex-start; }
-    .game-inner { width: 100%; max-width: 600px; padding: 1.6rem 1.4rem 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
+    .game-inner { width: 100%; max-width: 640px; padding: 1.6rem 1.4rem 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
     /* Inline progress bar */
     .g-progress-wrap { height: 5px; background: rgba(255,255,255,.07); border-radius: 3px; overflow: hidden; }
     .g-progress-fill { height: 100%; border-radius: 3px; width: 0%; background: var(--y); transition: width .4s cubic-bezier(.4,0,.2,1); }
@@ -327,16 +366,14 @@
     /* Phrase card */
     .phrase-card { background: var(--s1); border: 1px solid var(--bdr); border-radius: 1rem; padding: 1.4rem 1.7rem 1.4rem; box-shadow: 0 10px 28px rgba(0,0,0,.45); }
     @keyframes cardOk {
-      0%   { transform:scale(1);     box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 0px rgba(255,222,89,.8),0 0 0 0px rgba(255,222,89,.3); border-color:rgba(255,222,89,.16); }
-      18%  { transform:scale(1.022); box-shadow:0 14px 36px rgba(0,0,0,.5), 0 0 0 12px rgba(255,222,89,.45),0 0 0 0px rgba(255,222,89,.3); border-color:var(--y); }
-      52%  { transform:scale(1.008); box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 48px rgba(255,222,89,0), 0 0 0 24px rgba(255,222,89,.22); border-color:rgba(255,222,89,.5); }
-      100% { transform:scale(1);     box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 60px rgba(255,222,89,0), 0 0 0 60px rgba(255,222,89,0); border-color:rgba(255,222,89,.16); }
+      0%   { transform:scale(1);     border-color:rgba(255,222,89,.16); background:var(--s1); box-shadow:0 8px 24px rgba(0,0,0,.4), 0 0 0 0 rgba(255,222,89,1); }
+      9%   { transform:scale(1.045); border-color:var(--y);             background:rgba(255,222,89,.08); box-shadow:0 22px 52px rgba(0,0,0,.55), 0 0 0 16px rgba(255,222,89,.7), 0 0 70px rgba(255,222,89,.4); }
+      35%  { transform:scale(1.02);  border-color:rgba(255,222,89,.65); background:rgba(255,222,89,.04); box-shadow:0 14px 36px rgba(0,0,0,.45), 0 0 0 34px rgba(255,222,89,.18), 0 0 90px rgba(255,222,89,.15); }
+      100% { transform:scale(1);     border-color:rgba(255,222,89,.16); background:var(--s1);            box-shadow:0 8px 24px rgba(0,0,0,.4),  0 0 0 56px rgba(255,222,89,0); }
     }
-      20% { transform:scale(1.028); box-shadow:0 14px 36px rgba(0,0,0,.5), 0 0 0 14px rgba(255,222,89,.55),0 0 0 0px rgba(255,222,89,.45),0 0 0 0px rgba(255,222,89,.22); border-color:var(--y); }
-      42% { transform:scale(1.016); box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 36px rgba(255,222,89,.08),0 0 0 18px rgba(255,222,89,.38),0 0 0 0px rgba(255,222,89,.22); border-color:rgba(255,222,89,.7); }
-      62% { transform:scale(1.006); box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 60px rgba(255,222,89,0), 0 0 0 42px rgba(255,222,89,.1), 0 0 0 22px rgba(255,222,89,.32); border-color:rgba(255,222,89,.4); }
-      80% { transform:scale(1.002); box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 60px rgba(255,222,89,0), 0 0 0 60px rgba(255,222,89,0), 0 0 0 46px rgba(255,222,89,.08); border-color:rgba(255,222,89,.2); }
-      100%{ transform:scale(1);     box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 60px rgba(255,222,89,0), 0 0 0 60px rgba(255,222,89,0), 0 0 0 60px rgba(255,222,89,0); border-color:rgba(255,222,89,.16); }
+    @keyframes cardOkBorder {
+      0%,100% { border-color: rgba(255,222,89,.16); }
+      9%      { border-color: var(--y); border-width: 2.5px; }
     }
     @keyframes cardKo {
       0%  { transform:translateX(0);     border-color:rgba(255,222,89,.16); box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 0   rgba(248,113,113,0); }
@@ -353,7 +390,7 @@
     .p-wrong { font-size: clamp(.78rem,2.8vw,1rem); font-weight: 600; color: rgba(248,113,113,.5); text-decoration: line-through; margin-bottom: .35rem; }
     .p-correct { font-size: clamp(.95rem,3.5vw,1.25rem); font-weight: 700; color: #f87171; display: flex; align-items: baseline; gap: .38rem; }
     .p-lbl { font-size: .65rem; font-weight: 800; letter-spacing: .14em; color: var(--y); text-transform: uppercase; margin-bottom: .5rem; opacity: .5; }
-    .p-txt { font-size: clamp(1.1rem,4vw,1.55rem); font-weight: 700; color: var(--text); line-height: 1.4; animation: fadeUp .3s ease; }
+    .p-txt { font-size: clamp(1.2rem,4.5vw,1.7rem); font-weight: 700; color: var(--text); line-height: 1.4; animation: fadeUp .3s ease; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     /* Input row */
     .input-row { display: flex; gap: .55rem; align-items: flex-end; }
@@ -365,7 +402,7 @@
 
     /* ════════ Results ════════ */
     #s-results { gap: 1.3rem; text-align: center; padding-bottom: 2rem; }
-    .res-card { width: 90%; max-width: 420px; background: var(--s1); border: 1px solid var(--bdr); border-radius: 1.1rem; padding: 2rem 1.7rem 1.7rem; }
+    .res-card { width: min(95%, 640px); max-width: 640px; background: var(--s1); border: 1px solid var(--bdr); border-radius: 1.1rem; padding: 2rem 1.8rem 1.8rem; }
     .res-lbl { font-size: .68rem; font-weight: 800; letter-spacing: .13em; color: var(--muted); text-transform: uppercase; margin-bottom: .6rem; }
     .res-score { font-size: clamp(4rem,14vw,6.5rem); font-weight: 900; color: var(--y); line-height: 1; font-family: 'Inter', sans-serif; }
     .res-sub { font-size: .78rem; color: var(--muted); margin-bottom: 1.4rem; }
@@ -373,7 +410,7 @@
     .stat { display: flex; flex-direction: column; align-items: center; gap: .1rem; background: var(--s2); border: 1px solid var(--bdr); border-radius: .65rem; padding: .7rem .5rem; }
     .stat-v { font-size: 1.25rem; font-weight: 800; }
     .stat-l { font-size: .62rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; text-align: center; }
-    .new-best { display: none; background: rgba(255,229,0,.06); border: 1px solid rgba(255,229,0,.22); border-radius: .5rem; padding: .35rem .85rem; font-size: .78rem; font-weight: 800; color: var(--y); margin-bottom: 1.1rem; }
+    .new-best { display: none; }
     .res-actions { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.4rem; }
     .res-actions .btn3d { flex: 1; min-width: 140px; max-width: 200px; }
     .res-actions .btn3d .bt { width: 100%; }
@@ -384,8 +421,8 @@
     #chart-bar   { max-width: 250px; max-height: 125px; }
 
     /* ════════ Leaderboard ════════ */
-    #s-lb { gap: 1.3rem; }
-    .lb-card { width: 90%; max-width: 480px; background: var(--s1); border: 1px solid var(--bdr); border-radius: 1.1rem; padding: 1.7rem 1.5rem; }
+    #s-lb { gap: 1.3rem; padding-bottom: 2rem; }
+    .lb-card { width: min(95%, 640px); max-width: 640px; background: var(--s1); border: 1px solid var(--bdr); border-radius: 1.1rem; padding: 1.8rem 1.7rem; }
     .lb-title { font-size: .95rem; font-weight: 800; color: var(--y); margin-bottom: .9rem; display: flex; align-items: center; gap: .4rem; }
     .lb-row { display: flex; align-items: center; gap: .65rem; padding: .55rem 0; border-bottom: 1px solid var(--bdr); font-size: .85rem; }
     .lb-row:last-child { border-bottom: none; }
@@ -416,7 +453,6 @@
       transition: opacity .18s, transform .26s cubic-bezier(.34,1.56,.64,1);
     }
     #notif-ok.show { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
-    @media(min-width:861px){ #notif-ok { left: calc(50% - 145px); } }
     .nf-floor { background: var(--y); border-radius: .65em; display: inline-block; }
     #notif-ok.ko .nf-floor { background: #f87171; }
     .nf-face {
@@ -427,6 +463,33 @@
       font-weight: 800; font-size: .8rem; font-family: 'Inter', sans-serif;
     }
     #notif-ok.ko .nf-face { border-color: #f87171; }
+    /* ════════ Nouveau record notif ════════ */
+    #notif-best {
+      position: fixed; top: 78px; left: 50%; z-index: 503; pointer-events: none;
+      opacity: 0; transform: translateX(-50%) translateY(-14px) scale(.82);
+      transition: opacity .2s, transform .34s cubic-bezier(.34,1.56,.64,1);
+    }
+    #notif-best.show { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+    .nf-best-floor { background: var(--y); border-radius: .75em; display: inline-block; }
+    .nf-best-face {
+      display: flex; align-items: center; gap: .55rem;
+      height: 2.7rem; padding: 0 1.3em;
+      background: var(--bg); border: 2.5px solid var(--y); border-radius: .75em;
+      transform: translateY(-.26em); white-space: nowrap;
+      font-weight: 900; font-size: .92rem; font-family: 'Inter', sans-serif; color: var(--y);
+      text-shadow: 0 0 18px rgba(255,222,89,.4);
+    }
+    /* ════════ Record card dans results ════════ */
+    .res-record-card { display: none; justify-content: center; margin: -.4rem 0 1rem; }
+    .res-record-card.v { display: flex; }
+    .rec3d { background: rgba(255,222,89,.28); border-radius: .6rem; display: inline-block; }
+    .rec3d-in {
+      display: flex; align-items: center; gap: .45rem;
+      padding: .32rem 1rem; background: var(--s2); border: 1.5px solid rgba(255,222,89,.5);
+      border-radius: .6rem; transform: translateY(-.18em);
+      font-size: .75rem; font-weight: 700; color: var(--muted); white-space: nowrap;
+    }
+    .rec3d-in strong { color: var(--y); font-size: .85rem; font-weight: 900; }
     .nf-txt { color: var(--ok1); }
     #notif-ok.ko .nf-txt { color: #f87171; }
     /* ════════ Avatar picker ════════ */
@@ -544,6 +607,13 @@
   </div></div>
 </div>
 
+<!-- ══════════ NOUVEAU RECORD NOTIF ══════════ -->
+<div id="notif-best">
+  <div class="nf-best-floor"><div class="nf-best-face">
+    <i class="fa-solid fa-trophy"></i> Nouveau record !
+  </div></div>
+</div>
+
 
 <div id="confetti-root"></div>
 
@@ -596,8 +666,20 @@
 
 <!-- ══════════ HOME ══════════ -->
 <div id="s-home" class="screen">
-  <div class="home-best" id="home-best"><i class="fa-solid fa-star" style="color:var(--y)"></i>Meilleur : <strong id="best-val"></strong></div>
   <div class="set-wrap">
+
+    <div class="home-best" id="home-best">
+      <div class="home-best-floor">
+        <div class="home-best-face">
+          <span class="home-best-lbl"><i class="fa-solid fa-star"></i>Meilleur score</span>
+          <div class="home-best-r">
+            <span class="home-best-val" id="best-val">—</span>
+            <button class="btn3d btn-stats" id="btn-stats-home"><span class="bt"><i class="fa-solid fa-chart-bar" style="font-size:.7rem"></i>&nbsp;Stats</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="card3d">
       <div class="card3d-in">
         <div class="set-content">
@@ -608,7 +690,7 @@
             <span class="set-label">Mode de fin</span>
             <div class="mode-choice-row">
               <label class="mode-choice" id="mc-count">
-                <input type="radio" name="mode-choice" value="count" />
+                <input type="radio" name="mode-choice" value="count" checked />
                 <div class="mc3d-floor">
                   <div class="mc3d-face">
                     <span class="mc-title">N phrases</span>
@@ -620,7 +702,7 @@
                 </div>
               </label>
               <label class="mode-choice" id="mc-time">
-                <input type="radio" name="mode-choice" value="time" checked />
+                <input type="radio" name="mode-choice" value="time" />
                 <div class="mc3d-floor">
                   <div class="mc3d-face">
                     <span class="mc-title">Chrono</span>
@@ -635,11 +717,11 @@
           </div>
 
           <div class="set-row set-inline">
-            <span class="set-label">Niveau — <span id="lvl-label">3</span></span>
+            <span class="set-label">Niveau — <span id="lvl-label">1</span></span>
             <div class="slid-wrap" style="width:160px;flex:none">
               <span style="font-size:.7rem;color:var(--muted)">1</span>
               <div class="slid-block">
-                <input type="range" id="set-level" min="1" max="5" value="3" />
+                <input type="range" id="set-level" min="1" max="5" value="1" />
                 <div class="slid-ticks"><span></span><span></span><span></span><span></span><span></span></div>
               </div>
               <span style="font-size:.7rem;color:var(--muted)">5</span>
@@ -654,14 +736,13 @@
             <label class="toggle-wrap"><input type="checkbox" id="set-blur" /><div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div></label>
           </div>
           <div class="set-row set-inline">
-            <span class="set-label">Son</span>
+            <span class="set-label">Son <span class="vol-pct" id="vol-pct" style="min-width:auto;text-align:left">60%</span></span>
             <div style="display:flex;align-items:center;gap:.5rem">
               <div class="slid-block" style="width:110px">
                 <input type="range" id="set-sound-vol" min="0" max="10" value="6" />
                 <div class="slid-ticks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
               </div>
-              <span class="vol-pct" id="vol-pct">60%</span>
-              <button class="btn3d sq" id="btn-test-sound" style="--btn-h:1.75rem" title="Tester"><span class="bt"><i class="fa-solid fa-play" style="font-size:.6rem"></i></span></button>
+              <button class="btn3d sq" id="btn-test-sound" style="--btn-h:1.7rem" title="Tester"><span class="bt"><i class="fa-solid fa-play" style="font-size:.55rem"></i></span></button>
             </div>
           </div>
           <div class="set-row set-inline">
@@ -683,7 +764,7 @@
 
           <div class="set-div"></div>
           <div class="home-btns">
-            <button class="btn3d" id="btn-lb-home" style="display:none"></button>
+            <button class="btn3d wht" id="btn-lb-home"><span class="bt"><i class="fa-solid fa-trophy"></i>Classement</span></button>
             <button class="btn3d" id="btn-start"><span class="bt"><i class="fa-solid fa-play"></i>START</span></button>
           </div>
         </div>
@@ -723,13 +804,18 @@
     <div class="res-lbl">Score final</div>
     <div class="res-score" id="res-score">0</div>
     <div class="res-sub">points</div>
+    <div class="res-record-card" id="res-record-card">
+      <div class="rec3d"><div class="rec3d-in">
+        <i class="fa-solid fa-star" style="color:var(--y)"></i> Record&ensp;<strong id="res-record-val">—</strong>
+      </div></div>
+    </div>
     <div class="stats-row">
       <div class="stat"><div class="stat-v" id="res-bonnes">—</div><div class="stat-l">Bonnes rép.</div></div>
       <div class="stat"><div class="stat-v" id="res-precision">—</div><div class="stat-l">Précision</div></div>
       <div class="stat"><div class="stat-v" id="res-temps">—</div><div class="stat-l">Temps</div></div>
       <div class="stat"><div class="stat-v" id="res-streak">—</div><div class="stat-l">Streak max</div></div>
     </div>
-    <div class="new-best" id="new-best"><i class="fa-solid fa-trophy" style="margin-right:.3rem"></i>Nouveau record !</div>
+    <div class="new-best" id="new-best"></div>
     <div class="res-actions">
       <button class="btn3d" id="btn-replay"><span class="bt"><i class="fa-solid fa-rotate-right"></i>Rejouer</span></button>
       <button class="btn3d" id="btn-res-home"><span class="bt"><i class="fa-solid fa-sliders"></i>Paramètres</span></button>
@@ -921,15 +1007,22 @@ function isCorrect(raw,phrase){
 }
 
 /* ══ SOUND ══ */
-let audioCtx=null,sfx={};
-async function loadSfx(){
-  try{
-    if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-    const files={correct:'assets/correct.mp3',incorrect:'assets/incorrect.mp3',achievement:'assets/achievement.mp3'};
-    await Promise.all(Object.entries(files).map(async([k,f])=>{
-      try{const r=await fetch(f);const ab=await r.arrayBuffer();sfx[k]=await audioCtx.decodeAudioData(ab);}catch(e){}
-    }));
-  }catch(e){}
+let audioCtx=null,sfx={},_sfxPromise=null;
+function loadSfx(){
+  if(_sfxPromise)return _sfxPromise;
+  _sfxPromise=(async()=>{
+    try{
+      if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+      const files={correct:'assets/correct.mp3',incorrect:'assets/incorrect.mp3',achievement:'assets/achievement.mp3'};
+      await Promise.all(Object.entries(files).map(([k,f])=>
+        fetch(f).then(r=>r.arrayBuffer())
+          .then(ab=>new Promise((res,rej)=>audioCtx.decodeAudioData(ab,res,rej)))
+          .then(buf=>{sfx[k]=buf;})
+          .catch(e=>console.warn(`SFX [${k}] load error:`,e))
+      ));
+    }catch(e){}
+  })();
+  return _sfxPromise;
 }
 function playSfx(key,rate=1){
   if(!settings.sound||!audioCtx||!sfx[key])return;
@@ -997,7 +1090,8 @@ const Confettiful=function(el){
 };
 Confettiful.prototype._setupElements=function(){
   const c=document.createElement('div');
-  if(this.el.style.position!=='relative'&&this.el.style.position!=='absolute')this.el.style.position='relative';
+  const pos=getComputedStyle(this.el).position;
+  if(pos!=='relative'&&pos!=='absolute'&&pos!=='fixed')this.el.style.position='relative';
   c.classList.add('confetti-container');this.el.appendChild(c);this.containerEl=c;
 };
 Confettiful.prototype._renderConfetti=function(){
@@ -1049,11 +1143,15 @@ function applySoundVol(v){
   if(pct)pct.textContent=v===0?'Off':Math.round(v/10*100)+'%';
 }
 document.getElementById('set-sound-vol').addEventListener('input',function(){applySoundVol(parseInt(this.value));});
+const TEST_SFX=['correct','incorrect','achievement'];
+let testSfxIdx=0;
 document.getElementById('btn-test-sound').addEventListener('click',()=>{
   const v=parseInt(document.getElementById('set-sound-vol').value);
   if(v===0)return;
   applySoundVol(v);
-  if(!audioCtx){loadSfx().then(()=>playSfx('correct',1));}else{if(audioCtx.state==='suspended')audioCtx.resume();playSfx('correct',1);}
+  const key=TEST_SFX[testSfxIdx%TEST_SFX.length];
+  testSfxIdx++;
+  loadSfx().then(()=>{if(audioCtx.state==='suspended')audioCtx.resume();playSfx(key,1);});
 });
 const settings={blurTimer:false,mode:'time',count:10,duration:60,level:3,sound:true,soundVolume:0.51,liveHints:true,looseCorrection:true,showProgress:true,autoNext:false};
 
@@ -1144,19 +1242,17 @@ function startLbListener(){
   });
 }
 function buildLbDisplay(rows){
-  if(currentUser?.isAnonymous&&guestBestScore!=null){
-    const entry={uid:currentUser.uid,displayName:getDisplayName(),score:guestBestScore,_guest:true};
-    const merged=rows.filter(r=>r.uid!==currentUser.uid);
-    const pos=merged.findIndex(r=>r.score<guestBestScore);
-    if(pos===-1)merged.push(entry);else merged.splice(pos,0,entry);
-    return merged;
-  }
-  return rows;
+  return rows; /* guests never appear in leaderboard */
 }
 function renderLbSidebar(rows){
   const list=document.getElementById('lb-sidebar-list');if(!list)return;
   const display=buildLbDisplay(rows);
-  if(!display.length){list.innerHTML='<div class="lb-empty">Aucun score.</div>';return;}
+  if(!display.length){
+    list.innerHTML='<div class="lb-empty">Aucun score.</div>';
+    const sl=document.getElementById('lb-list');
+    if(sl)sl.innerHTML='<div class="lb-empty">Aucun score pour l\'instant.</div>';
+    return;
+  }
   const rk=i=>i===0?'r1':i===1?'r2':i===2?'r3':'';
   const meIdx=currentUser?display.findIndex(e=>e.uid===currentUser.uid):-1;
   const top10=display.slice(0,10);
@@ -1168,30 +1264,17 @@ function buildRows(entries,forFull){
       const movedUp=prev!==undefined&&i<prev;
       const isNew=e._guest?false:(!lbPrevRanks||!lbPrevRanks.has(e.uid));
       const anim=isNew?'lb-row-new':movedUp?'lb-row-up':'';
-      if(forFull){
-        const m2=Math.floor((e.temps||0)/60),s2=(e.temps||0)%60;
-        const ts=m2>0?`${m2}m${s2.toString().padStart(2,'0')}s`:`${e.temps||'?'}s`;
-        return`<div class="lb-row ${anim}${isMe?' me':''}"><span class="lb-rk ${rk(i)}">${i+1}</span><span class="lb-nm${isMe?' me':''}">${escHtml(e.displayName||'Invité')}</span><span class="lb-dt">${e.bonnes||0}/10 · ${ts}</span><span class="lb-sc">${e.score}</span></div>`;
-      }
-      return`<div class="lb-side-card ${anim}${isMe?' me':''}"><span class="lb-rk ${rk(i)}">${i+1}</span><span class="lb-nm${isMe?' me':''}">${escHtml(e.displayName||'Invité')}</span><span class="lb-sc">${e.score}</span></div>`;
+      return`<div class="lb3d${isMe?' me':''} ${anim}"><div class="lb3d-in"><span class="lb-rk ${rk(i)}">${i+1}</span><span class="lb-nm${isMe?' me':''}">${escHtml(e.displayName||'Invité')}</span>${forFull?`<span class="lb-sc">${e.score}</span>`:''}</div></div>`;
     }).join('');
     if(!meInTop&&meIdx!==-1){
       const e=display[meIdx];const i=meIdx;
-      if(forFull){
-        const m2=Math.floor((e.temps||0)/60),s2=(e.temps||0)%60;
-        const ts=m2>0?`${m2}m${s2.toString().padStart(2,'0')}s`:`${e.temps||'?'}s`;
-        html+=`<div class="lb-sep">···</div><div class="lb-row me"><span class="lb-rk">${i+1}</span><span class="lb-nm me">${escHtml(e.displayName||'Invité')}</span><span class="lb-dt">${e.bonnes||0}/10 · ${ts}</span><span class="lb-sc">${e.score}</span></div>`;
-      }else{
-        html+=`<div class="lb-sep">···</div><div class="lb-side-card me"><span class="lb-rk">${i+1}</span><span class="lb-nm me">${escHtml(e.displayName||'Invité')}</span><span class="lb-sc">${e.score}</span></div>`;
-      }
+      html+=`<div class="lb-sep">···</div><div class="lb3d me"><div class="lb3d-in"><span class="lb-rk">${i+1}</span><span class="lb-nm me">${escHtml(e.displayName||'Invité')}</span>${forFull?`<span class="lb-sc">${e.score}</span>`:''}</div></div>`;
     }
     return html;
   }
   list.innerHTML=buildRows(top10,false);
   const sl=document.getElementById('lb-list');
-  if(sl&&document.getElementById('s-lb').classList.contains('active')){
-    sl.innerHTML=buildRows(top10,true);
-  }
+  if(sl){sl.innerHTML=buildRows(top10,true);}
 }
 
 /* ══ AUTH ══ */
@@ -1258,8 +1341,7 @@ async function guestLogin(){
   try{
     guestName=pseudo.slice(0,16);
     isGuestSession=true;
-    const stored=parseInt(localStorage.getItem('guest_best_'+guestName));
-    guestBestScore=isNaN(stored)?null:stored;
+    guestBestScore=null; /* session only — no persistence */
     await auth.setPersistence(firebase.auth.Auth.Persistence.NONE);
     await auth.signInAnonymously();
   }catch(e){isGuestSession=false;setBtnLoad(btn,false);setErr('Erreur : '+(e.message||e.code));}
@@ -1460,28 +1542,29 @@ async function endGame(){
   if(!currentUser)return;
   const worldRecord=lastLbRows.length>0?lastLbRows[0].score:-1;
   if(currentUser.isAnonymous){
-    const isNew=guestBestScore==null||score>guestBestScore;
+    const prevBest=guestBestScore;
+    const isNew=prevBest==null||score>prevBest;
+    updateResRecord(isNew?score:prevBest);
     if(isNew){
-      guestBestScore=score;
-      localStorage.setItem('guest_best_'+guestName,score);
+      guestBestScore=score; /* session memory only — no Firebase, no localStorage */
       playSfx('achievement');
-      document.getElementById('new-best').style.display='block';
+      showBestNotif();
       document.getElementById('best-val').textContent=`${score} pts`;
       document.getElementById('home-best').classList.add('v');
-      const best={score};updatePanel(currentUser,best);
-      const gKey='guest_'+(guestName||'Invité').replace(/[.#$[\]/]/g,'_');
-      saveBest(gKey,guestName||'Invité',{score,bonnes:gCorrect,temps:gTotalSecs,date:new Date().toISOString()}).catch(()=>{});
+      updatePanel(currentUser,{score});
     }
     if(score>worldRecord)fireConfetti();
-    renderLbSidebar(lastLbRows);
     return;
   }
   const data={score,bonnes:gCorrect,temps:gTotalSecs,date:new Date().toISOString()};
   try{
+    const prevBestGoogle=await loadBest(currentUser.uid).catch(()=>null);
+    const prevScore=prevBestGoogle?.score??null;
     const[isNew]=await Promise.all([saveBest(currentUser.uid,getDisplayName(),data),saveHistory(currentUser.uid,data)]);
+    updateResRecord(isNew?score:(prevScore??score));
     if(isNew){
       playSfx('achievement');
-      document.getElementById('new-best').style.display='block';
+      showBestNotif();
       document.getElementById('best-val').textContent=`${score} pts`;
       document.getElementById('home-best').classList.add('v');
       const best={score};updatePanel(currentUser,best);
@@ -1491,16 +1574,38 @@ async function endGame(){
 }
 
 function showLeaderboard(back){
-  /* On desktop the sidebar is always visible — on mobile show the full screen */
-  if(window.innerWidth>=861){
-    const lb=document.getElementById('lb-sidebar');
-    if(lb){lb.style.outline='2px solid var(--y)';setTimeout(()=>{lb.style.outline='';},800);}
-    return;
-  }
-  document.getElementById('lb-list').innerHTML='<div style="text-align:center;padding:1.5rem;color:var(--muted)"><span class="spinner"></span></div>';
   document.getElementById('btn-lb-back')._back=back||'s-home';
   showScreen('s-lb');
-  /* data already streaming — renderLbSidebar will fill lb-list on next update */
+  const sl=document.getElementById('lb-list');
+  if(lastLbRows.length){
+    renderLbSidebar(lastLbRows);
+  }else{
+    sl.innerHTML='<div style="text-align:center;padding:1.5rem;color:var(--muted)"><span class="spinner"></span></div>';
+    db.ref('leaderboard').orderByChild('score').limitToLast(20).once('value')
+      .then(snap=>{
+        const rows=[];snap.forEach(c=>rows.push({key:c.key,...c.val()}));rows.reverse();
+        lastLbRows=rows;
+        renderLbSidebar(rows);
+      })
+      .catch(()=>{sl.innerHTML='<div class="lb-empty">Impossible de charger le classement.</div>';});
+  }
+}
+
+/* ══ BEST RECORD NOTIF ══ */
+let bestNotifTimer=null;
+function showBestNotif(){
+  const n=document.getElementById('notif-best');
+  n.classList.remove('show');void n.offsetWidth;
+  n.classList.add('show');
+  clearTimeout(bestNotifTimer);
+  bestNotifTimer=setTimeout(()=>n.classList.remove('show'),3200);
+}
+function updateResRecord(score){
+  const card=document.getElementById('res-record-card');
+  const val=document.getElementById('res-record-val');
+  if(!card||!val)return;
+  if(score!=null){val.textContent=score+' pts';card.classList.add('v');}
+  else{card.classList.remove('v');}
 }
 
 /* ══ ANSWER NOTIF ══ */
@@ -1564,6 +1669,7 @@ document.getElementById('ans-input').addEventListener('input',function(){
   else document.getElementById('live-trans').innerHTML='';
 });
 document.getElementById('btn-lb-home').addEventListener('click',()=>showLeaderboard('s-home'));
+document.getElementById('btn-stats-home').addEventListener('click',e=>{e.stopPropagation();showLeaderboard('s-home');});
 document.getElementById('btn-res-home').addEventListener('click',()=>showScreen('s-home'));
 document.getElementById('btn-lb-back').addEventListener('click',()=>showScreen(document.getElementById('btn-lb-back')._back||'s-home'));
 document.getElementById('logo-btn').addEventListener('click',()=>{if(currentUser)showScreen('s-home');});
