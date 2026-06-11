@@ -2,7 +2,9 @@
   "rules": {
     "leaderboard": {
       ".read": true,
-      ".write": "auth != null",
+      "$uid": {
+        ".write": "$uid === auth.uid"
+      },
       ".indexOn": ["score"]
     },
     "users": {
