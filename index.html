@@ -2527,14 +2527,20 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <script src="firebase-config.js" onerror=""></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-  <script src="/__/firebase/init.js" onerror=""></script>
   <script>
-    if (!firebase.apps.length) firebase.initializeApp(window.FIREBASE_CONFIG);
+    firebase.initializeApp({
+      apiKey: "AIzaSyChQn5AvsozSkWQkm8n71N12kFifL9XrHo",
+      authDomain: "chiron-26e28.firebaseapp.com",
+      databaseURL: "https://chiron-26e28-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "chiron-26e28",
+      storageBucket: "chiron-26e28.firebasestorage.app",
+      messagingSenderId: "1018940731729",
+      appId: "1:1018940731729:web:bea30407b2e1026b20e370"
+    });
     const auth = firebase.auth(), db = firebase.database(), fs = firebase.firestore();
 
     let gAllQuestions = [];
