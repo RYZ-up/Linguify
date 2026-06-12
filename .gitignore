@@ -6,6 +6,7 @@ firebase-config.js
 *.secret
 *.key
 secrets/
+master.key
 
 # ── Outil d'import interne ──────────────────────────────────────────────────
 import.html
