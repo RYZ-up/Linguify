@@ -114,9 +114,14 @@
     }
 
     /* Icon-only square */
+    .btn3d.sq {
+      width: var(--btn-h);
+      flex-shrink: 0;
+    }
+
     .btn3d.sq .bt {
       padding: 0;
-      width: var(--btn-h);
+      width: 100%;
     }
 
     .btn3d.wht {
@@ -1217,7 +1222,10 @@
     }
 
     .quit-box-btns .btn3d {
-      flex: 1;
+      flex: 1 1 0%;
+      min-width: 0;
+      width: 100%;
+      display: block;
     }
 
     .quit-box-btns .btn3d .bt {
@@ -1550,6 +1558,7 @@
       flex-wrap: wrap;
       width: 100%;
       padding: 0 1rem 1rem;
+      min-height: 160px;
     }
 
     .chart-box {
@@ -1568,11 +1577,15 @@
     }
 
     #chart-donut {
+      width: 125px;
+      height: 125px;
       max-width: 125px;
       max-height: 125px;
     }
 
     #chart-bar {
+      width: 250px;
+      height: 125px;
       max-width: 250px;
       max-height: 125px;
     }
@@ -2220,8 +2233,7 @@
       <div class="quit-box-btns">
         <button class="btn3d wht" id="btn-quit-cancel"><span class="bt" style="width:100%">Annuler<kbd
               class="sc">Esc</kbd></span></button>
-        <button class="btn3d" id="btn-quit-confirm"><span class="bt" style="width:100%"><i
-              class="fa-solid fa-xmark"></i> Quitter<kbd class="sc">⏎</kbd></span></button>
+        <button class="btn3d" id="btn-quit-confirm"><span class="bt" style="width:100%">Quitter<kbd class="sc">⏎</kbd></span></button>
       </div>
     </div>
   </div>
@@ -2817,6 +2829,8 @@
 
     /* ══ HELPERS ══ */
     function focusPseudo() {
+      const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth <= 768;
+      if (isMobile) return;
       const el = document.getElementById('pseudo-input');
       if (el) requestAnimationFrame(() => el.focus());
     }
@@ -2835,7 +2849,12 @@
         if (btnVal) {
           const innerBt = btnVal.querySelector('.bt');
           if (innerBt) {
-            innerBt.style.height = targetHeight + 'px';
+            const minHeight = parseInt(getComputedStyle(el).minHeight) || 44;
+            if (targetHeight <= minHeight) {
+              innerBt.style.height = '';
+            } else {
+              innerBt.style.height = targetHeight + 'px';
+            }
           }
         }
       }
@@ -3183,7 +3202,7 @@
       document.getElementById('res-precision').textContent = answered > 0 ? Math.round(gCorrect / answered * 100) + '%' : '—';
       document.getElementById('res-temps').textContent = m > 0 ? `${m}m${s.toString().padStart(2, '0')}s` : `${gTotalSecs}s`;
       document.getElementById('res-streak').textContent = gStreakMax || 0;
-      setTimeout(() => renderCharts(gResults), 200);
+      renderCharts(gResults);
       if (!currentUser) return;
       if (currentUser.isAnonymous) {
         const prevBest = guestBestScore;
