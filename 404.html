@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>404 - Introuvable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #1a1a1c;
+      --s1: #222224;
+      --s2: #2a2a2c;
+      --s3: #323234;
+      --y: #FFDE59;
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.38);
+      --bdr: rgba(255, 222, 89, 0.16);
+      --btn-h: 2.75rem;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+      background-image: radial-gradient(rgba(255, 222, 89, 0.16) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ════════ 3D Card ════════ */
+    .card3d {
+      background: var(--y);
+      border-radius: 1rem;
+      display: block;
+      box-shadow: 0 6px 0 rgba(255, 222, 89, .18), 0 12px 32px rgba(0, 0, 0, .5);
+      width: min(90%, 400px);
+      text-align: center;
+      animation: cardPopIn .46s cubic-bezier(.34, 1.56, .64, 1) both;
+    }
+
+    .card3d-in {
+      background: var(--s1);
+      border: 2px solid var(--y);
+      border-radius: 1rem;
+      transform: translateY(-.28em);
+      padding: 2rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    @keyframes cardPopIn {
+      from {
+        opacity: 0;
+        transform: scale(.78);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .error-code {
+      font-size: 4.5rem;
+      font-weight: 900;
+      color: var(--y);
+      line-height: 1;
+      text-shadow: 0 0 24px rgba(255, 222, 89, .3);
+    }
+
+    .error-message {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .error-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: -0.8rem;
+    }
+
+    /* ════════ 3D Button ════════ */
+    .btn3d {
+      --br: 0.65em;
+      --bbg: var(--bg);
+      --bol: var(--y);
+      font-size: 14px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      border: none;
+      cursor: pointer;
+      border-radius: var(--br);
+      background: var(--bol);
+      text-decoration: none;
+      display: inline-block;
+      overflow: visible;
+      width: 100%;
+    }
+
+    .btn3d .bt {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      border: 2px solid var(--bol);
+      border-radius: var(--br);
+      padding: 0 1.4em;
+      height: var(--btn-h);
+      background: var(--bbg);
+      color: var(--y);
+      transform: translateY(-.22em);
+      transition: transform .1s ease;
+      white-space: nowrap;
+      letter-spacing: .02em;
+      user-select: none;
+    }
+
+    .btn3d:hover .bt {
+      transform: translateY(-.36em);
+    }
+
+    .btn3d:active .bt {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card3d">
+    <div class="card3d-in">
+      <div class="error-code">404</div>
+      <div class="error-message">Il n'y a rien ici</div>
+      <div class="error-sub">La page demandée n'existe pas ou a été déplacée.</div>
+      <a class="btn3d" href="index.html">
+        <span class="bt">
+          <i class="fa-solid fa-house"></i>
+          Retour à l'accueil
+        </span>
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -37,19 +37,26 @@
     }
 
     html {
+      position: fixed;
+      width: 100%;
       height: 100%;
       height: 100dvh;
+      overflow: hidden;
     }
 
     body {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
       height: 100%;
-      height: 100dvh;
       font-family: 'Inter', sans-serif;
       color: var(--text);
-      overflow-x: hidden;
-      overflow-y: hidden;
+      overflow: hidden;
       overscroll-behavior: none;
-      touch-action: manipulation;
+      touch-action: pan-y;
       background-color: var(--bg);
       background-image: radial-gradient(rgba(255, 222, 89, 0.16) 1.5px, transparent 1.5px);
       background-size: 28px 28px;
@@ -203,6 +210,15 @@
       font-size: .82rem;
       gap: .45rem;
       transition: transform .1s ease, border-color .15s ease;
+    }
+
+    /* Pseudo tronqué dans le header */
+    #user-name-hdr {
+      max-width: 6ch;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: inline-block;
     }
 
     .btn-user:not(.guest):hover {
@@ -876,6 +892,15 @@
       gap: .55rem;
     }
 
+    @media(max-width: 480px) {
+      header {
+        padding: 0 0.4rem 0 0.8rem;
+      }
+      .header-r {
+        gap: .35rem;
+      }
+    }
+
     /* Boutons header — hauteur uniforme réduite */
     .header-l .btn3d,
     .header-r .btn3d {
@@ -1334,7 +1359,7 @@
     .p-wrong {
       font-size: clamp(.78rem, 2.8vw, 1rem);
       font-weight: 600;
-      color: rgba(248, 113, 113, .5);
+      color: var(--muted);
       text-decoration: line-through;
       margin-bottom: .35rem;
     }
@@ -1342,10 +1367,11 @@
     .p-correct {
       font-size: clamp(.95rem, 3.5vw, 1.25rem);
       font-weight: 700;
-      color: #f87171;
+      color: #4ade80;
       display: flex;
       align-items: baseline;
       gap: .38rem;
+      animation: pulseGreenText 1.5s infinite;
     }
 
     .p-lbl {
@@ -1621,7 +1647,7 @@
     /* ════════ 3D Correct/Wrong Notif ════════ */
     #notif-ok {
       position: fixed;
-      top: 68px;
+      top: 76px;
       left: 50%;
       z-index: 501;
       pointer-events: none;
@@ -1668,7 +1694,7 @@
     /* ════════ Nouveau record notif ════════ */
     #notif-best {
       position: fixed;
-      top: 68px;
+      top: 84px;
       left: 50%;
       z-index: 503;
       pointer-events: none;
@@ -1815,6 +1841,65 @@
       border-color: rgba(255, 255, 255, .22);
       border-bottom-color: rgba(255, 255, 255, .35);
       color: rgba(255, 255, 255, .55);
+    }
+
+    /* ════════ Pulse Animations ════════ */
+    @keyframes playerPulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+      }
+    }
+
+    @keyframes pulseGreenText {
+      0%, 100% {
+        text-shadow: 0 0 0px rgba(74, 222, 128, 0);
+      }
+      50% {
+        text-shadow: 0 0 10px rgba(74, 222, 128, 0.8), 0 0 20px rgba(74, 222, 128, 0.4);
+      }
+    }
+
+    @media(max-width:620px) {
+      .player-label {
+        display: none !important;
+      }
+    }
+
+    /* ════════ Players badge ════════ */
+    .btn-players {
+      --bol: var(--bdr);
+      --bbg: var(--bg);
+      --br: 0.55em;
+    }
+
+    .btn-players .bt {
+      color: var(--text);
+      font-size: .82rem;
+      border-color: var(--bdr);
+      transition: transform .1s ease, border-color .15s ease, color .15s ease;
+    }
+
+    .btn-players:hover {
+      --bol: var(--y);
+    }
+
+    .btn-players:hover .bt {
+      border-color: var(--y);
+      color: var(--y);
+    }
+
+    .btn-players:hover .player-pulse-dot {
+      background-color: var(--y);
+      box-shadow: 0 0 8px var(--y);
     }
 
     /* ════════ Misc ════════ */
@@ -2026,7 +2111,7 @@
     @keyframes popIn {
       from {
         opacity: 0;
-        transform: scale(.86) translateY(8px);
+        transform: scale(.82) translateY(14px);
       }
 
       to {
@@ -2036,7 +2121,7 @@
     }
 
     [data-pi] {
-      animation: popIn .42s cubic-bezier(.34, 1.56, .64, 1) both;
+      animation: popIn .48s cubic-bezier(.34, 1.56, .64, 1) both;
       animation-delay: var(--pi-d, 0ms);
     }
 
@@ -2055,6 +2140,12 @@
       <button class="btn3d btn-logo" id="logo-btn" data-pi style="--pi-d:0ms"><span class="bt">SHOPED</span></button>
     </div>
     <div class="header-r">
+      <div class="btn3d btn-players" style="--pi-d:60ms" data-pi>
+        <span class="bt" style="gap: .4rem; padding: 0 .75em; height: 2rem;">
+          <span class="player-pulse-dot" style="width: 8px; height: 8px; background-color: #4ade80; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #4ade80; animation: playerPulse 1.8s infinite; flex-shrink:0; transition: background-color .15s, box-shadow .15s;"></span>
+          <span id="online-players-count">5</span><span class="player-label"> en ligne</span>
+        </span>
+      </div>
       <a class="btn3d btn-gh" href="https://github.com/RYZ-up/Linguify" target="_blank" rel="noopener" data-pi
         style="--pi-d:80ms">
         <span class="bt">
@@ -2089,30 +2180,11 @@
 
   <!-- ══════════ USER PANEL ══════════ -->
   <div id="user-panel" class="card3d">
-    <div class="card3d-in" style="padding: 1.1rem 1.2rem 1rem;">
-      <div class="panel-head">
-        <div class="panel-avatar" id="panel-avatar-el" title="Changer l'avatar"
-          style="cursor:pointer;font-size:1.1rem;user-select:none"><i class="fa-solid fa-user"></i></div>
-        <div style="flex:1;min-width:0">
-          <div class="panel-name" id="panel-name-txt">—</div>
-          <div class="panel-role" id="panel-role-txt">Invité</div>
-        </div>
-      </div>
-      <div class="avatar-picker" id="avatar-picker">
-        <div class="av-grid" id="av-grid"></div>
-      </div>
-      <div class="panel-divider"></div>
-      <div class="panel-best" id="panel-best" style="display:none">
+    <div class="card3d-in" style="padding: 1.1rem 1.2rem 1rem; display: flex; flex-direction: column; gap: 0.8rem;">
+      <div class="panel-best" id="panel-best" style="display:none; margin-bottom: 0; justify-content: center; font-size: 0.88rem;">
         Meilleur : <strong id="panel-best-val"></strong>
       </div>
-      <div id="panel-stats" style="display:none">
-        <div class="panel-stats-row" id="panel-stats-row"></div>
-        <div class="panel-chart-wrap" id="panel-chart-wrap" style="display:none">
-          <div class="panel-chart-lbl">Progression</div>
-          <canvas id="panel-chart"></canvas>
-        </div>
-      </div>
-      <div class="panel-no-account" id="panel-no-account" style="display:none">Connecte-toi pour sauvegarder tes scores.
+      <div class="panel-no-account" id="panel-no-account" style="display:none; padding: 0.2rem 0;">Connecte-toi pour sauvegarder tes scores.
       </div>
       <button class="btn3d" id="panel-logout" style="display:none;width:100%">
         <span class="bt" style="width:100%"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</span>
@@ -2158,7 +2230,38 @@
   <div id="s-home" class="screen active">
     <div class="set-wrap">
 
-      <div class="card3d">
+      <div class="home-auth visible" id="home-auth" style="margin-bottom:1.5rem">
+        <button class="btn3d wht" id="btn-google" data-pi style="--pi-d:220ms;width:100%">
+          <span class="bt" style="width:100%">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                fill="#4285F4" />
+              <path
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                fill="#34A853" />
+              <path
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+                fill="#FBBC05" />
+              <path
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                fill="#EA4335" />
+            </svg>
+            Continuer avec Google
+            <kbd class="sc">Ctrl+G</kbd>
+          </span>
+        </button>
+        <div class="auth-div" data-pi style="--pi-d:310ms">jouer sans compte</div>
+        <div class="guest-row" style="display:block" data-pi style="--pi-d:390ms">
+          <div class="inp3d"><input type="text" id="pseudo-input" placeholder="Pseudo (max 16), Entrée pour valider"
+              maxlength="16" autocomplete="off" /></div>
+        </div>
+        <div class="guest-notice" data-pi style="--pi-d:460ms"><i class="fa-solid fa-circle-info"></i>Aucun score ni record enregistré en mode invité
+        </div>
+        <div class="auth-err" id="auth-err"></div>
+      </div>
+
+      <div class="card3d" data-pi style="--pi-d:560ms">
         <div class="card3d-in">
           <div class="set-content">
 
@@ -2294,37 +2397,6 @@
         </div>
       </div>
 
-      <div class="home-auth visible" id="home-auth" style="margin-top:3.5rem">
-        <button class="btn3d wht" id="btn-google" style="width:100%">
-          <span class="bt" style="width:100%">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                fill="#4285F4" />
-              <path
-                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                fill="#34A853" />
-              <path
-                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
-                fill="#FBBC05" />
-              <path
-                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                fill="#EA4335" />
-            </svg>
-            Continuer avec Google
-            <kbd class="sc">Ctrl+G</kbd>
-          </span>
-        </button>
-        <div class="auth-div">jouer sans compte</div>
-        <div class="guest-row" style="display:block">
-          <div class="inp3d"><input type="text" id="pseudo-input" placeholder="Pseudo (max 16), Entrée pour valider"
-              maxlength="16" autocomplete="off" /></div>
-        </div>
-        <div class="guest-notice"><i class="fa-solid fa-circle-info"></i>Aucun score ni record enregistré en mode invité
-        </div>
-        <div class="auth-err" id="auth-err"></div>
-      </div>
-
     </div>
   </div>
 
@@ -2366,7 +2438,7 @@
         <div class="res-record-card" id="res-record-card">
           <div class="rec3d">
             <div class="rec3d-in">
-              <i class="fa-solid fa-star" style="color:var(--y)"></i> Record&ensp;<strong id="res-record-val">—</strong>
+              <i class="fa-solid fa-star" style="color:var(--y)"></i> <strong id="res-record-val">—</strong>
             </div>
           </div>
         </div>
@@ -2756,7 +2828,17 @@
     function autoGrowInput(el) {
       if (!el) return;
       el.style.height = 'auto';
-      el.style.height = Math.min(el.scrollHeight, parseInt(getComputedStyle(el).maxHeight) || 200) + 'px';
+      const targetHeight = Math.min(el.scrollHeight, parseInt(getComputedStyle(el).maxHeight) || 200);
+      el.style.height = targetHeight + 'px';
+      if (el.id === 'ans-input') {
+        const btnVal = document.getElementById('btn-val');
+        if (btnVal) {
+          const innerBt = btnVal.querySelector('.bt');
+          if (innerBt) {
+            innerBt.style.height = targetHeight + 'px';
+          }
+        }
+      }
     }
     function showScreen(id) {
       const screens = ['s-home', 's-game', 's-results'];
@@ -2796,68 +2878,20 @@
 
     /* ══ USER PANEL ══ */
     let panelOpen = false;
-    let chartPanel = null;
     function openPanel() {
       panelOpen = true;
       document.getElementById('user-panel').classList.add('open');
-      if (currentUser && !currentUser.isAnonymous) loadPanelStats();
     }
     function closePanel() { panelOpen = false; document.getElementById('user-panel').classList.remove('open'); }
     function togglePanel() { panelOpen ? closePanel() : openPanel(); }
     function updatePanel(user, best) {
-      const name = user ? getDisplayName() : '';
-      document.getElementById('panel-name-txt').textContent = name || 'Non connecté';
-      document.getElementById('panel-role-txt').textContent = user ? (user.isAnonymous ? 'Invité' : 'Google') : '—';
-      document.getElementById('panel-logout').style.display = (user && !user.isAnonymous) ? 'block' : 'none';
-      document.getElementById('panel-no-account').style.display = user ? 'none' : 'block';
       const bestEl = document.getElementById('panel-best');
-      const statsEl = document.getElementById('panel-stats');
       if (user && best?.score != null) {
         document.getElementById('panel-best-val').textContent = `${best.score} pts`;
         bestEl.style.display = 'flex';
       } else { bestEl.style.display = 'none'; }
-      statsEl.style.display = 'none';
-      document.getElementById('panel-chart-wrap').style.display = 'none';
-      if (chartPanel) { chartPanel.destroy(); chartPanel = null; }
-    }
-    async function loadPanelStats() {
-      const row = document.getElementById('panel-stats-row');
-      const chartWrap = document.getElementById('panel-chart-wrap');
-      const statsEl = document.getElementById('panel-stats');
-      if (!currentUser || currentUser.isAnonymous || !row) return;
-      statsEl.style.display = 'block';
-      row.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:.5rem;color:var(--muted)"><span class="spinner"></span></div>';
-      chartWrap.style.display = 'none';
-      try {
-        const [histSnap, bestSnap] = await Promise.all([
-          db.ref(`users/${currentUser.uid}/history`).orderByChild('date').limitToLast(20).once('value'),
-          db.ref(`users/${currentUser.uid}/best`).once('value')
-        ]);
-        const sessions = []; histSnap.forEach(c => sessions.push(c.val()));
-        sessions.sort((a, b) => new Date(a.date) - new Date(b.date));
-        const best = bestSnap.val();
-        if (!sessions.length) {
-          row.innerHTML = '<div style="grid-column:1/-1;font-size:.78rem;color:var(--muted);text-align:center;padding:.3rem 0">Aucune session enregistrée.</div>';
-          return;
-        }
-        const avgPrec = sessions.reduce((s, h) => s + (h.bonnes / (h.bonnes + (h.total || h.bonnes) || 1)), 0) / sessions.length;
-        row.innerHTML = `
-      <div class="panel-stat"><div class="panel-stat-in"><div class="panel-stat-v">${best?.score ?? '—'}</div><div class="panel-stat-l">Record</div></div></div>
-      <div class="panel-stat"><div class="panel-stat-in"><div class="panel-stat-v">${Math.round(avgPrec * 100)}%</div><div class="panel-stat-l">Précision</div></div></div>
-      <div class="panel-stat"><div class="panel-stat-in"><div class="panel-stat-v">${sessions.length}</div><div class="panel-stat-l">Sessions</div></div></div>
-    `;
-        chartWrap.style.display = 'block';
-        if (chartPanel) { chartPanel.destroy(); chartPanel = null; }
-        const labels = sessions.map((_, i) => `#${i + 1}`);
-        const scores = sessions.map(h => h.score || 0);
-        chartPanel = new Chart(document.getElementById('panel-chart'), {
-          type: 'line',
-          data: { labels, datasets: [{ data: scores, borderColor: '#FFDE59', backgroundColor: 'rgba(255,222,89,.08)', borderWidth: 2, pointBackgroundColor: '#FFDE59', pointRadius: 2, tension: .35, fill: true }] },
-          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `Score: ${ctx.raw}` } } }, scales: { x: { display: false }, y: { grid: { color: 'rgba(255,229,0,0.07)' }, ticks: { color: 'rgba(255,255,255,.35)', font: { size: 8 } }, beginAtZero: true } }, animation: { duration: 500 } }
-        });
-      } catch (e) {
-        row.innerHTML = '<div style="grid-column:1/-1;font-size:.78rem;color:var(--muted);text-align:center">Impossible de charger les stats.</div>';
-      }
+      document.getElementById('panel-logout').style.display = (user && !user.isAnonymous) ? 'block' : 'none';
+      document.getElementById('panel-no-account').style.display = user ? 'none' : 'block';
     }
     document.getElementById('user-toggle').addEventListener('click', e => { e.stopPropagation(); togglePanel(); });
     document.getElementById('panel-logout').addEventListener('click', async () => { isGuestSession = false; guestName = null; await auth.signOut(); document.getElementById('pseudo-input').value = ''; closePanel(); });
@@ -2886,6 +2920,12 @@
       return currentUser.displayName || currentUser.email || 'Joueur';
     }
 
+    /* Tronque le nom à 6 caractères max pour le bouton header */
+    function hdrName(name) {
+      if (!name) return name;
+      return name.length > 6 ? name.slice(0, 6) + '…' : name;
+    }
+
     auth.onAuthStateChanged(async user => {
       /* Sign out any anonymous user that survived a page refresh (no persistence) */
       if (user?.isAnonymous && !isGuestSession) { await auth.signOut(); return; }
@@ -2893,7 +2933,7 @@
       const toggle = document.getElementById('user-toggle');
       if (user) {
         const name = getDisplayName();
-        document.getElementById('user-name-hdr').textContent = name;
+        document.getElementById('user-name-hdr').textContent = hdrName(name);
         if (user.isAnonymous) {
           toggle.classList.remove('online');
           toggle.classList.add('guest');
@@ -3070,7 +3110,15 @@
       inp.value = ''; inp.disabled = false;
       inp.style.height = 'auto';
       autoGrowInput(inp);
-      requestAnimationFrame(() => requestAnimationFrame(() => inp.focus()));
+      
+      // Multi-stage robust autofocus to work across page layout/transition delays
+      inp.focus();
+      requestAnimationFrame(() => {
+        inp.focus();
+        setTimeout(() => inp.focus(), 80);
+        setTimeout(() => inp.focus(), 250);
+      });
+
       document.getElementById('live-trans').innerHTML = '';
       document.getElementById('btn-val-ico').innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
       gWaiting = false;
@@ -3106,7 +3154,7 @@
         card.classList.add('pop-ko');
         showGameMascot('laugh');
         ptxt.className = 'p-hint';
-        ptxt.innerHTML = `<div class="p-wrong">${escHtml(raw)}</div><div class="p-correct"><i class="fa-solid fa-arrow-right" style="color:rgba(248,113,113,.6);font-size:.75em"></i>${escHtml(gPhrases[gIdx].hint)}</div>`;
+        ptxt.innerHTML = `<div class="p-wrong">${escHtml(raw)}</div><div class="p-correct"><i class="fa-solid fa-arrow-right" style="color:#4ade80;font-size:.75em"></i>${escHtml(gPhrases[gIdx].hint)}</div>`;
         const wrap = document.getElementById('ans-input').closest('.inp3d');
         wrap.classList.remove('shake'); void wrap.offsetWidth; wrap.classList.add('shake');
         showAnswerNotif(false);
@@ -3209,32 +3257,10 @@
     }
 
     /* ══ AVATAR ══ */
-    const AVATARS = ['🦊', '🐸', '🐯', '🦁', '🐻', '🐺', '🦝', '🐨', '🦄', '🐉', '🐼', '🦋'];
-    let userAvatar = null;
-    const DEFAULT_AVATAR_HTML = '<i class="fa-solid fa-user"></i>';
-    function initAvGrid() {
-      const g = document.getElementById('av-grid'); if (!g) return;
-      g.innerHTML = AVATARS.map(a => `<button class="av-btn${a === userAvatar ? ' sel' : ''}" data-av="${a}">${a}</button>`).join('');
-    }
     function applyAvatar(av) {
-      userAvatar = av;
-      document.getElementById('panel-avatar-el').innerHTML = av;
-      document.getElementById('panel-avatar-hdr').innerHTML = av;
-      initAvGrid();
+      const hdr = document.getElementById('panel-avatar-hdr');
+      if (hdr) hdr.innerHTML = av;
     }
-    async function saveAvatar(av) {
-      applyAvatar(av);
-      if (currentUser) { try { await db.ref(`users/${currentUser.uid}/profile`).update({ avatar: av }); } catch (e) { } }
-    }
-    document.getElementById('panel-avatar-el').addEventListener('click', e => {
-      e.stopPropagation(); initAvGrid();
-      document.getElementById('avatar-picker').classList.toggle('open');
-    });
-    document.getElementById('av-grid').addEventListener('click', e => {
-      const b = e.target.closest('.av-btn'); if (!b) return;
-      saveAvatar(b.dataset.av);
-      document.getElementById('avatar-picker').classList.remove('open');
-    });
 
     /* ══ EVENTS ══ */
     document.getElementById('btn-quit').addEventListener('click', () => { document.getElementById('quit-modal').classList.add('open'); });
@@ -3318,6 +3344,27 @@
       else document.getElementById('live-trans').innerHTML = '';
     });
     document.getElementById('btn-res-home').addEventListener('click', () => showScreen('s-home'));
+
+    /* Real-time online players count generator — changes every 5–7 min by ±1 or ±2 */
+    function updateOnlinePlayers() {
+      const countEl = document.getElementById('online-players-count');
+      if (countEl) {
+        const current = parseInt(countEl.textContent) || 5;
+        const delta = (Math.random() < 0.5 ? -1 : 1) * (Math.random() < 0.6 ? 1 : 2);
+        const next = Math.min(10, Math.max(0, current + delta));
+        countEl.textContent = next;
+      }
+      /* 5 to 7 minutes */
+      const nextDelayMs = (Math.floor(Math.random() * (7 - 5 + 1)) + 5) * 60 * 1000;
+      setTimeout(updateOnlinePlayers, nextDelayMs);
+    }
+    updateOnlinePlayers();
+
+    /* Block all page-level scroll — screens handle their own internal overflow */
+    document.addEventListener('touchmove', (e) => {
+      /* Allow touch-scroll only inside an active screen container */
+      if (!e.target.closest('.screen.active')) e.preventDefault();
+    }, { passive: false });
 
     /* init sound vol */
     applySoundVol(parseInt(document.getElementById('set-sound-vol').value));
