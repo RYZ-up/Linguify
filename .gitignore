@@ -1,1 +1,32 @@
+# ── Credentials & config sensible ──────────────────────────────────────────
+firebase-config.js
+.env
+.env.local
+.env.*.local
+*.secret
+*.key
+secrets/
+
+# ── Outil d'import interne ──────────────────────────────────────────────────
 import.html
+
+# ── Python cache ────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ── OS & éditeurs ───────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# ── Logs & temporaires ──────────────────────────────────────────────────────
+*.log
+*.tmp
+ask.txt

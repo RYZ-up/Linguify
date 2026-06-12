@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -2527,20 +2527,13 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="firebase-config.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script>
-    firebase.initializeApp({
-      apiKey: "REDACTED_API_KEY",
-      authDomain: "REDACTED-PROJECT.firebaseapp.com",
-      databaseURL: "https://REDACTED-PROJECT-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "REDACTED-PROJECT",
-      storageBucket: "REDACTED-PROJECT.firebasestorage.app",
-      messagingSenderId: "REDACTED-SENDER",
-      appId: "1:REDACTED-SENDER:web:REDACTED-APP"
-    });
+    firebase.initializeApp(window.FIREBASE_CONFIG);
     const auth = firebase.auth(), db = firebase.database(), fs = firebase.firestore();
 
     let gAllQuestions = [];
@@ -2557,119 +2550,8 @@
     }
     loadQuestionsFromDB();
 
-    /* ── LEGACY PHRASES (fallback si Firebase vide) ── */
-    const PHRASES_ALL = [
-      /* ── LEVEL 1 ── */
-      { level: 1, en: "The sun is shining today.", hint: "Le soleil brille aujourd'hui.", answers: ["le soleil brille aujourd'hui", "il fait soleil aujourd'hui", "aujourd'hui le soleil brille", "le soleil brille ce jour"] },
-      { level: 1, en: "Where is the train station?", hint: "Où est la gare ?", answers: ["ou est la gare", "ou se trouve la gare", "ou est la gare ferroviaire"] },
-      { level: 1, en: "I am happy.", hint: "Je suis heureux.", answers: ["je suis heureux", "je suis heureuse", "je suis content", "je suis contente"] },
-      { level: 1, en: "The cat is black.", hint: "Le chat est noir.", answers: ["le chat est noir", "le chat est de couleur noire"] },
-      { level: 1, en: "Good morning!", hint: "Bonjour !", answers: ["bonjour", "bonne matinee"] },
-      { level: 1, en: "I am hungry.", hint: "J'ai faim.", answers: ["j'ai faim", "je suis affame", "je suis affamee"] },
-      { level: 1, en: "Thank you very much.", hint: "Merci beaucoup.", answers: ["merci beaucoup", "merci infiniment", "merci bien"] },
-      { level: 1, en: "I love you.", hint: "Je t'aime.", answers: ["je t'aime", "je vous aime"] },
-      { level: 1, en: "What is your name?", hint: "Comment tu t'appelles ?", answers: ["comment tu t'appelles", "comment vous appelez-vous", "quel est ton nom", "quel est votre nom", "tu t'appelles comment"] },
-      { level: 1, en: "I speak French.", hint: "Je parle français.", answers: ["je parle francais", "je parle le francais"] },
-      { level: 1, en: "The house is big.", hint: "La maison est grande.", answers: ["la maison est grande", "la maison est grande", "c'est une grande maison"] },
-      { level: 1, en: "Close the door.", hint: "Ferme la porte.", answers: ["ferme la porte", "fermez la porte", "ferme la porte s'il te plait", "fermez la porte s'il vous plait"] },
-      { level: 1, en: "I am tired.", hint: "Je suis fatigué.", answers: ["je suis fatigue", "je suis fatiguee", "je suis epuise", "je suis epuisee"] },
-      { level: 1, en: "It is cold today.", hint: "Il fait froid aujourd'hui.", answers: ["il fait froid aujourd'hui", "il fait froid ce matin", "c'est froid aujourd'hui"] },
-      { level: 1, en: "I do not understand.", hint: "Je ne comprends pas.", answers: ["je ne comprends pas", "je comprends pas", "je ne comprend pas"] },
-      { level: 1, en: "Where do you live?", hint: "Où est-ce que tu habites ?", answers: ["ou habites-tu", "ou est-ce que tu habites", "ou vivez-vous", "tu habites ou", "vous habitez ou"] },
-      { level: 1, en: "She is beautiful.", hint: "Elle est belle.", answers: ["elle est belle", "elle est jolie", "elle est magnifique", "c'est une belle femme"] },
-      { level: 1, en: "How much does it cost?", hint: "Combien ça coûte ?", answers: ["combien ca coute", "c'est combien", "ca coute combien", "quel est le prix"] },
-      { level: 1, en: "I am sorry.", hint: "Je suis désolé.", answers: ["je suis desole", "je suis desolee", "desole", "desolee", "pardon", "excuse-moi"] },
-      { level: 1, en: "The water is cold.", hint: "L'eau est froide.", answers: ["l'eau est froide", "l'eau est tres froide", "cette eau est froide"] },
-      /* ── LEVEL 2 ── */
-      { level: 2, en: "She loves reading books.", hint: "Elle aime lire des livres.", answers: ["elle aime lire des livres", "elle adore lire des livres", "elle aime lire", "elle adore lire", "elle aime la lecture", "elle adore la lecture"] },
-      { level: 2, en: "It is a beautiful day.", hint: "C'est une belle journée.", answers: ["c'est une belle journee", "il fait beau aujourd'hui", "quelle belle journee", "il fait beau", "c'est un beau jour"] },
-      { level: 2, en: "I would like a coffee, please.", hint: "Je voudrais un café, s'il vous plaît.", answers: ["je voudrais un cafe s'il vous plait", "je voudrais un cafe s'il te plait", "j'aimerais un cafe s'il vous plait", "j'aimerais un cafe s'il te plait", "un cafe s'il vous plait", "un cafe s'il te plait"] },
-      { level: 2, en: "He is my best friend.", hint: "C'est mon meilleur ami.", answers: ["c'est mon meilleur ami", "il est mon meilleur ami", "c'est mon ami", "il est mon ami"] },
-      { level: 2, en: "The dog is very tired.", hint: "Le chien est très fatigué.", answers: ["le chien est tres fatigue", "le chien est vraiment fatigue", "le chien est fatigue"] },
-      { level: 2, en: "I need to buy some bread.", hint: "Je dois acheter du pain.", answers: ["je dois acheter du pain", "j'ai besoin d'acheter du pain", "il faut que j'achete du pain"] },
-      { level: 2, en: "She works at the hospital.", hint: "Elle travaille à l'hôpital.", answers: ["elle travaille a l'hopital", "elle est infirmiere a l'hopital", "elle travaille dans un hopital"] },
-      { level: 2, en: "We eat dinner at seven.", hint: "Nous dînons à sept heures.", answers: ["nous dinons a sept heures", "on dine a sept heures", "nous mangeons a sept heures", "on mange a sept heures", "on dine a 7 heures"] },
-      { level: 2, en: "Do you speak English?", hint: "Parlez-vous anglais ?", answers: ["parlez-vous anglais", "tu parles anglais", "est-ce que tu parles anglais", "vous parlez anglais", "vous parlez l'anglais", "tu parles l'anglais"] },
-      { level: 2, en: "I am going to the supermarket.", hint: "Je vais au supermarché.", answers: ["je vais au supermarche", "je me rends au supermarche", "je vais faire des courses"] },
-      { level: 2, en: "She has two children.", hint: "Elle a deux enfants.", answers: ["elle a deux enfants", "elle a 2 enfants"] },
-      { level: 2, en: "He is a doctor.", hint: "Il est médecin.", answers: ["il est medecin", "c'est un medecin", "il est docteur", "c'est un docteur"] },
-      { level: 2, en: "I like to go for a walk.", hint: "J'aime me promener.", answers: ["j'aime me promener", "j'aime aller me promener", "j'adore me promener", "j'adore les promenades"] },
-      { level: 2, en: "The coffee is too hot.", hint: "Le café est trop chaud.", answers: ["le cafe est trop chaud", "ce cafe est trop chaud", "mon cafe est trop chaud"] },
-      { level: 2, en: "It is raining outside.", hint: "Il pleut dehors.", answers: ["il pleut dehors", "il pleut a l'exterieur", "il pleut", "il est en train de pleuvoir"] },
-      { level: 2, en: "I am reading a good book.", hint: "Je lis un bon livre.", answers: ["je lis un bon livre", "je suis en train de lire un bon livre", "je lis un livre interessant"] },
-      { level: 2, en: "She is cooking dinner.", hint: "Elle prépare le dîner.", answers: ["elle prepare le diner", "elle fait a manger", "elle cuisine", "elle est en train de cuisiner", "elle fait la cuisine"] },
-      { level: 2, en: "He calls his mother every day.", hint: "Il appelle sa mère tous les jours.", answers: ["il appelle sa mere tous les jours", "il telephone a sa mere tous les jours", "il appelle sa mere chaque jour"] },
-      { level: 2, en: "I enjoy watching movies.", hint: "J'aime regarder des films.", answers: ["j'aime regarder des films", "j'adore regarder des films", "j'aime les films", "j'adore le cinema"] },
-      { level: 2, en: "The weather is nice today.", hint: "Il fait beau aujourd'hui.", answers: ["il fait beau aujourd'hui", "le temps est beau aujourd'hui", "il fait un beau temps", "quel beau temps"] },
-      /* ── LEVEL 3 ── */
-      { level: 3, en: "We are going to the beach.", hint: "Nous allons à la plage.", answers: ["nous allons a la plage", "on va a la plage", "nous nous rendons a la plage", "on se rend a la plage"] },
-      { level: 3, en: "He forgot his keys at home.", hint: "Il a oublié ses clés à la maison.", answers: ["il a oublie ses cles a la maison", "il a oublie ses cles chez lui", "il a oublie ses cles"] },
-      { level: 3, en: "I am learning French.", hint: "J'apprends le français.", answers: ["j'apprends le francais", "je suis en train d'apprendre le francais", "j'etudie le francais"] },
-      { level: 3, en: "She goes to work every day.", hint: "Elle va au travail tous les jours.", answers: ["elle va au travail tous les jours", "elle travaille tous les jours", "elle se rend au travail chaque jour", "elle va travailler tous les jours"] },
-      { level: 3, en: "Can you help me, please?", hint: "Pouvez-vous m'aider, s'il vous plaît ?", answers: ["pouvez-vous m'aider s'il vous plait", "peux-tu m'aider s'il te plait", "tu peux m'aider", "vous pouvez m'aider", "aide-moi s'il te plait", "aidez-moi s'il vous plait"] },
-      { level: 3, en: "She did not sleep well last night.", hint: "Elle n'a pas bien dormi la nuit dernière.", answers: ["elle n'a pas bien dormi la nuit derniere", "elle a mal dormi la nuit derniere", "elle a mal dormi cette nuit", "elle n'a pas bien dormi cette nuit"] },
-      { level: 3, en: "He went to the doctor this morning.", hint: "Il est allé chez le médecin ce matin.", answers: ["il est alle chez le medecin ce matin", "il a consulte un medecin ce matin", "il est alle voir le medecin ce matin"] },
-      { level: 3, en: "I think it is going to rain.", hint: "Je pense qu'il va pleuvoir.", answers: ["je pense qu'il va pleuvoir", "je crois qu'il va pleuvoir", "il va pleuvoir je pense", "il va probablement pleuvoir"] },
-      { level: 3, en: "They finished the project on time.", hint: "Ils ont terminé le projet à temps.", answers: ["ils ont termine le projet a temps", "ils ont fini le projet a temps", "ils ont rendu le projet dans les temps", "elles ont termine le projet a temps"] },
-      { level: 3, en: "She gave me a wonderful gift.", hint: "Elle m'a offert un cadeau magnifique.", answers: ["elle m'a offert un cadeau magnifique", "elle m'a donne un beau cadeau", "elle m'a offert un tres beau cadeau", "elle m'a fait un beau cadeau"] },
-      { level: 3, en: "He was born in Paris.", hint: "Il est né à Paris.", answers: ["il est ne a paris", "il est originaire de paris", "il vient de paris", "il a ete ne a paris"] },
-      { level: 3, en: "I have never been to Japan.", hint: "Je ne suis jamais allé au Japon.", answers: ["je ne suis jamais alle au japon", "je n'ai jamais visite le japon", "je ne suis jamais allee au japon", "je n'ai jamais mis les pieds au japon"] },
-      { level: 3, en: "We spent the weekend at the beach.", hint: "Nous avons passé le week-end à la plage.", answers: ["nous avons passe le week-end a la plage", "on a passe le week-end a la plage", "nous avons passe le weekend a la plage"] },
-      { level: 3, en: "She told me she was not feeling well.", hint: "Elle m'a dit qu'elle ne se sentait pas bien.", answers: ["elle m'a dit qu'elle ne se sentait pas bien", "elle m'a dit qu'elle allait pas bien", "elle m'a dit ne pas se sentir bien"] },
-      { level: 3, en: "I woke up late this morning.", hint: "Je me suis réveillé tard ce matin.", answers: ["je me suis reveille tard ce matin", "je me suis reveillee tard ce matin", "je me suis leve tard ce matin", "je me suis levee tard ce matin"] },
-      { level: 3, en: "He bought a new car last week.", hint: "Il a acheté une nouvelle voiture la semaine dernière.", answers: ["il a achete une nouvelle voiture la semaine derniere", "il a acquis une nouvelle voiture la semaine derniere", "il s'est achete une voiture la semaine derniere"] },
-      { level: 3, en: "The train was delayed by twenty minutes.", hint: "Le train avait vingt minutes de retard.", answers: ["le train avait vingt minutes de retard", "le train etait en retard de vingt minutes", "le train avait 20 minutes de retard", "le train avait du retard"] },
-      { level: 3, en: "She explained the problem clearly.", hint: "Elle a expliqué le problème clairement.", answers: ["elle a explique le probleme clairement", "elle a bien explique le probleme", "elle a clairement explique le probleme"] },
-      { level: 3, en: "I forgot to call him back.", hint: "J'ai oublié de le rappeler.", answers: ["j'ai oublie de le rappeler", "j'ai oublie de lui rappeler", "j'ai oublie de l'appeler", "j'ai oublie de le recontacter"] },
-      { level: 3, en: "They met for the first time at school.", hint: "Ils se sont rencontrés pour la première fois à l'école.", answers: ["ils se sont rencontres pour la premiere fois a l'ecole", "ils se sont rencontres a l'ecole", "elles se sont rencontrees pour la premiere fois a l'ecole"] },
-      /* ── LEVEL 4 ── */
-      { level: 4, en: "The meeting starts at nine.", hint: "La réunion commence à neuf heures.", answers: ["la reunion commence a neuf heures", "la reunion commence a 9h", "la reunion commence a 9 heures", "le meeting commence a neuf heures"] },
-      { level: 4, en: "He has been working here for five years.", hint: "Il travaille ici depuis cinq ans.", answers: ["il travaille ici depuis cinq ans", "il travaille ici depuis 5 ans", "il est ici depuis cinq ans"] },
-      { level: 4, en: "The children were playing in the park.", hint: "Les enfants jouaient dans le parc.", answers: ["les enfants jouaient dans le parc", "les enfants etaient en train de jouer dans le parc", "les enfants jouent dans le parc"] },
-      { level: 4, en: "She asked me to close the window.", hint: "Elle m'a demandé de fermer la fenêtre.", answers: ["elle m'a demande de fermer la fenetre", "elle m'a dit de fermer la fenetre", "elle a demande que je ferme la fenetre"] },
-      { level: 4, en: "I could not find my keys anywhere.", hint: "Je ne trouvais mes clés nulle part.", answers: ["je ne trouvais mes cles nulle part", "je n'arrivais pas a trouver mes cles", "je ne pouvais pas trouver mes cles"] },
-      { level: 4, en: "If I had more time, I would travel more.", hint: "Si j'avais plus de temps, je voyagerais davantage.", answers: ["si j'avais plus de temps je voyagerais plus", "si j'avais plus de temps je voyagerais davantage", "si j'avais le temps je voyagerais plus", "avec plus de temps je voyagerais davantage"] },
-      { level: 4, en: "The report was submitted yesterday.", hint: "Le rapport a été soumis hier.", answers: ["le rapport a ete soumis hier", "le rapport a ete remis hier", "le rapport a ete depose hier", "on a soumis le rapport hier"] },
-      { level: 4, en: "He suggested that we leave early.", hint: "Il a suggéré que nous partions tôt.", answers: ["il a suggere que nous partions tot", "il a propose de partir tot", "il a propose qu'on parte tot", "il nous a suggere de partir tot"] },
-      { level: 4, en: "The building was built in the nineteenth century.", hint: "Le bâtiment a été construit au XIXe siècle.", answers: ["le batiment a ete construit au xixe siecle", "l'immeuble a ete construit au dix-neuvieme siecle", "ce batiment date du xix siecle", "le batiment a ete construit au 19eme siecle"] },
-      { level: 4, en: "He managed to solve the problem on his own.", hint: "Il a réussi à résoudre le problème seul.", answers: ["il a reussi a resoudre le probleme seul", "il a reussi a regler le probleme tout seul", "il a resolu le probleme par lui-meme", "il a reussi a resoudre le probleme tout seul"] },
-      { level: 4, en: "She had just arrived when the phone rang.", hint: "Elle venait juste d'arriver quand le téléphone a sonné.", answers: ["elle venait juste d'arriver quand le telephone a sonne", "elle arrivait a peine quand le telephone a sonne", "elle venait d'arriver quand le telephone a sonne"] },
-      { level: 4, en: "We should have prepared better for the exam.", hint: "Nous aurions dû mieux nous préparer pour l'examen.", answers: ["nous aurions du mieux nous preparer pour l'examen", "on aurait du mieux se preparer pour l'examen", "il aurait fallu mieux se preparer", "nous aurions du mieux preparer l'examen"] },
-      { level: 4, en: "He claims that he saw the accident.", hint: "Il affirme avoir vu l'accident.", answers: ["il affirme avoir vu l'accident", "il pretend avoir vu l'accident", "il dit qu'il a vu l'accident", "il soutient avoir ete temoin de l'accident"] },
-      { level: 4, en: "She has been waiting for an answer for two weeks.", hint: "Elle attend une réponse depuis deux semaines.", answers: ["elle attend une reponse depuis deux semaines", "elle attend une reponse depuis quinze jours", "elle attend une reponse depuis 2 semaines", "cela fait deux semaines qu'elle attend une reponse"] },
-      { level: 4, en: "I was told that the project had been cancelled.", hint: "On m'a dit que le projet avait été annulé.", answers: ["on m'a dit que le projet avait ete annule", "j'ai appris que le projet etait annule", "on m'a informe que le projet etait annule", "il m'a ete dit que le projet avait ete annule"] },
-      { level: 4, en: "They had already left by the time we arrived.", hint: "Ils étaient déjà partis quand nous sommes arrivés.", answers: ["ils etaient deja partis quand nous sommes arrives", "ils etaient deja partis a notre arrivee", "quand nous sommes arrives ils etaient deja partis", "ils etaient deja repartis quand on est arrives"] },
-      { level: 4, en: "She was promoted because of her excellent work.", hint: "Elle a été promue grâce à son excellent travail.", answers: ["elle a ete promue grace a son excellent travail", "elle a obtenu une promotion grace a son travail", "elle a ete promue pour son excellent travail", "sa promotion est due a son excellent travail"] },
-      { level: 4, en: "I would appreciate it if you could call me back.", hint: "Je vous serais reconnaissant de me rappeler.", answers: ["je vous serais reconnaissant de me rappeler", "j'apprecierais que vous me rappeliez", "pourriez-vous me rappeler s'il vous plait", "serait-il possible que vous me rappeliez"] },
-      { level: 4, en: "She asked whether we would be coming to the party.", hint: "Elle a demandé si nous allions venir à la fête.", answers: ["elle a demande si nous allions venir a la fete", "elle a demande si on viendrait a la fete", "elle voulait savoir si nous viendrions", "elle m'a demande si j'allais venir a la fete"] },
-      { level: 4, en: "The decision was made without consulting the team.", hint: "La décision a été prise sans consulter l'équipe.", answers: ["la decision a ete prise sans consulter l'equipe", "la decision a ete prise sans l'avis de l'equipe", "on a pris la decision sans consulter l'equipe", "cette decision n'a pas ete concertee avec l'equipe"] },
-      /* ── LEVEL 5 ── */
-      { level: 5, en: "Despite the traffic, he arrived on time.", hint: "Malgré le trafic, il est arrivé à l'heure.", answers: ["malgre le trafic il est arrive a l'heure", "malgre les embouteillages il est arrive a l'heure", "en depit du trafic il est arrive a l'heure", "il est arrive a l'heure malgre le trafic"] },
-      { level: 5, en: "She has been living in Paris for more than ten years.", hint: "Elle vit à Paris depuis plus de dix ans.", answers: ["elle vit a paris depuis plus de dix ans", "elle habite a paris depuis plus de dix ans", "elle vit a paris depuis plus de 10 ans", "elle habite a paris depuis plus de 10 ans"] },
-      { level: 5, en: "We should have left earlier to avoid the traffic.", hint: "Nous aurions dû partir plus tôt pour éviter les embouteillages.", answers: ["nous aurions du partir plus tot pour eviter les embouteillages", "on aurait du partir plus tot", "nous aurions du partir plus tot", "il aurait fallu partir plus tot pour eviter les embouteillages"] },
-      { level: 5, en: "The results were better than we had expected.", hint: "Les résultats étaient meilleurs que prévu.", answers: ["les resultats etaient meilleurs que prevu", "les resultats etaient meilleurs que ce que nous attendions", "les resultats ont ete meilleurs que prevu", "les resultats se sont reveles meilleurs que prevu"] },
-      { level: 5, en: "It is important to take care of yourself every day.", hint: "Il est important de prendre soin de soi chaque jour.", answers: ["il est important de prendre soin de soi chaque jour", "il faut prendre soin de soi chaque jour", "il est important de s'occuper de soi chaque jour", "prendre soin de soi chaque jour est important"] },
-      { level: 5, en: "The more you practice, the better you become.", hint: "Plus vous pratiquez, meilleur vous devenez.", answers: ["plus vous pratiquez meilleur vous devenez", "plus tu pratiques mieux tu deviens", "plus on pratique mieux on devient", "plus on s'entraine meilleur on devient"] },
-      { level: 5, en: "Had I known, I would have acted differently.", hint: "Si j'avais su, j'aurais agi différemment.", answers: ["si j'avais su j'aurais agi differemment", "si j'avais su les choses auraient ete differentes", "si j'avais su ca j'aurais agi autrement", "j'aurais agi differemment si j'avais su"] },
-      { level: 5, en: "The company announced that it would be restructuring its operations.", hint: "L'entreprise a annoncé qu'elle allait restructurer ses activités.", answers: ["l'entreprise a annonce qu'elle allait restructurer ses activites", "la societe a annonce une restructuration de ses activites", "la societe a annonce qu'elle allait se reorganiser", "l'entreprise a annonce une reorganisation"] },
-      { level: 5, en: "She could not bring herself to tell him the truth.", hint: "Elle ne pouvait pas se résoudre à lui dire la vérité.", answers: ["elle ne pouvait pas se resoudre a lui dire la verite", "elle n'arrivait pas a lui dire la verite", "elle etait incapable de lui dire la verite", "elle ne parvenait pas a lui avouer la verite"] },
-      { level: 5, en: "The evidence suggests that the theory may not be correct.", hint: "Les indices laissent penser que la théorie est peut-être incorrecte.", answers: ["les indices laissent penser que la theorie est peut-etre incorrecte", "les preuves semblent indiquer que la theorie est fausse", "les elements semblent montrer que la theorie est incorrecte", "il semblerait que la theorie soit inexacte"] },
-      { level: 5, en: "He was so exhausted that he fell asleep immediately.", hint: "Il était tellement épuisé qu'il s'est endormi immédiatement.", answers: ["il etait tellement epuise qu'il s'est endormi immediatement", "il etait si fatigue qu'il s'est endormi aussitot", "il etait tellement epuise qu'il a immediatement sombre dans le sommeil", "tellement epuise il s'est endormi des qu'il a pose la tete"] },
-      { level: 5, en: "It goes without saying that honesty is important.", hint: "Il va sans dire que l'honnêteté est importante.", answers: ["il va sans dire que l'honnetete est importante", "il va de soi que l'honnetete est importante", "il est evident que l'honnetete est importante", "l'importance de l'honnetete va sans dire"] },
-      { level: 5, en: "The renovation took longer than anticipated due to unexpected complications.", hint: "La rénovation a pris plus de temps que prévu en raison de complications imprévues.", answers: ["la renovation a pris plus de temps que prevu en raison de complications imprevisibles", "les travaux ont dure plus longtemps que prevu a cause de problemes imprevus", "la renovation s'est avere plus longue que prevu suite a des complications", "la renovation a pris plus de temps que prevu"] },
-      { level: 5, en: "Rather than giving up, she found an alternative solution.", hint: "Plutôt que d'abandonner, elle a trouvé une solution alternative.", answers: ["plutot que d'abandonner elle a trouve une solution alternative", "au lieu d'abandonner elle a trouve une autre solution", "elle a prefere trouver une solution plutot que d'abandonner", "au lieu de capituler elle a trouve une solution de rechange"] },
-      { level: 5, en: "The situation is more complex than it appears at first glance.", hint: "La situation est plus complexe qu'il n'y paraît à première vue.", answers: ["la situation est plus complexe qu'il n'y parait a premiere vue", "la situation est plus complexe qu'elle ne le semble", "la situation est bien plus complexe qu'il n'y parait", "les apparences sont trompeuses la situation est plus complexe"] },
-      { level: 5, en: "He insisted that every detail be checked twice.", hint: "Il a insisté pour que chaque détail soit vérifié deux fois.", answers: ["il a insiste pour que chaque detail soit verifie deux fois", "il a exige que l'on verifie chaque detail deux fois", "il tenait a ce que chaque detail soit verifie deux fois", "il a voulu que chaque element soit controle deux fois"] },
-      { level: 5, en: "She takes pride in her ability to remain calm under pressure.", hint: "Elle est fière de sa capacité à rester calme sous pression.", answers: ["elle est fiere de sa capacite a rester calme sous pression", "elle se targue de rester calme en toute circonstance", "elle est fiere de pouvoir garder son calme sous pression", "elle est connue pour rester calme sous pression"] },
-      { level: 5, en: "The conference was postponed indefinitely owing to unforeseen circumstances.", hint: "La conférence a été reportée indéfiniment en raison de circonstances imprévues.", answers: ["la conference a ete reportee indefiniment en raison de circonstances imprevues", "la conference a ete annulee jusqu'a nouvel ordre", "la conference a ete repoussee pour des raisons imprevues", "la conference a ete indefiniment reportee"] },
-      { level: 5, en: "She raised an objection that nobody had thought of before.", hint: "Elle a soulevé une objection à laquelle personne n'avait pensé.", answers: ["elle a souleve une objection a laquelle personne n'avait pense", "elle a formule une objection que personne n'avait envisagee", "elle a emis une objection que nul n'avait anticipee", "elle a avance un argument que personne n'avait considere"] },
-      { level: 5, en: "The outcome depends largely on how well we coordinate.", hint: "Le résultat dépend en grande partie de notre coordination.", answers: ["le resultat depend en grande partie de notre coordination", "l'issue depend largement de la qualite de notre coordination", "tout depend de notre capacite a coordonner nos efforts", "le resultat depend essentiellement de notre coordination"] },
-    ];
+    function getActiveQuestions() { return gAllQuestions; }
 
-    /* Fusionne les questions Firebase (prioritaires) avec le fallback legacy */
-    function getActiveQuestions() {
-      return gAllQuestions.length > 0 ? gAllQuestions : PHRASES_ALL;
-    }
 
     /* ══ CORRECTION ══ */
     function norm(s) {
@@ -2692,6 +2574,30 @@
       if (!maxLen) return 1;
       return 1 - lev(a, b) / maxLen;
     }
+    const _PN = {
+      'je':'_P_','j':'_P_','tu':'_P_','il':'_P_','elle':'_P_','on':'_P_',
+      'nous':'_P_','vous':'_P_','ils':'_P_','elles':'_P_'
+    };
+    const _PV = {
+      'suis':'_E_','est':'_E_','sommes':'_E_','etes':'_E_','sont':'_E_','etait':'_E_','etaient':'_E_',
+      'avons':'_A_','avez':'_A_','ont':'_A_','avait':'_A_','avaient':'_A_',
+      'peux':'_PV_','peut':'_PV_','pouvons':'_PV_','pouvez':'_PV_','peuvent':'_PV_',
+      'dois':'_DV_','doit':'_DV_','devons':'_DV_','devez':'_DV_','doivent':'_DV_',
+      'allons':'_AL_','allez':'_AL_','vont':'_AL_',
+      'faisons':'_FA_','faites':'_FA_','font':'_FA_',
+    };
+    const _SW = new Set([
+      'le','la','les','l','un','une','des','du','de','d','en','au','aux',
+      'a','et','ou','car','que','qui','se','ne','y','c','ca','cet','cette','ces',
+      'm','t','s','me','te','lui','leur',
+      'je','j','tu','il','elle','on','nous','vous','ils','elles'
+    ]);
+    function _normPV(s) {
+      return s.split(' ').map(w => _PN[w] || _PV[w] || w).join(' ');
+    }
+    function _normContent(s) {
+      return s.split(' ').filter(w => w.length > 2 && !_SW.has(w) && !_PV[w]).sort().join(' ');
+    }
     function isCorrect(raw, phrase) {
       const u = norm(raw); if (!u) return false;
       for (const acc of phrase.answers) {
@@ -2699,6 +2605,20 @@
         if (u === a) return true;
         if (u.length >= 3 && a.length >= 3 && similarity(u, a) >= 0.9) return true;
         if (settings.looseCorrection) { const d = a.length >= 6 ? Math.min(6, Math.max(2, Math.floor(a.length / 10))) : 0; if (d > 0 && lev(u, a) <= d) return true; }
+      }
+      const up = _normPV(u);
+      for (const acc of phrase.answers) {
+        const ap = _normPV(norm(acc));
+        if (up === ap) return true;
+        if (up.length >= 8 && ap.length >= 8 && similarity(up, ap) >= 0.88) return true;
+      }
+      const uc = _normContent(u);
+      if (uc.split(' ').filter(Boolean).length >= 3) {
+        for (const acc of phrase.answers) {
+          const ac = _normContent(norm(acc));
+          if (uc === ac) return true;
+          if (uc.length >= 12 && ac.length >= 12 && similarity(uc, ac) >= 0.88) return true;
+        }
       }
       return false;
     }
