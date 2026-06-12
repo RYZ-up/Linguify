@@ -6,6 +6,7 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>SHOPED</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
@@ -58,10 +59,15 @@
       overscroll-behavior: none;
       touch-action: pan-y;
       background-color: var(--bg);
-      background-image: radial-gradient(rgba(255, 222, 89, 0.16) 1.5px, transparent 1.5px);
-      background-size: 28px 28px;
       -webkit-text-size-adjust: 100%;
       padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    @media (min-width: 769px) {
+      body {
+        background-image: radial-gradient(rgba(255, 222, 89, 0.16) 1.5px, transparent 1.5px);
+        background-size: 28px 28px;
+      }
     }
 
     /* ════════ 3D Button base ════════ */
@@ -386,7 +392,7 @@
       min-height: var(--btn-h);
       background: var(--bg);
       color: var(--text);
-      font-size: 14px;
+      font-size: 16px;
       font-family: 'Inter', sans-serif;
       font-weight: 600;
       transform: translateY(-.22em);
@@ -1756,6 +1762,19 @@
 
     .res-record-card.v {
       display: block;
+    }
+
+    @media (max-width: 480px) {
+      .res-record-card {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: -0.4rem auto 1.2rem auto;
+      }
+      .res-record-card.v {
+        display: flex;
+        justify-content: center;
+      }
     }
 
     .rec3d {
@@ -3367,15 +3386,43 @@
     /* Real-time online players count generator — changes every 5–7 min by ±1 or ±2 */
     function updateOnlinePlayers() {
       const countEl = document.getElementById('online-players-count');
-      if (countEl) {
-        const current = parseInt(countEl.textContent) || 5;
-        const delta = (Math.random() < 0.5 ? -1 : 1) * (Math.random() < 0.6 ? 1 : 2);
-        const next = Math.min(10, Math.max(0, current + delta));
-        countEl.textContent = next;
+      if (!countEl) return;
+
+      let current = parseInt(localStorage.getItem('online_players_count'));
+      if (isNaN(current)) {
+        current = 5;
       }
-      /* 5 to 7 minutes */
-      const nextDelayMs = (Math.floor(Math.random() * (7 - 5 + 1)) + 5) * 60 * 1000;
-      setTimeout(updateOnlinePlayers, nextDelayMs);
+
+      const now = Date.now();
+      let lastUpdate = parseInt(localStorage.getItem('online_players_last_update')) || now;
+      let nextDelayMs = parseInt(localStorage.getItem('online_players_next_delay')) || 300000;
+
+      if (now - lastUpdate >= nextDelayMs) {
+        const delta = (Math.random() < 0.5 ? -1 : 1) * (Math.random() < 0.6 ? 1 : 2);
+        current = Math.min(10, Math.max(3, current + delta));
+        localStorage.setItem('online_players_count', current);
+        localStorage.setItem('online_players_last_update', now);
+        nextDelayMs = (Math.floor(Math.random() * (7 - 5 + 1)) + 5) * 60 * 1000;
+        localStorage.setItem('online_players_next_delay', nextDelayMs);
+      }
+
+      countEl.textContent = current;
+
+      const timeRemaining = Math.max(1000, nextDelayMs - (now - lastUpdate));
+      setTimeout(updateOnlinePlayers, timeRemaining);
+    }
+
+    // Initialize/restore count immediately on load
+    const countEl = document.getElementById('online-players-count');
+    if (countEl) {
+      let savedCount = localStorage.getItem('online_players_count');
+      if (savedCount === null) {
+        savedCount = '5';
+        localStorage.setItem('online_players_count', savedCount);
+        localStorage.setItem('online_players_last_update', Date.now());
+        localStorage.setItem('online_players_next_delay', (Math.floor(Math.random() * (7 - 5 + 1)) + 5) * 60 * 1000);
+      }
+      countEl.textContent = savedCount;
     }
     updateOnlinePlayers();
 
@@ -3384,6 +3431,29 @@
       /* Allow touch-scroll only inside an active screen container */
       if (!e.target.closest('.screen.active')) e.preventDefault();
     }, { passive: false });
+
+    // Lock page scroll to 0,0 at all times to prevent iOS shifting/scrolling the header/viewport on input focus
+    const lockScroll = () => {
+      if (window.scrollY !== 0 || window.scrollX !== 0) {
+        window.scrollTo(0, 0);
+      }
+      if (document.documentElement.scrollTop !== 0 || document.documentElement.scrollLeft !== 0) {
+        document.documentElement.scrollTop = 0;
+        document.documentElement.scrollLeft = 0;
+      }
+      if (document.body.scrollTop !== 0 || document.body.scrollLeft !== 0) {
+        document.body.scrollTop = 0;
+        document.body.scrollLeft = 0;
+      }
+    };
+    window.addEventListener('scroll', lockScroll, { passive: true });
+    document.addEventListener('scroll', lockScroll, { passive: true });
+    document.addEventListener('focusin', (e) => {
+      if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+        setTimeout(lockScroll, 0);
+        setTimeout(lockScroll, 100);
+      }
+    });
 
     /* init sound vol */
     applySoundVol(parseInt(document.getElementById('set-sound-vol').value));
