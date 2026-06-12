@@ -2586,12 +2586,12 @@
       'nous':'_P_','vous':'_P_','ils':'_P_','elles':'_P_'
     };
     const _PV = {
-      'suis':'_E_','est':'_E_','sommes':'_E_','etes':'_E_','sont':'_E_','etait':'_E_','etaient':'_E_',
-      'avons':'_A_','avez':'_A_','ont':'_A_','avait':'_A_','avaient':'_A_',
+      'suis':'_E_','es':'_E_','est':'_E_','sommes':'_E_','etes':'_E_','sont':'_E_','etait':'_E_','etaient':'_E_',
+      'ai':'_A_','as':'_A_','a':'_A_','avons':'_A_','avez':'_A_','ont':'_A_','avait':'_A_','avaient':'_A_',
       'peux':'_PV_','peut':'_PV_','pouvons':'_PV_','pouvez':'_PV_','peuvent':'_PV_',
       'dois':'_DV_','doit':'_DV_','devons':'_DV_','devez':'_DV_','doivent':'_DV_',
-      'allons':'_AL_','allez':'_AL_','vont':'_AL_',
-      'faisons':'_FA_','faites':'_FA_','font':'_FA_',
+      'vais':'_AL_','vas':'_AL_','va':'_AL_','allons':'_AL_','allez':'_AL_','vont':'_AL_',
+      'fais':'_FA_','fait':'_FA_','faisons':'_FA_','faites':'_FA_','font':'_FA_',
     };
     const _SW = new Set([
       'le','la','les','l','un','une','des','du','de','d','en','au','aux',
@@ -2620,7 +2620,7 @@
         if (up.length >= 8 && ap.length >= 8 && similarity(up, ap) >= 0.88) return true;
       }
       const uc = _normContent(u);
-      if (uc.split(' ').filter(Boolean).length >= 3) {
+      if (uc.split(' ').filter(Boolean).length >= 2) {
         for (const acc of phrase.answers) {
           const ac = _normContent(norm(acc));
           if (uc === ac) return true;
