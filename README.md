@@ -1,4 +1,4 @@
-# Shoped
+# Linguify
 
 Jeu de traduction EN -> FR en temps reel, avec chronometre et effets sonores dynamiques.
 
