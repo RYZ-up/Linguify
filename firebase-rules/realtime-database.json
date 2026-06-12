@@ -1,12 +1,5 @@
 {
   "rules": {
-    "leaderboard": {
-      ".read": true,
-      "$uid": {
-        ".write": "$uid === auth.uid"
-      },
-      ".indexOn": ["score"]
-    },
     "users": {
       "$uid": {
         ".read": "$uid === auth.uid",
