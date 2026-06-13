@@ -2216,8 +2216,19 @@
   <!-- ══════════ USER PANEL ══════════ -->
   <div id="user-panel" class="card3d">
     <div class="card3d-in" style="padding: 1.1rem 1.2rem 1rem; display: flex; flex-direction: column; gap: 0.8rem;">
-      <div class="panel-best" id="panel-best" style="display:none; margin-bottom: 0; justify-content: center; font-size: 0.88rem;">
-        Meilleur : <strong id="panel-best-val"></strong>
+      <div id="panel-stats-duo" style="display:none; grid-template-columns:1fr 1fr; gap:.45rem;">
+        <div class="panel-stat">
+          <div class="panel-stat-in">
+            <div class="panel-stat-v" id="panel-best-val">—</div>
+            <div class="panel-stat-l"><i class="fa-solid fa-star" style="color:var(--y);font-size:.5rem;margin-right:.18rem"></i>Record</div>
+          </div>
+        </div>
+        <div class="panel-stat">
+          <div class="panel-stat-in">
+            <div class="panel-stat-v" id="panel-total-val">—</div>
+            <div class="panel-stat-l"><i class="fa-solid fa-coins" style="color:var(--y);font-size:.5rem;margin-right:.18rem"></i>Total</div>
+          </div>
+        </div>
       </div>
       <div class="panel-no-account" id="panel-no-account" style="display:none; padding: 0.2rem 0;">Connecte-toi pour sauvegarder tes scores.
       </div>
@@ -2857,12 +2868,16 @@
     }
     function closePanel() { panelOpen = false; document.getElementById('user-panel').classList.remove('open'); }
     function togglePanel() { panelOpen ? closePanel() : openPanel(); }
-    function updatePanel(user, best) {
-      const bestEl = document.getElementById('panel-best');
+    function updatePanel(user, best, total) {
+      const duo = document.getElementById('panel-stats-duo');
       if (user && best?.score != null) {
-        document.getElementById('panel-best-val').textContent = `${best.score} pts`;
-        bestEl.style.display = 'flex';
-      } else { bestEl.style.display = 'none'; }
+        document.getElementById('panel-best-val').textContent = best.score + ' pts';
+        const tv = document.getElementById('panel-total-val');
+        tv.textContent = total > 0
+          ? (total >= 10000 ? Math.floor(total / 1000) + 'k' : total) + ' pts'
+          : '—';
+        duo.style.display = 'grid';
+      } else { duo.style.display = 'none'; }
       document.getElementById('panel-logout').style.display = (user && !user.isAnonymous) ? 'block' : 'none';
       document.getElementById('panel-no-account').style.display = user ? 'none' : 'block';
     }
@@ -2884,9 +2899,17 @@
       await db.ref(`users/${uid}/history`).push(data);
     }
     async function loadBest(uid) { return (await db.ref(`users/${uid}/best`).once('value')).val(); }
+    async function loadTotal(uid) { return (await db.ref(`users/${uid}/total`).once('value')).val() || 0; }
+    async function saveTotalPoints(uid, addScore) {
+      const ref = db.ref(`users/${uid}/total`);
+      const cur = (await ref.once('value')).val() || 0;
+      const next = cur + addScore;
+      await ref.set(next);
+      return next;
+    }
 
     /* ══ AUTH ══ */
-    let currentUser = null, guestName = null, isGuestSession = false, guestBestScore = null;
+    let currentUser = null, guestName = null, isGuestSession = false, guestBestScore = null, guestTotalScore = 0;
     function getDisplayName() {
       if (!currentUser) return '';
       if (currentUser.isAnonymous) return guestName || 'Invité';
@@ -2915,21 +2938,22 @@
           toggle.classList.remove('guest');
         }
         if (!user.isAnonymous) {
-          const [best, profile] = await Promise.all([
+          const [best, total, profile] = await Promise.all([
             loadBest(user.uid).catch(() => null),
+            loadTotal(user.uid).catch(() => 0),
             db.ref(`users/${user.uid}/profile`).once('value').then(s => s.val()).catch(() => null)
           ]);
           if (profile?.avatar) applyAvatar(profile.avatar);
-          updatePanel(user, best);
+          updatePanel(user, best, total);
         } else {
           const guestBest = guestBestScore != null ? { score: guestBestScore } : null;
-          updatePanel(user, guestBest);
+          updatePanel(user, guestBest, guestTotalScore);
         }
         showScreen('s-home');
       } else {
         document.getElementById('user-name-hdr').textContent = 'Compte';
         toggle.classList.remove('online', 'guest');
-        updatePanel(null, null);
+        updatePanel(null, null, 0);
         showScreen('s-home');
       }
     });
@@ -2947,7 +2971,7 @@
       try {
         guestName = pseudo.slice(0, 16);
         isGuestSession = true;
-        guestBestScore = null; /* session only — no persistence */
+        guestBestScore = null; guestTotalScore = 0; /* session only — no persistence */
         await auth.setPersistence(firebase.auth.Auth.Persistence.NONE);
         await auth.signInAnonymously();
         startGame();
@@ -3159,30 +3183,27 @@
       renderCharts(gResults);
       if (!currentUser) return;
       if (currentUser.isAnonymous) {
+        guestTotalScore += score;
         const prevBest = guestBestScore;
         const isNew = prevBest == null || score > prevBest;
+        if (isNew) guestBestScore = score;
         updateResRecord(isNew ? score : prevBest);
-        if (isNew) {
-          guestBestScore = score;
-          playSfx('achievement');
-          showBestNotif();
-          fireConfetti();
-          updatePanel(currentUser, { score });
-        }
+        if (isNew) { playSfx('achievement'); showBestNotif(); fireConfetti(); }
+        updatePanel(currentUser, { score: guestBestScore }, guestTotalScore);
         return;
       }
       const data = { score, bonnes: gCorrect, temps: gTotalSecs, date: new Date().toISOString() };
       try {
         const prevBestGoogle = await loadBest(currentUser.uid).catch(() => null);
         const prevScore = prevBestGoogle?.score ?? null;
-        const [isNew] = await Promise.all([saveBest(currentUser.uid, data), saveHistory(currentUser.uid, data)]);
+        const [isNew, , newTotal] = await Promise.all([
+          saveBest(currentUser.uid, data),
+          saveHistory(currentUser.uid, data),
+          saveTotalPoints(currentUser.uid, score)
+        ]);
         updateResRecord(isNew ? score : (prevScore ?? score));
-        if (isNew) {
-          playSfx('achievement');
-          showBestNotif();
-          fireConfetti();
-          const best = { score }; updatePanel(currentUser, best);
-        }
+        if (isNew) { playSfx('achievement'); showBestNotif(); fireConfetti(); }
+        updatePanel(currentUser, { score: isNew ? score : (prevScore ?? score) }, newTotal);
       } catch (e) { console.error('Firebase:', e); }
     }
 
