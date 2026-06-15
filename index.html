@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@100..400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.2/dist/lottie-player.js"></script>
   <style>
@@ -19,6 +20,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     :root {
@@ -27,10 +29,11 @@
       --s2: #2a2a2c;
       --s3: #323234;
       --y: #FFDE59;
+      --yr: 255; --yg: 222; --yb: 89;
       --text: #ffffff;
       --muted: rgba(255, 255, 255, 0.38);
-      --bdr: rgba(255, 222, 89, 0.16);
-      --bhi: rgba(255, 222, 89, 0.48);
+      --bdr: rgba(var(--yr), var(--yg), var(--yb), 0.16);
+      --bhi: rgba(var(--yr), var(--yg), var(--yb), 0.48);
       --btn-h: 2.75rem;
       --ok1: #2dd4bf;
       --ok-bg: rgba(45, 212, 191, .07);
@@ -63,11 +66,15 @@
       padding-bottom: env(safe-area-inset-bottom);
     }
 
-    @media (min-width: 769px) {
-      body {
-        background-image: radial-gradient(rgba(255, 222, 89, 0.16) 1.5px, transparent 1.5px);
-        background-size: 28px 28px;
-      }
+    body {
+      background-image: radial-gradient(var(--bdr) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+      animation: bgDrift 18s linear infinite;
+    }
+    body.bg-frozen { animation: none; }
+    @keyframes bgDrift {
+      0%   { background-position: 0 0; }
+      100% { background-position: 28px 28px; }
     }
 
     /* ════════ 3D Button base ════════ */
@@ -200,7 +207,7 @@
     }
 
     .gh-star-ico {
-      color: rgba(255, 222, 89, 0.45);
+      color: var(--bhi);
       transition: color .25s;
       flex-shrink: 0;
     }
@@ -278,37 +285,36 @@
       flex-shrink: 0;
     }
 
-    /* ════════ User panel card ════════ */
+    /* ════════ User panel modal ════════ */
+    #user-panel-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 450;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(2px);
+    }
+    #user-panel-backdrop.open { display: block; animation: bdIn .18s ease; }
+
     #user-panel {
       position: fixed;
-      top: 68px;
-      right: 1.2rem;
-      z-index: 400;
-      background: var(--s1);
-      border: 1px solid var(--bdr);
-      border-radius: 1.1rem;
-      padding: 1.1rem 1.2rem 1rem;
-      min-width: 210px;
-      max-width: 260px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 222, 89, .06);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 460;
+      width: min(92vw, 300px);
+      padding: 0;
       display: none;
-      animation: panelIn .18s ease;
+      background: var(--s2);
     }
 
     #user-panel.open {
       display: block;
+      animation: settingsModalIn .2s ease;
     }
 
-    @keyframes panelIn {
-      from {
-        opacity: 0;
-        transform: translateY(-6px) scale(.97);
-      }
-
-      to {
-        opacity: 1;
-        transform: none;
-      }
+    #user-panel .card3d-in {
+      transform: none;
     }
 
     .panel-avatar {
@@ -425,7 +431,7 @@
       background: var(--y);
       border-radius: 1rem;
       display: block;
-      box-shadow: 0 6px 0 rgba(255, 222, 89, .18), 0 12px 32px rgba(0, 0, 0, .5);
+      box-shadow: 0 6px 0 var(--bdr), 0 12px 32px rgba(0, 0, 0, .5);
     }
 
     .card3d-in {
@@ -480,7 +486,7 @@
     }
 
     .toggle-wrap input:checked+.tog-outer .tog-track {
-      background: rgba(255, 222, 89, .12);
+      background: var(--bdr);
       border-color: var(--y);
     }
 
@@ -564,7 +570,8 @@
       color: var(--muted);
     }
 
-    .mc-input-wrap input[type=text] {
+    .mc-input-wrap input[type=text],
+    .mc-input {
       width: 52px;
       background: var(--s3);
       border: 1.5px solid var(--bdr);
@@ -577,9 +584,11 @@
       outline: none;
       text-align: center;
     }
+    .mc-input:focus { border-color: var(--bhi); }
+    #time-row.disabled { opacity: .38; pointer-events: none; }
 
     .mode-choice input:checked~.mc3d-floor .mc-input-wrap input[type=text] {
-      border-color: rgba(255, 222, 89, .4);
+      border-color: var(--bhi);
     }
 
     .unit-toggle {
@@ -641,7 +650,7 @@
 
     .slid-ticks span:first-child,
     .slid-ticks span:last-child {
-      background: rgba(255, 222, 89, .35);
+      background: var(--bhi);
     }
 
     input[type=range] {
@@ -663,7 +672,7 @@
       background: var(--y);
       border: 2px solid var(--bg);
       cursor: pointer;
-      box-shadow: 0 0 0 3px rgba(255, 222, 89, .2);
+      box-shadow: 0 0 0 3px var(--bdr);
     }
 
     input[type=range]::-moz-range-thumb {
@@ -720,7 +729,7 @@
       display: block;
       padding: 0;
       text-align: center;
-      box-shadow: 0 2px 0 rgba(255, 222, 89, .15);
+      box-shadow: 0 2px 0 var(--bdr);
     }
 
     .panel-stat-in {
@@ -748,6 +757,7 @@
 
     .panel-chart-wrap {
       margin-top: .2rem;
+      margin-bottom: 1rem;
     }
 
     .panel-chart-lbl {
@@ -770,7 +780,6 @@
       flex-direction: column;
       gap: .7rem;
       width: 100%;
-      margin-bottom: .8rem;
     }
 
     .home-auth.visible {
@@ -870,7 +879,7 @@
       font-weight: 800;
       letter-spacing: .13em;
       text-transform: uppercase;
-      color: rgba(255, 222, 89, .4);
+      color: var(--bhi);
       text-align: left;
     }
 
@@ -922,7 +931,7 @@
       font-size: .78rem;
     }
 
-    /* Mobile GitHub : icône plus grande, toujours jaune */
+    /* Mobile GitHub : icône uniquement, compact */
     @media(max-width:620px) {
 
       .gh-label,
@@ -932,17 +941,21 @@
       }
 
       .btn-gh {
-        --bol: var(--bdr)
+        --bol: var(--bdr);
+        width: var(--btn-h);
       }
 
       .btn-gh .bt {
         border-color: var(--bdr);
-        color: var(--y)
+        color: var(--y);
+        padding: 0;
+        width: 100%;
+        justify-content: center;
       }
 
       .btn-gh .gh-ico {
-        width: 22px;
-        height: 22px
+        width: 18px;
+        height: 18px
       }
     }
 
@@ -1015,13 +1028,13 @@
       display: inline-flex;
       align-items: center;
       gap: .5rem;
-      background: rgba(255, 222, 89, .08);
-      border: 1px solid rgba(255, 222, 89, .22);
+      background: rgba(var(--yr), var(--yg), var(--yb), .08);
+      border: 1px solid rgba(var(--yr), var(--yg), var(--yb), .22);
       border-radius: 2rem;
       padding: .35rem 1.2rem;
       font-size: .85rem;
       font-weight: 700;
-      color: rgba(255, 222, 89, .9);
+      color: var(--y);
     }
 
     .auth-features {
@@ -1058,12 +1071,7 @@
     }
 
     .auth-div::before,
-    .auth-div::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--bdr);
-    }
+    .auth-div::after { display: none; }
 
     .guest-label {
       font-size: .76rem;
@@ -1102,9 +1110,9 @@
 
     /* ════════ Home ════════ */
     #s-home {
-      gap: .8rem;
+      gap: 0;
       text-align: center;
-      padding: 74px 1rem 2rem;
+      padding: 60px 1rem 0;
       justify-content: flex-start;
     }
 
@@ -1141,6 +1149,108 @@
 
     .home-btns .btn3d .bt {
       width: 100%;
+    }
+
+    /* ════════ Settings modal ════════ */
+    #settings-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 450;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(2px);
+    }
+    #settings-backdrop.open { display: block; animation: bdIn .18s ease; }
+    @keyframes bdIn { from { opacity: 0; } to { opacity: 1; } }
+
+    #settings-card {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 460;
+      width: min(94vw, 500px);
+      padding: 0;
+      box-shadow: 0 6px 0 var(--bdr), 0 20px 60px rgba(0,0,0,.7);
+      background: var(--s2);
+    }
+    #settings-card .card3d-in {
+      transform: none;
+      padding: 1.2rem 1.4rem 1.4rem;
+      max-height: calc(100dvh - 6rem);
+      overflow-y: auto;
+    }
+    #settings-card.open {
+      display: block;
+      animation: settingsModalIn .2s ease;
+    }
+    @keyframes settingsModalIn {
+      from { opacity: 0; transform: translate(-50%, calc(-50% - 10px)); }
+      to   { opacity: 1; transform: translate(-50%, -50%); }
+    }
+    #btn-settings-toggle { --bol: var(--bdr); }
+    #btn-settings-toggle .bt { border-color: var(--bdr); color: var(--muted); }
+    #btn-settings-toggle.active { --bol: var(--y); }
+    #btn-settings-toggle.active .bt { border-color: var(--y); color: var(--y); }
+
+    /* ════════ Theme swatches ════════ */
+    .theme-swatches {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      padding: .2rem 0 .1rem;
+    }
+    .swatch {
+      width: 2rem;
+      height: 2rem;
+      border-radius: .5rem;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform .12s, border-color .12s;
+      flex-shrink: 0;
+    }
+    .swatch:hover { transform: scale(1.12); }
+    .swatch.active { border-color: var(--text); transform: scale(1.12); }
+
+    /* ════════ Home centré ════════ */
+    #s-home { justify-content: flex-start; }
+    .home-welcome {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: clamp(1.1rem, 3.5vw, 1.45rem);
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.4;
+      padding: 0 1rem;
+      overflow: visible;
+      width: 100%;
+    }
+    .set-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      padding-bottom: 2rem;
+    }
+    .welcome-accent {
+      position: relative;
+      font-family: 'Playwrite IS', cursive;
+      font-size: 1.35em;
+      color: var(--y);
+      display: inline-block;
+      overflow: visible;
+    }
+
+    /* user panel modal mobile */
+    @media(max-width: 480px) {
+      #user-panel { width: min(92vw, 300px); }
+      .set-wrap { width: 100%; padding: 0 .5rem; }
     }
 
     /* ════════ Game screen ════════ */
@@ -1212,7 +1322,7 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      box-shadow: 4px 4px 0 rgba(255, 222, 89, .25);
+      box-shadow: 4px 4px 0 rgba(var(--yr), var(--yg), var(--yb), .25);
     }
 
     .quit-box p {
@@ -1279,30 +1389,30 @@
     @keyframes cardOk {
       0% {
         transform: scale(1);
-        border-color: rgba(255, 222, 89, .16);
+        border-color: rgba(var(--yr), var(--yg), var(--yb), .16);
         background: var(--s1);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, .4), 0 0 0 0 rgba(255, 222, 89, 1);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .4), 0 0 0 0 rgba(var(--yr), var(--yg), var(--yb), 1);
       }
 
       9% {
         transform: scale(1.045);
         border-color: var(--y);
-        background: rgba(255, 222, 89, .08);
-        box-shadow: 0 22px 52px rgba(0, 0, 0, .55), 0 0 0 16px rgba(255, 222, 89, .7), 0 0 70px rgba(255, 222, 89, .4);
+        background: rgba(var(--yr), var(--yg), var(--yb), .08);
+        box-shadow: 0 22px 52px rgba(0, 0, 0, .55), 0 0 0 16px rgba(var(--yr), var(--yg), var(--yb), .7), 0 0 70px rgba(var(--yr), var(--yg), var(--yb), .4);
       }
 
       35% {
         transform: scale(1.02);
-        border-color: rgba(255, 222, 89, .65);
-        background: rgba(255, 222, 89, .04);
-        box-shadow: 0 14px 36px rgba(0, 0, 0, .45), 0 0 0 34px rgba(255, 222, 89, .18), 0 0 90px rgba(255, 222, 89, .15);
+        border-color: rgba(var(--yr), var(--yg), var(--yb), .65);
+        background: rgba(var(--yr), var(--yg), var(--yb), .04);
+        box-shadow: 0 14px 36px rgba(0, 0, 0, .45), 0 0 0 34px rgba(var(--yr), var(--yg), var(--yb), .18), 0 0 90px rgba(var(--yr), var(--yg), var(--yb), .15);
       }
 
       100% {
         transform: scale(1);
-        border-color: rgba(255, 222, 89, .16);
+        border-color: rgba(var(--yr), var(--yg), var(--yb), .16);
         background: var(--s1);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, .4), 0 0 0 56px rgba(255, 222, 89, 0);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .4), 0 0 0 56px rgba(var(--yr), var(--yg), var(--yb), 0);
       }
     }
 
@@ -1310,7 +1420,7 @@
 
       0%,
       100% {
-        border-color: rgba(255, 222, 89, .16);
+        border-color: rgba(var(--yr), var(--yg), var(--yb), .16);
       }
 
       9% {
@@ -1322,7 +1432,7 @@
     @keyframes cardKo {
       0% {
         transform: translateX(0);
-        border-color: rgba(255, 222, 89, .16);
+        border-color: rgba(var(--yr), var(--yg), var(--yb), .16);
         box-shadow: 0 10px 28px rgba(0, 0, 0, .45), 0 0 0 0 rgba(248, 113, 113, 0);
       }
 
@@ -1352,7 +1462,7 @@
 
       100% {
         transform: translateX(0);
-        border-color: rgba(255, 222, 89, .16);
+        border-color: rgba(var(--yr), var(--yg), var(--yb), .16);
         box-shadow: 0 10px 28px rgba(0, 0, 0, .45), 0 0 0 0 rgba(248, 113, 113, 0);
       }
     }
@@ -1385,7 +1495,7 @@
       display: flex;
       align-items: baseline;
       gap: .38rem;
-      animation: pulseGreenText 1.5s infinite;
+      animation: pulseGreenText 2.6s ease-in-out infinite;
     }
 
     .p-lbl {
@@ -1552,8 +1662,7 @@
 
     .res-actions .btn3d {
       flex: 1;
-      min-width: 140px;
-      max-width: 200px;
+      min-width: 0;
     }
 
     .res-actions .btn3d .bt {
@@ -1684,13 +1793,13 @@
     }
 
     .nf-floor {
-      background: var(--y);
+      background: rgba(74, 222, 128, .22);
       border-radius: .65em;
       display: inline-block;
     }
 
     #notif-ok.ko .nf-floor {
-      background: #f87171;
+      background: rgba(248, 113, 113, .22);
     }
 
     .nf-face {
@@ -1700,7 +1809,7 @@
       height: 2.3rem;
       padding: 0 1em;
       background: var(--bg);
-      border: 2px solid var(--y);
+      border: 2px solid #4ade80;
       border-radius: .65em;
       transform: translateY(-.22em);
       white-space: nowrap;
@@ -1731,7 +1840,7 @@
     }
 
     .nf-best-floor {
-      background: var(--y);
+      background: rgba(255, 255, 255, .18);
       border-radius: .75em;
       display: inline-block;
     }
@@ -1743,15 +1852,14 @@
       height: 2.7rem;
       padding: 0 1.3em;
       background: var(--bg);
-      border: 2.5px solid var(--y);
+      border: 2.5px solid #fff;
       border-radius: .75em;
       transform: translateY(-.26em);
       white-space: nowrap;
       font-weight: 900;
       font-size: .92rem;
       font-family: 'Inter', sans-serif;
-      color: var(--y);
-      text-shadow: 0 0 18px rgba(255, 222, 89, .4);
+      color: #fff;
     }
 
     /* ════════ Record card dans results ════════ */
@@ -1781,7 +1889,7 @@
     }
 
     .rec3d {
-      background: rgba(255, 222, 89, .28);
+      background: var(--bhi);
       border-radius: .6rem;
       display: inline-block;
     }
@@ -1792,7 +1900,7 @@
       gap: .45rem;
       padding: .32rem 1rem;
       background: var(--s2);
-      border: 1.5px solid rgba(255, 222, 89, .5);
+      border: 1.5px solid var(--bhi);
       border-radius: .6rem;
       transform: translateY(-.18em);
       font-size: .75rem;
@@ -1808,11 +1916,11 @@
     }
 
     .nf-txt {
-      color: var(--ok1);
+      color: #fff;
     }
 
     #notif-ok.ko .nf-txt {
-      color: #f87171;
+      color: #fff;
     }
 
     /* ════════ Avatar picker ════════ */
@@ -1844,12 +1952,12 @@
 
     .av-btn:hover {
       border-color: var(--bhi);
-      background: rgba(255, 222, 89, .08);
+      background: rgba(var(--yr), var(--yg), var(--yb), .08);
     }
 
     .av-btn.sel {
       border-color: var(--y);
-      background: rgba(255, 222, 89, .1);
+      background: rgba(var(--yr), var(--yg), var(--yb), .1);
     }
 
     /* ════════ Keyboard shortcut badge ════════ */
@@ -1857,12 +1965,12 @@
       font-size: .62rem;
       font-weight: 800;
       letter-spacing: .04em;
-      background: rgba(255, 222, 89, .1);
-      border: 1px solid rgba(255, 222, 89, .32);
-      border-bottom: 2px solid rgba(255, 222, 89, .5);
+      background: var(--bdr);
+      border: 1px solid var(--bhi);
+      border-bottom: 2px solid var(--bhi);
       border-radius: .35rem;
       padding: .12rem .5rem;
-      color: rgba(255, 222, 89, .85);
+      color: var(--y);
       font-family: 'Inter', sans-serif;
       flex-shrink: 0;
       line-height: 1.3;
@@ -1895,12 +2003,8 @@
     }
 
     @keyframes pulseGreenText {
-      0%, 100% {
-        text-shadow: 0 0 0px rgba(74, 222, 128, 0);
-      }
-      50% {
-        text-shadow: 0 0 10px rgba(74, 222, 128, 0.8), 0 0 20px rgba(74, 222, 128, 0.4);
-      }
+      0%, 100% { opacity: 1; }
+      50% { opacity: .55; }
     }
 
     @media(max-width:620px) {
@@ -1942,7 +2046,7 @@
       display: inline-block;
       width: 15px;
       height: 15px;
-      border: 2px solid rgba(255, 229, 0, .15);
+      border: 2px solid var(--bdr);
       border-top-color: var(--y);
       border-radius: 50%;
       animation: spin .6s linear infinite;
@@ -2005,6 +2109,7 @@
     #ans-input,
     #pseudo-input,
     .mc-input-wrap input[type=text],
+    .mc-input,
     .set-extra input[type=text] {
       font-size: 16px !important;
     }
@@ -2091,7 +2196,7 @@
       }
 
       50% {
-        text-shadow: 0 0 32px rgba(255, 222, 89, .55), 0 0 60px rgba(255, 222, 89, .2);
+        text-shadow: 0 0 32px rgba(var(--yr), var(--yg), var(--yb), .55), 0 0 60px rgba(var(--yr), var(--yg), var(--yb), .2);
       }
     }
 
@@ -2156,7 +2261,7 @@
     }
 
     [data-pi] {
-      animation: popIn .48s cubic-bezier(.34, 1.56, .64, 1) both;
+      animation: popIn .28s cubic-bezier(.34, 1.4, .64, 1) both;
       animation-delay: var(--pi-d, 0ms);
     }
 
@@ -2193,7 +2298,7 @@
           </span>
           <span class="gh-sep"></span>
           <span class="gh-right"
-            style="display:flex;align-items:center;gap:.25rem;font-size:.75rem;color:rgba(255,222,89,.5)">
+            style="display:flex;align-items:center;gap:.25rem;font-size:.75rem;color:var(--bhi)">
             <svg class="gh-star-ico" width="13" height="13" fill="currentColor" viewBox="0 0 24 24">
               <path clip-rule="evenodd"
                 d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
@@ -2203,6 +2308,9 @@
           </span>
         </span>
       </a>
+      <button class="btn3d sq" id="btn-settings-toggle" data-pi style="--pi-d:120ms" title="Paramètres">
+        <span class="bt"><i class="fa-solid fa-sliders"></i></span>
+      </button>
       <button class="btn3d btn-user" id="user-toggle" data-pi style="--pi-d:150ms">
         <span class="bt">
           <span id="panel-avatar-hdr" style="font-size:1rem;display:flex;align-items:center"><i
@@ -2213,9 +2321,26 @@
     </div>
   </header>
 
-  <!-- ══════════ USER PANEL ══════════ -->
+  <!-- ══════════ USER PANEL BACKDROP ══════════ -->
+  <div id="user-panel-backdrop"></div>
+
+  <!-- ══════════ USER PANEL MODAL ══════════ -->
   <div id="user-panel" class="card3d">
-    <div class="card3d-in" style="padding: 1.1rem 1.2rem 1rem; display: flex; flex-direction: column; gap: 0.8rem;">
+    <div class="card3d-in" style="padding: 1.1rem 1.2rem 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
+      <!-- Header : avatar + name + close -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:.6rem">
+        <div style="display:flex;align-items:center;gap:.55rem;min-width:0;flex:1">
+          <div class="panel-avatar" id="panel-avatar-modal"><i class="fa-solid fa-user"></i></div>
+          <div style="min-width:0;flex:1;overflow:hidden">
+            <div class="panel-name" id="panel-name-modal">Compte</div>
+            <div class="panel-role" id="panel-role-modal">Non connecté</div>
+          </div>
+        </div>
+        <button class="btn3d sq" id="btn-panel-close" style="--btn-h:1.8rem;flex-shrink:0"><span class="bt" style="padding:0"><i class="fa-solid fa-xmark"></i></span></button>
+      </div>
+
+      <div class="panel-divider"></div>
+
       <div id="panel-stats-duo" style="display:none; grid-template-columns:1fr 1fr; gap:.45rem;">
         <div class="panel-stat">
           <div class="panel-stat-in">
@@ -2230,8 +2355,11 @@
           </div>
         </div>
       </div>
-      <div class="panel-no-account" id="panel-no-account" style="display:none; padding: 0.2rem 0;">Connecte-toi pour sauvegarder tes scores.
+      <div class="panel-chart-wrap" id="panel-chart-wrap" style="display:none">
+        <div class="panel-chart-lbl">Historique</div>
+        <div id="panel-chart" style="height:70px"></div>
       </div>
+      <div class="panel-no-account" id="panel-no-account" style="display:none; padding: 0.2rem 0;">Connecte-toi pour sauvegarder tes scores.</div>
       <button class="btn3d" id="panel-logout" style="display:none;width:100%">
         <span class="bt" style="width:100%"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</span>
       </button>
@@ -2273,9 +2401,13 @@
 
   <!-- ══════════ HOME (paramètres + connexion) ══════════ -->
   <div id="s-home" class="screen active">
+    <div class="home-welcome" id="home-welcome" data-pi style="--pi-d:0ms">
+      Bienvenue sur<br><span class="welcome-accent">Linguify</span>
+    </div>
+
     <div class="set-wrap">
 
-      <div class="home-auth visible" id="home-auth" style="margin-bottom:1.5rem">
+      <div class="home-auth" id="home-auth">
         <button class="btn3d wht" id="btn-google" data-pi style="--pi-d:220ms;width:100%">
           <span class="bt" style="width:100%">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -2306,142 +2438,124 @@
         <div class="auth-err" id="auth-err"></div>
       </div>
 
-      <div class="card3d" data-pi style="--pi-d:560ms">
-        <div class="card3d-in">
-          <div class="set-content">
-
-            <div class="set-section-title">Gameplay</div>
-
-            <div class="set-row" style="gap:.7rem">
-              <span class="set-label" style="margin-bottom:.5rem">Mode de fin</span>
-              <div class="mode-choice-row">
-                <label class="mode-choice" id="mc-count">
-                  <input type="radio" name="mode-choice" value="count" checked />
-                  <div class="mc3d-floor">
-                    <div class="mc3d-face">
-                      <span class="mc-title">N phrases</span>
-                      <div class="mc-input-wrap">
-                        <input type="text" inputmode="numeric" id="set-count" value="10" />
-                        <span>questions</span>
-                      </div>
-                    </div>
-                  </div>
-                </label>
-                <label class="mode-choice" id="mc-time">
-                  <input type="radio" name="mode-choice" value="time" />
-                  <div class="mc3d-floor">
-                    <div class="mc3d-face">
-                      <span class="mc-title">Chrono</span>
-                      <div class="mc-input-wrap">
-                        <input type="text" inputmode="numeric" id="set-duration" value="60" />
-                        <button type="button" id="set-duration-unit" class="unit-toggle">sec</button>
-                      </div>
-                    </div>
-                  </div>
-                </label>
-              </div>
-            </div>
-
-            <div class="set-row set-inline">
-              <span class="set-label">Niveau — <span id="lvl-label">1</span></span>
-              <div class="slid-wrap" style="width:160px;flex:none">
-                <span style="font-size:.7rem;color:var(--muted)">1</span>
-                <div class="slid-block">
-                  <input type="range" id="set-level" min="1" max="5" value="1" />
-                  <div class="slid-ticks"><span></span><span></span><span></span><span></span><span></span></div>
-                </div>
-                <span style="font-size:.7rem;color:var(--muted)">5</span>
-              </div>
-            </div>
-
-            <div class="set-div"></div>
-            <div class="set-section-title">Options</div>
-
-            <div class="set-row set-inline">
-              <span class="set-label">Flouter le timer</span>
-              <label class="toggle-wrap"><input type="checkbox" id="set-blur" />
-                <div class="tog-outer">
-                  <div class="tog-track">
-                    <div class="tog-thumb"></div>
-                  </div>
-                </div>
-              </label>
-            </div>
-            <div class="set-row set-inline">
-              <span class="set-label">Son <span class="vol-pct" id="vol-pct"
-                  style="min-width:auto;text-align:left">60%</span></span>
-              <div style="display:flex;align-items:center;gap:.5rem">
-                <div class="slid-block" style="width:110px">
-                  <input type="range" id="set-sound-vol" min="0" max="10" value="6" />
-                  <div class="slid-ticks">
-                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                  </div>
-                </div>
-                <button class="btn3d" id="btn-test-sound" style="--btn-h:1.7rem;min-width:2.3rem" title="Tester"><span
-                    class="bt" style="padding:0"><i class="fa-solid fa-play"
-                      style="font-size:.55rem"></i></span></button>
-              </div>
-            </div>
-            <div class="set-row set-inline">
-              <span class="set-label">Indices de traduction</span>
-              <label class="toggle-wrap"><input type="checkbox" id="set-hints" checked />
-                <div class="tog-outer">
-                  <div class="tog-track">
-                    <div class="tog-thumb"></div>
-                  </div>
-                </div>
-              </label>
-            </div>
-            <div class="set-row set-inline">
-              <span class="set-label">Correction souple</span>
-              <label class="toggle-wrap"><input type="checkbox" id="set-loose" checked />
-                <div class="tog-outer">
-                  <div class="tog-track">
-                    <div class="tog-thumb"></div>
-                  </div>
-                </div>
-              </label>
-            </div>
-            <div class="set-row set-inline">
-              <span class="set-label">Barre de progression</span>
-              <label class="toggle-wrap"><input type="checkbox" id="set-progress" checked />
-                <div class="tog-outer">
-                  <div class="tog-track">
-                    <div class="tog-thumb"></div>
-                  </div>
-                </div>
-              </label>
-            </div>
-            <div class="set-row set-inline">
-              <span class="set-label">Auto next</span>
-              <label class="toggle-wrap"><input type="checkbox" id="set-autonext" />
-                <div class="tog-outer">
-                  <div class="tog-track">
-                    <div class="tog-thumb"></div>
-                  </div>
-                </div>
-              </label>
-            </div>
-            <div class="set-row set-inline">
-              <span class="set-label">Animations (Mascotte)</span>
-              <label class="toggle-wrap"><input type="checkbox" id="set-anims" checked />
-                <div class="tog-outer">
-                  <div class="tog-track">
-                    <div class="tog-thumb"></div>
-                  </div>
-                </div>
-              </label>
-            </div>
-
-            <div class="set-div"></div>
-            <div class="home-btns">
-              <button class="btn3d" id="btn-start"><span class="bt"><i class="fa-solid fa-play"></i>START<kbd
-                    class="sc">⏎</kbd></span></button>
-            </div>
-          </div>
-        </div>
+      <div class="home-btns">
+        <button class="btn3d" id="btn-start" style="width:100%;--btn-h:3.5rem"><span class="bt" style="width:100%;justify-content:center;font-size:1.1rem"><i class="fa-solid fa-play"></i>JOUER<kbd class="sc">⏎</kbd></span></button>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ══════════ SETTINGS MODAL ══════════ -->
+  <div id="settings-backdrop"></div>
+  <div id="settings-card" class="card3d">
+    <div class="card3d-in">
+      <div class="set-content">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem">
+          <div class="set-section-title" style="margin:0">Gameplay</div>
+          <button class="btn3d sq" id="btn-settings-close" style="--btn-h:1.8rem;flex-shrink:0"><span class="bt" style="padding:0"><i class="fa-solid fa-xmark"></i></span></button>
+        </div>
+
+        <div class="set-row set-inline">
+          <span class="set-label">Nombre de phrases</span>
+          <div style="display:flex;align-items:center;gap:.4rem">
+            <input type="text" inputmode="numeric" id="set-count" value="10" class="mc-input" style="width:3rem;text-align:center" />
+            <span class="set-label" style="margin:0;font-size:.8rem">phrases</span>
+          </div>
+        </div>
+        <div class="set-row set-inline">
+          <span class="set-label">Mode Chrono</span>
+          <label class="toggle-wrap"><input type="checkbox" id="set-mode-chrono" />
+            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
+          </label>
+        </div>
+        <div class="set-row set-inline" id="time-row">
+          <span class="set-label">Dur&#233;e</span>
+          <div style="display:flex;align-items:center;gap:.4rem">
+            <input type="text" inputmode="numeric" id="set-duration" value="60" class="mc-input" style="width:3rem;text-align:center" />
+            <button type="button" id="set-duration-unit" class="unit-toggle">sec</button>
+          </div>
+        </div>
+
+        <div class="set-row set-inline">
+          <span class="set-label">Niveau — <span id="lvl-label">1</span></span>
+          <div class="slid-wrap" style="width:160px;flex:none">
+            <span style="font-size:.7rem;color:var(--muted)">1</span>
+            <div class="slid-block">
+              <input type="range" id="set-level" min="1" max="5" value="1" />
+              <div class="slid-ticks"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+            <span style="font-size:.7rem;color:var(--muted)">5</span>
+          </div>
+        </div>
+
+        <div class="set-div"></div>
+        <div class="set-section-title">Options</div>
+
+        <div class="set-row set-inline">
+          <span class="set-label">Flouter le timer</span>
+          <label class="toggle-wrap"><input type="checkbox" id="set-blur" />
+            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
+          </label>
+        </div>
+        <div class="set-row set-inline">
+          <span class="set-label">Son <span class="vol-pct" id="vol-pct" style="min-width:auto;text-align:left">60%</span></span>
+          <div style="display:flex;align-items:center;gap:.5rem">
+            <div class="slid-block" style="width:110px">
+              <input type="range" id="set-sound-vol" min="0" max="10" value="6" />
+              <div class="slid-ticks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+            <button class="btn3d" id="btn-test-sound" style="--btn-h:1.7rem;min-width:2.3rem" title="Tester"><span class="bt" style="padding:0"><i class="fa-solid fa-play" style="font-size:.55rem"></i></span></button>
+          </div>
+        </div>
+        <div class="set-row set-inline">
+          <span class="set-label">Indices de traduction</span>
+          <label class="toggle-wrap"><input type="checkbox" id="set-hints" checked />
+            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
+          </label>
+        </div>
+        <div class="set-row set-inline">
+          <span class="set-label">Correction souple</span>
+          <label class="toggle-wrap"><input type="checkbox" id="set-loose" checked />
+            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
+          </label>
+        </div>
+        <div class="set-row set-inline">
+          <span class="set-label">Barre de progression</span>
+          <label class="toggle-wrap"><input type="checkbox" id="set-progress" checked />
+            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
+          </label>
+        </div>
+        <div class="set-row set-inline">
+          <span class="set-label">Auto next</span>
+          <label class="toggle-wrap"><input type="checkbox" id="set-autonext" />
+            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
+          </label>
+        </div>
+        <div class="set-row set-inline">
+          <span class="set-label">Animations (Mascotte)</span>
+          <label class="toggle-wrap"><input type="checkbox" id="set-anims" checked />
+            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
+          </label>
+        </div>
+
+        <div class="set-row set-inline">
+          <span class="set-label">Figer les points du fond</span>
+          <label class="toggle-wrap"><input type="checkbox" id="set-freeze-bg" />
+            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
+          </label>
+        </div>
+
+        <div class="set-div"></div>
+        <div class="set-section-title">Thème</div>
+        <div class="theme-swatches" id="theme-swatches">
+          <button class="swatch active" data-color="#FFDE59" title="Jaune" style="background:#FFDE59"></button>
+          <button class="swatch" data-color="#f8fafc" title="Blanc" style="background:#f8fafc"></button>
+          <button class="swatch" data-color="#c084fc" title="Violet" style="background:#c084fc"></button>
+          <button class="swatch" data-color="#f87171" title="Rouge" style="background:#f87171"></button>
+          <button class="swatch" data-color="#6ee7b7" title="Vert" style="background:#6ee7b7"></button>
+          <button class="swatch" data-color="#93c5fd" title="Bleu" style="background:#93c5fd"></button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -2480,13 +2594,7 @@
         <div class="res-lbl">Score final</div>
         <div class="res-score" id="res-score">0</div>
         <div class="res-sub">points</div>
-        <div class="res-record-card" id="res-record-card">
-          <div class="rec3d">
-            <div class="rec3d-in">
-              <i class="fa-solid fa-star" style="color:var(--y)"></i> <strong id="res-record-val">—</strong>
-            </div>
-          </div>
-        </div>
+
         <div class="stats-row">
           <div class="stat">
             <div class="stat-v" id="res-bonnes">—</div>
@@ -2507,20 +2615,32 @@
         </div>
         <div class="new-best" id="new-best"></div>
         <div class="res-actions">
-          <button class="btn3d" id="btn-res-home"><span class="bt"><i class="fa-solid fa-sliders"></i>Paramètres<kbd
-                class="sc">H</kbd></span></button>
-          <button class="btn3d" id="btn-replay"><span class="bt"><i class="fa-solid fa-rotate-right"></i>Rejouer<kbd
-                class="sc">R</kbd></span></button>
+          <button class="btn3d wht" id="btn-correction" style="flex:1"><span class="bt" style="width:100%;justify-content:center"><i class="fa-solid fa-list-check"></i>Correction ?</span></button>
+          <button class="btn3d" id="btn-replay" style="flex:1"><span class="bt" style="width:100%;justify-content:center"><i class="fa-solid fa-rotate-right"></i>Rejouer<kbd class="sc">R</kbd></span></button>
         </div>
       </div>
     </div>
-    <div id="charts-wrap">
-      <div class="chart-box"><canvas id="chart-donut"></canvas>
-        <div class="chart-lbl">Précision</div>
+  </div>
+
+  <!-- ══════════ CORRECTION POPUP ══════════ -->
+  <div id="correction-backdrop" style="display:none;position:fixed;inset:0;z-index:470;background:rgba(0,0,0,.6);backdrop-filter:blur(2px)"></div>
+  <div id="correction-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:480;width:min(94vw,520px);max-height:calc(100dvh - 4rem);overflow-y:auto;border-radius:1rem;box-shadow:0 6px 0 var(--bdr),0 20px 60px rgba(0,0,0,.7)">
+    <div style="background:var(--s1);border:2px solid var(--y);border-radius:1rem;padding:1.2rem 1.4rem 1.4rem;display:flex;flex-direction:column;gap:.75rem">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div class="set-section-title" style="margin:0;font-size:.7rem">Toutes les corrections</div>
+        <button class="btn3d sq" id="btn-correction-close" style="--btn-h:1.8rem;flex-shrink:0"><span class="bt" style="padding:0"><i class="fa-solid fa-xmark"></i></span></button>
       </div>
-      <div class="chart-box"><canvas id="chart-bar"></canvas>
-        <div class="chart-lbl">Question par question</div>
+      <div id="charts-wrap" style="padding:0 0 .25rem">
+        <div class="chart-box">
+          <div id="chart-donut"></div>
+          <div class="chart-lbl">Précision</div>
+        </div>
+        <div class="chart-box">
+          <div id="chart-bar"></div>
+          <div class="chart-lbl">Question par question</div>
+        </div>
       </div>
+      <div id="correction-list" style="display:flex;flex-direction:column;gap:.6rem"></div>
     </div>
   </div>
 
@@ -2537,7 +2657,7 @@
     </lottie-player>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@3/dist/apexcharts.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
@@ -2627,7 +2747,7 @@
         const a = _normQ(norm(acc));
         if (u === a) return true;
         if (u.length >= 3 && a.length >= 3 && similarity(u, a) >= 0.9) return true;
-        if (settings.looseCorrection) { const d = a.length >= 6 ? Math.min(6, Math.max(2, Math.floor(a.length / 10))) : 0; if (d > 0 && lev(u, a) <= d) return true; }
+        if (gSettings.looseCorrection) { const d = a.length >= 6 ? Math.min(6, Math.max(2, Math.floor(a.length / 10))) : 0; if (d > 0 && lev(u, a) <= d) return true; }
       }
       const up = _normPV(u);
       for (const acc of phrase.answers) {
@@ -2692,7 +2812,7 @@
     /* ══ LIVE TRANSLATION ══ */
     function renderLiveTrans(raw, phrase) {
       const el = document.getElementById('live-trans');
-      if (!settings.liveHints || !raw.trim()) { el.innerHTML = ''; return; }
+      if (!gSettings.liveHints || !raw.trim()) { el.innerHTML = ''; return; }
       const words = raw.split(/\s+/).filter(Boolean);
       const accWords = new Set();
       phrase.answers.forEach(a => norm(a).split(/\s+/).forEach(w => accWords.add(w)));
@@ -2716,8 +2836,8 @@
       const wrap = document.getElementById('g-progress-wrap');
       const fill = document.getElementById('g-progress-fill');
       if (!wrap || !fill) return;
-      wrap.style.display = settings.showProgress ? 'block' : 'none';
-      if (!settings.showProgress) return;
+      wrap.style.display = gSettings.showProgress ? 'block' : 'none';
+      if (!gSettings.showProgress) return;
       fill.style.width = (idx / total * 100) + '%';
     }
 
@@ -2754,7 +2874,7 @@
       setTimeout(() => { clearInterval(c.confettiInterval); setTimeout(() => { root.innerHTML = ''; }, 3500); }, 3000);
     }
 
-    /* ══ CHARTS ══ */
+    /* ══ CHARTS (ApexCharts) ══ */
     let chartDonut = null, chartBar = null;
     function destroyCharts() {
       if (chartDonut) { chartDonut.destroy(); chartDonut = null; }
@@ -2763,16 +2883,42 @@
     function renderCharts(results) {
       destroyCharts();
       const bonnes = results.filter(Boolean).length, mauvaises = results.length - bonnes;
-      chartDonut = new Chart(document.getElementById('chart-donut'), {
-        type: 'doughnut',
-        data: { labels: ['Correct', 'Incorrect'], datasets: [{ data: [bonnes, mauvaises], backgroundColor: ['#2dd4bf', '#f87171'], borderColor: ['#2dd4bf', '#f87171'], borderWidth: 0, hoverOffset: 4 }] },
-        options: { responsive: true, maintainAspectRatio: true, cutout: '70%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw}` } } }, animation: { duration: 800, easing: 'easeOutQuart' } }
+      const themeColor = getComputedStyle(document.documentElement).getPropertyValue('--y').trim() || '#FFDE59';
+
+      const donutEl = document.getElementById('chart-donut');
+      donutEl.innerHTML = '';
+      chartDonut = new ApexCharts(donutEl, {
+        chart: { type: 'donut', height: 140, background: 'transparent', animations: { speed: 700 } },
+        series: [bonnes, mauvaises],
+        labels: ['Correct', 'Incorrect'],
+        colors: [themeColor, '#f87171'],
+        dataLabels: { enabled: false },
+        legend: { show: false },
+        plotOptions: {
+          pie: { donut: { size: '72%', labels: { show: true, total: { show: true, showAlways: true, label: 'Préc.', color: 'rgba(255,255,255,.45)', fontSize: '11px', formatter: () => bonnes + '/' + results.length } } } }
+        },
+        stroke: { width: 2, colors: ['#1a1a1c'] },
+        tooltip: { theme: 'dark', y: { formatter: v => v + ' rép.' } },
+        theme: { mode: 'dark' }
       });
-      chartBar = new Chart(document.getElementById('chart-bar'), {
-        type: 'bar',
-        data: { labels: results.map((_, i) => `Q${i + 1}`), datasets: [{ data: results.map(r => r ? 1 : 0), backgroundColor: results.map(r => r ? '#2dd4bf' : '#f87171'), borderWidth: 0, borderRadius: 3 }] },
-        options: { responsive: true, maintainAspectRatio: true, scales: { x: { grid: { color: 'rgba(255,229,0,0.07)' }, ticks: { color: 'rgba(255,255,255,0.4)', font: { size: 9 } } }, y: { display: false, min: 0, max: 1.2 } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.raw === 1 ? '✓ Correct' : '✗ Incorrect' } } }, animation: { duration: 700, easing: 'easeOutQuart' } }
+      chartDonut.render();
+
+      const barEl = document.getElementById('chart-bar');
+      barEl.innerHTML = '';
+      chartBar = new ApexCharts(barEl, {
+        chart: { type: 'bar', height: 140, background: 'transparent', toolbar: { show: false }, animations: { enabled: true, easing: 'easeOutQuart', speed: 600 } },
+        series: [{ name: 'Résultat', data: results.map(r => r ? 1 : 0) }],
+        colors: [({ dataPointIndex }) => results[dataPointIndex] ? themeColor : '#f87171'],
+        xaxis: { categories: results.map((_, i) => `Q${i + 1}`), labels: { style: { colors: 'rgba(255,255,255,.4)', fontSize: '9px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+        yaxis: { show: false, min: 0, max: 1.3 },
+        grid: { borderColor: 'rgba(255,255,255,.04)', strokeDashArray: 3, padding: { left: 0, right: 0 } },
+        plotOptions: { bar: { borderRadius: 3, columnWidth: '60%' } },
+        dataLabels: { enabled: false },
+        legend: { show: false },
+        tooltip: { theme: 'dark', y: { formatter: v => v === 1 ? '✓ Correct' : '✗ Incorrect' } },
+        theme: { mode: 'dark' }
       });
+      chartBar.render();
     }
 
     /* ══ SETTINGS ══ */
@@ -2783,14 +2929,47 @@
       const pct = document.getElementById('vol-pct');
       if (pct) pct.textContent = v === 0 ? 'Off' : Math.round(v / 10 * 100) + '%';
     }
-    document.getElementById('set-sound-vol').addEventListener('input', function () { applySoundVol(parseInt(this.value)); });
+    document.getElementById('set-sound-vol').addEventListener('input', function () { applySoundVol(parseInt(this.value)); persistSettings(); });
     document.getElementById('btn-test-sound').addEventListener('click', () => {
       const v = parseInt(document.getElementById('set-sound-vol').value);
       if (v === 0) return;
       applySoundVol(v);
       loadSfx().then(() => playSfx('correct', 1));
     });
-    const settings = { blurTimer: false, mode: 'time', count: 10, duration: 60, level: 3, sound: true, soundVolume: 0.51, liveHints: true, looseCorrection: true, showProgress: true, autoNext: false };
+    const settings = { blurTimer: false, mode: 'time', count: 10, duration: 60, level: 3, sound: true, soundVolume: 0.51, liveHints: true, looseCorrection: true, showProgress: true, autoNext: false, animations: true, freezeBg: false };
+
+    /* ══ SETTINGS PERSISTENCE ══ */
+    const SETTINGS_KEY = 'lq_settings_v1';
+    const THEME_KEY = 'lq_theme_color';
+    function saveSettingsLocal() { try { localStorage.setItem(SETTINGS_KEY, JSON.stringify({ ...settings, durationUnit })); } catch(e) {} }
+    function applySettingsToUI(s) {
+      if (!s) return;
+      if (s.mode) { settings.mode = s.mode; const ch = document.getElementById('set-mode-chrono'); if(ch) ch.checked = s.mode === 'time'; }
+      if (s.count) { settings.count = s.count; document.getElementById('set-count').value = s.count; }
+      if (s.duration) { settings.duration = s.duration; }
+      if (s.durationUnit) { durationUnit = s.durationUnit; document.getElementById('set-duration-unit').textContent = durationUnit; document.getElementById('set-duration-unit').classList.toggle('active', durationUnit === 'min'); }
+      document.getElementById('set-duration').value = durationUnit === 'min' ? Math.max(1, Math.round(settings.duration / 60)) : settings.duration;
+      if (s.level != null) { settings.level = s.level; document.getElementById('set-level').value = s.level; document.getElementById('lvl-label').textContent = s.level; }
+      if (s.blurTimer != null) { settings.blurTimer = s.blurTimer; document.getElementById('set-blur').checked = s.blurTimer; }
+      if (s.soundVolume != null) { settings.soundVolume = s.soundVolume; document.getElementById('set-sound-vol').value = Math.round(s.soundVolume * 10); document.getElementById('vol-pct').textContent = Math.round(s.soundVolume * 100) + '%'; }
+      if (s.liveHints != null) { settings.liveHints = s.liveHints; document.getElementById('set-hints').checked = s.liveHints; }
+      if (s.looseCorrection != null) { settings.looseCorrection = s.looseCorrection; document.getElementById('set-loose').checked = s.looseCorrection; }
+      if (s.showProgress != null) { settings.showProgress = s.showProgress; document.getElementById('set-progress').checked = s.showProgress; }
+      if (s.autoNext != null) { settings.autoNext = s.autoNext; document.getElementById('set-autonext').checked = s.autoNext; }
+      if (s.animations != null) { settings.animations = s.animations; document.getElementById('set-anims').checked = s.animations; }
+      if (s.freezeBg != null) { settings.freezeBg = s.freezeBg; document.getElementById('set-freeze-bg').checked = s.freezeBg; document.body.classList.toggle('bg-frozen', s.freezeBg); }
+      if (s.themeColor) { applyTheme(s.themeColor); saveTheme(s.themeColor); }
+      syncModeInputs();
+    }
+    let _settingsDbTimer = null;
+    function saveSettingsDB(uid) {
+      clearTimeout(_settingsDbTimer);
+      _settingsDbTimer = setTimeout(() => db.ref(`users/${uid}/settings`).set({ ...settings, durationUnit }), 800);
+    }
+    function persistSettings() {
+      saveSettingsLocal();
+      if (currentUser && !currentUser.isAnonymous) saveSettingsDB(currentUser.uid);
+    }
 
     /* ══ HELPERS ══ */
     function focusPseudo() {
@@ -2802,6 +2981,15 @@
     function updateAuthUI() {
       const authEl = document.getElementById('home-auth');
       if (authEl) authEl.classList.toggle('visible', !currentUser);
+      const welcomeEl = document.getElementById('home-welcome');
+      if (welcomeEl) {
+        if (currentUser && !currentUser.isAnonymous) {
+          const firstName = escHtml((getDisplayName() || '').split(' ')[0]);
+          welcomeEl.innerHTML = `Bon retour, <span class="welcome-accent">${firstName}</span> !`;
+        } else {
+          welcomeEl.innerHTML = `Bienvenue sur<br><span class="welcome-accent">Linguify</span>`;
+        }
+      }
       if (!currentUser) focusPseudo();
     }
     function autoGrowInput(el) {
@@ -2860,13 +3048,18 @@
       else if (btn._h) btn.querySelector('.bt').innerHTML = btn._h;
     }
 
-    /* ══ USER PANEL ══ */
+    /* ══ USER PANEL MODAL ══ */
     let panelOpen = false;
     function openPanel() {
       panelOpen = true;
       document.getElementById('user-panel').classList.add('open');
+      document.getElementById('user-panel-backdrop').classList.add('open');
     }
-    function closePanel() { panelOpen = false; document.getElementById('user-panel').classList.remove('open'); }
+    function closePanel() {
+      panelOpen = false;
+      document.getElementById('user-panel').classList.remove('open');
+      document.getElementById('user-panel-backdrop').classList.remove('open');
+    }
     function togglePanel() { panelOpen ? closePanel() : openPanel(); }
     function updatePanel(user, best, total) {
       const duo = document.getElementById('panel-stats-duo');
@@ -2880,10 +3073,31 @@
       } else { duo.style.display = 'none'; }
       document.getElementById('panel-logout').style.display = (user && !user.isAnonymous) ? 'block' : 'none';
       document.getElementById('panel-no-account').style.display = user ? 'none' : 'block';
+      const nameEl = document.getElementById('panel-name-modal');
+      const roleEl = document.getElementById('panel-role-modal');
+      const avatarEl = document.getElementById('panel-avatar-modal');
+      if (nameEl) {
+        if (user) {
+          const name = user.isAnonymous ? (guestName || 'Invité') : (user.displayName || user.email || 'Joueur');
+          nameEl.textContent = name;
+          roleEl.textContent = user.isAnonymous ? 'Mode invité' : (user.email || 'Connecté');
+          avatarEl.innerHTML = user.isAnonymous ? '<i class="fa-solid fa-user-secret"></i>' : '<i class="fa-solid fa-circle-user"></i>';
+        } else {
+          nameEl.textContent = 'Compte';
+          roleEl.textContent = 'Non connecté';
+          avatarEl.innerHTML = '<i class="fa-solid fa-user"></i>';
+        }
+      }
     }
+    document.getElementById('logo-btn').addEventListener('click', () => {
+      const active = document.querySelector('.screen.active')?.id;
+      if (active === 's-game') { document.getElementById('quit-modal').classList.add('open'); return; }
+      showScreen('s-home');
+    });
     document.getElementById('user-toggle').addEventListener('click', e => { e.stopPropagation(); togglePanel(); });
+    document.getElementById('btn-panel-close').addEventListener('click', closePanel);
+    document.getElementById('user-panel-backdrop').addEventListener('click', closePanel);
     document.getElementById('panel-logout').addEventListener('click', async () => { isGuestSession = false; guestName = null; await auth.signOut(); document.getElementById('pseudo-input').value = ''; closePanel(); });
-    document.addEventListener('click', e => { if (panelOpen && !document.getElementById('user-panel').contains(e.target)) closePanel(); });
 
     /* ══ FIREBASE DB ══ */
     async function saveBest(uid, data) {
@@ -2906,6 +3120,39 @@
       const next = cur + addScore;
       await ref.set(next);
       return next;
+    }
+
+    /* ══ PANEL CHART (ApexCharts sparkline) ══ */
+    let panelChartInstance = null;
+    async function loadAndRenderPanelChart(uid) {
+      try {
+        const snap = await db.ref(`users/${uid}/history`).limitToLast(15).once('value');
+        const val = snap.val();
+        const wrap = document.getElementById('panel-chart-wrap');
+        if (!val) { if(wrap) wrap.style.display = 'none'; return; }
+        const scores = Object.values(val).sort((a,b) => (a.ts||0) - (b.ts||0)).map(e => e.score || 0);
+        if (scores.length < 2) { if(wrap) wrap.style.display = 'none'; return; }
+        if (panelChartInstance) { panelChartInstance.destroy(); panelChartInstance = null; }
+        const themeColor = getComputedStyle(document.documentElement).getPropertyValue('--y').trim() || '#FFDE59';
+        const panelEl = document.getElementById('panel-chart');
+        panelEl.innerHTML = '';
+        panelChartInstance = new ApexCharts(panelEl, {
+          chart: { type: 'area', height: 70, background: 'transparent', toolbar: { show: false }, sparkline: { enabled: true }, animations: { speed: 500 } },
+          series: [{ data: scores }],
+          stroke: { curve: 'smooth', width: 2, colors: [themeColor] },
+          fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.35, opacityTo: 0.02, stops: [0, 100] } },
+          colors: [themeColor],
+          tooltip: { enabled: false },
+          theme: { mode: 'dark' }
+        });
+        panelChartInstance.render();
+        if(wrap) wrap.style.display = 'block';
+      } catch(e) {}
+    }
+    function destroyPanelChart() {
+      if (panelChartInstance) { panelChartInstance.destroy(); panelChartInstance = null; }
+      const wrap = document.getElementById('panel-chart-wrap');
+      if(wrap) wrap.style.display = 'none';
     }
 
     /* ══ AUTH ══ */
@@ -2938,22 +3185,27 @@
           toggle.classList.remove('guest');
         }
         if (!user.isAnonymous) {
-          const [best, total, profile] = await Promise.all([
+          const [best, total, profile, savedSettings] = await Promise.all([
             loadBest(user.uid).catch(() => null),
             loadTotal(user.uid).catch(() => 0),
-            db.ref(`users/${user.uid}/profile`).once('value').then(s => s.val()).catch(() => null)
+            db.ref(`users/${user.uid}/profile`).once('value').then(s => s.val()).catch(() => null),
+            db.ref(`users/${user.uid}/settings`).once('value').then(s => s.val()).catch(() => null)
           ]);
           if (profile?.avatar) applyAvatar(profile.avatar);
+          if (savedSettings) applySettingsToUI(savedSettings);
           updatePanel(user, best, total);
+          loadAndRenderPanelChart(user.uid);
         } else {
           const guestBest = guestBestScore != null ? { score: guestBestScore } : null;
           updatePanel(user, guestBest, guestTotalScore);
+          destroyPanelChart();
         }
         showScreen('s-home');
       } else {
         document.getElementById('user-name-hdr').textContent = 'Compte';
         toggle.classList.remove('online', 'guest');
         updatePanel(null, null, 0);
+        destroyPanelChart();
         showScreen('s-home');
       }
     });
@@ -2980,33 +3232,44 @@
     document.getElementById('pseudo-input').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); guestLogin(); } });
 
     /* ══ SETTINGS EVENTS ══ */
-    document.getElementById('set-blur').addEventListener('change', function () { settings.blurTimer = this.checked; });
+    document.getElementById('set-blur').addEventListener('change', function () { settings.blurTimer = this.checked; persistSettings(); });
 
 
 
-    document.getElementById('set-hints').addEventListener('change', function () { settings.liveHints = this.checked; });
-    document.getElementById('set-loose').addEventListener('change', function () { settings.looseCorrection = this.checked; });
-    document.getElementById('set-progress').addEventListener('change', function () { settings.showProgress = this.checked; });
-    document.getElementById('set-autonext').addEventListener('change', function () { settings.autoNext = this.checked; });
-    function syncModeInputs() {
-      const countChecked = document.querySelector('input[name="mode-choice"][value="count"]').checked;
-      document.getElementById('set-count').disabled = !countChecked;
-      document.getElementById('set-duration').disabled = countChecked;
-      document.getElementById('set-duration-unit').disabled = countChecked;
-    }
-    document.querySelectorAll('input[name="mode-choice"]').forEach(r => {
-      r.addEventListener('change', function () { settings.mode = this.value === 'count' ? 'count' : 'time'; syncModeInputs(); });
+    document.getElementById('set-hints').addEventListener('change', function () { settings.liveHints = this.checked; persistSettings(); });
+    document.getElementById('set-loose').addEventListener('change', function () { settings.looseCorrection = this.checked; persistSettings(); });
+    document.getElementById('set-progress').addEventListener('change', function () { settings.showProgress = this.checked; persistSettings(); });
+    document.getElementById('set-autonext').addEventListener('change', function () { settings.autoNext = this.checked; persistSettings(); });
+    document.getElementById('set-anims').addEventListener('change', function () { settings.animations = this.checked; persistSettings(); });
+    document.getElementById('set-freeze-bg').addEventListener('change', function () {
+      settings.freezeBg = this.checked;
+      document.body.classList.toggle('bg-frozen', this.checked);
+      persistSettings();
     });
-    document.getElementById('set-count').addEventListener('change', function () { settings.count = Math.max(5, Math.min(15, parseInt(this.value) || 10)); this.value = settings.count; });
+    function syncModeInputs() {
+      const chrono = document.getElementById('set-mode-chrono').checked;
+      document.getElementById('time-row').classList.toggle('disabled', !chrono);
+      document.getElementById('set-duration').disabled = !chrono;
+      document.getElementById('set-duration-unit').disabled = !chrono;
+      settings.mode = chrono ? 'time' : 'count';
+    }
+    document.getElementById('set-mode-chrono').addEventListener('change', function () {
+      syncModeInputs(); persistSettings();
+    });
+    document.getElementById('set-count').addEventListener('change', function () {
+      settings.count = Math.max(1, Math.min(50, parseInt(this.value) || 10));
+      this.value = settings.count; persistSettings();
+    });
     let durationUnit = 'sec';
     function applyDuration() {
       const raw = parseInt(document.getElementById('set-duration').value) || 60;
-      if (durationUnit === 'min') { settings.duration = Math.max(60, Math.min(600, raw * 60)); }
-      else { settings.duration = Math.max(20, Math.min(600, raw)); }
+      if (durationUnit === 'min') { settings.duration = Math.max(60, Math.min(1800, raw * 60)); }
+      else { settings.duration = Math.max(20, Math.min(1800, raw)); }
     }
     document.getElementById('set-duration').addEventListener('change', function () {
       applyDuration();
-      this.value = durationUnit === 'min' ? Math.max(1, Math.min(10, parseInt(this.value) || 1)) : settings.duration;
+      this.value = durationUnit === 'min' ? Math.max(1, Math.min(30, parseInt(this.value) || 1)) : settings.duration;
+      persistSettings();
     });
     document.getElementById('set-duration-unit').addEventListener('click', function () {
       durationUnit = durationUnit === 'sec' ? 'min' : 'sec';
@@ -3014,11 +3277,14 @@
       const el = document.getElementById('set-duration');
       el.value = durationUnit === 'min' ? Math.max(1, Math.round(settings.duration / 60)) : settings.duration;
       this.classList.toggle('active', durationUnit === 'min');
+      persistSettings();
     });
     /* sync settings from input values on load */
     settings.count = parseInt(document.getElementById('set-count').value) || 10;
     settings.duration = parseInt(document.getElementById('set-duration').value) || 60;
     syncModeInputs();
+    /* load from localStorage on startup */
+    applySettingsToUI(JSON.parse(localStorage.getItem(SETTINGS_KEY) || 'null'));
     /* auto-select content on focus pour taper directement */
     ['set-count', 'set-duration'].forEach(id => {
       document.getElementById(id).addEventListener('focus', function () { this.select(); });
@@ -3026,66 +3292,65 @@
     document.getElementById('set-level').addEventListener('input', function () {
       settings.level = parseInt(this.value);
       document.getElementById('lvl-label').textContent = settings.level;
+      persistSettings();
     });
 
     /* ══ PHRASES ══ */
     function getPhrasesForGame() {
       const src = getActiveQuestions();
-      const pool = [...src.filter(p => p.level <= settings.level)].sort(() => Math.random() - .5);
+      const pool = [...src.filter(p => p.level <= gSettings.level)].sort(() => Math.random() - .5);
       if (!pool.length) return [];
-      if (settings.mode === 'time') {
-        /* Mode chrono : pool complet, étendu si < 200 pour ne jamais s'épuiser */
-        if (pool.length >= 200) return pool;
-        const big = []; while (big.length < 200) big.push(...[...pool].sort(() => Math.random() - .5));
+      if (gSettings.mode === 'time') {
+        /* Mode chrono : cycles sans doublons dans chaque cycle, ~400 items min */
+        const big = [];
+        while (big.length < 400) {
+          const cycle = [...pool].sort(() => Math.random() - .5);
+          if (big.length && pool.length > 1 && cycle[0] === big[big.length - 1]) cycle.push(cycle.shift());
+          big.push(...cycle);
+        }
         return big;
       }
-      const total = settings.count;
-      if (pool.length >= total) return pool.slice(0, total);
-      const result = []; while (result.length < total) { pool.sort(() => Math.random() - .5); result.push(...pool.slice(0, total - result.length)); }
-      return result.slice(0, total);
+      /* Mode count : pas de doublons, limité à la taille du pool */
+      return pool.slice(0, Math.min(gSettings.count, pool.length));
     }
 
     /* ══ GAME ══ */
-    let gPhrases = [], gIdx = 0, gCorrect = 0, gScore = 0, gResults = [], autoNextTimer = null;
+    let gPhrases = [], gIdx = 0, gCorrect = 0, gScore = 0, gResults = [], gAnswers = [], autoNextTimer = null;
+    let gSettings = {};
     let gQuestionStart = 0;
     function autoNext() {
       clearTimeout(autoNextTimer); autoNextTimer = null;
       if (!gWaiting) return;
       gIdx++;
-      if (settings.mode === 'count') setPbar(gIdx, gPhrases.length);
-      if (gIdx >= gPhrases.length) {
-        if (settings.mode === 'time') {
-          const extra = [...getActiveQuestions().filter(p => p.level <= settings.level)].sort(() => Math.random() - .5);
-          if (extra.length) { gPhrases.push(...extra); loadPhrase(gIdx); return; }
-        }
-        endGame(); return;
-      }
+      if (gSettings.mode === 'count') setPbar(gIdx, gPhrases.length);
+      if (gIdx >= gPhrases.length) { endGame(); return; }
       loadPhrase(gIdx);
     }
     let gStart = 0, gTimer = null, gCountdown = null, gTimeLeft = 0, gTotalSecs = 0, gWaiting = false, gStreak = 0, gStreakMax = 0;
 
     function startGame() {
+      gSettings = { ...settings };
       destroyCharts();
-      gPhrases = getPhrasesForGame(); gIdx = 0; gCorrect = 0; gScore = 0; gResults = []; gWaiting = false; gStreak = 0; gStreakMax = 0;
+      gPhrases = getPhrasesForGame(); gIdx = 0; gCorrect = 0; gScore = 0; gResults = []; gAnswers = []; gWaiting = false; gStreak = 0; gStreakMax = 0;
       clearInterval(gTimer); clearInterval(gCountdown);
       showScreen('s-game');
-      if (settings.mode === 'time') setPbar(0, settings.duration);
+      if (gSettings.mode === 'time') setPbar(0, gSettings.duration);
       else setPbar(0, gPhrases.length);
 
       const timerEl = document.getElementById('g-timer');
-      timerEl.className = 'g-timer' + (settings.blurTimer ? ' blur-t' : '');
-      timerEl.onclick = settings.blurTimer ? () => {
+      timerEl.className = 'g-timer' + (gSettings.blurTimer ? ' blur-t' : '');
+      timerEl.onclick = gSettings.blurTimer ? () => {
         timerEl.classList.toggle('blur-t');
         if (!timerEl.classList.contains('blur-t')) setTimeout(() => timerEl.classList.add('blur-t'), 3000);
       } : null;
 
-      if (settings.mode === 'time') {
-        gTimeLeft = settings.duration;
+      if (gSettings.mode === 'time') {
+        gTimeLeft = gSettings.duration;
         document.getElementById('g-time').textContent = fmtTime(gTimeLeft);
         gStart = Date.now();
         gCountdown = setInterval(() => {
           gTimeLeft--; document.getElementById('g-time').textContent = fmtTime(gTimeLeft);
-          setPbar(settings.duration - gTimeLeft, settings.duration);
+          setPbar(gSettings.duration - gTimeLeft, gSettings.duration);
           if (gTimeLeft <= 0) { clearInterval(gCountdown); endGame(); }
         }, 1000);
       } else {
@@ -3102,7 +3367,7 @@
       el.className = 'p-txt';
       el.style.animation = 'none'; void el.offsetWidth; el.style.animation = 'fadeUp .3s ease';
       el.textContent = gPhrases[idx].en;
-      document.getElementById('g-cnt').textContent = settings.mode === 'time' ? `Q${idx + 1}` : `${idx + 1} / ${gPhrases.length}`;
+      document.getElementById('g-cnt').textContent = gSettings.mode === 'time' ? `Q${idx + 1}` : `${idx + 1} / ${gPhrases.length}`;
       const inp = document.getElementById('ans-input');
       inp.value = ''; inp.disabled = false;
       inp.style.height = 'auto';
@@ -3137,6 +3402,7 @@
         gCorrect++; gStreak = Math.min(gStreak + 1, 10); if (gStreak > gStreakMax) gStreakMax = gStreak;
       } else { gStreak = 0; }
       gResults.push(ok);
+      gAnswers.push({ en: gPhrases[gIdx].en, userAnswer: raw, correct: ok, hint: gPhrases[gIdx].hint });
       playBip(ok, gStreak);
       const ptxt = document.getElementById('p-txt');
       const card = document.getElementById('phrase-card');
@@ -3146,7 +3412,7 @@
         showGameMascot(gStreak >= 3 ? 'sleep' : 'love');
         showAnswerNotif(true);
         gWaiting = true;
-        if (settings.autoNext) autoNextTimer = setTimeout(autoNext, 250);
+        if (gSettings.autoNext) autoNextTimer = setTimeout(autoNext, 250);
       } else {
         card.classList.add('pop-ko');
         showGameMascot('laugh');
@@ -3159,7 +3425,7 @@
         gWaiting = false;
         setTimeout(() => {
           gWaiting = true;
-          if (settings.autoNext) autoNextTimer = setTimeout(autoNext, 800);
+          if (gSettings.autoNext) autoNextTimer = setTimeout(autoNext, 800);
         }, 700);
       }
       document.getElementById('btn-val-ico').innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
@@ -3168,8 +3434,8 @@
     async function endGame() {
       clearTimeout(autoNextTimer); autoNextTimer = null;
       clearInterval(gTimer); clearInterval(gCountdown);
-      gTotalSecs = settings.mode === 'time' ? settings.duration - gTimeLeft : Math.floor((Date.now() - gStart) / 1000);
-      const answered = settings.mode === 'time' ? gResults.length : gPhrases.length;
+      gTotalSecs = gSettings.mode === 'time' ? gSettings.duration - gTimeLeft : Math.floor((Date.now() - gStart) / 1000);
+      const answered = gSettings.mode === 'time' ? gResults.length : gPhrases.length;
       const score = gScore;
       showScreen('s-results');
       document.getElementById('new-best').style.display = 'none';
@@ -3180,7 +3446,7 @@
       document.getElementById('res-precision').textContent = answered > 0 ? Math.round(gCorrect / answered * 100) + '%' : '—';
       document.getElementById('res-temps').textContent = m > 0 ? `${m}m${s.toString().padStart(2, '0')}s` : `${gTotalSecs}s`;
       document.getElementById('res-streak').textContent = gStreakMax || 0;
-      renderCharts(gResults);
+      /* charts rendus à l'ouverture du popup (modal visible = dimensions disponibles) */
       if (!currentUser) return;
       if (currentUser.isAnonymous) {
         guestTotalScore += score;
@@ -3204,6 +3470,7 @@
         updateResRecord(isNew ? score : (prevScore ?? score));
         if (isNew) { playSfx('achievement'); showBestNotif(); fireConfetti(); }
         updatePanel(currentUser, { score: isNew ? score : (prevScore ?? score) }, newTotal);
+        loadAndRenderPanelChart(currentUser.uid);
       } catch (e) { console.error('Firebase:', e); }
     }
 
@@ -3274,6 +3541,34 @@
       startGame();
     });
     document.getElementById('btn-replay').addEventListener('click', startGame);
+
+    /* ══ CORRECTION POPUP ══ */
+    function openCorrectionPopup() {
+      const list = document.getElementById('correction-list');
+      if (!gAnswers.length) return;
+      list.innerHTML = gAnswers.map((a, i) => {
+        const borderColor = a.correct ? 'rgba(45,212,191,.3)' : 'rgba(248,113,113,.3)';
+        const correct = a.correct
+          ? `<div style="color:#4ade80;font-size:.82rem;font-weight:700"><i class="fa-solid fa-check" style="margin-right:.4rem;font-size:.75em"></i>${escHtml(a.userAnswer)}</div>`
+          : `<div style="color:#f87171;font-size:.82rem;font-weight:600;text-decoration:line-through;margin-bottom:.22rem;opacity:.8">${escHtml(a.userAnswer)}</div>
+             <div style="color:#4ade80;font-size:.85rem;font-weight:700"><i class="fa-solid fa-arrow-right" style="margin-right:.35rem;font-size:.72em;opacity:.7"></i>${escHtml(a.hint)}</div>`;
+        return `<div style="background:var(--s2);border:1px solid ${borderColor};border-radius:.6rem;padding:.65rem .9rem">
+          <div style="font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;font-weight:700">Q${i+1} — ${escHtml(a.en)}</div>
+          ${correct}
+        </div>`;
+      }).join('');
+      document.getElementById('correction-backdrop').style.display = 'block';
+      document.getElementById('correction-modal').style.display = 'block';
+      setTimeout(() => renderCharts(gResults), 0);
+    }
+    function closeCorrectionPopup() {
+      document.getElementById('correction-backdrop').style.display = 'none';
+      document.getElementById('correction-modal').style.display = 'none';
+    }
+    document.getElementById('btn-correction').addEventListener('click', openCorrectionPopup);
+    document.getElementById('btn-correction-close').addEventListener('click', closeCorrectionPopup);
+    document.getElementById('correction-backdrop').addEventListener('click', closeCorrectionPopup);
+
     document.getElementById('btn-val').addEventListener('click', validate);
     document.getElementById('ans-input').addEventListener('keydown', e => {
       if (e.key === 'Enter') { e.preventDefault(); validate(); return; }
@@ -3302,7 +3597,9 @@
       }
 
       if (e.key === 'Escape') {
-        if (document.getElementById('user-panel').classList.contains('open')) { closePanel(); return; }
+        if (document.getElementById('correction-modal').style.display === 'block') { closeCorrectionPopup(); return; }
+        if (settingsOpen) { closeSettingsModal(); return; }
+        if (panelOpen) { closePanel(); return; }
         if (active === 's-game') { document.getElementById('quit-modal').classList.add('open'); return; }
         if (active === 's-results') { showScreen('s-home'); return; }
         return;
@@ -3329,7 +3626,6 @@
       /* Résultats */
       if (active === 's-results') {
         if (e.key === 'Enter' || e.key === 'r' || e.key === 'R') { e.preventDefault(); startGame(); return; }
-        if (e.key === 'h' || e.key === 'H') { showScreen('s-home'); }
       }
     });
     document.getElementById('ans-input').addEventListener('input', function () {
@@ -3337,7 +3633,23 @@
       if (!gWaiting && gPhrases[gIdx]) renderLiveTrans(this.value, gPhrases[gIdx]);
       else document.getElementById('live-trans').innerHTML = '';
     });
-    document.getElementById('btn-res-home').addEventListener('click', () => showScreen('s-home'));
+    /* ══ SETTINGS MODAL TOGGLE ══ */
+    let settingsOpen = false;
+    function openSettingsModal() {
+      settingsOpen = true;
+      document.getElementById('settings-card').classList.add('open');
+      document.getElementById('settings-backdrop').classList.add('open');
+      document.getElementById('btn-settings-toggle').classList.add('active');
+    }
+    function closeSettingsModal() {
+      settingsOpen = false;
+      document.getElementById('settings-card').classList.remove('open');
+      document.getElementById('settings-backdrop').classList.remove('open');
+      document.getElementById('btn-settings-toggle').classList.remove('active');
+    }
+    document.getElementById('btn-settings-toggle').addEventListener('click', e => { e.stopPropagation(); settingsOpen ? closeSettingsModal() : openSettingsModal(); });
+    document.getElementById('settings-backdrop').addEventListener('click', closeSettingsModal);
+    document.getElementById('btn-settings-close').addEventListener('click', closeSettingsModal);
 
     /* Real-time online players count generator — changes every 5–7 min by ±1 or ±2 */
     function updateOnlinePlayers() {
@@ -3417,8 +3729,31 @@
     updateAuthUI();
     /* pre-load sfx */
     loadSfx();
-    /* disable pop-in animations after first load (680ms delay + 420ms duration) */
-    setTimeout(() => document.body.classList.add('pi-done'), 1200);
+    /* disable pop-in animations after first load */
+    setTimeout(() => document.body.classList.add('pi-done'), 800);
+
+    /* ══ THEME COLOR PICKER ══ */
+    function applyTheme(color) {
+      document.documentElement.style.setProperty('--y', color);
+      const r = parseInt(color.slice(1,3),16), g = parseInt(color.slice(3,5),16), b = parseInt(color.slice(5,7),16);
+      document.documentElement.style.setProperty('--yr', r);
+      document.documentElement.style.setProperty('--yg', g);
+      document.documentElement.style.setProperty('--yb', b);
+      document.documentElement.style.setProperty('--bdr', `rgba(${r},${g},${b},0.18)`);
+      document.documentElement.style.setProperty('--bhi', `rgba(${r},${g},${b},0.48)`);
+      document.querySelectorAll('.swatch').forEach(s => s.classList.toggle('active', s.dataset.color === color));
+    }
+    function saveTheme(color) { try { localStorage.setItem(THEME_KEY, color); } catch(e) {} }
+    document.querySelectorAll('.swatch').forEach(s => {
+      s.addEventListener('click', () => {
+        const c = s.dataset.color;
+        applyTheme(c);
+        saveTheme(c);
+        if (currentUser && !currentUser.isAnonymous) db.ref(`users/${currentUser.uid}/settings`).update({ themeColor: c });
+      });
+    });
+    /* restore saved theme — always call applyTheme to init --yr/--yg/--yb */
+    applyTheme(localStorage.getItem(THEME_KEY) || '#FFDE59');
   </script>
 </body>
 
