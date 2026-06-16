@@ -3525,11 +3525,15 @@
 
     async function aiCheck(correct, userAnswer) {
       try {
+        const ctrl = new AbortController();
+        const tid = setTimeout(() => ctrl.abort(), 5000);
         const res = await fetch('/api/ai-correct', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ mode: 'check', correct, userAnswer })
+          body: JSON.stringify({ mode: 'check', correct, userAnswer }),
+          signal: ctrl.signal
         });
+        clearTimeout(tid);
         if (!res.ok) return null;
         const data = await res.json();
         return typeof data.correct === 'boolean' ? data.correct : null;
@@ -3548,8 +3552,9 @@
       document.getElementById('btn-val-ico').innerHTML = '<i class="fa-solid fa-spinner spin"></i>';
 
       const phrase = gPhrases[gIdx];
-      const aiResult = await aiCheck(phrase.hint, raw);
-      const ok = aiResult !== null ? aiResult : isCorrect(raw, phrase);
+      const clientOk = isCorrect(raw, phrase);
+      const aiResult = clientOk ? null : await aiCheck(phrase.hint, raw);
+      const ok = clientOk || aiResult === true;
 
       if (ok) {
         gScore += calcQScore(phrase.level, Date.now() - gQuestionStart);

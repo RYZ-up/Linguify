@@ -43,7 +43,9 @@ export default async (req) => {
     if (!res.ok) return new Response(JSON.stringify({ correct: null }), { headers: { 'Content-Type': 'application/json' } });
     const data = await res.json();
     const answer = data.choices?.[0]?.message?.content?.trim().toLowerCase() ?? '';
-    return new Response(JSON.stringify({ correct: answer.startsWith('oui') }), { headers: { 'Content-Type': 'application/json' } });
+    const isOui = answer.startsWith('oui');
+    const isNon = answer.startsWith('non');
+    return new Response(JSON.stringify({ correct: isOui || isNon ? isOui : null }), { headers: { 'Content-Type': 'application/json' } });
   }
 
   const system = mode === 'live'
