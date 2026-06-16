@@ -3,9 +3,14 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>404 - Introuvable</title>
-  <link rel="icon" type="image/png" href="assets/logo.png?v=2" />
+  <link rel="icon" type="image/png" href="/assets/logo.png?v=3" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Linguify" />
+  <meta name="theme-color" content="#FFDE59" />
+  <link rel="apple-touch-icon" href="/assets/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
@@ -38,16 +43,11 @@
       font-family: 'Inter', sans-serif;
       color: var(--text);
       background-color: var(--bg);
+      background-image: radial-gradient(var(--bdr) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    @media (min-width: 769px) {
-      body {
-        background-image: radial-gradient(rgba(255, 222, 89, 0.16) 1.5px, transparent 1.5px);
-        background-size: 28px 28px;
-      }
     }
 
     /* ════════ 3D Card ════════ */
@@ -138,6 +138,7 @@
       transition: transform .1s ease;
       white-space: nowrap;
       letter-spacing: .02em;
+      -webkit-user-select: none;
       user-select: none;
     }
 
@@ -165,6 +166,15 @@
       </a>
     </div>
   </div>
+  <script>
+    try {
+      const c = localStorage.getItem('lq_theme_color') || '#FFDE59';
+      const r = parseInt(c.slice(1,3),16), g = parseInt(c.slice(3,5),16), b = parseInt(c.slice(5,7),16);
+      const root = document.documentElement;
+      root.style.setProperty('--y', c);
+      root.style.setProperty('--bdr', `rgba(${r},${g},${b},0.16)`);
+    } catch(e) {}
+  </script>
 </body>
 
 </html>
