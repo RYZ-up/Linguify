@@ -13,7 +13,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Linguify" />
   <meta name="theme-color" content="#FFDE59" id="meta-theme-color" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/logo.png?v=4" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
@@ -2158,6 +2158,22 @@
       animation: shake .3s ease;
     }
 
+    @keyframes streak-shake {
+      0%,100% { transform: translate(0,0) rotate(0deg); }
+      8%  { transform: translate(calc(-2px * var(--si,1)), calc(-1px * var(--si,1))) rotate(calc(-.4deg * var(--si,1))); }
+      18% { transform: translate(calc(2.5px * var(--si,1)), calc(1.5px * var(--si,1))) rotate(calc(.5deg * var(--si,1))); }
+      28% { transform: translate(calc(-1.5px * var(--si,1)), calc(2px * var(--si,1))) rotate(calc(-.3deg * var(--si,1))); }
+      38% { transform: translate(calc(3px * var(--si,1)), calc(-1px * var(--si,1))) rotate(calc(.6deg * var(--si,1))); }
+      48% { transform: translate(calc(-2px * var(--si,1)), calc(1px * var(--si,1))) rotate(calc(-.5deg * var(--si,1))); }
+      58% { transform: translate(calc(1.5px * var(--si,1)), calc(-2px * var(--si,1))) rotate(calc(.3deg * var(--si,1))); }
+      68% { transform: translate(calc(-2.5px * var(--si,1)), calc(1.5px * var(--si,1))) rotate(calc(-.4deg * var(--si,1))); }
+      78% { transform: translate(calc(2px * var(--si,1)), calc(.5px * var(--si,1))) rotate(calc(.2deg * var(--si,1))); }
+      88% { transform: translate(calc(-1px * var(--si,1)), calc(-1px * var(--si,1))) rotate(calc(-.2deg * var(--si,1))); }
+    }
+    .streak-shake {
+      animation: streak-shake var(--sd,.35s) cubic-bezier(.36,.07,.19,.97) both;
+    }
+
     @media(max-width:768px) {
       .sc {
         display: none !important;
@@ -2622,6 +2638,13 @@
           </label>
         </div>
 
+        <div class="set-row set-inline">
+          <span class="set-label">Tremblement sur streak (≥4)</span>
+          <label class="toggle-wrap"><input type="checkbox" id="set-streak-shake" checked />
+            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
+          </label>
+        </div>
+
         <div class="set-div"></div>
         <div class="set-section-title">Thème</div>
         <div class="theme-swatches" id="theme-swatches">
@@ -2704,7 +2727,7 @@
 
   <!-- ══════════ CORRECTION POPUP ══════════ -->
   <div id="correction-backdrop" style="display:none;position:fixed;inset:0;z-index:470;background:rgba(0,0,0,.6);backdrop-filter:blur(2px)"></div>
-  <div id="correction-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:480;width:min(94vw,520px);max-height:calc(100dvh - 4rem);overflow-y:auto;border-radius:1rem;box-shadow:0 6px 0 var(--bdr),0 20px 60px rgba(0,0,0,.7)">
+  <div id="correction-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:480;width:min(94vw,520px);max-height:calc(100dvh - 4rem);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;border-radius:1rem;box-shadow:0 6px 0 var(--bdr),0 20px 60px rgba(0,0,0,.7)">
     <div style="background:var(--s1);border:2px solid var(--y);border-radius:1rem;padding:1.2rem 1.4rem 1.4rem;display:flex;flex-direction:column;gap:.75rem">
       <!-- Header -->
       <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem">
@@ -2721,11 +2744,11 @@
         <div id="corr-en" style="font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:700"></div>
         <div style="padding:.45rem .65rem;border-radius:.45rem;background:var(--s1)">
           <div style="font-size:.58rem;color:var(--muted);margin-bottom:.2rem;text-transform:uppercase;letter-spacing:.07em">Votre réponse</div>
-          <div id="corr-user-words" style="font-size:.88rem;font-weight:600;line-height:1.7;display:flex;flex-wrap:wrap;gap:.1rem .3rem"></div>
+          <div id="corr-user-words" style="font-size:.88rem;font-weight:600;line-height:1.8"></div>
         </div>
         <div style="padding:.45rem .65rem;border-radius:.45rem;background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.18)">
           <div style="font-size:.58rem;color:#4ade80;margin-bottom:.2rem;text-transform:uppercase;letter-spacing:.07em">Réponse attendue</div>
-          <div id="corr-correct-words" style="font-size:.88rem;font-weight:600;line-height:1.7;display:flex;flex-wrap:wrap;gap:.1rem .3rem"></div>
+          <div id="corr-correct-words" style="font-size:.88rem;font-weight:600;line-height:1.8"></div>
         </div>
       </div>
       <!-- Navigation -->
@@ -3056,7 +3079,7 @@
       applySoundVol(v);
       loadSfx().then(() => playSfx('correct', 1));
     });
-    const settings = { blurTimer: false, mode: 'time', count: 10, duration: 60, level: 3, sound: true, soundVolume: 0.51, liveHints: true, looseCorrection: true, showProgress: true, autoNext: false, animations: true, freezeBg: false };
+    const settings = { blurTimer: false, mode: 'time', count: 10, duration: 60, level: 3, sound: true, soundVolume: 0.51, liveHints: true, looseCorrection: true, showProgress: true, autoNext: false, animations: true, freezeBg: false, streakShake: true };
 
     /* ══ SETTINGS PERSISTENCE ══ */
     const SETTINGS_KEY = 'lq_settings_v1';
@@ -3078,6 +3101,7 @@
       if (s.autoNext != null) { settings.autoNext = s.autoNext; document.getElementById('set-autonext').checked = s.autoNext; }
       if (s.animations != null) { settings.animations = s.animations; document.getElementById('set-anims').checked = s.animations; }
       if (s.freezeBg != null) { settings.freezeBg = s.freezeBg; document.getElementById('set-freeze-bg').checked = s.freezeBg; if (typeof setCanvasPaused === 'function') setCanvasPaused(s.freezeBg); }
+      if (s.streakShake != null) { settings.streakShake = s.streakShake; document.getElementById('set-streak-shake').checked = s.streakShake; }
       if (s.themeColor) { applyTheme(s.themeColor); saveTheme(s.themeColor); }
       syncModeInputs();
     }
@@ -3376,6 +3400,7 @@
     document.getElementById('set-progress').addEventListener('change', function () { settings.showProgress = this.checked; persistSettings(); });
     document.getElementById('set-autonext').addEventListener('change', function () { settings.autoNext = this.checked; persistSettings(); });
     document.getElementById('set-anims').addEventListener('change', function () { settings.animations = this.checked; persistSettings(); });
+    document.getElementById('set-streak-shake').addEventListener('change', function () { settings.streakShake = this.checked; persistSettings(); });
     document.getElementById('set-freeze-bg').addEventListener('change', function () {
       settings.freezeBg = this.checked;
       if (typeof setCanvasPaused === 'function') setCanvasPaused(this.checked);
@@ -3570,6 +3595,15 @@
         card.classList.add('pop-ok');
         showGameMascot(gStreak >= 3 ? 'sleep' : 'love');
         showAnswerNotif(true);
+        if (gStreak >= 4 && settings.streakShake) {
+          const si = Math.min(gStreak - 3, 7);
+          const sd = (0.3 + si * 0.04).toFixed(2) + 's';
+          card.style.setProperty('--si', si);
+          card.style.setProperty('--sd', sd);
+          card.classList.remove('streak-shake'); void card.offsetWidth;
+          card.classList.add('streak-shake');
+          setTimeout(() => card.classList.remove('streak-shake'), parseFloat(sd) * 1000 + 50);
+        }
         gWaiting = true;
         if (gSettings.autoNext) autoNextTimer = setTimeout(autoNext, 250);
       } else {
@@ -3748,21 +3782,22 @@
       document.getElementById('corr-card').style.borderColor = a.correct ? 'rgba(74,222,128,.3)' : 'rgba(248,113,113,.22)';
 
       /* word analysis */
+      const hintText = (a.hint && typeof a.hint === 'string') ? a.hint : '';
       const userNorm = norm(a.userAnswer).split(/\s+/).filter(Boolean);
-      const correctNorm = norm(a.hint).split(/\s+/).filter(Boolean);
+      const correctNorm = norm(hintText).split(/\s+/).filter(Boolean);
       const { userAnnotated, correctAnnotated } = wordAnalysis(userNorm, correctNorm);
       const rawUser = a.userAnswer.trim().split(/\s+/).filter(Boolean);
-      const rawCorrect = a.hint.trim().split(/\s+/).filter(Boolean);
+      const rawCorrect = hintText.trim().split(/\s+/).filter(Boolean);
 
       document.getElementById('corr-user-words').innerHTML = rawUser.map((w, i) => {
         const ok = userAnnotated[i]?.ok;
-        return '<span style="color:' + (ok ? '#4ade80' : '#f87171') + ';font-weight:' + (ok ? '600' : '500') + '">' + escHtml(w) + '</span>';
-      }).join(' ');
+        return '<span style="display:inline-block;margin-right:.28rem;color:' + (ok ? '#4ade80' : '#f87171') + ';font-weight:' + (ok ? '600' : '500') + '">' + escHtml(w) + '</span>';
+      }).join('');
 
       document.getElementById('corr-correct-words').innerHTML = rawCorrect.map((w, i) => {
         const found = correctAnnotated[i]?.found;
-        return '<span style="color:' + (found ? '#4ade80' : '#facc15') + ';font-weight:' + (found ? '600' : '700') + '">' + escHtml(w) + '</span>';
-      }).join(' ');
+        return '<span style="display:inline-block;margin-right:.28rem;color:' + (found ? '#4ade80' : '#f87171') + ';font-weight:' + (found ? '600' : '700') + '">' + escHtml(w) + '</span>';
+      }).join('');
 
       document.getElementById('btn-corr-prev').disabled = idx === 0;
       document.getElementById('btn-corr-next').disabled = idx === total - 1;
@@ -4205,6 +4240,17 @@
       rafId = requestAnimationFrame(tick);
       triggerWave();
       if (settings.freezeBg) setCanvasPaused(true);
+
+      /* iOS PWA: restart canvas when app resumes from background */
+      document.addEventListener('visibilitychange', function() {
+        if (!document.hidden && !settings.freezeBg) {
+          canvasInit();
+          if (!rafId) { rafId = requestAnimationFrame(tick); triggerWave(); }
+        }
+      });
+      window.addEventListener('pageshow', function(e) {
+        if (!settings.freezeBg) { canvasInit(); if (!rafId) { rafId = requestAnimationFrame(tick); triggerWave(); } }
+      });
     })();
   </script>
 
