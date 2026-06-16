@@ -2989,7 +2989,7 @@
     function renderCharts(results) {
       destroyCharts();
       const bonnes = results.filter(Boolean).length, mauvaises = results.length - bonnes;
-      const y = '#FFDE59';
+      const okColor = '#4ade80';
 
       const centerTextPlugin = {
         id: 'centerText',
@@ -3009,7 +3009,7 @@
         type: 'doughnut',
         plugins: [centerTextPlugin],
         data: {
-          datasets: [{ data: [bonnes, mauvaises], backgroundColor: [y, '#f87171'], borderWidth: 0, hoverOffset: 4 }]
+          datasets: [{ data: [bonnes, mauvaises], backgroundColor: [okColor, '#f87171'], borderWidth: 0, hoverOffset: 4 }]
         },
         options: {
           cutout: '70%',
@@ -3025,7 +3025,7 @@
         type: 'bar',
         data: {
           labels: results.map((_, i) => 'Q' + (i + 1)),
-          datasets: [{ data: results.map(r => r ? 1 : 0), backgroundColor: results.map(r => r ? y : '#f87171'), borderRadius: 3, borderSkipped: false }]
+          datasets: [{ data: results.map(r => r ? 1 : 0), backgroundColor: results.map(r => r ? okColor : '#f87171'), borderRadius: 3, borderSkipped: false }]
         },
         options: {
           animation: { duration: 400 },
@@ -3523,14 +3523,14 @@
       gQuestionStart = Date.now();
     }
 
-    async function aiCheck(correct, userAnswer) {
+    async function aiCheck(en, correct, userAnswer) {
       try {
         const ctrl = new AbortController();
         const tid = setTimeout(() => ctrl.abort(), 5000);
         const res = await fetch('/api/ai-correct', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ mode: 'check', correct, userAnswer }),
+          body: JSON.stringify({ mode: 'check', en, correct, userAnswer }),
           signal: ctrl.signal
         });
         clearTimeout(tid);
@@ -3553,7 +3553,7 @@
 
       const phrase = gPhrases[gIdx];
       const clientOk = isCorrect(raw, phrase);
-      const aiResult = clientOk ? null : await aiCheck(phrase.hint, raw);
+      const aiResult = clientOk ? null : await aiCheck(phrase.en, phrase.hint, raw);
       const ok = clientOk || aiResult === true;
 
       if (ok) {

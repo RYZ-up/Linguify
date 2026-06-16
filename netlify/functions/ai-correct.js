@@ -25,15 +25,20 @@ export default async (req) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.GROQ_API_KEY}` },
       body: JSON.stringify({
-        model: 'llama-3.1-8b-instant',
+        model: 'llama-3.3-70b-versatile',
         messages: [
           {
             role: 'system',
-            content: 'Réponds UNIQUEMENT par "oui" ou "non". Ces deux phrases ont-elles le même sens ?'
+            content: `Tu es un correcteur bienveillant pour un exercice de traduction anglais → français.
+Réponds UNIQUEMENT par "oui" ou "non".
+La réponse de l'élève est-elle une traduction correcte ou acceptable de la phrase anglaise ?
+Sois large et ouvert : accepte les synonymes, les variantes de conjugaison valides (tu/vous, passé composé/imparfait si les deux sont justifiés), les formulations différentes mais de sens équivalent.
+Ignore les différences de ponctuation, majuscules et accents.
+Rejette uniquement si le sens est clairement faux, incomplet ou hors sujet.`
           },
           {
             role: 'user',
-            content: `1: "${correct}"\n2: "${userAnswer}"`
+            content: `Phrase anglaise : "${en}"\nTraduction de référence : "${correct}"\nRéponse de l'élève : "${userAnswer}"`
           }
         ],
         max_tokens: 5,
