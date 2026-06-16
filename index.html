@@ -962,6 +962,16 @@
       .header-r {
         gap: .35rem;
       }
+
+      /* Header : icônes seules */
+      .player-label { display: none; }
+      #user-name-hdr { display: none; }
+      .btn-user { width: var(--btn-h); }
+      .btn-user .bt { padding: 0; width: 100%; justify-content: center; }
+
+      /* Boutons : texte + raccourcis cachés */
+      .lbl { display: none; }
+      kbd.sc { display: none; }
     }
 
     /* Boutons header — hauteur uniforme réduite */
@@ -2718,8 +2728,8 @@
         </div>
         <div class="new-best" id="new-best"></div>
         <div class="res-actions">
-          <button class="btn3d wht" id="btn-correction" style="flex:1"><span class="bt" style="width:100%;justify-content:center"><i class="fa-solid fa-list-check"></i>Correction<kbd class="sc">Ctrl+M</kbd></span></button>
-          <button class="btn3d" id="btn-replay" style="flex:1"><span class="bt" style="width:100%;justify-content:center"><i class="fa-solid fa-rotate-right"></i>Rejouer<kbd class="sc">R</kbd></span></button>
+          <button class="btn3d wht" id="btn-correction" style="flex:1"><span class="bt" style="width:100%;justify-content:center"><i class="fa-solid fa-list-check"></i><span class="lbl">Correction</span><kbd class="sc">Ctrl+M</kbd></span></button>
+          <button class="btn3d" id="btn-replay" style="flex:1"><span class="bt" style="width:100%;justify-content:center"><i class="fa-solid fa-rotate-right"></i><span class="lbl">Rejouer</span><kbd class="sc">R</kbd></span></button>
         </div>
       </div>
     </div>
@@ -2753,9 +2763,9 @@
       </div>
       <!-- Navigation -->
       <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem">
-        <button class="btn3d wht" id="btn-corr-prev" style="flex:1"><span class="bt" style="width:100%;justify-content:center"><i class="fa-solid fa-chevron-left"></i>&nbsp;Préc.</span></button>
+        <button class="btn3d wht" id="btn-corr-prev" style="flex:1"><span class="bt" style="width:100%;justify-content:center"><i class="fa-solid fa-chevron-left"></i><span class="lbl">&nbsp;Préc.</span></span></button>
         <span id="corr-status-badge" style="font-size:.72rem;font-weight:700;padding:.22rem .85rem;border-radius:2rem;white-space:nowrap"></span>
-        <button class="btn3d" id="btn-corr-next" style="flex:1"><span class="bt" style="width:100%;justify-content:center">Suiv.&nbsp;<i class="fa-solid fa-chevron-right"></i></span></button>
+        <button class="btn3d" id="btn-corr-next" style="flex:1"><span class="bt" style="width:100%;justify-content:center"><span class="lbl">Suiv.&nbsp;</span><i class="fa-solid fa-chevron-right"></i></span></button>
       </div>
       <!-- Charts -->
       <div style="height:1px;background:var(--bdr)"></div>
