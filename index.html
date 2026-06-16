@@ -1452,6 +1452,22 @@
       filter: blur(0);
     }
 
+    /* Streak multiplier */
+    .g-streak-mul {
+      display: none;
+      align-items: center;
+      gap: .12rem;
+      font-size: .85rem;
+      font-weight: 800;
+      color: var(--y);
+      letter-spacing: .03em;
+      white-space: nowrap;
+      transition: color .2s;
+    }
+    .g-streak-mul.flame { color: #fb923c; }
+    .g-streak-mul i { font-size: .78rem; }
+    @media(max-width:480px) { .g-streak-mul { font-size: .75rem; } }
+
     /* Phrase card */
     .phrase-card {
       background: var(--s1);
@@ -2649,6 +2665,13 @@
         </div>
 
         <div class="set-row set-inline">
+          <span class="set-label">Multiplicateur de streak</span>
+          <label class="toggle-wrap"><input type="checkbox" id="set-streak-mul" checked />
+            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
+          </label>
+        </div>
+
+        <div class="set-row set-inline">
           <span class="set-label">Tremblement sur streak (≥4)</span>
           <label class="toggle-wrap"><input type="checkbox" id="set-streak-shake" />
             <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
@@ -2676,6 +2699,7 @@
         <span class="g-cnt" id="g-cnt">1 / 10</span>
         <div class="game-top-r">
           <span class="g-timer" id="g-timer"><i class="fa-regular fa-clock"></i><span id="g-time">0:00</span></span>
+          <span id="g-streak-mul" class="g-streak-mul"></span>
           <button class="btn3d sq wht" id="btn-quit" title="Quitter" style="--btn-h:2rem"><span class="bt"><i
                 class="fa-solid fa-xmark"></i></span></button>
         </div>
@@ -3089,7 +3113,7 @@
       applySoundVol(v);
       loadSfx().then(() => playSfx('correct', 1));
     });
-    const settings = { blurTimer: false, mode: 'time', count: 10, duration: 60, level: 3, sound: true, soundVolume: 0.51, liveHints: true, looseCorrection: true, showProgress: true, autoNext: false, animations: true, freezeBg: false, streakShake: false };
+    const settings = { blurTimer: false, mode: 'time', count: 10, duration: 60, level: 3, sound: true, soundVolume: 0.51, liveHints: true, looseCorrection: true, showProgress: true, autoNext: false, animations: true, freezeBg: false, streakShake: false, streakMul: true };
 
     /* ══ SETTINGS PERSISTENCE ══ */
     const SETTINGS_KEY = 'lq_settings_v1';
@@ -3112,6 +3136,7 @@
       if (s.animations != null) { settings.animations = s.animations; document.getElementById('set-anims').checked = s.animations; }
       if (s.freezeBg != null) { settings.freezeBg = s.freezeBg; document.getElementById('set-freeze-bg').checked = s.freezeBg; if (typeof setCanvasPaused === 'function') setCanvasPaused(s.freezeBg); }
       if (s.streakShake != null) { settings.streakShake = s.streakShake; document.getElementById('set-streak-shake').checked = s.streakShake; }
+      if (s.streakMul != null) { settings.streakMul = s.streakMul; document.getElementById('set-streak-mul').checked = s.streakMul; }
       if (s.themeColor) { applyTheme(s.themeColor); saveTheme(s.themeColor); }
       syncModeInputs();
     }
@@ -3411,6 +3436,7 @@
     document.getElementById('set-autonext').addEventListener('change', function () { settings.autoNext = this.checked; persistSettings(); });
     document.getElementById('set-anims').addEventListener('change', function () { settings.animations = this.checked; persistSettings(); });
     document.getElementById('set-streak-shake').addEventListener('change', function () { settings.streakShake = this.checked; persistSettings(); });
+    document.getElementById('set-streak-mul').addEventListener('change', function () { settings.streakMul = this.checked; persistSettings(); });
     document.getElementById('set-freeze-bg').addEventListener('change', function () {
       settings.freezeBg = this.checked;
       if (typeof setCanvasPaused === 'function') setCanvasPaused(this.checked);
@@ -3497,12 +3523,14 @@
       if (gIdx >= gPhrases.length) { endGame(); return; }
       loadPhrase(gIdx);
     }
-    let gStart = 0, gTimer = null, gCountdown = null, gTimeLeft = 0, gTotalSecs = 0, gWaiting = false, gStreak = 0, gStreakMax = 0;
+    let gStart = 0, gTimer = null, gCountdown = null, gTimeLeft = 0, gTotalSecs = 0, gWaiting = false, gStreak = 0, gStreakMax = 0, gCompletedStreaks = 0;
+    const STREAK_FULL = 10;
 
     function startGame() {
       gSettings = { ...settings };
       destroyCharts();
-      gPhrases = getPhrasesForGame(); gIdx = 0; gCorrect = 0; gScore = 0; gResults = []; gAnswers = []; gWaiting = false; gStreak = 0; gStreakMax = 0;
+      gPhrases = getPhrasesForGame(); gIdx = 0; gCorrect = 0; gScore = 0; gResults = []; gAnswers = []; gWaiting = false; gStreak = 0; gStreakMax = 0; gCompletedStreaks = 0;
+      const mulEl = document.getElementById('g-streak-mul'); if (mulEl) mulEl.style.display = 'none';
       clearInterval(gTimer); clearInterval(gCountdown);
       showScreen('s-game');
       if (gSettings.mode === 'time') setPbar(0, gSettings.duration);
@@ -3593,20 +3621,34 @@
 
       if (ok) {
         gScore += calcQScore(phrase.level, Date.now() - gQuestionStart);
-        gCorrect++; gStreak = Math.min(gStreak + 1, 10); if (gStreak > gStreakMax) gStreakMax = gStreak;
-      } else { gStreak = 0; }
+        gCorrect++;
+        const nextStreak = gStreak + 1;
+        const fullHit = settings.streakMul && nextStreak >= STREAK_FULL;
+        if (fullHit) {
+          gStreakMax = Math.max(gStreakMax, STREAK_FULL);
+          gCompletedStreaks++;
+          gScore += 20 * gCompletedStreaks;
+          gStreak = 0;
+        } else {
+          gStreak = nextStreak;
+          if (gStreak > gStreakMax) gStreakMax = gStreak;
+          if (settings.streakMul && gStreak > 0) gScore += gStreak;
+        }
+        var effectiveStreak = fullHit ? STREAK_FULL : gStreak;
+      } else { gStreak = 0; var effectiveStreak = 0; }
       gResults.push(ok);
       gAnswers.push({ en: phrase.en, userAnswer: raw, correct: ok, hint: phrase.hint });
-      playBip(ok, gStreak);
+      playBip(ok, effectiveStreak);
       const ptxt = document.getElementById('p-txt');
       const card = document.getElementById('phrase-card');
       card.classList.remove('pop-ok', 'pop-ko'); void card.offsetWidth;
       if (ok) {
         card.classList.add('pop-ok');
-        showGameMascot(gStreak >= 3 ? 'sleep' : 'love');
+        showGameMascot(effectiveStreak >= 3 ? 'sleep' : 'love');
         showAnswerNotif(true);
-        if (gStreak >= 4 && settings.streakShake) {
-          const si = Math.min(gStreak - 3, 7);
+        updateStreakMul();
+        if (effectiveStreak >= 4 && settings.streakShake) {
+          const si = Math.min(effectiveStreak - 3, 7);
           const sd = (0.3 + si * 0.04).toFixed(2) + 's';
           const shakeEl = document.body;
           shakeEl.style.setProperty('--si', si);
@@ -3625,6 +3667,7 @@
         const wrap = document.getElementById('ans-input').closest('.inp3d');
         wrap.classList.remove('shake'); void wrap.offsetWidth; wrap.classList.add('shake');
         showAnswerNotif(false);
+        updateStreakMul();
         gWaiting = false;
         setTimeout(() => {
           gWaiting = true;
@@ -3695,6 +3738,21 @@
     }
 
     /* ══ ANSWER NOTIF ══ */
+    function updateStreakMul() {
+      const el = document.getElementById('g-streak-mul');
+      if (!el) return;
+      if (!settings.streakMul || (gStreak === 0 && gCompletedStreaks === 0)) { el.style.display = 'none'; return; }
+      el.style.display = 'flex';
+      el.classList.toggle('flame', gCompletedStreaks > 0);
+      if (gStreak === 0) {
+        el.innerHTML = `<i class="fa-solid fa-fire"></i>\xd7${gCompletedStreaks}`;
+      } else if (gCompletedStreaks > 0) {
+        el.innerHTML = `<i class="fa-solid fa-fire"></i>${gCompletedStreaks}\xd7${gStreak}`;
+      } else {
+        el.innerHTML = `\xd7${gStreak}`;
+      }
+    }
+
     let notifTimer = null;
     function showAnswerNotif(ok) {
       const n = document.getElementById('notif-ok');
