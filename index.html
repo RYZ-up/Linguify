@@ -4017,7 +4017,11 @@
       if (metaTheme) metaTheme.setAttribute('content', color);
       const faviconMap = { '#FFDE59': '/assets/logo.png', '#f8fafc': '/assets/4.png', '#c084fc': '/assets/5.png', '#f87171': '/assets/6.png', '#6ee7b7': '/assets/7.png', '#93c5fd': '/assets/8.png' };
       const fav = faviconMap[color] || '/assets/logo.png';
-      document.querySelectorAll('link[rel="icon"]').forEach(el => { el.href = fav; });
+      document.querySelectorAll('link[rel="icon"]').forEach(el => el.remove());
+      const favLink = document.createElement('link');
+      favLink.rel = 'icon'; favLink.type = 'image/png';
+      favLink.href = fav + '?v=' + Date.now();
+      document.head.appendChild(favLink);
     }
     function saveTheme(color) { try { localStorage.setItem(THEME_KEY, color); } catch(e) {} }
     document.querySelectorAll('.swatch').forEach(s => {
