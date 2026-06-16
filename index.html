@@ -16,8 +16,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@100..400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.2/dist/lottie-player.js"></script>
   <style>
@@ -73,7 +72,8 @@
       bottom: 0;
       width: 100%;
       height: 100%;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
+      font-optical-sizing: auto;
       color: var(--text);
       overflow: hidden;
       overscroll-behavior: none;
@@ -90,7 +90,7 @@
       --bol: var(--y);
       font-size: 14px;
       font-weight: 700;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
       border: none;
       cursor: pointer;
       border-radius: var(--br);
@@ -160,7 +160,7 @@
     }
 
     .btn-logo .bt {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: 1rem;
       font-weight: 900;
       color: var(--text);
@@ -407,7 +407,7 @@
       background: var(--bg);
       color: var(--text);
       font-size: 16px;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-weight: 600;
       transform: translateY(-.22em);
       transition: transform .1s ease;
@@ -588,7 +588,7 @@
       border-radius: .4rem;
       padding: .25em .4em;
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: .85rem;
       font-weight: 700;
       outline: none;
@@ -634,7 +634,7 @@
       flex-shrink: 0;
     }
     .unit-pill-opt {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: .65rem;
       font-weight: 800;
       letter-spacing: .09em;
@@ -901,7 +901,7 @@
       border-radius: .4rem;
       padding: .28em .5em;
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: .85rem;
       font-weight: 700;
       outline: none;
@@ -1177,7 +1177,7 @@
       color: var(--y);
       line-height: 1.1;
       letter-spacing: .05em;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
     }
 
     .home-sub {
@@ -1289,7 +1289,8 @@
       color: var(--text);
     }
     .welcome-accent {
-      font-family: 'Playwrite IS', cursive;
+      font-family: 'Nunito', sans-serif;
+      font-style: italic;
       font-size: 1.35em;
       color: var(--y);
       display: inline-block;
@@ -1698,7 +1699,7 @@
       font-weight: 900;
       color: var(--y);
       line-height: 1;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
     }
 
     .res-sub {
@@ -1902,7 +1903,7 @@
       white-space: nowrap;
       font-weight: 800;
       font-size: .8rem;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
     }
 
     #notif-ok.ko .nf-face {
@@ -1945,7 +1946,7 @@
       white-space: nowrap;
       font-weight: 900;
       font-size: .92rem;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
       color: #fff;
     }
 
@@ -2058,7 +2059,7 @@
       border-radius: .35rem;
       padding: .12rem .5rem;
       color: var(--y);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
       flex-shrink: 0;
       line-height: 1.3;
       -webkit-user-select: none;
@@ -3053,7 +3054,7 @@
         beforeDraw(chart) {
           const { ctx, chartArea: { width, height, left, top } } = chart;
           ctx.save();
-          ctx.font = '700 1rem Inter, sans-serif';
+          ctx.font = '700 1rem Nunito, sans-serif';
           ctx.fillStyle = '#fff';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
@@ -3493,22 +3494,30 @@
     });
 
     /* ══ PHRASES ══ */
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
     function getPhrasesForGame() {
-      const src = getActiveQuestions();
-      const pool = [...src.filter(p => p.level <= gSettings.level)].sort(() => Math.random() - .5);
+      const pool = getActiveQuestions().filter(p => p.level <= gSettings.level);
       if (!pool.length) return [];
       if (gSettings.mode === 'time') {
-        /* Mode chrono : cycles sans doublons dans chaque cycle, ~400 items min */
+        /* Fenêtre anti-répétition : une question ne revient qu'après 70% du pool */
+        const win = Math.min(pool.length - 1, Math.max(1, Math.floor(pool.length * 0.7)));
         const big = [];
         while (big.length < 400) {
-          const cycle = [...pool].sort(() => Math.random() - .5);
-          if (big.length && pool.length > 1 && cycle[0] === big[big.length - 1]) cycle.push(cycle.shift());
-          big.push(...cycle);
+          const recent = new Set(big.slice(-win));
+          const cands = pool.filter(p => !recent.has(p));
+          const src = cands.length ? cands : pool;
+          big.push(src[Math.floor(Math.random() * src.length)]);
         }
         return big;
       }
-      /* Mode count : pas de doublons, limité à la taille du pool */
-      return pool.slice(0, Math.min(gSettings.count, pool.length));
+      return shuffle(pool).slice(0, Math.min(gSettings.count, pool.length));
     }
 
     /* ══ GAME ══ */
