@@ -2640,7 +2640,7 @@
 
         <div class="set-row set-inline">
           <span class="set-label">Tremblement sur streak (≥4)</span>
-          <label class="toggle-wrap"><input type="checkbox" id="set-streak-shake" checked />
+          <label class="toggle-wrap"><input type="checkbox" id="set-streak-shake" />
             <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
           </label>
         </div>
@@ -3079,7 +3079,7 @@
       applySoundVol(v);
       loadSfx().then(() => playSfx('correct', 1));
     });
-    const settings = { blurTimer: false, mode: 'time', count: 10, duration: 60, level: 3, sound: true, soundVolume: 0.51, liveHints: true, looseCorrection: true, showProgress: true, autoNext: false, animations: true, freezeBg: false, streakShake: true };
+    const settings = { blurTimer: false, mode: 'time', count: 10, duration: 60, level: 3, sound: true, soundVolume: 0.51, liveHints: true, looseCorrection: true, showProgress: true, autoNext: false, animations: true, freezeBg: false, streakShake: false };
 
     /* ══ SETTINGS PERSISTENCE ══ */
     const SETTINGS_KEY = 'lq_settings_v1';
@@ -3598,11 +3598,12 @@
         if (gStreak >= 4 && settings.streakShake) {
           const si = Math.min(gStreak - 3, 7);
           const sd = (0.3 + si * 0.04).toFixed(2) + 's';
-          card.style.setProperty('--si', si);
-          card.style.setProperty('--sd', sd);
-          card.classList.remove('streak-shake'); void card.offsetWidth;
-          card.classList.add('streak-shake');
-          setTimeout(() => card.classList.remove('streak-shake'), parseFloat(sd) * 1000 + 50);
+          const shakeEl = document.body;
+          shakeEl.style.setProperty('--si', si);
+          shakeEl.style.setProperty('--sd', sd);
+          shakeEl.classList.remove('streak-shake'); void shakeEl.offsetWidth;
+          shakeEl.classList.add('streak-shake');
+          setTimeout(() => shakeEl.classList.remove('streak-shake'), parseFloat(sd) * 1000 + 50);
         }
         gWaiting = true;
         if (gSettings.autoNext) autoNextTimer = setTimeout(autoNext, 250);
@@ -4014,6 +4015,9 @@
       document.querySelectorAll('.swatch').forEach(s => s.classList.toggle('active', s.dataset.color === color));
       const metaTheme = document.getElementById('meta-theme-color');
       if (metaTheme) metaTheme.setAttribute('content', color);
+      const faviconMap = { '#FFDE59': '/assets/logo.png', '#f8fafc': '/assets/4.png', '#c084fc': '/assets/5.png', '#f87171': '/assets/6.png', '#6ee7b7': '/assets/7.png', '#93c5fd': '/assets/8.png' };
+      const fav = faviconMap[color] || '/assets/logo.png';
+      document.querySelectorAll('link[rel="icon"]').forEach(el => { el.href = fav; });
     }
     function saveTheme(color) { try { localStorage.setItem(THEME_KEY, color); } catch(e) {} }
     document.querySelectorAll('.swatch').forEach(s => {
