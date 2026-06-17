@@ -1,0 +1,1001 @@
+J'ai été au cinéma hier.|I went to the cinema yesterday.
+Elle a mangé un sandwich au déjeuner.|She ate a sandwich for lunch.
+Il a travaillé toute la journée.|He worked all day.
+Nous avons visité la Tour Eiffel.|We visited the Eiffel Tower.
+Ils sont arrivés en retard.|They arrived late.
+Je me suis réveillé à sept heures ce matin.|I woke up at seven this morning.
+Elle m'a appelé cet après-midi.|She called me this afternoon.
+Nous avons dîné à la maison.|We ate dinner at home.
+J'ai acheté un nouveau livre.|I bought a new book.
+Il a oublié ses clés.|He forgot his keys.
+Nous nous sommes promenés dans le parc.|We went for a walk in the park.
+Elle a cuisiné des pâtes pour le dîner.|She cooked pasta for dinner.
+J'ai pris le train pour Paris.|I took the train to Paris.
+Ils ont joué au football dans le jardin.|They played football in the garden.
+Il a lu le journal ce matin.|He read the newspaper this morning.
+J'ai commencé un nouvel emploi la semaine dernière.|I started a new job last week.
+Elle a nettoyé la maison ce matin.|She cleaned the house this morning.
+Il a bu trop de café hier.|He drank too much coffee yesterday.
+Nous avons parlé français au dîner.|We spoke French at dinner.
+J'ai trouvé mes clés sous le canapé.|I found my keys under the sofa.
+Elle a raté le bus ce matin.|She missed the bus this morning.
+Il a réparé la chaise cassée.|He fixed the broken chair.
+Nous avons joué aux cartes après le dîner.|We played cards after dinner.
+J'ai oublié mon parapluie à la maison.|I forgot my umbrella at home.
+Elle a bu un verre d'eau avant de dormir.|She drank a glass of water before bed.
+Il est arrivé à neuf heures.|He arrived at nine o'clock.
+Ils sont partis tôt ce matin.|They left early this morning.
+J'ai lavé mes vêtements hier.|I washed my clothes yesterday.
+Elle s'est couchée à dix heures.|She went to bed at ten.
+Il a préparé le petit-déjeuner pour la famille.|He made breakfast for the family.
+Nous avons vu un film hier soir.|We saw a film last night.
+J'ai perdu mon portefeuille dans la rue.|I lost my wallet in the street.
+Elle a chanté une chanson à la fête.|She sang a song at the party.
+Il a joué de la guitare hier soir.|He played guitar last night.
+Je me réveille habituellement à six heures.|I usually wake up at six.
+Elle prend toujours son petit-déjeuner.|She always eats breakfast.
+Il n'arrive jamais en retard.|He never arrives late.
+Nous allons souvent au restaurant.|We often go to the restaurant.
+Je travaille parfois depuis chez moi.|I sometimes work from home.
+Ils mangent rarement du fast-food.|They rarely eat fast food.
+Je me lève et je prends une douche.|I get up and take a shower.
+Elle prépare son sac tous les soirs.|She prepares her bag every evening.
+Il lit avant de dormir.|He reads before sleeping.
+Nous buvons du café le matin.|We drink coffee in the morning.
+Je regarde mon téléphone quand je me réveille.|I check my phone when I wake up.
+Ils font du sport le week-end.|They play sport on weekends.
+Elle va à la salle de sport trois fois par semaine.|She goes to the gym three times a week.
+Il cuisine chaque dimanche.|He cooks every Sunday.
+J'aime voyager en train.|I like to travel by train.
+Elle préfère la montagne à la mer.|She prefers the mountains to the sea.
+Il veut visiter l'Italie.|He wants to visit Italy.
+Nous devons acheter de la nourriture.|We need to buy food.
+Je veux apprendre l'espagnol.|I want to learn Spanish.
+Elle a besoin de se reposer.|She needs to rest.
+Il espère trouver un travail bientôt.|He hopes to find a job soon.
+Ils prévoient de déménager l'année prochaine.|They plan to move next year.
+Je voudrais un café s'il vous plaît.|I would like a coffee please.
+Elle aimerait parler au responsable.|She would like to speak with the manager.
+Il préférerait rester à la maison.|He would prefer to stay at home.
+Puis-je avoir le menu s'il vous plaît ?|Can I have the menu please?
+Pouvons-nous avoir deux cafés ?|Can we have two coffees?
+Pouvez-vous apporter l'addition s'il vous plaît ?|Can you bring the bill please?
+Le restaurant ouvre à midi.|The restaurant opens at noon.
+Le magasin ferme à huit heures.|The shop closes at eight.
+Le musée ouvre le mardi.|The museum opens on Tuesday.
+Le train part à trois heures.|The train leaves at three.
+Le film commence à sept heures trente.|The film starts at seven thirty.
+Le concert a lieu vendredi.|The concert is on Friday.
+La fête commence à neuf heures du soir.|The party is at nine in the evening.
+J'ai une réunion à deux heures.|I have a meeting at two.
+Elle a un rendez-vous chez le médecin demain.|She has a doctor's appointment tomorrow.
+Le supermarché est très animé le samedi.|The supermarket is very busy on Saturdays.
+Je préfère faire les courses en semaine.|I prefer to go shopping during the week.
+Elle passe deux heures à cuisiner chaque jour.|She spends two hours cooking every day.
+Il prend le bus pour aller au travail tous les jours.|He takes the bus to work every day.
+Nous dinons ensemble chaque soir.|We eat dinner together every evening.
+Je nettoie ma chambre une fois par semaine.|I clean my room once a week.
+Elle appelle sa mère chaque dimanche.|She calls her mother every Sunday.
+Il fait de l'exercice trois fois par semaine.|He exercises three times a week.
+Je suis allé au marché et j'ai acheté des légumes.|I went to the market and bought vegetables.
+Elle a cuisiné un repas délicieux.|She cooked a delicious meal.
+Il a appelé un ami et ils ont parlé pendant une heure.|He called a friend and they talked for an hour.
+Nous avons nettoyé la maison puis nous nous sommes reposés.|We cleaned the house and then relaxed.
+J'ai terminé mes devoirs et je suis allé me coucher.|I finished my homework and went to bed.
+Elle a étudié le français pendant deux heures.|She studied French for two hours.
+Il a pris son petit-déjeuner et lu les nouvelles.|He ate breakfast and read the news.
+J'ai pris une photo du coucher de soleil.|I took a photo of the sunset.
+Elle a acheté un gâteau d'anniversaire pour son ami.|She bought a birthday cake for her friend.
+Il a appris dix nouveaux mots aujourd'hui.|He learned ten new words today.
+Nous avons passé l'après-midi à la plage.|We spent the afternoon at the beach.
+J'ai beaucoup aimé le concert.|I enjoyed the concert very much.
+Elle a oublié d'acheter du lait.|She forgot to buy milk.
+Il s'est souvenu de son rendez-vous à la dernière minute.|He remembered his appointment at the last minute.
+Nous avons décidé de prendre le train plutôt que le bus.|We decided to take the train instead of the bus.
+Je vais rendre visite à mes grands-parents le week-end prochain.|I am going to visit my grandparents next weekend.
+Elle va commencer un nouveau cours en septembre.|She is going to start a new course in September.
+Il va voyager au Japon l'année prochaine.|He is going to travel to Japan next year.
+Nous allons organiser une fête samedi.|We are going to have a party on Saturday.
+Je vais appeler ma mère ce soir.|I am going to call my mother tonight.
+Elle va acheter un nouveau téléphone.|She is going to buy a new phone.
+Il va réparer l'ordinateur.|He is going to fix the computer.
+Ils vont déménager dans une nouvelle ville.|They are going to move to a new city.
+Y a-t-il une banque près d'ici ?|Is there a bank near here?
+Y a-t-il un supermarché dans les environs ?|Is there a supermarket nearby?
+Comment puis-je aller à la gare ?|How do I get to the station?
+Quel bus va au centre-ville ?|Which bus goes to the centre?
+Est-ce le bon train pour Paris ?|Is this the right train for Paris?
+Combien de temps faut-il pour y aller ?|How long does it take to get there?
+Ce bus s'arrête-t-il au marché ?|Does this bus stop at the market?
+Où puis-je acheter un billet ?|Where can I buy a ticket?
+Dois-je changer de train ?|Do I need to change trains?
+À quelle heure part le dernier bus ?|What time does the last bus leave?
+Le trajet dure environ deux heures.|The journey takes about two hours.
+Je cherche un hôtel.|I am looking for a hotel.
+Avez-vous une chambre disponible ?|Do you have a room available?
+Je voudrais une chambre pour deux nuits.|I would like a room for two nights.
+Quel est le prix par nuit ?|What is the price per night?
+Le petit-déjeuner est-il inclus ?|Is breakfast included?
+La chambre est très confortable.|The room is very comfortable.
+Puis-je avoir la clé de ma chambre ?|Can I have the key to my room?
+Je voudrais partir demain.|I would like to check out tomorrow.
+L'hôtel est proche de la plage.|The hotel is close to the beach.
+Ma chambre a vue sur la mer.|My room has a view of the sea.
+J'ai besoin d'une chambre double.|I need a double room.
+Pouvez-vous me réveiller à sept heures ?|Can you wake me up at seven?
+J'ai commandé une pizza.|I ordered a pizza.
+Elle a servi la salade en premier.|She served the salad first.
+Il a mis trop de sel.|He added too much salt.
+Nous avons essayé une nouvelle recette.|We tried a new recipe.
+J'ai oublié d'ajouter le sucre.|I forgot to add the sugar.
+Elle a goûté la soupe et ajouté du poivre.|She tasted the soup and added pepper.
+Il a coupé les légumes pour la salade.|He cut the vegetables for the salad.
+Nous avons partagé le dessert.|We shared the dessert.
+J'ai appris une recette française en ligne.|I learned a French recipe online.
+Elle a fait un gâteau au chocolat de zéro.|She made a chocolate cake from scratch.
+Je travaille dans une grande entreprise.|I work in a big company.
+Elle est avocate.|She is a lawyer.
+Il est ingénieur.|He is an engineer.
+Nous travaillons dans le même bureau.|We work in the same office.
+J'ai une réunion chaque lundi matin.|I have a meeting every Monday morning.
+Elle a beaucoup de travail aujourd'hui.|She has a lot of work to do today.
+Il a envoyé le rapport par email.|He sent the report by email.
+Nous avons eu une reunion productive.|We had a productive meeting.
+Je dois terminer ce rapport.|I need to finish this report.
+Elle gère une équipe de dix personnes.|She manages a team of ten people.
+Il cherche un nouvel emploi.|He is looking for a new job.
+J'ai eu un entretien d'embauche ce matin.|I had a job interview this morning.
+Elle a été promue le mois dernier.|She got a promotion last month.
+Il fait des heures supplémentaires chaque semaine.|He works overtime every week.
+Le train avait vingt minutes de retard.|The train was delayed by twenty minutes.
+Le vol était à l'heure.|The flight was on time.
+J'ai raté le dernier train.|I missed the last train.
+Elle a réservé un taxi pour l'aéroport.|She booked a taxi to the airport.
+Il a loué une voiture pour le week-end.|He rented a car for the weekend.
+Nous sommes arrivés à l'hôtel après minuit.|We arrived at the hotel after midnight.
+Je suis parti de chez moi à sept heures et je suis arrivé au travail à huit heures.|I left home at seven and arrived at work at eight.
+La route était très chargée ce matin.|The road was very busy this morning.
+Elle a pris un chemin différent pour éviter les embouteillages.|She took a different route to avoid traffic.
+Il a garé la voiture en centre-ville.|He parked the car in the centre.
+J'ai payé par carte.|I paid by card.
+Elle a payé en espèces.|She paid in cash.
+Il a demandé un reçu.|He asked for a receipt.
+Nous avons eu une remise de dix pour cent.|We got a discount of ten percent.
+J'ai rapporté l'article cassé.|I returned the broken item.
+Elle a échangé la chemise bleue contre une rouge.|She exchanged the blue shirt for a red one.
+Le prix inclut la taxe.|The price includes tax.
+J'ai oublié mon portefeuille à la maison.|I forgot my wallet at home.
+Elle n'a pas assez d'argent.|She does not have enough money.
+Il paie toujours à temps.|He always pays on time.
+J'aime me promener dans la forêt.|I like walking in the forest.
+Elle adore nager dans la mer.|She loves swimming in the sea.
+Il aime jouer aux jeux de société.|He enjoys playing board games.
+Nous aimons regarder des films chez nous.|We like watching films at home.
+J'aime cuisiner de nouveaux plats.|I enjoy cooking new dishes.
+Elle adore danser aux fêtes.|She loves dancing at parties.
+Il est passionné de football.|He is passionate about football.
+Nous nous intéressons à l'art.|We are interested in art.
+Je trouve l'histoire fascinante.|I find history fascinating.
+Elle est douée pour la peinture.|She is good at painting.
+Il n'est pas très doué en cuisine.|He is not very good at cooking.
+Nous passons beaucoup de temps dehors.|We spend a lot of time outdoors.
+J'essaie de lire chaque jour.|I try to read every day.
+Elle apprend à jouer du piano.|She is learning to play the piano.
+Il a commencé à courir l'année dernière.|He started running last year.
+Nous aimons faire de la randonnée en montagne.|We enjoy hiking in the mountains.
+J'essaie de faire de l'exercice au moins trois fois par semaine.|I try to exercise at least three times a week.
+Elle chante dans une chorale.|She sings in a choir.
+Il joue dans une équipe de football.|He plays in a football team.
+Nous allons aux concerts quand nous le pouvons.|We go to concerts when we can.
+J'apprends à conduire.|I am learning to drive.
+Elle révise pour son examen.|She is studying for her exam.
+Il pratique son français tous les jours.|He is practising his French every day.
+Nous apprenons tous les deux une nouvelle langue.|We are both learning a new language.
+J'ai réussi mon permis de conduire le mois dernier.|I passed my driving test last month.
+Elle a échoué à son examen et doit le repasser.|She failed her exam and has to redo it.
+Il a terminé ses études il y a deux ans.|He finished his studies two years ago.
+Nous sommes dans la même classe.|We are in the same class.
+J'ai des devoirs à faire ce soir.|I have homework to do tonight.
+Elle est la meilleure élève de la classe.|She is the best student in the class.
+Il étudie la médecine à l'université.|He studies medicine at university.
+Nous avons un examen la semaine prochaine.|We have an exam next week.
+Je dois améliorer ma grammaire.|I need to improve my grammar.
+Elle a posé une question au professeur.|She asked the teacher a question.
+Il n'a pas compris la leçon.|He did not understand the lesson.
+Nous avons cours tous les matins.|We have class every morning.
+J'aime mon cours de français.|I like my French class.
+Elle prend des notes pendant le cours.|She takes notes during the lesson.
+Il étudie à la bibliothèque.|He studies in the library.
+Nous avions un projet de groupe à faire.|We had a group project to do.
+Je parle un peu français.|I speak a little French.
+Elle parle trois langues.|She speaks three languages.
+Il a un leger accent.|He has a slight accent.
+Nous communiquons en français au travail.|We communicate in French at work.
+Mon français s'améliore.|I am getting better at French.
+Elle a traduit le texte en français.|She translated the text into French.
+Il ne parle pas très bien.|He does not speak very well.
+Nous avons pratiqué le dialogue ensemble.|We practiced the dialogue together.
+La grammaire française me perturbe.|I am confused by French grammar.
+Elle a corrigé ma prononciation.|She corrected my pronunciation.
+Il écoute de la musique française pour progresser.|He listens to French music to improve.
+Nous avons regardé un film français sans sous-titres.|We watched a French film without subtitles.
+J'ai passé une bonne journée aujourd'hui.|I had a good day today.
+Elle a eu une matinee difficile.|She had a difficult morning.
+Il s'est très bien amusé à la fête.|He had a great time at the party.
+Nous avons eu une conversation intéressante.|We had an interesting conversation.
+Je me suis senti nerveux avant la présentation.|I felt nervous before the presentation.
+Elle s'est sentie mieux après le repos.|She felt better after the rest.
+Il était excité par le voyage.|He was excited about the trip.
+Nous avons été surpris par les nouvelles.|We were surprised by the news.
+J'ai été soulagé quand j'ai trouvé mes clés.|I was relieved when I found my keys.
+Elle était déçue par le résultat.|She was disappointed by the result.
+Il était heureux d'entendre la bonne nouvelle.|He was happy to hear the good news.
+Nous étions fatigués après le long voyage.|We were tired after the long journey.
+Je m'ennuyais pendant la conférence.|I was bored during the lecture.
+Elle était fière de ses enfants.|She was proud of her children.
+Il était en colère parce qu'il avait raté le train.|He was angry because he missed the train.
+Nous étions nerveux à l'idée de l'examen.|We were nervous about the exam.
+J'ai été ravi par la fête surprise.|I was delighted by the surprise party.
+Le livre était très intéressant.|The book was very interesting.
+Le film était un peu ennuyeux.|The film was a bit boring.
+La nourriture était délicieuse.|The food was delicious.
+Le temps était terrible.|The weather was terrible.
+Le voyage était très long.|The journey was very long.
+Le concert était excellent.|The concert was excellent.
+L'hôtel était très propre.|The hotel was very clean.
+Le match était excitant.|The match was exciting.
+Le restaurant était trop cher.|The restaurant was too expensive.
+Le service était très bien.|The service was very good.
+Je pense que la ville est très belle.|I think the city is very beautiful.
+Elle pense que le livre est ennuyeux.|She believes the book is boring.
+Il pense que la nourriture est trop salée.|He thinks the food is too salty.
+Nous trouvons le cours très utile.|We find the course very useful.
+Je suis d'accord que le film était bien.|I agree that the film was good.
+Elle n'est pas d'accord sur le restaurant.|She disagrees about the restaurant.
+Il préfère l'ancienne version.|He prefers the old version.
+Nous aimons tous les deux le nouveau design.|We both like the new design.
+Je préférerais rester à la maison ce soir.|I would rather stay home tonight.
+Elle préférerait manger à la maison.|She would prefer to eat at home.
+Il n'aime pas la foule.|He does not like crowds.
+Nous préférons les endroits calmes.|We prefer quiet places.
+J'ai du mal à me réveiller tôt.|I find it hard to wake up early.
+Elle trouve la cuisine relaxante.|She finds cooking relaxing.
+Il trouve la conduite stressante.|He finds driving stressful.
+Nous trouvons la vie en ville epuisante.|We find city life exhausting.
+Je me sens souvent fatigué après le travail.|I often feel tired after work.
+Elle se sent parfois seule en ville.|She sometimes feels lonely in the city.
+Il se sent toujours mieux après l'exercice.|He always feels better after exercise.
+Nous nous sentons plus à l'aise maintenant.|We feel more comfortable now.
+Je me sens beaucoup mieux aujourd'hui.|I feel much better today.
+Elle se sent nerveuse à propos de l'entretien.|She feels nervous about the interview.
+Je suis allé au marché hier.|I went to the market yesterday.
+Elle a acheté une robe rouge.|She bought a red dress.
+Nous sommes allés au cinéma hier soir.|We went to the cinema last night.
+Il a oublié ses clés à la maison.|He forgot his keys at home.
+Ils sont arrivés à l'heure.|They arrived on time.
+J'ai déjà mangé.|I have already eaten.
+Elle n'a jamais essayé les sushis.|She has never tried sushi.
+Nous avons visité Paris deux fois.|We have visited Paris twice.
+Il n'est jamais allé à l'étranger.|He has never been abroad.
+Ils sont déjà partis.|They have already left.
+Je bois habituellement du café le matin.|I usually drink coffee in the morning.
+Elle lit toujours avant de dormir.|She always reads before bed.
+Nous faisons souvent une promenade le dimanche.|We often go for a walk on Sunday.
+Il mange rarement des légumes.|He rarely eats vegetables.
+Ils travaillent parfois la nuit.|They sometimes work at night.
+Je me réveille toujours tôt.|I always wake up early.
+Elle n'oublie jamais son parapluie.|She never forgets her umbrella.
+Nous allons à la salle de sport tous les jours.|We go to the gym every day.
+Il regarde parfois la télé le soir.|He sometimes watches TV in the evening.
+Ils voyagent souvent pour le travail.|They often travel for work.
+Je voudrais une table pour deux.|I would like a table for two.
+Puis-je voir la carte s'il vous plaît ?|Can I see the menu please?
+Qu'est-ce que vous recommandez ?|What do you recommend?
+Je prendrai le steak s'il vous plaît.|I will have the steak please.
+Ce plat est-il épicé ?|Is this dish spicy?
+Je suis allergique aux noix.|I am allergic to nuts.
+Puis-je avoir l'addition s'il vous plaît ?|Can I have the bill please?
+La nourriture était excellente.|The food was excellent.
+J'ai laissé un pourboire.|I left a tip.
+Nous avons eu un repas magnifique.|We had a wonderful meal.
+Je cherche un emploi.|I am looking for a job.
+J'ai un entretien demain.|I have an interview tomorrow.
+Je travaille dans un bureau.|I work in an office.
+Mon patron est très exigeant.|My boss is very demanding.
+J'ai eu une promotion le mois dernier.|I got a promotion last month.
+Je travaille de chez moi le vendredi.|I work from home on Fridays.
+La réunion commence à neuf heures.|The meeting starts at nine.
+Je dois envoyer un email.|I need to send an email.
+J'ai beaucoup de travail aujourd'hui.|I have a lot of work today.
+J'ai fini le projet à temps.|I finished the project on time.
+Je prends le bus tous les matins.|I take the bus every morning.
+Le train est en retard aujourd'hui.|The train is late today.
+J'ai raté mon bus.|I missed my bus.
+Il y a un embouteillage.|There is a traffic jam.
+Je préfère aller au travail à pied.|I prefer to walk to work.
+Je dois faire le plein.|I need to fill up the car.
+Peux-tu me conduire à la gare ?|Can you drive me to the station?
+Où est l'arrêt de bus le plus proche ?|Where is the nearest bus stop?
+Le taxi attend dehors.|The taxi is waiting outside.
+J'ai besoin d'un médecin.|I need a doctor.
+J'ai mal à la tête.|I have a headache.
+J'ai mal à la gorge.|I have a sore throat.
+J'ai de la fièvre.|I have a fever.
+Je me sens mieux aujourd'hui.|I feel better today.
+Elle doit se reposer.|She needs to rest.
+Il s'est cassé la jambe.|He broke his leg.
+Je prends des médicaments tous les jours.|I take medicine every day.
+L'hôpital est très propre.|The hospital is very clean.
+Je dois prendre un rendez-vous.|I need to make an appointment.
+J'adore faire du shopping.|I love shopping.
+Cette veste est en solde.|This jacket is on sale.
+Combien ça coûte ?|How much does this cost?
+C'est trop cher.|It is too expensive.
+C'est une bonne affaire.|It is a good deal.
+Avez-vous cela en taille plus petite ?|Do you have this in a smaller size?
+Puis-je l'essayer ?|Can I try this on?
+Je voudrais retourner ceci.|I would like to return this.
+La file d'attente est très longue.|The queue is very long.
+J'ai payé par carte.|I paid by card.
+Où est la cabine d'essayage ?|Where is the changing room?
+Je dois étudier pour mon examen.|I need to study for my exam.
+La bibliothèque est très calme.|The library is very quiet.
+J'ai beaucoup de devoirs.|I have a lot of homework.
+Elle a réussi son examen.|She passed her exam.
+Il a raté son permis de conduire.|He failed his driving test.
+Nous avons une présentation la semaine prochaine.|We have a presentation next week.
+Le professeur est très strict.|The professor is very strict.
+J'adore apprendre de nouvelles choses.|I love learning new things.
+Je suis parti en vacances l'été dernier.|I went on holiday last summer.
+L'hôtel était très confortable.|The hotel was very comfortable.
+J'ai perdu mon passeport.|I lost my passport.
+Nous avons visité beaucoup de musées.|We visited many museums.
+La plage était magnifique.|The beach was beautiful.
+J'ai pris beaucoup de photos.|I took many photos.
+J'ai raté mon vol.|I missed my flight.
+Je dois réserver une chambre d'hôtel.|I need to book a hotel room.
+Le vol était très long.|The flight was very long.
+Pouvez-vous parler plus lentement s'il vous plaît ?|Can you speak more slowly please?
+Je ne comprends pas.|I do not understand.
+Pouvez-vous répéter ?|Can you repeat that?
+J'apprends le français.|I am learning French.
+Mon français n'est pas tres bon.|My French is not very good.
+Il parle très bien le français.|He speaks French very well.
+Elle est bilingue.|She is bilingual.
+Je veux parler couramment.|I want to speak fluently.
+Qu'est-ce que tu fais pour te détendre ?|What do you do for fun?
+Je joue au football le week-end.|I play football on weekends.
+Elle lit beaucoup dans son temps libre.|She reads a lot in her free time.
+Nous faisons de la randonnée en montagne.|We go hiking in the mountains.
+Il peint comme passe-temps.|He paints as a hobby.
+Ils vont nager chaque samedi.|They go swimming every Saturday.
+Je joue de la guitare pendant mon temps libre.|I play the guitar in my free time.
+Elle collectionne des timbres.|She collects stamps.
+Il adore essayer de nouvelles recettes.|He loves cooking new recipes.
+Je regarde des séries le soir.|I watch series in the evening.
+Pouvez-vous m'aider avec ceci ?|Can you help me with this?
+Bien sûr, je vais t'aider.|Sure, I will help you.
+J'ai besoin de parler à quelqu'un.|I need to talk to someone.
+Qu'est-ce que tu penses de ça ?|What do you think about this?
+Je suis d'accord avec toi.|I agree with you.
+Je ne suis pas d'accord avec toi.|I disagree with you.
+À mon avis, c'est une bonne idée.|In my opinion, it is a good idea.
+Je pense qu'il a raison.|I think he is right.
+Personnellement, je préfère la première option.|Personally, I prefer the first option.
+Cela dépend de la situation.|It depends on the situation.
+Je me suis levé tôt ce matin.|I woke up early this morning.
+J'ai pris mon petit-déjeuner à sept heures.|I had breakfast at seven.
+Je me suis couche tard hier soir.|I went to bed late last night.
+Elle m'a appelé cet après-midi.|She called me this afternoon.
+Il est venu nous rendre visite la semaine dernière.|He came to visit us last week.
+Nous avons parlé longtemps.|We talked for a long time.
+J'ai oublié de la rappeler.|I forgot to call her back.
+Nous nous sommes disputés.|We had an argument.
+Elle s'est excusée auprès de moi.|She apologized to me.
+Tout va bien maintenant.|Everything is fine now.
+J'ai cuisiné le dîner pour ma famille.|I cooked dinner for my family.
+Nous avons mangé ensemble autour de la table.|We ate together around the table.
+J'ai aidé ma sœur avec ses devoirs.|I helped my sister with her homework.
+Mes parents sont partis en voyage.|My parents went on a trip.
+Les enfants ont joué dans le jardin.|The children played in the garden.
+J'ai envoyé un message à mon ami.|I sent a message to my friend.
+Elle m'a prêté sa voiture pour le week-end.|She lent me her car for the weekend.
+Il m'a emprunté de l'argent.|He borrowed money from me.
+Nous avons partagé le coût également.|We shared the cost equally.
+Elle a tout payé.|She paid for everything.
+Il pleuvait quand je suis parti.|It was raining when I left.
+Le soleil est apparu l'après-midi.|The sun came out in the afternoon.
+Il y a eu un orage hier soir.|There was a thunderstorm last night.
+J'adore la neige.|I love the snow.
+Il faisait très froid cet hiver.|It was very cold this winter.
+Le printemps est enfin arrivé.|Spring has arrived at last.
+J'aime l'été le mieux.|I like summer the best.
+L'automne est ma saison préférée.|Autumn is my favourite season.
+Le vent était très fort aujourd'hui.|The wind was very strong today.
+J'étudie tous les jours.|I study every day.
+Je révise mes notes avant un examen.|I revise my notes before an exam.
+Elle prend des notes en classe.|She takes notes in class.
+Il pose beaucoup de questions.|He asks a lot of questions.
+Nous avons un projet de groupe à terminer.|We have a group project to finish.
+Le professeur l'a expliqué très clairement.|The teacher explained it very clearly.
+J'ai besoin de plus de pratique.|I need more practice.
+Je fais des erreurs parfois.|I make mistakes sometimes.
+L'apprentissage prend du temps.|Learning takes time.
+Je parle deux langues.|I speak two languages.
+Elle étudie l'espagnol à l'université.|She is studying Spanish at university.
+Je suis allé à la salle de sport ce matin.|I went to the gym this morning.
+Elle court chaque soir après le travail.|She runs every evening after work.
+Nous avons joué au tennis le week-end dernier.|We played tennis last weekend.
+Il va au travail à vélo.|He cycles to work.
+Je dois boire plus d'eau.|I need to drink more water.
+Je dors huit heures par nuit.|I sleep eight hours a night.
+Elle mange équilibré.|She eats a balanced diet.
+Il a arrêté de fumer l'année dernière.|He quit smoking last year.
+Je me sens en pleine forme aujourd'hui.|I feel very fit today.
+Je dois perdre du poids.|I need to lose some weight.
+Je me suis fait mal au dos à la salle de sport.|I hurt my back at the gym.
+Le kinésithérapeute a beaucoup aidé.|The physiotherapist helped a lot.
+J'ai besoin de lunettes pour lire.|I need glasses to read.
+J'ai un rendez-vous chez le dentiste.|I have a dentist appointment.
+Le dentiste a dit que j'ai besoin d'un plombage.|The dentist said I need a filling.
+Je veux visiter le Japon un jour.|I want to visit Japan one day.
+J'ai toujours voulu aller au Brésil.|I have always wanted to go to Brazil.
+Elle prévoit un voyage en Italie.|She is planning a trip to Italy.
+Il a visité l'Espagne l'année dernière.|He visited Spain last year.
+Nous avons séjourné dans une auberge de jeunesse.|We stayed in a youth hostel.
+J'ai changé de l'argent à la banque.|I exchanged money at the bank.
+Le guide touristique était excellent.|The tour guide was excellent.
+Je me suis brûlé au soleil à la plage.|I got sunburned at the beach.
+L'aéroport était très bondé.|The airport was very crowded.
+J'ai fait l'enregistrement en ligne.|I checked in online.
+Ma valise a été perdue.|My suitcase was lost.
+Je dois charger mon téléphone.|I need to charge my phone.
+Mon ordinateur portable est très lent.|My laptop is very slow.
+Je dois mettre à jour mon logiciel.|I need to update my software.
+La connexion internet est mauvaise ici.|The internet connection is bad here.
+J'ai supprimé le fichier par erreur.|I deleted the file by mistake.
+Elle a acheté un nouveau smartphone.|She bought a new smartphone.
+Il utilise les réseaux sociaux tout le temps.|He uses social media all the time.
+J'ai envoyé le document par email.|I sent the document by email.
+L'imprimante est en manque d'encre.|The printer is out of ink.
+Je dois imprimer ce document.|I need to print this document.
+Je sauvegarde mon travail régulièrement.|I save my work regularly.
+Elle a créé un blog l'année dernière.|She started a blog last year.
+Il regarde des vidéos en ligne tous les jours.|He watches videos online every day.
+La nourriture à l'événement était très bonne.|The food at the event was great.
+J'y ai rencontré beaucoup de gens intéressants.|I met many interesting people there.
+Elle a prononcé un discours lors de la conférence.|She gave a speech at the conference.
+Nous avons fêté son anniversaire hier.|We celebrated her birthday yesterday.
+J'ai organisé le dîner.|I organized the dinner party.
+Il y avait beaucoup d'invités.|There were a lot of guests.
+Nous avons dansé jusqu'à minuit.|We danced until midnight.
+C'était une soirée magnifique.|It was a wonderful evening.
+Tout le monde s'est bien amusé.|Everyone enjoyed themselves.
+Je veux économiser de l'argent pour une voiture.|I want to save money for a car.
+Elle a un compte épargne.|She has a savings account.
+Il a payé son loyer à temps.|He paid his rent on time.
+Je dois payer mes factures.|I need to pay my bills.
+Elle dépense trop en vêtements.|She spends too much on clothes.
+J'ai eu une réduction sur ce produit.|I got a discount on this product.
+Il a investi en bourse.|He invested in stocks.
+J'utilise la banque en ligne.|I use online banking.
+L'économie se porte bien.|The economy is doing well.
+Elle a acheté un appartement en centre-ville.|She bought a flat in the city centre.
+Mon loyer a augmenté cette année.|My rent has increased this year.
+Il doit réparer le toit.|He needs to fix the roof.
+Nous avons déménagé dans un nouvel appartement le mois dernier.|We moved to a new apartment last month.
+J'adore mon quartier.|I love my neighbourhood.
+Il y a un parc près de ma maison.|There is a park near my house.
+Les voisins sont très sympathiques.|The neighbours are very friendly.
+Je dois nettoyer la maison aujourd'hui.|I need to clean the house today.
+Elle a magnifiquement décoré le salon.|She decorated the living room beautifully.
+Je dois acheter de nouveaux meubles.|I need to buy new furniture.
+Il a réparé la fenêtre cassée.|He fixed the broken window.
+Le jardin a besoin d'être arrosé.|The garden needs watering.
+J'ai planté des fleurs le week-end dernier.|I planted some flowers last weekend.
+Nous avons fait un barbecue dans le jardin.|We had a barbecue in the garden.
+Je passe beaucoup de temps dans la cuisine.|I spend a lot of time in the kitchen.
+J'ai essayé une nouvelle recette aujourd'hui.|I tried a new recipe today.
+Le gâteau est sorti parfaitement.|The cake came out perfectly.
+J'adore faire du pain à la maison.|I love baking bread at home.
+Elle a fait de la confiture maison.|She made homemade jam.
+Il est très bon cuisinier.|He is a very good cook.
+Je mange au restaurant deux fois par semaine.|I eat out twice a week.
+Je préfère les repas faits maison.|I prefer home-cooked meals.
+Le restaurant était complet.|The restaurant was fully booked.
+Nous avons dû attendre une table.|We had to wait for a table.
+Le serveur était très poli.|The waiter was very polite.
+J'ai commandé la soupe en entrée.|I ordered the soup to start.
+Le plat principal était délicieux.|The main course was delicious.
+Je suis parti sans dessert.|I left without dessert.
+Les portions étaient très généreuses.|The portions were very generous.
+Elle est végétarienne.|She is vegetarian.
+Je ne mange pas de viande.|I do not eat meat.
+Il est allergique aux produits laitiers.|He is allergic to dairy products.
+J'adore essayer de nouvelles cuisines.|I love trying new cuisines.
+Ma cuisine préférée est italienne.|My favourite cuisine is Italian.
+J'aime partager les plats quand je sors.|I like to share dishes when I go out.
+Je lis les actualités chaque matin.|I read the news every morning.
+J'écoute la radio en conduisant.|I listen to the radio while driving.
+Elle regarde les informations chaque soir.|She watches the news every evening.
+Je préfère lire plutôt que regarder la télévision.|I prefer reading to watching television.
+Il suit la politique de près.|He follows politics closely.
+J'aime les films documentaires.|I like documentary films.
+Elle préfère les films romantiques.|She prefers romantic films.
+Il adore les films d'action.|He loves action movies.
+Nous avons vu une comédie vendredi dernier.|We went to see a comedy last Friday.
+Le film était complet.|The film was sold out.
+J'ai téléchargé une nouvelle application aujourd'hui.|I downloaded a new app today.
+La batterie de mon téléphone se décharge vite.|My phone battery dies quickly.
+J'ai besoin d'un nouveau téléphone.|I need a new phone.
+Elle prend beaucoup de photos avec son téléphone.|She takes a lot of photos with her phone.
+Il joue à des jeux sur sa tablette.|He plays games on his tablet.
+J'utilise mon ordinateur pour le travail.|I use my computer for work.
+Je passe trop de temps sur les réseaux sociaux.|I spend too much time on social media.
+Elle utilise une application pour suivre ses courses.|She uses an app to track her runs.
+Il a une montre connectée.|He has a smartwatch.
+Je suis né à Paris.|I was born in Paris.
+Elle a grandi à la campagne.|She grew up in the countryside.
+Il a déménagé à Londres il y a trois ans.|He moved to London three years ago.
+Nous avons vécu à l'étranger pendant deux ans.|We lived abroad for two years.
+Je viens d'une grande famille.|I come from a large family.
+Elle a trois frères et une sœur.|She has three brothers and a sister.
+Il est enfant unique.|He is an only child.
+Mes parents ont divorcé quand j'étais jeune.|My parents divorced when I was young.
+Mes grands-parents sont très gentils.|My grandparents are very kind.
+Je rends visite à mes grands-parents chaque mois.|I visit my grandparents every month.
+Ma tante habite à Lyon.|My aunt lives in Lyon.
+J'ai une relation très proche avec mes cousins.|I have a very close relationship with my cousins.
+Elle s'est mariée au printemps dernier.|She got married last spring.
+Ils attendent un bébé.|They are expecting a baby.
+Il est devenu père l'année dernière.|He became a father last year.
+Les enfants grandissent si vite.|The children are growing up so fast.
+Mon chat est très paresseux.|My cat is very lazy.
+Mon chien adore les promenades.|My dog loves going for walks.
+J'ai un poisson rouge à la maison.|I have a goldfish at home.
+Elle a peur des araignées.|She is afraid of spiders.
+Il emmène son chien au parc tous les jours.|He takes his dog to the park every day.
+Je veux adopter un chat de refuge.|I want to adopt a rescue cat.
+Mon animal de compagnie me rend très heureux.|My pet makes me very happy.
+Je me soucie beaucoup de l'environnement.|I care deeply about the environment.
+Je recycle à la maison.|I recycle at home.
+Elle utilise les transports en commun pour réduire la pollution.|She uses public transport to reduce pollution.
+Il a installé des panneaux solaires sur son toit.|He installed solar panels on his roof.
+Nous essayons d'économiser l'eau à la maison.|We try to save water at home.
+J'ai acheté un sac réutilisable pour les courses.|I bought a reusable bag for shopping.
+Il y a trop de déchets plastiques.|There is too much plastic waste.
+Le changement climatique est un problème sérieux.|Climate change is a serious problem.
+Je préfère les aliments biologiques.|I prefer organic food.
+Elle fait du bénévolat chaque week-end.|She volunteers every weekend.
+Il fait des dons à des associations régulièrement.|He donates to charity regularly.
+Je crois en l'égalité des droits pour tous.|I believe in equal rights for everyone.
+Elle a manifesté la semaine dernière.|She marched in a demonstration last week.
+Il a écrit une lettre à son député local.|He wrote a letter to his local MP.
+Je veux faire une différence dans le monde.|I want to make a difference in the world.
+Apprendre une langue ouvre beaucoup de portes.|Learning a language opens many doors.
+Je pratique le français tous les jours pour progresser.|I practise French every day to improve.
+Elle a fait de grands progrès en anglais.|She made great progress in English.
+Il a suivi un cours de langue en ligne.|He took a language course online.
+J'utilise une application pour apprendre le vocabulaire.|I use an app to learn vocabulary.
+Je suis intéressé par l'art.|I am interested in art.
+Elle a visité une galerie d'art le week-end dernier.|She visited an art gallery last weekend.
+Il a acheté un tableau pour sa chambre.|He bought a painting for his bedroom.
+Nous sommes allés à un concert samedi dernier.|We went to a concert last Saturday.
+Le spectacle était incroyable.|The performance was incredible.
+J'adore la musique classique.|I love classical music.
+Elle préfère le jazz au pop.|She prefers jazz to pop.
+Il joue du piano chaque soir.|He plays the piano every evening.
+J'adore aller au théâtre.|I love going to the theatre.
+La pièce était très émouvante.|The play was very emotional.
+J'ai lu un roman fantastique le mois dernier.|I read a fantastic novel last month.
+Elle m'a recommandé un excellent livre.|She recommended a great book to me.
+Il écrit une nouvelle.|He is writing a short story.
+J'apprécie la poésie.|I enjoy poetry.
+Elle a visité le musée d'art moderne.|She visited the museum of modern art.
+J'ai fait de la randonnée dans les Alpes l'été dernier.|I went hiking in the Alps last summer.
+Elle fait du surf en été.|She goes surfing in summer.
+Il adore l'escalade.|He loves rock climbing.
+Nous allons skier chaque hiver.|We go skiing every winter.
+J'ai essayé le paddle pour la première fois.|I tried paddle boarding for the first time.
+Elle fait de l'équitation le week-end.|She goes horse riding at weekends.
+Il adore faire du vélo le long de la côte.|He loves cycling along the coast.
+J'ai joué au volleyball sur la plage.|I played volleyball on the beach.
+Nous avons fait une promenade en bateau sur la rivière.|We took a boat trip on the river.
+Je préfère les sports individuels aux sports d'équipe.|I prefer individual sports to team sports.
+J'économise pour acheter une maison.|I am saving up to buy a house.
+Elle travaille à temps partiel dans un magasin.|She works part-time at a shop.
+Il gagne un bon salaire.|He earns a good salary.
+Je dois payer mes impôts.|I need to pay my taxes.
+Elle a eu une augmentation cette année.|She got a pay rise this year.
+Il est travailleur indépendant.|He is self-employed.
+Je cherche un meilleur emploi.|I am looking for a better job.
+Elle a postulé à un nouveau poste.|She applied for a new position.
+On lui a offert un poste à l'étranger.|He was offered a job abroad.
+J'apprécie beaucoup mon travail.|I enjoy my job very much.
+Elle est très heureuse dans son nouveau poste.|She is very happy in her new role.
+Il a du mal à équilibrer vie professionnelle et vie privée.|He struggles with work-life balance.
+Je prends soin de ma santé mentale.|I take care of my mental health.
+Elle médite chaque matin.|She meditates every morning.
+Il voit un thérapeute régulièrement.|He sees a therapist regularly.
+J'essaie de rester positif.|I try to stay positive.
+Elle a beaucoup de confiance en elle.|She has a lot of self-confidence.
+Il traverse une période difficile.|He is going through a difficult time.
+Je me sens stressé.|I feel stressed out.
+Elle a besoin d'une pause.|She needs a break.
+Je suis très enthousiaste pour mon nouveau projet.|I am very excited about my new project.
+Elle est nerveuse pour la présentation.|She is nervous about the presentation.
+Il est fier de ses accomplissements.|He feels proud of his achievements.
+Mes proches me manquent quand je voyage.|I miss my family when I travel.
+Elle s'est sentie seule dans la nouvelle ville.|She felt lonely in the new city.
+Il a été surpris par la nouvelle.|He was surprised by the news.
+Je me suis senti soulagé après l'examen.|I felt relieved after the exam.
+Elle a peur de prendre l'avion.|She is afraid of flying.
+Il était très en colère à propos de la décision.|He was very angry about the decision.
+Je me suis senti heureux quand j'ai entendu la nouvelle.|I felt happy when I heard the news.
+Elle a souri quand elle l'a vu.|She smiled when she saw him.
+Il a ri de la plaisanterie.|He laughed at the joke.
+Nous avons pleuré à la fin du film.|We cried at the end of the film.
+J'ai serré mon amie dans mes bras quand je l'ai vue.|I hugged my friend when I saw her.
+Elle a serré la main à tout le monde dans la pièce.|She shook hands with everyone in the room.
+Il a fait au revoir de la main à l'aéroport.|He waved goodbye at the airport.
+Je lui ai envoyé un message d'anniversaire.|I sent her a birthday message.
+Ils ont organisé une fête surprise pour lui.|They threw a surprise party for him.
+Nous lui avons offert des fleurs pour son anniversaire.|We gave her flowers for her birthday.
+Elle nous a chaleureusement remerciés.|She thanked us warmly.
+Il a porté un toast au dîner.|He gave a toast at the dinner.
+Elle travaille ici depuis deux ans.|She has been working here for two years.
+Il est le membre le plus expérimenté de l'équipe.|He is the most experienced member of the team.
+Nous travaillons très bien ensemble.|We work very well together.
+Elle est responsable du projet.|She is in charge of the project.
+Il a présenté les résultats au conseil d'administration.|He presented the results to the board.
+Je dois améliorer ma gestion du temps.|I need to improve my time management.
+Elle respecte toujours ses délais.|She always meets her deadlines.
+Il était en retard pour la réunion.|He was late to the meeting.
+Nous avons remis le rapport hier.|We submitted the report yesterday.
+Le client était très satisfait.|The client was very satisfied.
+J'ai eu une journée productive.|I had a productive day.
+Elle a besoin de plus de formation.|She needs more training.
+Il a assisté à une conférence sur le marketing.|He attended a conference on marketing.
+J'ai présenté mes idées clairement.|I presented my ideas clearly.
+Mon entreprise offre de bons avantages.|My company offers good benefits.
+Elle a reçu un prix pour son travail.|She received an award for her work.
+Il prévoit de prendre sa retraite l'année prochaine.|He is planning to retire next year.
+Je commence un nouvel emploi le mois prochain.|I am starting a new job next month.
+Elle est en congé maternité.|She is on maternity leave.
+Il a pris une année sabbatique pour voyager.|He took a gap year to travel.
+Je suis retourné aux études après avoir travaillé.|I went back to studying after working.
+Elle a changé de carrière après dix ans.|She changed career after ten years.
+Je veux créer ma propre entreprise.|I want to start my own business.
+Il étudie l'administration des affaires.|He is studying business administration.
+Le cours dure deux ans.|The course lasts two years.
+Elle a obtenu une bourse d'études.|She got a scholarship.
+Il a obtenu son diplôme l'année dernière.|He graduated last year.
+Je rédige ma thèse.|I am writing my thesis.
+Elle a étudié le droit à l'université.|She studied law at university.
+Il se spécialise en chimie.|He is specialising in chemistry.
+Nous avons eu un conférencier invité aujourd'hui.|We had a guest speaker today.
+J'ai participé à un débat à l'école.|I took part in a debate at school.
+Elle a eu la note maximale pour sa dissertation.|She got full marks on her essay.
+Les résultats des examens sortent demain.|The exam results come out tomorrow.
+Je suis nerveux à propos de mes résultats de test.|I am nervous about my test results.
+Elle a réussi avec mention.|She passed with distinction.
+Il a échoué et va repasser l'examen.|He failed and will retake the exam.
+Je révise pour mes examens finaux.|I am revising for my final exams.
+Nous avons un exposé oral lundi prochain.|We have an oral presentation next Monday.
+Elle a une très bonne mémoire.|She has a very good memory.
+Il est très doué en maths.|He is very good at maths.
+J'ai du mal avec les règles de grammaire.|I struggle with grammar rules.
+Elle comprend les concepts très vite.|She understands concepts very quickly.
+J'apprends mieux en faisant.|I learn best by doing.
+Il préfère les explications visuelles.|He prefers visual explanations.
+J'écris tout pour m'en souvenir.|I write everything down to remember it.
+Elle utilise des fiches pour mémoriser le vocabulaire.|She uses flashcards to memorise vocabulary.
+Il écoute des podcasts pour améliorer son français.|He listens to podcasts to improve his French.
+Je regarde des films français pour m'entraîner.|I watch French films to practise.
+Elle a un correspondant en France.|She has a penpal in France.
+Il participe à un groupe de conversation en français.|He attends a French conversation group.
+J'ai fait une erreur et je l'ai corrigée.|I made a mistake and corrected it.
+Elle n'a pas peur de faire des erreurs.|She is not afraid to make mistakes.
+Il s'entraîne à parler même quand il se trompe.|He practises speaking even when he is wrong.
+La confiance est la clé pour bien parler.|Confidence is key to speaking well.
+Je m'améliore chaque jour.|I am getting better every day.
+Elle a gentiment corrigé ma prononciation.|She corrected my pronunciation kindly.
+Il m'a encouragé à continuer.|He encouraged me to keep going.
+J'aime apprendre et évoluer.|I enjoy learning and growing.
+Chaque erreur est une leçon.|Every mistake is a lesson.
+Continuez d'apprendre chaque jour.|Keep learning every day.
+J'aurais dû étudier davantage.|I should have studied harder.
+Si j'avais plus de temps, j'apprendrais le japonais.|If I had more time, I would learn Japanese.
+Elle aimerait pouvoir chanter.|She wishes she could sing.
+Il voyagerait s'il avait l'argent.|He would travel if he had the money.
+Si le temps était mieux, nous sortirions.|If the weather were better, we would go out.
+Je voudrais parler mieux le français.|I wish I spoke French better.
+Elle habiterait à l'étranger si elle le pouvait.|She would live abroad if she could.
+Il changerait d'emploi si c'était possible.|He would change jobs if it were possible.
+Nous achèterions une maison si nous avions plus d'argent.|We would buy a house if we had more money.
+Je serais plus heureux avec plus de temps libre.|I would be happier with more free time.
+Il m'a dit que le vol était retardé.|He told me that the flight was delayed.
+Elle a dit qu'elle me rappellerait.|She said she would call me back.
+Ils ont annoncé que le magasin fermait.|They announced that the shop was closing.
+J'ai entendu dire qu'ils déménageaient.|I heard that they are moving house.
+Elle nous a dit qu'elle allait mieux.|She told us she was feeling better.
+Il a expliqué qu'il était occupé.|He explained that he was busy.
+On nous a dit que le projet était annulé.|We were told the project was cancelled.
+J'ai demandé si elle avait besoin d'aide.|I asked if she needed help.
+Elle a répondu que tout allait bien.|She replied that everything was fine.
+Il a demandé où se trouvait la pharmacie la plus proche.|He asked where the nearest pharmacy was.
+Je dois aller à la pharmacie.|I need to go to the pharmacy.
+Le pharmacien m'a donné de bons conseils.|The pharmacist gave me good advice.
+Je prends un comprimé deux fois par jour.|I take one tablet twice a day.
+Elle se remet d'un rhume.|She is recovering from a cold.
+Il a une température de trente-huit degrés.|He has a temperature of thirty-eight degrees.
+Je me sens bien mieux aujourd'hui qu'hier.|I feel much better today than yesterday.
+Elle suit un traitement aux antibiotiques.|She is on a course of antibiotics.
+Il a dû aller aux urgences.|He had to go to the emergency room.
+J'ai subi une opération le mois dernier.|I had surgery last month.
+Le temps de récupération était de deux semaines.|The recovery time was two weeks.
+J'ai donné du sang la semaine dernière.|I donated blood last week.
+Elle est infirmière à l'hôpital local.|She is a nurse at the local hospital.
+Il se forme pour devenir médecin.|He is training to be a doctor.
+Je veux travailler dans le domaine de la santé.|I want to work in healthcare.
+Prévenir vaut mieux que guérir.|Prevention is better than cure.
+J'essaie de bien manger et de rester en bonne santé.|I try to eat well and stay healthy.
+Elle est végétarienne depuis cinq ans.|She has been a vegetarian for five years.
+Il essaie de réduire sa consommation de sucre.|He is trying to cut down on sugar.
+Je bois du thé vert chaque matin.|I drink green tea every morning.
+Elle évite les aliments transformés.|She avoids processed food.
+Il mange cinq portions de fruits et légumes par jour.|He eats five portions of fruit and vegetables a day.
+Je fais une promenade après le dîner.|I go for a walk after dinner.
+Elle fait des étirements chaque matin et soir.|She stretches every morning and evening.
+Il prend les escaliers plutôt que l'ascenseur.|He takes the stairs instead of the lift.
+J'essaie de réduire mon temps d'écran.|I am trying to reduce my screen time.
+Elle a commencé à faire du yoga.|She has started doing yoga.
+Il fait du vélo pour rester en forme.|He cycles to stay fit.
+Je me sens bien plus energique depuis que j'ai commencé à faire du sport.|I feel much more energetic since I started exercising.
+La salle de sport est très bien équipée.|The gym is very well equipped.
+Elle a perdu cinq kilogrammes depuis janvier.|She has lost five kilograms since January.
+Il a couru son premier marathon le printemps dernier.|He ran his first marathon last spring.
+Je trouve la natation très relaxante.|I find swimming very relaxing.
+Elle s'entraîne pour un triathlon.|She is training for a triathlon.
+Il joue au badminton le mardi.|He plays badminton on Tuesdays.
+Je dois m'étirer davantage après l'exercice.|I need to stretch more after exercise.
+Pouvez-vous m'indiquer le chemin ?|Can you give me directions?
+Tournez à gauche aux feux.|Turn left at the traffic lights.
+Allez tout droit pendant deux kilomètres.|Go straight ahead for two kilometres.
+C'est sur le côté droit de la rue.|It is on the right side of the street.
+La rue est juste au coin.|The street is just around the corner.
+Vous ne pouvez pas le rater.|You cannot miss it.
+C'est à côté de la poste.|It is next to the post office.
+Cela prend environ dix minutes à pied.|It takes about ten minutes on foot.
+Y a-t-il un parking à proximité ?|Is there a car park nearby?
+La route est fermée aujourd'hui.|The road is closed today.
+Je dois acheter un billet de train.|I need to buy a train ticket.
+De quel quai part le train ?|Which platform does the train leave from?
+Le train part dans dix minutes.|The train leaves in ten minutes.
+Cette place est-elle prise ?|Is this seat taken?
+Je voudrais un billet aller-retour s'il vous plaît.|I would like a return ticket please.
+Ce train s'arrête-t-il à Lyon ?|Does this train stop in Lyon?
+Je suis monté dans le mauvais train.|I got on the wrong train.
+Nous sommes arrivés avec deux heures de retard.|We arrived two hours late.
+Le ferry était très lent.|The ferry was very slow.
+Je préfère le train à l'avion pour les courtes distances.|I prefer the train to the plane for short distances.
+Puis-je payer par carte de crédit ?|Can I pay by credit card?
+Acceptez-vous les espèces ?|Do you accept cash?
+J'ai besoin de monnaie.|I need some change.
+Le total s'élève à cinquante euros.|The total comes to fifty euros.
+J'ai reçu le mauvais rendu de monnaie.|I received the wrong change.
+Puis-je avoir un reçu s'il vous plaît ?|Can I get a receipt please?
+Ce prix est négociable.|This price is negotiable.
+Il y a une réduction pour les étudiants.|There is a discount for students.
+Les soldes se terminent ce dimanche.|The sale ends this Sunday.
+Je cherche un cadeau pour ma mère.|I am looking for a present for my mother.
+Ce cadeau est pour mon meilleur ami.|This gift is for my best friend.
+Pouvez-vous l'emballer comme cadeau ?|Can you wrap it as a gift?
+Je voudrais commander un gâteau d'anniversaire.|I would like to order a birthday cake.
+Avez-vous ceci en stock ?|Do you have this in stock?
+Je regarde juste.|I am just browsing.
+Le magasin ferme à vingt heures.|The shop closes at eight in the evening.
+Je dois échanger cet article.|I need to exchange this item.
+Ceci est défectueux.|This is faulty.
+Je voudrais un remboursement complet.|I would like a full refund.
+Où est le service client ?|Where is the customer service desk?
+Le personnel était très serviable.|The staff were very helpful.
+J'habite ici depuis trois ans.|I have lived here for three years.
+J'ai demenage ici d'une autre ville.|I moved here from another city.
+J'adore vivre dans cette ville.|I love living in this city.
+La ville a beaucoup d'espaces verts.|The city has a lot of green spaces.
+Le système de transports en commun est excellent.|The public transport system is excellent.
+Le centre-ville devient très animé le week-end.|The city centre gets very busy on weekends.
+J'aime le marché local les samedis matin.|I like the local market on Saturday mornings.
+Un nouveau restaurant ouvre près de chez moi.|There is a new restaurant opening near me.
+Le quartier a beaucoup changé.|The neighbourhood has changed a lot.
+Je préfère vivre en ville plutôt qu'à la campagne.|I prefer living in the city to the countryside.
+Je voudrais un siège côté fenêtre s'il vous plaît.|I would like a window seat please.
+Est-ce le bon bus pour l'aéroport ?|Is this the right bus for the airport?
+Je dois m'enregistrer avant midi.|I have to check in by twelve o'clock.
+Mon vol est à six heures du matin.|My flight is at six in the morning.
+J'ai réservé un siège en classe affaires.|I booked a seat in business class.
+L'équipage de cabine était très attentif.|The cabin crew were very attentive.
+Nous avons atterri sains et saufs après un long vol.|We landed safely after a long flight.
+J'ai toujours le décalage horaire après les longs vols.|I always get jet lag after long flights.
+Elle a loué une voiture à l'aéroport.|She hired a car at the airport.
+Il s'est perdu en allant à l'hôtel.|He got lost on the way to the hotel.
+J'ai besoin d'un plan de la ville.|I need a map of the city.
+Elle a demandé son chemin à un habitant.|She asked a local for directions.
+Il a visité la vieille ville.|He visited the old part of the city.
+Nous avons fait une visite guidée du château.|We took a guided tour of the castle.
+Le monument était très impressionnant.|The monument was very impressive.
+J'ai acheté des souvenirs pour ma famille.|I bought some souvenirs for my family.
+La nourriture locale était incroyable.|The local food was amazing.
+J'ai goûté le vin local.|I tried the local wine.
+Le temps était parfait pour visiter les sites.|The weather was perfect for sightseeing.
+Je reviendrai sûrement ici.|I will definitely come back here.
+Je cuisine habituellement le dîner pour ma famille.|I usually cook dinner for my family.
+Elle fait son pain elle-même.|She makes her own bread.
+Il suit une recette très soigneusement.|He follows a recipe very carefully.
+Nous avons eu des restes pour le déjeuner aujourd'hui.|We had leftovers for lunch today.
+Je dois faire les courses alimentaires.|I need to do the grocery shopping.
+Elle fait toujours une liste de courses avant d'aller au supermarché.|She always makes a shopping list before going to the supermarket.
+Il a oublié d'acheter du lait.|He forgot to buy milk.
+Je dois degivrer le congelateur.|I need to defrost the freezer.
+La cuisine était en désordre après la cuisson.|The kitchen was a mess after cooking.
+Elle adore essayer de nouvelles recettes de différents pays.|She loves trying out new recipes from different countries.
+Il est doué pour faire des sauces.|He is good at making sauces.
+Je préfère la cuisine maison à manger au restaurant.|I prefer home cooking to eating out.
+Elle a préparé un plat traditionnel de son pays d'origine.|She made a traditional dish from her home country.
+Il a brûlé les toasts ce matin.|He burnt the toast this morning.
+Nous avons mangé dehors sur la terrasse.|We ate outside on the terrace.
+J'adore les soirées d'été avec des amis.|I love summer evenings with friends.
+Nous avons fait un pique-nique dans le parc.|We had a picnic in the park.
+Elle a organisé un dîner pour dix personnes.|She organised a dinner for ten people.
+Il a apporté du vin à la fête.|He brought wine to the party.
+Nous avons tous apporté quelque chose à manger.|We all brought something to eat.
+La soirée s'est terminée très tard.|The evening ended very late.
+Je me suis senti fatigué mais heureux après l'événement.|I felt tired but happy after the event.
+Il est important de passer du temps avec ses proches.|It is important to spend time with loved ones.
+Les bonnes relations demandent des efforts et de l'attention.|Strong relationships require effort and care.
+Elle garde le contact avec tous ses vieux amis.|She keeps in touch with all her old friends.
+Il s'est fait beaucoup d'amis depuis son installation dans une nouvelle ville.|He has made many friends since moving to a new city.
+Je valorise la loyauté avant tout dans l'amitié.|I value loyalty above everything else in friendship.
+J'attends depuis une heure.|I have been waiting for an hour.
+Elle étudie depuis sept heures ce matin.|She has been studying since seven this morning.
+Nous travaillons sur ce projet depuis des mois.|We have been working on this project for months.
+Il habite en France depuis deux ans.|He has been living in France for two years.
+J'apprends le français depuis six mois.|I have been learning French for six months.
+Elle ne se sent pas bien depuis hier.|She has been feeling unwell since yesterday.
+Il a essayé de t'appeler toute la journée.|He has been trying to call you all day.
+Nous économisons depuis un an maintenant.|We have been saving for a year now.
+Je regarde cette série depuis une semaine.|I have been watching this series for a week.
+Elle attend son visa depuis trois mois.|She has been waiting for her visa for three months.
+Je dois pratiquer davantage le français conversationnel.|I need to practise more conversational French.
+Elle écrit en français chaque jour pour s'améliorer.|She writes in French every day to improve.
+Il fait une liste de vocabulaire après chaque cours.|He makes a vocabulary list after each lesson.
+J'utilise des sous-titres en regardant des films français.|I use subtitles when watching French films.
+Elle chante en même temps que les chansons françaises pour améliorer sa prononciation.|She sings along to French songs to improve her pronunciation.
+Il lit les nouvelles françaises en ligne chaque matin.|He reads French news online every morning.
+Je me parle en français pour m'entraîner.|I speak to myself in French to practise.
+Elle rejoint des groupes de conversation français en ligne.|She joins online French conversation groups.
+Il prévoit de passer un été en France pour s'améliorer.|He plans to spend a summer in France to improve.
+Je suis très motivé pour atteindre la fluidité.|I am very motivated to reach fluency.
+Chaque jour je m'améliore un peu.|Every day I get a little bit better.
+Je suis fier du chemin parcouru.|I am proud of how far I have come.
+Ne cessez jamais d'apprendre.|Never stop learning.
+Apprendre une langue change la façon dont vous voyez le monde.|Learning a language changes the way you see the world.
+Elle parle avec un fort accent régional.|She speaks with a strong regional accent.
+Il peut comprendre le français mais a du mal à le parler.|He can understand French but struggles to speak it.
+Je trouve la comprehension orale plus difficile que la lecture.|I find listening comprehension harder than reading.
+Elle travaille sur son expression écrite.|She is working on her written expression.
+Il a un vocabulaire très large.|He has a very wide vocabulary.
+J'ai du mal avec les noms genrés en français.|I struggle with gendered nouns in French.
+Elle s'entraîne à écrire des essais en français chaque semaine.|She practises writing essays in French every week.
+Il corrige ses erreurs en relisant son écriture.|He corrects his mistakes by reviewing his writing.
+Je préfère écrire en français à la main pour mieux mémoriser.|I prefer to write in French by hand to memorise better.
+Elle lit de la littérature française pour améliorer son style d'écriture.|She reads French literature to improve her writing style.
+Je suis à l'aise en lisant le français mais moins en parlant.|I am confident when I read French but less so when I speak.
+Il travaille à réduire son reflexe de traduction.|He is working on reducing his translation reflex.
+Elle essaie de penser directement en français.|She tries to think directly in French.
+Je me confonds entre des mots qui sonnent pareillement.|I get confused between similar sounding words.
+Il demande a ses collegues francais de le corriger.|He asks his French colleagues to correct him.
+Elle s'enregistre en train de parler français pour suivre ses progrès.|She records herself speaking French to track progress.
+Je regarde des chaines YouTube françaises pour rester immergé.|I watch French YouTube channels to stay immersed.
+Il s'est fixé comme objectif de parler couramment d'ici l'an prochain.|He has set a goal to speak fluently by next year.
+Elle utilise son français au travail chaque jour maintenant.|She uses her French at work every day now.
+Je n'ai pas peur de faire des erreurs devant les autres.|I am not afraid to make mistakes in front of others.
+Je suis allé à un cours de français pour la première fois aujourd'hui.|I went to a French class for the first time today.
+Elle a retrouvé son partenaire d'échange linguistique pour un café.|She met her language exchange partner for coffee.
+Il a téléchargé une nouvelle application d'apprentissage du français.|He downloaded a new French learning app.
+Elle a lu une courte histoire française pour débutants.|She read a short French story for beginners.
+Je commence à apprécier la lecture en français.|I am starting to enjoy reading in French.
+Il utilise un dictionnaire mais de moins en moins maintenant.|He uses a dictionary but less and less now.
+Je me sens plus a l'aise en français après six mois.|I feel more comfortable in French after six months.
+Elle peut maintenant avoir une conversation complète en français.|She can now have a full conversation in French.
+Il a surpris ses amis français avec ses progrès.|He surprised his French friends with his progress.
+Je suis enthousiaste à l'idée de commencer le niveau suivant en français.|I am excited to start the next level of French.
+Je viens d'arriver en France.|I have just arrived in France.
+Elle vient de finir ses examens.|She has just finished her exams.
+Il vient d'obtenir un nouvel emploi.|He has just got a new job.
+Nous venons d'emménager dans notre nouveau appartement.|We have just moved into our new flat.
+Je viens de rentrer de vacances.|I have just returned from holiday.
+Elle vient de m'appeler.|She has just called me.
+Il vient de manger.|He has just eaten.
+Ils viennent de partir.|They have just left.
+Je viens de finir le travail.|I have just finished work.
+Nous venons de recevoir d'excellentes nouvelles.|We have just received some exciting news.
+Je dois finir ce rapport d'ici vendredi.|I need to finish this report by Friday.
+Elle doit assister à une séance de formation demain.|She has to attend a training session tomorrow.
+Il a dû annuler la réunion.|He had to cancel the meeting.
+Nous devons reporter le rendez-vous.|We need to reschedule the appointment.
+J'ai oublié de répondre à l'email.|I forgot to reply to the email.
+Elle a envoyé le mauvais document.|She sent the wrong document.
+Il a fait une erreur dans la présentation.|He made an error in the presentation.
+Nous avons eu une session de brainstorming productive.|We had a productive brainstorming session.
+Elle a organisé l'agenda de la semaine.|She organised the agenda for the week.
+Il est très organisé au travail.|He is very organised at work.
+Je fais toujours une liste de choses à faire le matin.|I always make a to-do list in the morning.
+Elle atteint ses objectifs chaque mois.|She meets her objectives every month.
+Il est un employé très fiable.|He is a very reliable employee.
+Nous devons améliorer la satisfaction client.|We need to improve customer satisfaction.
+J'ai proposé une nouvelle stratégie à mon équipe.|I suggested a new strategy to my team.
+Elle dirigera le prochain projet.|She will lead the next project.
+Il a délégué la tâche à son assistant.|He delegated the task to his assistant.
+La société s'est étendue à de nouveaux marchés.|The company expanded to new markets.
+J'ai présenté les prévisions budgétaires au directeur.|I presented the budget forecast to the director.
+Nous avons dépassé notre objectif de ventes ce trimestre.|We exceeded our sales target this quarter.
+Je trouve difficile de me concentrer quand il y a du bruit.|I find it hard to concentrate when there is noise.
+Elle écoute de la musique pendant qu'elle travaille.|She listens to music while she works.
+Il préfère travailler dans le silence.|He prefers to work in silence.
+Je fais des pauses régulières pour rester concentré.|I take regular breaks to stay focused.
+Elle travaille mieux le matin que le soir.|She works better in the morning than in the evening.
+Il a besoin d'un environnement calme pour étudier.|He needs a quiet environment to study.
+Je me sens plus productif quand je fais du sport régulièrement.|I feel more productive when I exercise regularly.
+Elle fixe des objectifs quotidiens pour rester motivée.|She sets daily goals to stay motivated.
+Il se récompense après avoir accompli une tâche.|He rewards himself after completing a task.
+Je suis mes progrès pour rester sur la bonne voie.|I track my progress to stay on course.
+Elle finit toujours ce qu'elle commence.|She always finishes what she starts.
+Il n'est pas très doué pour faire plusieurs choses à la fois.|He is not very good at multitasking.
+Je travaille mieux sous pression.|I work best under pressure.
+Elle gère son temps de manière très efficace.|She manages her time very efficiently.
+Il planifie tout à l'avance.|He plans everything in advance.
+J'essaie toujours de faire de mon mieux.|I always try to do my best.
+Elle est très ambitieuse et travaille dur.|She is very ambitious and works hard.
+Il est déterminé à atteindre ses objectifs.|He is determined to achieve his goals.
+Je crois que le travail acharné paie toujours.|I believe hard work always pays off.
+Le succès est le résultat d'efforts constants.|Success is the result of consistent effort.
+J'essaie de réduire mon utilisation du plastique.|I have been trying to reduce my use of plastic.
+Elle a compoté ses déchets alimentaires pour la première fois.|She composted her food waste for the first time.
+Il est passé aux énergies renouvelables à la maison.|He switched to renewable energy at home.
+Nous avons planté un arbre dans notre jardin.|We planted a tree in our garden.
+J'apporte mon propre sac au marché chaque semaine.|I bring my own bag to the market every week.
+Elle évite d'acheter des produits avec un emballage excessif.|She avoids buying products with excessive packaging.
+Il utilise son scooter électrique plutôt que de conduire.|He rides his electric scooter instead of driving.
+Nous essayons d'acheter des aliments produits localement.|We try to buy locally produced food.
+Je réduis ma consommation de viande pour l'environnement.|I am reducing my meat consumption for the environment.
+Elle a signé une pétition pour protéger le parc local.|She signed a petition to protect the local park.
+Il fait du bénévolat à la banque alimentaire locale une fois par mois.|He volunteers at the local food bank once a month.
+Nous soutenons une association qui construit des écoles dans des pays en développement.|We support a charity that builds schools in developing countries.
+J'ai donné des vêtements à un magasin caritatif local.|I donated clothes to a local charity shop.
+Elle a participé à une opération de nettoyage de plage.|She participated in a beach clean-up event.
+Il apprend à ses enfants à respecter la nature.|He teaches his children to respect nature.
+La ville a investi dans de nouvelles pistes cyclables.|The city invested in new cycle lanes.
+Les transports en commun sont gratuits dans certaines villes.|Public transport is free in some cities.
+Nous avons fait campagne pour une meilleure qualite de l'air dans notre ville.|We campaigned for better air quality in our town.
+Elle a sensibilisé au problème de la pollution de l'eau à l'école.|She raised awareness about water pollution in school.
+Chaque petit geste compte pour un avenir plus vert.|Every small action counts towards a greener future.
+Je joue du piano depuis l'enfance.|I have been playing the piano since childhood.
+Elle dessine depuis qu'elle est enfant.|She has been drawing ever since she was a child.
+Il joue au football depuis quinze ans.|He has been playing football for fifteen years.
+Nous frequentons la meme salle de sport depuis trois ans.|We have been going to the same gym for three years.
+Je prends des cours de chant depuis deux ans.|I have been taking singing lessons for two years.
+Elle écrit son roman depuis cinq ans.|She has been writing her novel for five years.
+Il apprend a cuisiner depuis qu'il est à la retraite.|He has been learning to cook since he retired.
+Je fais de la photographie depuis dix ans.|I have been taking photographs for ten years.
+Elle est impliquée dans le théâtre depuis l'université.|She has been involved in theatre since university.
+Nous collectionnons des disques vinyle depuis des annees.|We have been collecting vinyl records for years.
+Je travaille dans l'éducation depuis douze ans.|I have been working in education for twelve years.
+Elle est infirmière depuis huit ans.|She has been a nurse for eight years.
+Il dirige sa propre entreprise depuis deux mille vingt.|He has been running his own company since twenty twenty.
+J'apprends l'espagnol en parallèle du français.|I have been learning Spanish alongside French.
+Elle vit à l'étranger et la patrie lui manque.|She has been living abroad and misses home.
+Il a beaucoup étudié tout au long du semestre.|He has been studying hard all semester.
+Nous économisons pour partir en grand voyage.|We have been saving to go on a big trip.
+Je me suis préparé pour ce moment depuis des mois.|I have been preparing for this moment for months.

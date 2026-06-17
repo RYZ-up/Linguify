@@ -4,7 +4,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Linguify</title>
+  <title>Linguify — Apprendre le français et l'anglais en s'amusant</title>
+  <meta name="description" content="Linguify est un jeu de traduction gratuit pour apprendre le français et l'anglais : traduis des phrases, progresse de A1 à C2, défie le chrono et suis tes scores." />
+  <link rel="canonical" href="https://linguify.fr/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Linguify — Apprendre le français et l'anglais en s'amusant" />
+  <meta property="og:description" content="Jeu de traduction gratuit anglais ⇄ français : 5 niveaux de difficulté, correction intelligente par IA, mode chrono et suivi de progression." />
+  <meta property="og:url" content="https://linguify.fr/" />
+  <meta property="og:image" content="https://linguify.fr/assets/logo.png" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Linguify" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Linguify — Apprendre le français et l'anglais en s'amusant" />
+  <meta name="twitter:description" content="Jeu de traduction gratuit anglais ⇄ français : 5 niveaux de difficulté, correction intelligente par IA, mode chrono et suivi de progression." />
+  <meta name="twitter:image" content="https://linguify.fr/assets/logo.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalApplication",
+    "name": "Linguify",
+    "url": "https://linguify.fr/",
+    "description": "Jeu de traduction gratuit pour apprendre le français et l'anglais, avec correction intelligente par IA et progression par niveaux.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "inLanguage": ["fr", "en"],
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/logo.png?v=4" />
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/logo.png?v=4" />
   <link rel="manifest" href="/manifest.json" />
@@ -2616,6 +2642,13 @@
           </div>
         </div>
 
+        <div class="set-row set-inline">
+          <span class="set-label">Sens : <span id="direction-label">Anglais → Français</span></span>
+          <label class="toggle-wrap"><input type="checkbox" id="set-direction" />
+            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
+          </label>
+        </div>
+
         <div class="set-div"></div>
         <div class="set-section-title">Options</div>
 
@@ -2717,7 +2750,7 @@
         <div class="g-progress-fill" id="g-progress-fill"></div>
       </div>
       <div class="phrase-card" id="phrase-card">
-        <div class="p-lbl">Traduisez en français</div>
+        <div class="p-lbl" id="p-lbl">Traduisez en français</div>
         <div class="p-txt" id="p-txt"></div>
         <div id="live-trans"></div>
       </div>
@@ -2847,20 +2880,34 @@
     const auth = firebase.auth(), db = firebase.database(), fs = firebase.firestore();
 
     let gAllQuestions = [];
+    let gAllQuestionsFrEn = [];
     async function loadQuestionsFromDB() {
       try {
         const cached = localStorage.getItem('lq_questions_v3');
-        if (cached) { gAllQuestions = JSON.parse(cached); return; }
-        const snap = await fs.collection('questions').get();
-        if (!snap.empty) {
-          gAllQuestions = snap.docs.map(d => d.data());
-          localStorage.setItem('lq_questions_v3', JSON.stringify(gAllQuestions));
+        if (cached) { gAllQuestions = JSON.parse(cached); }
+        else {
+          const snap = await fs.collection('questions').get();
+          if (!snap.empty) {
+            gAllQuestions = snap.docs.map(d => d.data());
+            localStorage.setItem('lq_questions_v3', JSON.stringify(gAllQuestions));
+          }
         }
       } catch (e) { console.error('Questions load:', e); }
+      try {
+        const cachedFrEn = localStorage.getItem('lq_questions_fr_en_v1');
+        if (cachedFrEn) { gAllQuestionsFrEn = JSON.parse(cachedFrEn); }
+        else {
+          const snapFrEn = await fs.collection('questions_fr_en').get();
+          if (!snapFrEn.empty) {
+            gAllQuestionsFrEn = snapFrEn.docs.map(d => d.data());
+            localStorage.setItem('lq_questions_fr_en_v1', JSON.stringify(gAllQuestionsFrEn));
+          }
+        }
+      } catch (e) { console.error('Questions FR→EN load:', e); }
     }
     loadQuestionsFromDB();
 
-    function getActiveQuestions() { return gAllQuestions; }
+    function getActiveQuestions() { return settings.direction === 'fr-en' ? gAllQuestionsFrEn : gAllQuestions; }
 
 
     /* ══ CORRECTION ══ */
@@ -3122,7 +3169,7 @@
       applySoundVol(v);
       loadSfx().then(() => playSfx('correct', 1));
     });
-    const settings = { blurTimer: false, mode: 'time', count: 10, duration: 60, level: 3, sound: true, soundVolume: 0.51, liveHints: true, looseCorrection: true, showProgress: true, autoNext: false, animations: true, freezeBg: false, streakShake: false, streakMul: true };
+    const settings = { blurTimer: false, mode: 'time', count: 10, duration: 60, level: 3, sound: true, soundVolume: 0.51, liveHints: true, looseCorrection: true, showProgress: true, autoNext: false, animations: true, freezeBg: false, streakShake: false, streakMul: true, direction: 'en-fr' };
 
     /* ══ SETTINGS PERSISTENCE ══ */
     const SETTINGS_KEY = 'lq_settings_v1';
@@ -3146,6 +3193,13 @@
       if (s.freezeBg != null) { settings.freezeBg = s.freezeBg; document.getElementById('set-freeze-bg').checked = s.freezeBg; if (typeof setCanvasPaused === 'function') setCanvasPaused(s.freezeBg); }
       if (s.streakShake != null) { settings.streakShake = s.streakShake; document.getElementById('set-streak-shake').checked = s.streakShake; }
       if (s.streakMul != null) { settings.streakMul = s.streakMul; document.getElementById('set-streak-mul').checked = s.streakMul; }
+      if (s.direction) {
+        settings.direction = s.direction;
+        const dch = document.getElementById('set-direction');
+        if (dch) dch.checked = s.direction === 'fr-en';
+        const dlabel = document.getElementById('direction-label');
+        if (dlabel) dlabel.textContent = s.direction === 'fr-en' ? 'Français → Anglais' : 'Anglais → Français';
+      }
       if (s.themeColor) { applyTheme(s.themeColor); saveTheme(s.themeColor); }
       syncModeInputs();
     }
@@ -3451,6 +3505,11 @@
       if (typeof setCanvasPaused === 'function') setCanvasPaused(this.checked);
       persistSettings();
     });
+    document.getElementById('set-direction').addEventListener('change', function () {
+      settings.direction = this.checked ? 'fr-en' : 'en-fr';
+      document.getElementById('direction-label').textContent = this.checked ? 'Français → Anglais' : 'Anglais → Français';
+      persistSettings();
+    });
     function syncModeInputs() {
       const chrono = document.getElementById('set-mode-chrono').checked;
       document.getElementById('time-row').classList.toggle('disabled', !chrono);
@@ -3545,6 +3604,7 @@
 
     function startGame() {
       gSettings = { ...settings };
+      document.getElementById('p-lbl').textContent = gSettings.direction === 'fr-en' ? 'Traduisez en anglais' : 'Traduisez en français';
       destroyCharts();
       gPhrases = getPhrasesForGame(); gIdx = 0; gCorrect = 0; gScore = 0; gResults = []; gAnswers = []; gWaiting = false; gStreak = 0; gStreakMax = 0; gCompletedStreaks = 0;
       const mulEl = document.getElementById('g-streak-mul'); if (mulEl) mulEl.style.display = 'none';
@@ -3603,14 +3663,14 @@
       gQuestionStart = Date.now();
     }
 
-    async function aiCheck(en, correct, userAnswer) {
+    async function aiCheck(en, correct, userAnswer, direction) {
       try {
         const ctrl = new AbortController();
         const tid = setTimeout(() => ctrl.abort(), 5000);
         const res = await fetch('/api/ai-correct', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ mode: 'check', en, correct, userAnswer }),
+          body: JSON.stringify({ mode: 'check', en, correct, userAnswer, direction }),
           signal: ctrl.signal
         });
         clearTimeout(tid);
@@ -3634,7 +3694,7 @@
       const phrase = gPhrases[gIdx];
       const clientOk = isCorrect(raw, phrase);
       const aiRef = phrase.answers && phrase.answers.length ? phrase.answers.join(' / ') : phrase.hint;
-      const aiResult = clientOk ? null : await aiCheck(phrase.en, aiRef, raw);
+      const aiResult = clientOk ? null : await aiCheck(phrase.en, aiRef, raw, gSettings.direction);
       const ok = clientOk || aiResult === true;
 
       if (ok) {

@@ -1,0 +1,1000 @@
+Bonjour !|Hello!
+Bonjour !|Good morning!
+Bonsoir !|Good evening!
+Bonne nuit !|Good night!
+Au revoir !|Goodbye!
+À tout à l'heure !|See you later!
+À demain !|See you tomorrow!
+Merci.|Thank you.
+Merci beaucoup.|Thank you very much.
+De rien.|You are welcome.
+S'il vous plaît.|Please.
+Excusez-moi.|Excuse me.
+Je suis désolé.|I am sorry.
+Oui.|Yes.
+Non.|No.
+Peut-être.|Maybe.
+Je ne comprends pas.|I do not understand.
+Pouvez-vous répéter ?|Can you repeat?
+Je m'appelle Paul.|My name is Paul.
+Comment vous appelez-vous ?|What is your name?
+J'ai vingt ans.|I am twenty years old.
+Quel âge avez-vous ?|How old are you?
+Je suis étudiant.|I am a student.
+Je suis professeur.|I am a teacher.
+Je parle français.|I speak French.
+Je parle anglais.|I speak English.
+Je viens de Paris.|I am from Paris.
+J'habite à Londres.|I live in London.
+Je vais bien.|I am fine.
+Enchanté de vous rencontrer.|Nice to meet you.
+J'ai une sœur.|I have a sister.
+J'ai deux frères.|I have two brothers.
+Je suis grand.|I am tall.
+Je suis petit.|I am short.
+Je suis fatigué.|I am tired.
+J'ai faim.|I am hungry.
+J'ai soif.|I am thirsty.
+J'ai froid.|I am cold.
+J'ai chaud.|I am hot.
+Je suis heureux.|I am happy.
+Je suis triste.|I am sad.
+Je suis malade.|I am sick.
+Je suis occupé.|I am busy.
+Il fait chaud aujourd'hui.|It is hot today.
+Il fait froid aujourd'hui.|It is cold today.
+Il pleut.|It is raining.
+Il fait soleil.|It is sunny.
+Il y a du vent.|It is windy.
+Il neige.|It is snowing.
+Aujourd'hui c'est lundi.|Today is Monday.
+Aujourd'hui c'est mardi.|Today is Tuesday.
+Aujourd'hui c'est mercredi.|Today is Wednesday.
+Aujourd'hui c'est jeudi.|Today is Thursday.
+Aujourd'hui c'est vendredi.|Today is Friday.
+Aujourd'hui c'est samedi.|Today is Saturday.
+Aujourd'hui c'est dimanche.|Today is Sunday.
+J'ai faim et soif.|I am hungry and thirsty.
+Le chat est noir.|The cat is black.
+Le chien est grand.|The dog is big.
+La pomme est rouge.|The apple is red.
+Le ciel est bleu.|The sky is blue.
+L'herbe est verte.|The grass is green.
+La neige est blanche.|The snow is white.
+La nuit est sombre.|The night is dark.
+Je mange du pain.|I eat bread.
+Je bois de l'eau.|I drink water.
+Je bois du café.|I drink coffee.
+Je bois du thé.|I drink tea.
+Je mange une pomme.|I eat an apple.
+Je mange une banane.|I eat a banana.
+Je mange du riz.|I eat rice.
+Je mange de la soupe.|I eat soup.
+Je mange du poulet.|I eat chicken.
+Je mange du poisson.|I eat fish.
+Je mange du fromage.|I eat cheese.
+Je mange un sandwich.|I eat a sandwich.
+Je mange des œufs.|I eat eggs.
+Je mange des légumes.|I eat vegetables.
+Je mange des fruits.|I eat fruit.
+Je mange des pâtes.|I eat pasta.
+Je mange une pizza.|I eat pizza.
+Je mange une salade.|I eat a salad.
+J'aime le café.|I like coffee.
+J'aime le thé.|I like tea.
+J'aime la musique.|I like music.
+J'aime le sport.|I like sport.
+J'aime le football.|I like football.
+J'aime nager.|I like swimming.
+J'aime lire.|I like reading.
+J'aime cuisiner.|I like cooking.
+J'aime danser.|I like dancing.
+J'aime chanter.|I like singing.
+Je n'aime pas les araignées.|I do not like spiders.
+Je n'aime pas le froid.|I do not like the cold.
+Je veux de l'eau.|I want water.
+Je veux du café.|I want coffee.
+Je veux dormir.|I want to sleep.
+Je veux manger.|I want to eat.
+Je sais nager.|I can swim.
+Je sais conduire.|I can drive.
+Je sais cuisiner.|I can cook.
+Je sais chanter.|I can sing.
+Je ne sais pas nager.|I cannot swim.
+Je vais à l'école.|I go to school.
+Je vais au travail.|I go to work.
+Je vais au marché.|I go to the market.
+Je vais au parc.|I go to the park.
+Je rentre à la maison.|I go home.
+J'ai un chien.|I have a dog.
+J'ai un chat.|I have a cat.
+J'ai une voiture.|I have a car.
+J'ai un téléphone.|I have a phone.
+J'ai de l'argent.|I have money.
+Je n'ai pas d'argent.|I have no money.
+Je suis à la maison.|I am at home.
+Je suis à l'école.|I am at school.
+Je suis au travail.|I am at work.
+Je suis à l'hôpital.|I am at the hospital.
+Je suis à la gare.|I am at the station.
+Je suis à l'aéroport.|I am at the airport.
+La maison est grande.|The house is big.
+La maison est petite.|The house is small.
+La chambre est propre.|The room is clean.
+La chambre est sale.|The room is dirty.
+La porte est ouverte.|The door is open.
+La porte est fermée.|The door is closed.
+La fenêtre est ouverte.|The window is open.
+La fenêtre est fermée.|The window is closed.
+Le livre est sur la table.|The book is on the table.
+Le stylo est dans le sac.|The pen is in the bag.
+Les clés sont sur la table.|The keys are on the table.
+Je lis un livre.|I am reading a book.
+Je regarde la télévision.|I am watching television.
+J'écoute de la musique.|I am listening to music.
+Je dors.|I am sleeping.
+Je travaille.|I am working.
+Je cuisine.|I am cooking.
+Je fais le ménage.|I am cleaning.
+Je cours.|I am running.
+Je marche.|I am walking.
+J'écris.|I am writing.
+Je dessine.|I am drawing.
+Je joue.|I am playing.
+J'étudie.|I am studying.
+Je danse.|I am dancing.
+Je ris.|I am laughing.
+Je pleure.|I am crying.
+Je prends le petit-déjeuner.|I am eating breakfast.
+Je déjeune.|I am eating lunch.
+Je dîne.|I am eating dinner.
+Je me réveille à sept heures.|I wake up at seven.
+Je me couche à dix heures.|I go to bed at ten.
+Il est une heure.|It is one o'clock.
+Il est deux heures.|It is two o'clock.
+Il est midi.|It is midday.
+Il est minuit.|It is midnight.
+Un, deux, trois.|One, two, three.
+Quatre, cinq, six.|Four, five, six.
+Sept, huit, neuf.|Seven, eight, nine.
+Dix, onze, douze.|Ten, eleven, twelve.
+Le chiffre est un.|The number is one.
+Le chiffre est dix.|The number is ten.
+J'ai un an.|I am one year old.
+Elle a cinq ans.|She is five years old.
+Il a dix ans.|He is ten years old.
+Rouge.|Red.
+Bleu.|Blue.
+Vert.|Green.
+Jaune.|Yellow.
+Blanc.|White.
+Noir.|Black.
+Orange.|Orange.
+Rose.|Pink.
+Violet.|Purple.
+Gris.|Grey.
+Marron.|Brown.
+La chemise est rouge.|The shirt is red.
+La voiture est bleue.|The car is blue.
+L'arbre est vert.|The tree is green.
+Le soleil est jaune.|The sun is yellow.
+Le mur est blanc.|The wall is white.
+J'ai une tête.|I have a head.
+J'ai deux yeux.|I have two eyes.
+J'ai un nez.|I have a nose.
+J'ai une bouche.|I have a mouth.
+J'ai deux oreilles.|I have two ears.
+J'ai deux mains.|I have two hands.
+J'ai deux jambes.|I have two legs.
+J'ai deux pieds.|I have two feet.
+J'ai mal à la tête.|My head hurts.
+J'ai mal au ventre.|My stomach hurts.
+J'ai mal au dos.|My back hurts.
+J'ai mal à la jambe.|My leg hurts.
+C'est ma mère.|This is my mother.
+C'est mon père.|This is my father.
+C'est mon frère.|This is my brother.
+C'est ma sœur.|This is my sister.
+C'est mon ami.|This is my friend.
+C'est mon professeur.|This is my teacher.
+J'ai un grand-père.|I have a grandfather.
+J'ai une grand-mère.|I have a grandmother.
+Ma mère est grande.|My mother is tall.
+Mon père est fort.|My father is strong.
+Ma sœur est jeune.|My sister is young.
+Mon frère est grand.|My brother is tall.
+J'ai un chien qui s'appelle Max.|I have a dog named Max.
+J'ai un chat qui s'appelle Mia.|I have a cat named Mia.
+Le chien court.|The dog is running.
+Le chat dort.|The cat is sleeping.
+L'oiseau vole.|The bird is flying.
+Le poisson nage.|The fish is swimming.
+Un chien a quatre pattes.|A dog has four legs.
+Un chat a quatre pattes.|A cat has four legs.
+Un oiseau a deux ailes.|A bird has two wings.
+Un poisson a des nageoires.|A fish has fins.
+Je vois un arbre.|I see a tree.
+Je vois une fleur.|I see a flower.
+Je vois une montagne.|I see a mountain.
+Je vois la mer.|I see the sea.
+Je vois une rivière.|I see a river.
+Je vois un nuage.|I see a cloud.
+Je vois une étoile.|I see a star.
+Je vois la lune.|I see the moon.
+Je vois le soleil.|I see the sun.
+La fleur est belle.|The flower is beautiful.
+Le ciel est beau.|The sky is beautiful.
+La mer est calme.|The sea is calm.
+L'eau est froide.|The water is cold.
+La nourriture est bonne.|The food is good.
+La nourriture est mauvaise.|The food is bad.
+Le café est chaud.|The coffee is hot.
+Le thé est sucré.|The tea is sweet.
+J'ai besoin d'aide.|I need help.
+Pouvez-vous m'aider ?|Can you help me?
+Où sont les toilettes ?|Where is the toilet?
+Où est la sortie ?|Where is the exit?
+Où est la gare ?|Where is the station?
+Combien ça coûte ?|How much does it cost?
+Ça coûte dix euros.|It costs ten euros.
+C'est gratuit.|It is free.
+Je veux acheter ça.|I want to buy this.
+Vous avez ça en bleu ?|Do you have this in blue?
+Je peux l'essayer ?|Can I try this on?
+Je vis avec ma famille.|I live with my family.
+Je me couche tôt.|I go to bed early.
+Je me lève tôt.|I get up early.
+Je prends une douche.|I take a shower.
+Je me brosse les dents.|I brush my teeth.
+Je me lave les mains.|I wash my hands.
+Je mets mes chaussures.|I put on my shoes.
+Je mets mon manteau.|I put on my coat.
+Je prends le bus.|I take the bus.
+Je prends le train.|I take the train.
+Je prends le métro.|I take the metro.
+Je marche jusqu'à l'école.|I walk to school.
+Je fais du vélo.|I ride my bike.
+La route est longue.|The road is long.
+La route est courte.|The road is short.
+Le train est en retard.|The train is late.
+Le bus est plein.|The bus is full.
+Le vol est annulé.|The flight is cancelled.
+Le printemps est chaud.|Spring is warm.
+L'été est chaud.|Summer is hot.
+L'automne est frais.|Autumn is cool.
+L'hiver est froid.|Winter is cold.
+J'aime l'été.|I love summer.
+J'aime l'hiver.|I love winter.
+Janvier est le premier mois.|January is the first month.
+Décembre est le dernier mois.|December is the last month.
+J'aime janvier.|I like January.
+J'aime juillet.|I like July.
+Mon anniversaire est en mai.|My birthday is in May.
+Mon anniversaire est en décembre.|My birthday is in December.
+Joyeux anniversaire !|Happy birthday!
+Félicitations !|Congratulations!
+Joyeux Noël !|Merry Christmas!
+Bonne année !|Happy New Year!
+Je suis français.|I am French.
+Je suis anglais.|I am English.
+Je suis américain.|I am American.
+Je suis espagnol.|I am Spanish.
+Je suis italien.|I am Italian.
+La France est en Europe.|France is in Europe.
+Paris est la capitale de la France.|Paris is the capital of France.
+Londres est en Angleterre.|London is in England.
+Je suis en France.|I am in France.
+Je veux aller en France.|I want to go to France.
+J'aime la France.|I like France.
+La France est belle.|France is beautiful.
+Je suis médecin.|I am a doctor.
+Je suis infirmier.|I am a nurse.
+Je suis cuisinier.|I am a cook.
+Je suis chauffeur.|I am a driver.
+Je suis agriculteur.|I am a farmer.
+Je travaille dans un hôpital.|I work in a hospital.
+Je travaille dans une école.|I work in a school.
+Je travaille dans un magasin.|I work in a shop.
+Le magasin est ouvert.|The shop is open.
+Le magasin est fermé.|The shop is closed.
+Je veux un billet.|I want a ticket.
+Je veux deux billets.|I want two tickets.
+Le billet coûte cinq euros.|The ticket costs five euros.
+Je suis perdu.|I am lost.
+Je ne sais pas.|I do not know.
+Je sais.|I know.
+Je me souviens.|I remember.
+J'ai oublié.|I forgot.
+J'ai une question.|I have a question.
+J'ai une réponse.|I have an answer.
+C'est facile.|It is easy.
+C'est difficile.|It is difficult.
+C'est intéressant.|It is interesting.
+C'est ennuyeux.|It is boring.
+C'est drôle.|It is funny.
+C'est étrange.|It is strange.
+C'est vrai.|It is true.
+C'est faux.|It is false.
+C'est possible.|It is possible.
+C'est impossible.|It is impossible.
+C'est important.|It is important.
+C'est beau.|It is beautiful.
+C'est laid.|It is ugly.
+C'est grand.|It is big.
+C'est petit.|It is small.
+C'est rapide.|It is fast.
+C'est lent.|It is slow.
+C'est cher.|It is expensive.
+C'est pas cher.|It is cheap.
+C'est nouveau.|It is new.
+C'est vieux.|It is old.
+C'est proche.|It is near.
+C'est loin.|It is far.
+C'est ici.|It is here.
+C'est là.|It is there.
+Tournez à gauche.|Turn left.
+Tournez à droite.|Turn right.
+Allez tout droit.|Go straight.
+Arrêtez-vous.|Stop.
+Attendez.|Wait.
+Venez.|Come.
+Allez.|Go.
+Regardez.|Look.
+Écoutez.|Listen.
+Parlez.|Speak.
+Écrivez.|Write.
+Lisez.|Read.
+Ouvrez la porte.|Open the door.
+Fermez la porte.|Close the door.
+Asseyez-vous.|Sit down.
+Levez-vous.|Stand up.
+Entrez.|Come in.
+Sortez.|Go out.
+Mangez votre nourriture.|Eat your food.
+Buvez votre eau.|Drink your water.
+Dormez bien.|Sleep well.
+Travaillez dur.|Work hard.
+Étudiez bien.|Study well.
+Faites attention.|Be careful.
+Taisez-vous.|Be quiet.
+Soyez gentil.|Be kind.
+J'ai faim mais je n'ai pas soif.|I am hungry but I am not thirsty.
+Je suis fatigué mais heureux.|I am tired but I am happy.
+J'ai froid mais le soleil brille.|I am cold but the sun is shining.
+Je suis un garçon.|I am a boy.
+Je suis une fille.|I am a girl.
+Il est un homme.|He is a man.
+Elle est une femme.|She is a woman.
+L'enfant est petit.|The child is small.
+Les enfants sont heureux.|The children are happy.
+Le bébé dort.|The baby is sleeping.
+L'homme lit.|The man is reading.
+La femme cuisine.|The woman is cooking.
+Le garçon joue.|The boy is playing.
+La fille chante.|The girl is singing.
+Le chat est sur le canapé.|The cat is on the sofa.
+Le chien est sous la table.|The dog is under the table.
+L'oiseau est dans l'arbre.|The bird is in the tree.
+J'aime les animaux.|I like animals.
+J'aime les chiens.|I like dogs.
+J'aime les chats.|I like cats.
+J'aime les chevaux.|I like horses.
+Je n'aime pas les serpents.|I do not like snakes.
+Le lion est grand.|The lion is big.
+L'éléphant est énorme.|The elephant is huge.
+Le lapin est petit.|The rabbit is small.
+Une vache donne du lait.|A cow gives milk.
+Une poule pond des œufs.|A hen lays eggs.
+C'est une école.|This is a school.
+C'est un hôpital.|This is a hospital.
+C'est un restaurant.|This is a restaurant.
+C'est un hôtel.|This is a hotel.
+C'est une banque.|This is a bank.
+C'est une pharmacie.|This is a pharmacy.
+C'est une bibliothèque.|This is a library.
+C'est un musée.|This is a museum.
+C'est une église.|This is a church.
+C'est un supermarché.|This is a supermarket.
+Je vais au restaurant.|I go to the restaurant.
+Je vais au cinéma.|I go to the cinema.
+Je vais à la plage.|I go to the beach.
+Je vais au musée.|I go to the museum.
+Je vais à la bibliothèque.|I go to the library.
+Je vais à la banque.|I go to the bank.
+Je vais à l'hôpital.|I go to the hospital.
+Je vais à la pharmacie.|I go to the pharmacy.
+J'ai besoin d'un médecin.|I need a doctor.
+J'ai besoin de médicaments.|I need medicine.
+J'ai un rhume.|I have a cold.
+J'ai de la fièvre.|I have a fever.
+J'ai une toux.|I have a cough.
+Je suis allergique aux chats.|I am allergic to cats.
+Je prends un comprimé.|I take a tablet.
+Je m'appelle Marie.|My name is Marie.
+Je m'appelle Thomas.|My name is Thomas.
+Je m'appelle Emma.|My name is Emma.
+Je m'appelle Lucas.|My name is Lucas.
+Je viens de France.|I am from France.
+Je viens d'Angleterre.|I am from England.
+Je viens d'Espagne.|I am from Spain.
+Je viens d'Italie.|I am from Italy.
+Je viens d'Allemagne.|I am from Germany.
+Je viens du Japon.|I am from Japan.
+Je viens du Brésil.|I am from Brazil.
+Je viens de Chine.|I am from China.
+J'aime la France car elle est belle.|I like France because it is beautiful.
+J'aime Paris car c'est grand.|I like Paris because it is big.
+J'aime l'été car il fait chaud.|I like summer because it is hot.
+J'aime l'hiver car j'adore la neige.|I like winter because I love snow.
+J'ai besoin d'un stylo.|I need a pen.
+J'ai besoin d'un livre.|I need a book.
+J'ai besoin de papier.|I need paper.
+J'ai besoin de ciseaux.|I need scissors.
+J'ai un sac.|I have a bag.
+J'ai un stylo.|I have a pen.
+J'ai un cahier.|I have a notebook.
+J'ai un dictionnaire.|I have a dictionary.
+La table est marron.|The table is brown.
+La chaise est bleue.|The chair is blue.
+Le canapé est confortable.|The sofa is comfortable.
+Le lit est grand.|The bed is big.
+La cuisine est propre.|The kitchen is clean.
+La salle de bain est petite.|The bathroom is small.
+Je dors dans mon lit.|I sleep in my bed.
+Je mange à table.|I eat at the table.
+Je suis assis sur la chaise.|I sit on the chair.
+Je regarde la télé sur le canapé.|I watch TV on the sofa.
+Je cuisine dans la cuisine.|I cook in the kitchen.
+Je me lave dans la salle de bain.|I wash in the bathroom.
+La lumière est allumée.|The light is on.
+La lumière est éteinte.|The light is off.
+J'allume la lumière.|I turn on the light.
+J'éteins la lumière.|I turn off the light.
+Il fait noir dehors.|It is dark outside.
+Il fait clair dehors.|It is light outside.
+Il fait beau.|The weather is nice.
+Il fait mauvais.|The weather is bad.
+Je vais faire les courses.|I am going shopping.
+Je vais me promener.|I am going for a walk.
+Je vais au parc.|I am going to the park.
+Je vais à la plage.|I am going to the beach.
+Je joue au football.|I play football.
+Je joue au basketball.|I play basketball.
+Je joue au tennis.|I play tennis.
+Je joue aux échecs.|I play chess.
+Je joue aux cartes.|I play cards.
+Je cours tous les jours.|I run every day.
+Je nage chaque semaine.|I swim every week.
+Je marche tous les matins.|I walk every morning.
+Je lis tous les soirs.|I read every night.
+J'étudie le français tous les jours.|I study French every day.
+J'étudie l'anglais tous les jours.|I study English every day.
+Il est mon ami.|He is my friend.
+Elle est mon amie.|She is my friend.
+Ce sont mes amis.|They are my friends.
+Nous sommes amis.|We are friends.
+Elle est belle.|She is beautiful.
+Il est beau.|He is handsome.
+Ils sont gentils.|They are kind.
+Nous sommes heureux.|We are happy.
+Je crois que oui.|I think so.
+Je crois que non.|I do not think so.
+Je suis d'accord.|I agree.
+Je ne suis pas d'accord.|I disagree.
+C'est juste.|That is right.
+C'est faux.|That is wrong.
+J'aime ça.|I like this.
+Je n'aime pas ça.|I do not like this.
+C'est bien.|This is good.
+C'est mal.|This is bad.
+Comment allez-vous ?|How are you?
+Je vais très bien.|I am very well.
+Je ne vais pas bien.|I am not well.
+Pas mal.|Not bad.
+Très bien !|Very good!
+Bravo !|Well done!
+Bien sûr !|Of course!
+Ça ne fait rien.|Never mind.
+Pas de problème.|No problem.
+Bonne chance !|Good luck!
+Amusez-vous bien !|Have fun!
+Prenez soin de vous !|Take care!
+Tu me manques.|I miss you.
+Je t'aime.|I love you.
+Je suis en colère.|I am angry.
+J'ai peur.|I am scared.
+Je m'ennuie.|I am bored.
+Je suis excité.|I am excited.
+Je suis surpris.|I am surprised.
+Je suis fier.|I am proud.
+J'ai honte.|I am ashamed.
+Je me sens seul.|I am lonely.
+Un plus un égale deux.|One plus one is two.
+Deux plus deux égale quatre.|Two plus two is four.
+Dix moins cinq égale cinq.|Ten minus five is five.
+Deux fois trois égale six.|Two times three is six.
+Dix divisé par deux égale cinq.|Ten divided by two is five.
+J'ai un euro.|I have one euro.
+J'ai dix euros.|I have ten euros.
+J'ai cent euros.|I have one hundred euros.
+J'ai besoin de cinq euros.|I need five euros.
+Le prix est de deux euros.|The price is two euros.
+Je suis numéro un.|I am number one.
+Il est numéro deux.|He is number two.
+Elle est numéro trois.|She is number three.
+Le premier jour est lundi.|The first day is Monday.
+Le dernier jour est dimanche.|The last day is Sunday.
+Je compte jusqu'à dix.|I count to ten.
+Je compte jusqu'à cent.|I count to one hundred.
+Zéro.|Zero.
+Un.|One.
+Deux.|Two.
+Trois.|Three.
+Quatre.|Four.
+Cinq.|Five.
+Six.|Six.
+Sept.|Seven.
+Huit.|Eight.
+Neuf.|Nine.
+Dix.|Ten.
+Vingt.|Twenty.
+Trente.|Thirty.
+Quarante.|Forty.
+Cinquante.|Fifty.
+Cent.|One hundred.
+Mille.|One thousand.
+Je lis un journal.|I am reading a newspaper.
+Je regarde un film.|I am watching a film.
+J'écoute la radio.|I am listening to the radio.
+Je joue à un jeu.|I am playing a game.
+J'utilise mon téléphone.|I am using my phone.
+J'envoie un message.|I am sending a message.
+Je prends une photo.|I am taking a photo.
+Je passe un appel.|I am making a call.
+J'ai reçu un message.|I received a message.
+J'ai envoyé un email.|I sent an email.
+J'ai un ordinateur.|I have a computer.
+J'ai une tablette.|I have a tablet.
+Mon téléphone est cassé.|My phone is broken.
+Mon ordinateur est lent.|My computer is slow.
+Internet est lent.|The internet is slow.
+Je n'ai pas d'internet.|I have no internet.
+La batterie est morte.|The battery is dead.
+Je dois charger mon téléphone.|I need to charge my phone.
+Je branche mon téléphone.|I plug in my phone.
+Allons-y !|Let us go!
+Êtes-vous prêt ?|Are you ready?
+Je suis prêt.|I am ready.
+Je ne suis pas prêt.|I am not ready.
+Je suis en retard.|I am late.
+Je suis à l'heure.|I am on time.
+Je suis en avance.|I am early.
+Dépêchez-vous !|Hurry up!
+Je suis pressé.|I am in a hurry.
+Prenez votre temps.|Take your time.
+C'est presque l'heure.|It is almost time.
+Il est trop tard.|It is too late.
+Il est trop tôt.|It is too early.
+Venez avec moi.|Come with me.
+Suivez-moi.|Follow me.
+Attendez-moi.|Wait for me.
+Laissez-moi tranquille.|Leave me alone.
+À l'aide !|Help!
+Au feu !|Fire!
+Au voleur !|Thief!
+Appelez la police !|Call the police!
+Appelez une ambulance !|Call an ambulance!
+J'ai besoin d'aide immédiatement.|I need help immediately.
+J'ouvre la fenêtre.|I open the window.
+Je ferme la fenêtre.|I close the window.
+J'ouvre la porte.|I open the door.
+Je ferme la porte à clé.|I lock the door.
+La table est grande.|The table is big.
+La chaise est petite.|The chair is small.
+Le sac est lourd.|The bag is heavy.
+Le sac est léger.|The bag is light.
+Mes chaussures sont noires.|My shoes are black.
+Ma veste est bleue.|My jacket is blue.
+Je porte des lunettes.|I wear glasses.
+J'ai les cheveux courts.|I have short hair.
+J'ai les cheveux longs.|I have long hair.
+Mes cheveux sont bruns.|My hair is brown.
+Mes yeux sont bleus.|My eyes are blue.
+Le bébé est mignon.|The baby is cute.
+Le chiot est petit.|The puppy is small.
+Le chaton est mignon.|The kitten is cute.
+Je nourris mon chien.|I feed my dog.
+Je promène mon chien.|I walk my dog.
+J'arrose les plantes.|I water the plants.
+Je balaie le sol.|I sweep the floor.
+Je lave le sol.|I mop the floor.
+Je repasse mes vêtements.|I iron my clothes.
+Je plie mes vêtements.|I fold my clothes.
+Le linge est sec.|The laundry is dry.
+Le linge est mouillé.|The laundry is wet.
+Je mets le couvert.|I set the table.
+Je débarrasse la table.|I clear the table.
+Je fais la vaisselle.|I wash the dishes.
+J'essuie la vaisselle.|I dry the dishes.
+Il y a une mouche dans la cuisine.|There is a fly in the kitchen.
+Il y a une araignée sur le mur.|There is a spider on the wall.
+La lumière est trop forte.|The light is too bright.
+La pièce est trop sombre.|The room is too dark.
+La musique est trop forte.|The music is too loud.
+La musique est trop douce.|The music is too quiet.
+J'augmente le volume.|I turn up the volume.
+Je baisse le volume.|I turn down the volume.
+Je change de chaîne.|I change the channel.
+J'éteins la télévision.|I turn off the television.
+J'allume la télévision.|I turn on the television.
+Je charge mon téléphone.|I charge my phone.
+Mon téléphone est chargé.|My phone is charged.
+Je télécharge une application.|I download an app.
+Je prends un selfie.|I take a selfie.
+Je publie une photo.|I post a photo.
+Je suis quelqu'un en ligne.|I follow someone online.
+Je cherche sur internet.|I search the internet.
+Je regarde une vidéo.|I watch a video.
+J'écoute un podcast.|I listen to a podcast.
+Je lis un article.|I read an article.
+J'écris un email.|I write an email.
+Je réponds à un message.|I reply to a message.
+Je supprime un message.|I delete a message.
+Je sauvegarde un fichier.|I save a file.
+J'imprime un document.|I print a document.
+L'imprimante est en panne.|The printer is broken.
+Le wifi ne fonctionne pas.|The wifi is not working.
+Je redémarre mon ordinateur.|I restart my computer.
+Je mets à jour mon téléphone.|I update my phone.
+Je vais au supermarché.|I go to the supermarket.
+J'achète du lait.|I buy milk.
+J'achète du pain.|I buy bread.
+J'achète des œufs.|I buy eggs.
+J'achète du beurre.|I buy butter.
+J'achète du fromage.|I buy cheese.
+J'achète des fruits.|I buy fruit.
+Je paye à la caisse.|I pay at the checkout.
+J'utilise un sac de courses.|I use a shopping bag.
+Le magasin est à gauche.|The shop is on the left.
+La pharmacie est à droite.|The pharmacy is on the right.
+La banque est tout droit.|The bank is straight ahead.
+La gare est près du parc.|The station is near the park.
+L'école est loin d'ici.|The school is far from here.
+L'hôpital est à côté de l'église.|The hospital is next to the church.
+Le restaurant est entre la banque et l'hôtel.|The restaurant is between the bank and the hotel.
+Je prends la première rue à gauche.|I take the first street on the left.
+Je traverse le pont.|I cross the bridge.
+Je prends l'ascenseur.|I take the elevator.
+Je prends les escaliers.|I take the stairs.
+Je suis au premier étage.|I am on the first floor.
+Je suis au rez-de-chaussée.|I am on the ground floor.
+L'ascenseur est en panne.|The lift is broken.
+J'utilise les escaliers car l'ascenseur est en panne.|I use the stairs because the lift is broken.
+Je suis en retard pour l'école.|I am late for school.
+Je suis en avance pour le travail.|I am early for work.
+Le cours commence à huit heures.|The lesson starts at eight.
+Le cours finit à dix heures.|The lesson ends at ten.
+Il y a vingt élèves dans la classe.|There are twenty students in the class.
+Le professeur est gentil.|The teacher is kind.
+Les devoirs sont faciles.|The homework is easy.
+Les devoirs sont difficiles.|The homework is hard.
+Je réussis l'examen.|I pass the exam.
+Je rate l'examen.|I fail the exam.
+J'obtiens une bonne note.|I get a good mark.
+J'obtiens une mauvaise note.|I get a bad mark.
+L'examen est demain.|The exam is tomorrow.
+J'étudie pendant deux heures.|I study for two hours.
+Je vais à la bibliothèque pour étudier.|I go to the library to study.
+Je fais mes devoirs dans ma chambre.|I do my homework in my room.
+Je pose une question à mon professeur.|I ask my teacher a question.
+La salle de classe est grande.|The classroom is big.
+Il y a un tableau dans la salle de classe.|There is a blackboard in the classroom.
+J'écris au tableau.|I write on the blackboard.
+Je lis dans le livre.|I read from the book.
+Je copie du tableau.|I copy from the board.
+Le stylo n'a plus d'encre.|The pen runs out of ink.
+J'ai besoin d'un nouveau stylo.|I need a new pen.
+Je taille mon crayon.|I sharpen my pencil.
+J'utilise une règle.|I use a ruler.
+Je trace une ligne.|I draw a line.
+Je dessine un cercle.|I draw a circle.
+Je colorie l'image.|I colour the picture.
+Je coupe le papier.|I cut the paper.
+Je colle le papier.|I glue the paper.
+Il y a du vent aujourd'hui.|It is windy today.
+Il est nuageux aujourd'hui.|It is cloudy today.
+Il y a du brouillard aujourd'hui.|It is foggy today.
+Il y a de l'orage dehors.|It is stormy outside.
+La température est de trente degrés.|The temperature is thirty degrees.
+Il fait moins dix degrés.|It is minus ten degrees.
+Il fait chaud en été.|It is hot in summer.
+Il pleut beaucoup en automne.|It rains a lot in autumn.
+Il neige en hiver.|It snows in winter.
+Le vent est fort aujourd'hui.|The wind is strong today.
+Je porte un manteau en hiver.|I wear a coat in winter.
+Je porte un chapeau quand il fait froid.|I wear a hat when it is cold.
+Je porte des lunettes de soleil en été.|I wear sunglasses in summer.
+Je prends un parapluie quand il pleut.|I take an umbrella when it rains.
+Je mets de la crème solaire à la plage.|I put on sunscreen at the beach.
+La plage est belle en été.|The beach is beautiful in summer.
+Je nage dans la mer.|I swim in the sea.
+Je construis un château de sable.|I build a sandcastle.
+Je joue dans le sable.|I play in the sand.
+Je ramasse des coquillages.|I collect shells.
+Je pêche dans la rivière.|I fish in the river.
+Je fais de la randonnée.|I go hiking.
+Je fais du camping.|I go camping.
+Je dors dans une tente.|I sleep in a tent.
+J'aime la montagne.|I like the mountains.
+J'aime la mer.|I like the sea.
+J'aime la ville.|I like the city.
+J'aime la campagne.|I like the countryside.
+Je pars en vacances.|I take a holiday.
+Je me repose en vacances.|I relax on holiday.
+Je visite de nouveaux endroits.|I visit new places.
+Je prends beaucoup de photos.|I take lots of photos.
+J'essaie de nouveaux plats.|I try new food.
+Je rencontre de nouvelles personnes.|I meet new people.
+Je parle aux habitants.|I speak to locals.
+Je me perds dans la ville.|I get lost in the city.
+Je demande mon chemin.|I ask for directions.
+Je retrouve mon chemin.|I find my way back.
+Je me sens heureux en vacances.|I feel happy on holiday.
+Je ne veux pas rentrer chez moi.|I do not want to go home.
+Les vacances sont finies.|The holiday is over.
+Je suis rentré chez moi.|I am back home.
+La plage me manque.|I miss the beach.
+J'ai mal à la tête.|I have a headache.
+J'ai mal à la gorge.|I have a sore throat.
+J'éternue beaucoup.|I sneeze a lot.
+Mon nez coule.|My nose is running.
+J'ai de la fièvre.|I have a temperature.
+J'ai la tête qui tourne.|I feel dizzy.
+J'ai envie de vomir.|I feel sick.
+J'ai le bras cassé.|I have a broken arm.
+J'ai une coupure au doigt.|I have a cut on my finger.
+Je mets un bandage sur ma main.|I put a bandage on my hand.
+Je prends des médicaments.|I take medicine.
+Je me repose au lit.|I rest in bed.
+Je me sens mieux aujourd'hui.|I feel better today.
+Je vais chez le dentiste.|I go to the dentist.
+J'ai mal aux dents.|I have a toothache.
+Le dentiste est gentil.|The dentist is kind.
+Je me brosse les cheveux.|I brush my hair.
+Je me peigne les cheveux.|I comb my hair.
+Je me coupe les ongles.|I cut my nails.
+Je me lave le visage.|I wash my face.
+Je mets de la crème.|I put on cream.
+Je me rase.|I shave.
+Je m'habille.|I get dressed.
+Je me déshabille.|I get undressed.
+Je mets mon pyjama.|I put on my pyjamas.
+Je vais au lit.|I go to bed.
+Je m'endors vite.|I fall asleep quickly.
+Je dors bien.|I sleep well.
+Je me réveille fatigué.|I wake up tired.
+Je fais une sieste.|I take a nap.
+Je rêve beaucoup.|I dream a lot.
+J'ai un cauchemar.|I have a nightmare.
+Je n'ai pas sommeil.|I am not sleepy.
+J'ai très sommeil.|I am very sleepy.
+Je bâille.|I yawn.
+Je m'étire.|I stretch.
+Je fais mon lit.|I make my bed.
+J'ouvre les rideaux.|I open the curtains.
+Je ferme les rideaux.|I close the curtains.
+Je mange un biscuit.|I eat a biscuit.
+Je mange un gâteau.|I eat a cake.
+Je mange une orange.|I eat an orange.
+Je mange une poire.|I eat a pear.
+Je mange des raisins.|I eat grapes.
+Je mange une fraise.|I eat a strawberry.
+Je mange du melon.|I eat a melon.
+Je bois du jus.|I drink juice.
+Je bois du lait.|I drink milk.
+Je bois un chocolat chaud.|I drink hot chocolate.
+J'aime le sucre dans mon café.|I like sugar in my coffee.
+Je préfère le thé sans lait.|I prefer tea without milk.
+Le café est trop chaud.|The coffee is too hot.
+La soupe est trop chaude.|The soup is too hot.
+La glace est froide.|The ice cream is cold.
+Je mange de la glace.|I eat ice cream.
+J'aime la glace au chocolat.|I like chocolate ice cream.
+J'aime la glace à la vanille.|I like vanilla ice cream.
+J'aime les sucreries.|I have a sweet tooth.
+Je n'aime pas la nourriture épicée.|I do not like spicy food.
+Je suis allergique aux noix.|I am allergic to nuts.
+Je suis végétarien.|I am vegetarian.
+Je ne mange pas de viande.|I do not eat meat.
+Je ne mange pas de poisson.|I do not eat fish.
+La nourriture est trop salée.|The food is too salty.
+La nourriture n'est pas assez salée.|The food is not salty enough.
+J'ajoute du sel.|I add salt.
+J'ajoute du poivre.|I add pepper.
+J'ajoute du sucre.|I add sugar.
+J'ajoute de l'huile.|I add oil.
+Je fais bouillir de l'eau.|I boil water.
+Je fais frire un œuf.|I fry an egg.
+Je fais cuire un gâteau.|I bake a cake.
+Je grille le poulet.|I grill the chicken.
+J'épluche les pommes de terre.|I peel the potatoes.
+Je hache les légumes.|I chop the vegetables.
+Je remue la soupe.|I stir the soup.
+Je goûte la nourriture.|I taste the food.
+La nourriture sent bon.|The food smells good.
+La nourriture sent mauvais.|The food smells bad.
+Je suis rassasié.|I am full.
+Je mange trop.|I eat too much.
+Je mange une petite portion.|I eat a small portion.
+Je partage un repas avec mon ami.|I share a meal with my friend.
+C'est l'heure de manger.|It is time to eat.
+Bon appétit !|Enjoy your meal!
+C'était délicieux !|It was delicious!
+J'en veux encore.|I want more.
+Non merci, j'en ai assez.|No thank you, I have enough.
+Je suis de bonne humeur.|I am in a good mood.
+Je suis de mauvaise humeur.|I am in a bad mood.
+Je suis fatigué aujourd'hui.|I am tired today.
+Je me sens super bien aujourd'hui.|I feel great today.
+Je suis nerveux.|I am nervous.
+Je suis calme.|I am calm.
+Je suis généreux.|I am generous.
+Je suis honnête.|I am honest.
+Je suis patient.|I am patient.
+Je suis impatient.|I am impatient.
+Je suis intelligent.|I am clever.
+Je suis créatif.|I am creative.
+Il est drôle.|He is funny.
+Elle est sérieuse.|She is serious.
+Ils sont bruyants.|They are loud.
+Nous sommes silencieux.|We are quiet.
+La pièce est bruyante.|The room is noisy.
+La pièce est calme.|The room is quiet.
+J'ouvre un livre.|I open a book.
+Je ferme un livre.|I close a book.
+Je lis une histoire.|I read a story.
+Je raconte une histoire.|I tell a story.
+Je chante une chanson.|I sing a song.
+Je fredonne un air.|I hum a tune.
+Je frappe dans mes mains.|I clap my hands.
+Je fais signe de la main.|I wave my hand.
+Je souris.|I smile.
+Je ris.|I laugh.
+Je pleure.|I cry.
+Je crie.|I shout.
+Je chuchote.|I whisper.
+Je fais oui de la tête.|I nod my head.
+Je fais non de la tête.|I shake my head.
+Je montre la porte du doigt.|I point at the door.
+J'embrasse mon ami.|I hug my friend.
+Je serre la main.|I shake hands.
+Il y a un jardin.|There is a garden.
+Il y a une piscine.|There is a swimming pool.
+Il y a un garage.|There is a garage.
+Il y a un balcon.|There is a balcony.
+Le jardin est beau.|The garden is beautiful.
+La piscine est grande.|The pool is big.
+Le garage est petit.|The garage is small.
+J'arrose le jardin.|I water the garden.
+Je tonds la pelouse.|I mow the lawn.
+Je plante des fleurs.|I plant flowers.
+Les fleurs sont en fleur.|The flowers are blooming.
+L'arbre est grand.|The tree is tall.
+L'arbre a des feuilles.|The tree has leaves.
+Les feuilles tombent en automne.|The leaves fall in autumn.
+L'oiseau chante.|The bird sings.
+Le chat miaule.|The cat meows.
+Le chien aboie.|The dog barks.
+La vache meugle.|The cow moos.
+Le cheval hennit.|The horse neighs.
+Je nourris les oiseaux.|I feed the birds.
+Je regarde le coucher de soleil.|I watch the sunset.
+Je regarde le lever de soleil.|I watch the sunrise.
+Les étoiles sont belles.|The stars are beautiful.
+La lune est pleine.|The moon is full.
+Je me couche tard.|I go to bed late.
+Je me lève tard.|I wake up late.
+Je suis du matin.|I am a morning person.
+Je suis du soir.|I am a night person.
+J'ai une bonne mémoire.|I have a good memory.
+J'ai une mauvaise mémoire.|I have a bad memory.
+J'oublie les choses facilement.|I forget things easily.
+Je me souviens de tout.|I remember everything.
+J'aime apprendre de nouvelles choses.|I like learning new things.
+Je suis curieux.|I am curious.
+Je pose beaucoup de questions.|I ask a lot of questions.
+Je connais la réponse.|I know the answer.
+Je ne connais pas la réponse.|I do not know the answer.
+Je fais une erreur.|I make a mistake.
+Je corrige une erreur.|I correct a mistake.
+J'essaie encore.|I try again.
+J'abandonne.|I give up.
+Je suis fier de moi.|I am proud of myself.
+Je suis déçu.|I am disappointed.
+Je continue d'essayer.|I keep trying.
+Je réussis.|I succeed.
+Je gagne.|I win.
+Je perds.|I lose.
+Je joue de manière fair-play.|I play fairly.
+Je m'amuse.|I have fun.
+Je m'ennuie.|I am bored.
+J'ai besoin d'une pause.|I need a break.
+Je suis plein d'énergie.|I am full of energy.
+Je n'ai plus d'énergie.|I am out of energy.
+Je mange sainement.|I eat healthy food.
+Je bois beaucoup d'eau.|I drink a lot of water.
+Je marche tous les jours.|I walk every day.
+Je fais de l'exercice régulièrement.|I exercise regularly.
+Je dors huit heures.|I sleep eight hours.
+Je suis en bonne santé.|I am in good health.
+Je prends soin de moi.|I take care of myself.
+Je suis heureux de ma vie.|I am happy with my life.
+J'aime mon travail.|I like my job.
+Je n'aime pas mon travail.|I do not like my job.
+J'ai un bon patron.|I have a good boss.
+Je travaille dur.|I work hard.
+J'aide mes collègues.|I help my colleagues.
+Je vais à une réunion.|I go to a meeting.
+J'écris un rapport.|I write a report.
+Je réponds au téléphone.|I answer the phone.
+Je prends un message.|I take a message.
+Je finis le travail à cinq heures.|I finish work at five.
+Je rentre chez moi après le travail.|I go home after work.
+Je suis en vacances cette semaine.|I am on holiday this week.
+Mes vacances commencent demain.|My holiday starts tomorrow.
+Je vais en France.|I am going to France.
+Je rends visite à ma famille.|I visit my family.
+Ma famille habite loin.|My family lives far away.
+Ma famille me manque.|I miss my family.
+J'appelle ma famille chaque semaine.|I call my family every week.
+J'envoie une carte postale.|I send a postcard.
+Je reçois une lettre.|I receive a letter.
+J'écris une lettre.|I write a letter.
+Je mets un timbre sur l'enveloppe.|I put a stamp on the envelope.
+Je vais à la poste.|I go to the post office.
+J'achète un timbre.|I buy a stamp.
+J'envoie un colis.|I send a package.
+Je reçois un colis.|I receive a package.
+C'est un cadeau.|It is a present.
+J'emballe un cadeau.|I wrap a present.
+Je déballe un cadeau.|I unwrap a present.
+Je donne un cadeau à mon ami.|I give a present to my friend.
+Je reçois un cadeau.|I receive a present.
+Merci pour le cadeau.|Thank you for the present.
+J'aime ton cadeau.|I like your present.
+Quelle surprise !|What a surprise!
+Je suis très heureux aujourd'hui.|I am very happy today.
+Tout va bien.|Everything is fine.
+La vie est belle.|Life is good.
+Je suis reconnaissant.|I am grateful.
+Il fait beau aujourd'hui.|The weather is nice today.
+J'adore les jours de soleil.|I love sunny days.
+Je déteste les jours de pluie.|I hate rainy days.
+Je préfère le temps chaud.|I prefer hot weather.
+Je préfère le temps froid.|I prefer cold weather.
+C'est une belle journée.|It is a beautiful day.
+Le ciel est dégagé.|The sky is clear.
+J'adore ce temps.|I love this weather.
+Quelle belle journée !|What a lovely day!
+Je sors dehors.|I go outside.
+Je reste à l'intérieur.|I stay inside.
+J'ouvre la fenêtre pour avoir de l'air frais.|I open the window for fresh air.
+C'est un beau coucher de soleil.|It is a beautiful sunset.
+La nuit est claire et pleine d'étoiles.|The night is clear and full of stars.
+Je suis heureux.|I am happy.
+Je t'aime.|I love you.
+Tu es mon meilleur ami.|You are my best friend.
+J'ai de la chance.|I am lucky.
+Je suis reconnaissant.|I am thankful.
+Bonne journée !|Have a nice day!
+Bon week-end !|Have a good weekend!
+Prends soin de toi !|Take care!
+À bientôt !|See you soon!
+Bonne chance pour tout !|Good luck with everything!
+Elle est très gentille.|She is very kind.
+Il est très drôle.|He is very funny.
+Nous sommes une équipe.|We are a team.
+C'est incroyable !|This is amazing!
+C'est suffisant.|That is enough.
+Ça n'a pas d'importance.|It does not matter.
+J'ai besoin d'eau.|I need some water.
