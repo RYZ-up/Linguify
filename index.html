@@ -1572,6 +1572,14 @@
       animation: fadeUp .22s ease;
     }
 
+    .p-en {
+      font-size: clamp(.7rem, 2.4vw, .85rem);
+      font-weight: 500;
+      color: var(--muted);
+      opacity: .6;
+      margin-bottom: .5rem;
+    }
+
     .p-wrong {
       font-size: clamp(.78rem, 2.8vw, 1rem);
       font-weight: 600;
@@ -3673,7 +3681,7 @@
         card.classList.add('pop-ko');
         showGameMascot('laugh');
         ptxt.className = 'p-hint';
-        ptxt.innerHTML = `<div class="p-wrong">${escHtml(raw)}</div><div class="p-correct"><i class="fa-solid fa-arrow-right" style="color:#4ade80;font-size:.75em"></i>${escHtml(phrase.hint)}</div>`;
+        ptxt.innerHTML = `<div class="p-en">${escHtml(phrase.en)}</div><div class="p-wrong">${escHtml(raw)}</div><div class="p-correct"><i class="fa-solid fa-arrow-right" style="color:#4ade80;font-size:.75em"></i>${escHtml(phrase.hint)}</div>`;
         const wrap = document.getElementById('ans-input').closest('.inp3d');
         wrap.classList.remove('shake'); void wrap.offsetWidth; wrap.classList.add('shake');
         showAnswerNotif(false);
