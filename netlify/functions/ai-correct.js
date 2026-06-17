@@ -37,6 +37,7 @@ Règles strictes :
 - IGNORE la ponctuation et les majuscules
 - ACCEPTE les synonymes et formulations équivalentes
 - ACCEPTE les variantes tu/vous, passé composé/imparfait si les deux sont valides
+- ACCEPTE les formes interrogatives équivalentes (ex: "Est-ce loin ?" = "C'est loin ?", "Où est-ce que tu vas ?" = "Où vas-tu ?", inversion vs "est-ce que" vs forme déclarative + "?")
 - Si la traduction de référence liste plusieurs formulations séparées par " / ", ce sont TOUTES des variantes valides : accepte toute réponse proche de N'IMPORTE LAQUELLE d'entre elles
 - REJETTE uniquement si le sens est clairement faux, incomplet ou hors sujet`
           },
