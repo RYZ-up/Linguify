@@ -2960,26 +2960,28 @@
       const w = s.split(' ');
       return (w.length >= 2 && _PV[w[0]] && _PN[w[1]]) ? [w[1], w[0], ...w.slice(2)].join(' ') : s;
     }
-    function isCorrect(raw, phrase) {
+    function isCorrect(raw, phrase, lenient = false) {
       const u = _normQ(norm(raw)); if (!u) return false;
+      const simThresh1 = lenient ? 0.8 : 0.9;
+      const simThresh2 = lenient ? 0.78 : 0.88;
       for (const acc of phrase.answers) {
         const a = _normQ(norm(acc));
         if (u === a) return true;
-        if (u.length >= 3 && a.length >= 3 && similarity(u, a) >= 0.9) return true;
-        if (gSettings.looseCorrection) { const d = a.length >= 6 ? Math.min(6, Math.max(2, Math.floor(a.length / 10))) : 0; if (d > 0 && lev(u, a) <= d) return true; }
+        if (u.length >= 3 && a.length >= 3 && similarity(u, a) >= simThresh1) return true;
+        if (gSettings.looseCorrection || lenient) { const d = a.length >= 6 ? Math.min(6, Math.max(2, Math.floor(a.length / 10))) : 0; if (d > 0 && lev(u, a) <= d) return true; }
       }
       const up = _normPV(u);
       for (const acc of phrase.answers) {
         const ap = _normPV(_normQ(norm(acc)));
         if (up === ap) return true;
-        if (up.length >= 8 && ap.length >= 8 && similarity(up, ap) >= 0.88) return true;
+        if (up.length >= 8 && ap.length >= 8 && similarity(up, ap) >= simThresh2) return true;
       }
       const uc = _normContent(u);
       if (uc.split(' ').filter(Boolean).length >= 2) {
         for (const acc of phrase.answers) {
           const ac = _normContent(_normQ(norm(acc)));
           if (uc === ac) return true;
-          if (uc.length >= 12 && ac.length >= 12 && similarity(uc, ac) >= 0.88) return true;
+          if (uc.length >= 12 && ac.length >= 12 && similarity(uc, ac) >= simThresh2) return true;
         }
       }
       return false;
@@ -3695,7 +3697,8 @@
       const clientOk = isCorrect(raw, phrase);
       const aiRef = phrase.answers && phrase.answers.length ? phrase.answers.join(' / ') : phrase.hint;
       const aiResult = clientOk ? null : await aiCheck(phrase.en, aiRef, raw, gSettings.direction);
-      const ok = clientOk || aiResult === true;
+      const aiUnavailable = !clientOk && aiResult === null;
+      const ok = clientOk || aiResult === true || (aiUnavailable && isCorrect(raw, phrase, true));
 
       if (ok) {
         gScore += calcQScore(phrase.level, Date.now() - gQuestionStart);
