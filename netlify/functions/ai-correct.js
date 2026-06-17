@@ -24,26 +24,28 @@ export default async (req) => {
   if (mode === 'check') {
     const systemFrEn = `Tu es un correcteur bienveillant pour un exercice de traduction français → anglais.
 Réponds UNIQUEMENT par "oui" ou "non".
-La réponse de l'élève est-elle une traduction correcte ou acceptable de la phrase française ?
+Compare le SENS GLOBAL de la réponse de l'élève à celui de la phrase française, pas la forme exacte des mots.
 Règles strictes :
 - IGNORE la ponctuation et les majuscules/minuscules
 - ACCEPTE les contractions et leurs formes développées (ex: "it's" = "it is", "don't" = "do not")
-- ACCEPTE les synonymes et formulations équivalentes
-- ACCEPTE les variantes mineures d'articles ou de temps grammaticaux si le sens reste correct
+- ACCEPTE les synonymes, paraphrases et formulations équivalentes même si les mots diffèrent
+- ACCEPTE un ordre des mots différent si le sens reste identique
+- ACCEPTE les variantes mineures d'articles, de déterminants ou de temps grammaticaux si le sens reste correct
 - Si la traduction de référence liste plusieurs formulations séparées par " / ", ce sont TOUTES des variantes valides : accepte toute réponse proche de N'IMPORTE LAQUELLE d'entre elles
-- REJETTE uniquement si le sens est clairement faux, incomplet ou hors sujet`;
+- REJETTE uniquement si le sens est clairement faux, incomplet, inversé ou hors sujet`;
 
     const systemEnFr = `Tu es un correcteur bienveillant pour un exercice de traduction anglais → français.
 Réponds UNIQUEMENT par "oui" ou "non".
-La réponse de l'élève est-elle une traduction correcte ou acceptable de la phrase anglaise ?
+Compare le SENS GLOBAL de la réponse de l'élève à celui de la phrase anglaise, pas la forme exacte des mots.
 Règles strictes :
 - IGNORE totalement les accents manquants ou incorrects (ex: "fatigue" = "fatigué", "etre" = "être") → toujours accepter
 - IGNORE la ponctuation et les majuscules
-- ACCEPTE les synonymes et formulations équivalentes
+- ACCEPTE les synonymes, paraphrases et formulations équivalentes même si les mots diffèrent
+- ACCEPTE un ordre des mots différent si le sens reste identique
 - ACCEPTE les variantes tu/vous, passé composé/imparfait si les deux sont valides
 - ACCEPTE les formes interrogatives équivalentes (ex: "Est-ce loin ?" = "C'est loin ?", "Où est-ce que tu vas ?" = "Où vas-tu ?", inversion vs "est-ce que" vs forme déclarative + "?")
 - Si la traduction de référence liste plusieurs formulations séparées par " / ", ce sont TOUTES des variantes valides : accepte toute réponse proche de N'IMPORTE LAQUELLE d'entre elles
-- REJETTE uniquement si le sens est clairement faux, incomplet ou hors sujet`;
+- REJETTE uniquement si le sens est clairement faux, incomplet, inversé ou hors sujet`;
 
     const userFrEn = `Phrase française : "${en}"\nTraduction(s) de référence : "${correct}"\nRéponse de l'élève : "${userAnswer}"`;
     const userEnFr = `Phrase anglaise : "${en}"\nTraduction(s) de référence : "${correct}"\nRéponse de l'élève : "${userAnswer}"`;
@@ -52,7 +54,7 @@ Règles strictes :
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.GROQ_API_KEY}` },
       body: JSON.stringify({
-        model: 'llama-3.1-8b-instant',
+        model: 'llama-3.3-70b-versatile',
         messages: [
           { role: 'system', content: isFrEn ? systemFrEn : systemEnFr },
           { role: 'user', content: isFrEn ? userFrEn : userEnFr }
