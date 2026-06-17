@@ -7,10 +7,11 @@ Jeu de traduction EN → FR en temps réel, pensé pour progresser vite. Interfa
 ## Fonctionnalités
 
 ### Modes de jeu
-| Mode | Description |
-|------|-------------|
-| **N phrases** | Nombre fixe de phrases à traduire (1–50). Le chrono tourne librement. |
-| **Chrono** | Traduction libre pendant X secondes/minutes. Cycles sans doublon. |
+
+| Mode          | Description                                                                |
+|---------------|-----------------------------------------------------------------------------|
+| **N phrases** | Nombre fixe de phrases à traduire (1–50). Le chrono tourne librement.       |
+| **Chrono**    | Traduction libre pendant X secondes/minutes. Anti-répétition : 70 % du pool vu avant qu'une question revienne. |
 
 ### Gameplay
 - **5 niveaux de difficulté** — A1 (présent simple) → C2 (philosophique/académique)

@@ -17,6 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@100..400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.2/dist/lottie-player.js"></script>
   <style>
@@ -1289,8 +1290,7 @@
       color: var(--text);
     }
     .welcome-accent {
-      font-family: 'Nunito', sans-serif;
-      font-style: italic;
+      font-family: 'Playwrite IS', cursive;
       font-size: 1.35em;
       color: var(--y);
       display: inline-block;
@@ -3625,7 +3625,8 @@
 
       const phrase = gPhrases[gIdx];
       const clientOk = isCorrect(raw, phrase);
-      const aiResult = clientOk ? null : await aiCheck(phrase.en, phrase.hint, raw);
+      const aiRef = phrase.answers && phrase.answers.length ? phrase.answers.join(' / ') : phrase.hint;
+      const aiResult = clientOk ? null : await aiCheck(phrase.en, aiRef, raw);
       const ok = clientOk || aiResult === true;
 
       if (ok) {

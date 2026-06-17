@@ -37,11 +37,12 @@ Règles strictes :
 - IGNORE la ponctuation et les majuscules
 - ACCEPTE les synonymes et formulations équivalentes
 - ACCEPTE les variantes tu/vous, passé composé/imparfait si les deux sont valides
+- Si la traduction de référence liste plusieurs formulations séparées par " / ", ce sont TOUTES des variantes valides : accepte toute réponse proche de N'IMPORTE LAQUELLE d'entre elles
 - REJETTE uniquement si le sens est clairement faux, incomplet ou hors sujet`
           },
           {
             role: 'user',
-            content: `Phrase anglaise : "${en}"\nTraduction de référence : "${correct}"\nRéponse de l'élève : "${userAnswer}"`
+            content: `Phrase anglaise : "${en}"\nTraduction(s) de référence : "${correct}"\nRéponse de l'élève : "${userAnswer}"`
           }
         ],
         max_tokens: 5,
