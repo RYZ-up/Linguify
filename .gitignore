@@ -34,3 +34,10 @@ ask.txt
 
 # Local Netlify folder
 .netlify
+
+# ── Vidéo Remotion ──────────────────────────────────────────────────────────
+video/node_modules/
+video/out/
+# Captures d'écran réelles (peuvent contenir des données perso type email/pseudo)
+video/screens/
+video/public/screens/
