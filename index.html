@@ -3311,7 +3311,9 @@
       closePanel();
       /* startViewTransition utilisé uniquement comme verrou de frame, sans nommer d'éléments */
       if (document.startViewTransition) {
-        document.startViewTransition(doSwap);
+        const t = document.startViewTransition(doSwap);
+        t.ready.catch(() => {});
+        t.finished.catch(() => {});
       } else {
         const cur = screens.find(s => document.getElementById(s).classList.contains('active'));
         if (cur && cur !== id) {
