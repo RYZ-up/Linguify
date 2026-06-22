@@ -1265,6 +1265,11 @@
       padding: 1.2rem 1.4rem 1.4rem;
       max-height: calc(100dvh - 6rem);
       overflow-y: auto;
+      scrollbar-width: none;
+    }
+    #settings-card .card3d-in::-webkit-scrollbar {
+      width: 0;
+      height: 0;
     }
     #settings-card.open {
       display: block;
@@ -2906,7 +2911,7 @@
         }
       } catch (e) { console.error('Questions FR→EN load:', e); }
     }
-    loadQuestionsFromDB();
+    let questionsReady = loadQuestionsFromDB();
 
     function getActiveQuestions() { return settings.direction === 'fr-en' ? gAllQuestionsFrEn : gAllQuestions; }
 
@@ -3712,7 +3717,12 @@
       gSettings = { ...settings };
       document.getElementById('p-lbl').textContent = gSettings.direction === 'fr-en' ? 'Traduisez en anglais' : 'Traduisez en français';
       destroyCharts();
-      gPhrases = getPhrasesForGame(); gIdx = 0; gCorrect = 0; gScore = 0; gResults = []; gAnswers = []; gWaiting = false; gStreak = 0; gStreakMax = 0; gCompletedStreaks = 0;
+      gPhrases = getPhrasesForGame();
+      if (!gPhrases.length) {
+        setErr('Phrases indisponibles pour le moment, réessaie dans quelques secondes.');
+        return;
+      }
+      gIdx = 0; gCorrect = 0; gScore = 0; gResults = []; gAnswers = []; gWaiting = false; gStreak = 0; gStreakMax = 0; gCompletedStreaks = 0;
       markSeen(gPhrases.map(p => p.id).filter(Boolean), gSettings.direction);
       const mulEl = document.getElementById('g-streak-mul'); if (mulEl) mulEl.style.display = 'none';
       clearInterval(gTimer); clearInterval(gCountdown);
@@ -3990,6 +4000,9 @@
         }
         return;
       }
+      const btn = document.getElementById('btn-start');
+      setBtnLoad(btn, true);
+      try { await questionsReady; } finally { setBtnLoad(btn, false); }
       startGame();
     });
     document.getElementById('btn-replay').addEventListener('click', startGame);
