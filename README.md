@@ -14,29 +14,29 @@ Jeu de traduction EN → FR en temps réel, pensé pour progresser vite. Interfa
 | **Chrono**    | Traduction libre pendant X secondes/minutes. Anti-répétition : 70 % du pool vu avant qu'une question revienne. |
 
 ### Gameplay
-- **5 niveaux de difficulté** — A1 (présent simple) → C2 (philosophique/académique)
-- **Streak sonore** — le pitch monte progressivement jusqu'à 10 phrases consécutives correctes
-- **Live hints** — les mots corrects s'illuminent pendant la frappe
-- **Auto next** — passe automatiquement à la phrase suivante après validation
-- **Barre de progression** — visible en mode N phrases
-- **Correction souple** — tolère les coquilles légères (Levenshtein configurable)
+- **5 niveaux de difficulté** - A1 (présent simple) → C2 (philosophique/académique)
+- **Streak sonore** - le pitch monte progressivement jusqu'à 10 phrases consécutives correctes
+- **Live hints** - les mots corrects s'illuminent pendant la frappe
+- **Auto next** - passe automatiquement à la phrase suivante après validation
+- **Barre de progression** - visible en mode N phrases
+- **Correction souple** - tolère les coquilles légères (Levenshtein configurable)
 
 ### Feedback IA (Groq / Llama 3.1)
 
 Une barre de feedback IA est intégrée dans l'écran de jeu, alimentée par un LLM via Netlify Function :
 
-- **Mode live** — analyse le brouillon en cours de frappe (debounce 700 ms), retourne un micro-feedback directif en 1 phrase
-- **Mode post** — après validation, confirme la bonne réponse avec un point linguistique, ou explique l'erreur en 2 phrases max
-- Le backend appelle `llama-3.1-8b-instant` via l'API Groq — la clé est stockée en variable d'environnement Netlify, jamais dans le code
+- **Mode live** - analyse le brouillon en cours de frappe (debounce 700 ms), retourne un micro-feedback directif en 1 phrase
+- **Mode post** - après validation, confirme la bonne réponse avec un point linguistique, ou explique l'erreur en 2 phrases max
+- Le backend appelle `llama-3.1-8b-instant` via l'API Groq - la clé est stockée en variable d'environnement Netlify, jamais dans le code
 
 ### Correction intelligente (5 couches)
-1. **Correspondance exacte** — après normalisation (sans accents, casse, ponctuation)
-2. **Similarité haute** — Levenshtein ≥ 90 % (fautes de frappe légères)
-3. **Mode souple** — distance configurable selon la longueur de la réponse
-4. **Pronoms + verbes** — `il/elle`, `on/nous`, conjugaisons différentes à sens identique
-5. **Mots de contenu triés** — articles/pronoms/prépositions ignorés, mots restants triés
+1. **Correspondance exacte** - après normalisation (sans accents, casse, ponctuation)
+2. **Similarité haute** - Levenshtein ≥ 90 % (fautes de frappe légères)
+3. **Mode souple** - distance configurable selon la longueur de la réponse
+4. **Pronoms + verbes** - `il/elle`, `on/nous`, conjugaisons différentes à sens identique
+5. **Mots de contenu triés** - articles/pronoms/prépositions ignorés, mots restants triés
 
-### Modale Correction — step-through
+### Modale Correction - step-through
 Après chaque session, ouvre la correction en appuyant sur **Correction** ou `Ctrl+M`.
 
 - Navigation phrase par phrase (← Préc. / Suiv. →) ou par clic sur les points de couleur
@@ -46,7 +46,7 @@ Après chaque session, ouvre la correction en appuyant sur **Correction** ou `Ct
   - **Jaune** = mot attendu manquant dans ta réponse
 - Graphiques de précision et résultats question par question
 
-### Système de record — phrases par minute
+### Système de record - phrases par minute
 Le record compare les performances indépendamment du mode et du nombre de phrases :
 
 ```
@@ -55,11 +55,11 @@ rate = phrases correctes / temps réel (secondes) × 60
 
 **Exemple :** 10 bonnes réponses en 45 s → **13.3 phr/min**
 
-Ce taux est identique que tu joues 10 phrases ou 50, en mode chrono ou en mode comptage — les records sont directement comparables.
+Ce taux est identique que tu joues 10 phrases ou 50, en mode chrono ou en mode comptage - les records sont directement comparables.
 
 ### Compte & persistance
-- **Google Auth** — sauvegarde du meilleur taux, historique des sessions, graphique de progression
-- **Mode invité** — jeu immédiat sans compte (session uniquement, aucun score enregistré)
+- **Google Auth** - sauvegarde du meilleur taux, historique des sessions, graphique de progression
+- **Mode invité** - jeu immédiat sans compte (session uniquement, aucun score enregistré)
 
 ---
 
@@ -81,12 +81,12 @@ Ce taux est identique que tu joues 10 phrases ou 50, en mode chrono ou en mode c
 
 | Composant | Technologie |
 |-----------|-------------|
-| Frontend | HTML / CSS / JS vanilla — zéro dépendance |
+| Frontend | HTML / CSS / JS vanilla - zéro dépendance |
 | Auth | Firebase Authentication (Google + Anonymous) |
 | Base de données | Firebase Realtime Database + Firestore |
 | Graphiques | ApexCharts |
 | Mascotte | Lottie via `@lottiefiles/lottie-player` |
-| Fond | Canvas 2D — effet antigravité interactif |
+| Fond | Canvas 2D - effet antigravité interactif |
 | PWA | Service Worker + Web Manifest |
 | IA | Groq API (llama-3.1-8b-instant) via Netlify Function |
 | Déploiement | Netlify (CD automatique depuis `main`) |
@@ -101,7 +101,7 @@ Le projet est déployé sur **Netlify**. Le déploiement est automatique à chaq
 
 | Variable       | Description                                                              |
 |----------------|--------------------------------------------------------------------------|
-| `GROQ_API_KEY` | Clé API Groq pour le feedback IA — configurer dans les env vars Netlify  |
+| `GROQ_API_KEY` | Clé API Groq pour le feedback IA - configurer dans les env vars Netlify  |
 
 La clé n'est jamais dans le code source. Elle est injectée au runtime par la Netlify Function `netlify/functions/ai-correct.js`.
 
@@ -116,7 +116,7 @@ npm install -g netlify-cli
 netlify dev
 ```
 
-> En `netlify dev`, crée un fichier `.env` local avec `GROQ_API_KEY=ta_cle` — ce fichier est ignoré par git.
+> En `netlify dev`, crée un fichier `.env` local avec `GROQ_API_KEY=ta_cle` - ce fichier est ignoré par git.
 
 ---
 
@@ -129,7 +129,7 @@ Linguify/
 ├── manifest.json                 # PWA manifest
 ├── netlify/
 │   └── functions/
-│       └── ai-correct.js         # Serverless function — proxy Groq (llama-3.1-8b-instant)
+│       └── ai-correct.js         # Serverless function - proxy Groq (llama-3.1-8b-instant)
 ├── assets/
 │   ├── logo.png
 │   ├── correct.mp3
