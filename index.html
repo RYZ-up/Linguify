@@ -2771,6 +2771,7 @@
         <div class="res-score" id="res-score">0</div>
         <div class="res-sub">points</div>
         <div class="res-record-card" id="res-record-card">
+          <div class="rec3d"><div class="rec3d-in"><i class="fa-solid fa-bolt" style="color:var(--ok1)"></i><span>Cette partie</span><strong id="res-rate-val">-</strong></div></div>
           <div class="rec3d"><div class="rec3d-in"><i class="fa-solid fa-trophy" style="color:var(--y)"></i><span>Record</span><strong id="res-record-val">-</strong></div></div>
         </div>
 
@@ -3677,7 +3678,8 @@
     function tryResumeGame() {
       let snap;
       try { snap = JSON.parse(localStorage.getItem(ACTIVE_GAME_KEY) || 'null'); } catch { snap = null; }
-      if (!snap || !snap.gPhrases || !snap.gPhrases.length || snap.gIdx >= snap.gPhrases.length) { clearGameSnapshot(); return; }
+      const RESUME_TTL_MS = 3 * 60 * 1000;
+      if (!snap || !snap.gPhrases || !snap.gPhrases.length || snap.gIdx >= snap.gPhrases.length || Date.now() - snap.ts > RESUME_TTL_MS) { clearGameSnapshot(); return; }
       gPhrases = snap.gPhrases; gIdx = snap.gIdx; gCorrect = snap.gCorrect; gScore = snap.gScore;
       gResults = snap.gResults; gAnswers = snap.gAnswers; gStreak = snap.gStreak; gStreakMax = snap.gStreakMax;
       gCompletedStreaks = snap.gCompletedStreaks; gSettings = snap.gSettings; gWaiting = false;
@@ -3880,6 +3882,8 @@
       document.getElementById('res-precision').textContent = answered > 0 ? Math.round(gCorrect / answered * 100) + '%' : '-';
       document.getElementById('res-temps').textContent = m > 0 ? `${m}m${s.toString().padStart(2, '0')}s` : `${gTotalSecs}s`;
       document.getElementById('res-streak').textContent = gStreakMax || 0;
+      document.getElementById('res-rate-val').textContent = rate + ' phr/min';
+      document.getElementById('res-record-card').classList.add('v');
       if (!currentUser) return;
       if (currentUser.isAnonymous) {
         guestTotalScore += score;
