@@ -2611,6 +2611,19 @@
           <button class="btn3d sq" id="btn-settings-close" style="--btn-h:1.8rem;flex-shrink:0"><span class="bt" style="padding:0"><i class="fa-solid fa-xmark"></i></span></button>
         </div>
 
+        <div class="set-row set-inline">
+          <span class="set-label">Écrire en français</span>
+          <label class="toggle-wrap"><input type="checkbox" id="set-dir-fr" checked />
+            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
+          </label>
+        </div>
+        <div class="set-row set-inline">
+          <span class="set-label">Écrire en anglais</span>
+          <label class="toggle-wrap"><input type="checkbox" id="set-dir-en" />
+            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
+          </label>
+        </div>
+
         <div class="set-row set-inline" id="count-row">
           <span class="set-label">Nombre de phrases</span>
           <div style="display:flex;align-items:center;gap:.4rem">
@@ -2645,13 +2658,6 @@
             </div>
             <span style="font-size:.7rem;color:var(--muted)">5</span>
           </div>
-        </div>
-
-        <div class="set-row set-inline">
-          <span class="set-label">Sens : <span id="direction-label">Anglais → Français</span></span>
-          <label class="toggle-wrap"><input type="checkbox" id="set-direction" />
-            <div class="tog-outer"><div class="tog-track"><div class="tog-thumb"></div></div></div>
-          </label>
         </div>
 
         <div class="set-div"></div>
@@ -2889,25 +2895,19 @@
     let gAllQuestionsFrEn = [];
     async function loadQuestionsFromDB() {
       try {
-        const cached = localStorage.getItem('lq_questions_v4');
+        const cached = localStorage.getItem('lq_questions_v5');
         if (cached) { gAllQuestions = JSON.parse(cached); }
         else {
-          const snap = await fs.collection('questions').get();
-          if (!snap.empty) {
-            gAllQuestions = snap.docs.map(d => ({ ...d.data(), id: d.id }));
-            localStorage.setItem('lq_questions_v4', JSON.stringify(gAllQuestions));
-          }
+          gAllQuestions = await fetch('/data/questions-en-fr.json').then(r => r.json());
+          localStorage.setItem('lq_questions_v5', JSON.stringify(gAllQuestions));
         }
       } catch (e) { console.error('Questions load:', e); }
       try {
-        const cachedFrEn = localStorage.getItem('lq_questions_fr_en_v2');
+        const cachedFrEn = localStorage.getItem('lq_questions_fr_en_v3');
         if (cachedFrEn) { gAllQuestionsFrEn = JSON.parse(cachedFrEn); }
         else {
-          const snapFrEn = await fs.collection('questions_fr_en').get();
-          if (!snapFrEn.empty) {
-            gAllQuestionsFrEn = snapFrEn.docs.map(d => ({ ...d.data(), id: d.id }));
-            localStorage.setItem('lq_questions_fr_en_v2', JSON.stringify(gAllQuestionsFrEn));
-          }
+          gAllQuestionsFrEn = await fetch('/data/questions-fr-en.json').then(r => r.json());
+          localStorage.setItem('lq_questions_fr_en_v3', JSON.stringify(gAllQuestionsFrEn));
         }
       } catch (e) { console.error('Questions FR→EN load:', e); }
     }
@@ -3234,10 +3234,9 @@
       if (s.streakMul != null) { settings.streakMul = s.streakMul; document.getElementById('set-streak-mul').checked = s.streakMul; }
       if (s.direction) {
         settings.direction = s.direction;
-        const dch = document.getElementById('set-direction');
-        if (dch) dch.checked = s.direction === 'fr-en';
-        const dlabel = document.getElementById('direction-label');
-        if (dlabel) dlabel.textContent = s.direction === 'fr-en' ? 'Français → Anglais' : 'Anglais → Français';
+        const dirFr = document.getElementById('set-dir-fr'), dirEn = document.getElementById('set-dir-en');
+        if (dirFr) dirFr.checked = s.direction === 'en-fr';
+        if (dirEn) dirEn.checked = s.direction === 'fr-en';
       }
       if (s.themeColor) { applyTheme(s.themeColor); saveTheme(s.themeColor); }
       syncModeInputs();
@@ -3547,10 +3546,17 @@
       if (typeof setCanvasPaused === 'function') setCanvasPaused(this.checked);
       persistSettings();
     });
-    document.getElementById('set-direction').addEventListener('change', function () {
-      settings.direction = this.checked ? 'fr-en' : 'en-fr';
-      document.getElementById('direction-label').textContent = this.checked ? 'Français → Anglais' : 'Anglais → Français';
+    function setDirection(dir) {
+      settings.direction = dir;
+      document.getElementById('set-dir-fr').checked = dir === 'en-fr';
+      document.getElementById('set-dir-en').checked = dir === 'fr-en';
       persistSettings();
+    }
+    document.getElementById('set-dir-fr').addEventListener('change', function () {
+      setDirection(this.checked ? 'en-fr' : 'fr-en');
+    });
+    document.getElementById('set-dir-en').addEventListener('change', function () {
+      setDirection(this.checked ? 'fr-en' : 'en-fr');
     });
     function syncModeInputs() {
       const chrono = document.getElementById('set-mode-chrono').checked;
