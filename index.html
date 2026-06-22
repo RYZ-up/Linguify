@@ -3524,6 +3524,7 @@
         guestBestScore = null; guestBestRate = null; guestTotalScore = 0; /* session only - no persistence */
         await auth.setPersistence(firebase.auth.Auth.Persistence.NONE);
         await auth.signInAnonymously();
+        await questionsReady;
         startGame();
       } catch (e) { isGuestSession = false; inp.disabled = false; setErr('Erreur : ' + (e.message || e.code)); }
     }
