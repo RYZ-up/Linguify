@@ -2883,24 +2883,24 @@
     let gAllQuestionsFrEn = [];
     async function loadQuestionsFromDB() {
       try {
-        const cached = localStorage.getItem('lq_questions_v3');
+        const cached = localStorage.getItem('lq_questions_v4');
         if (cached) { gAllQuestions = JSON.parse(cached); }
         else {
           const snap = await fs.collection('questions').get();
           if (!snap.empty) {
-            gAllQuestions = snap.docs.map(d => d.data());
-            localStorage.setItem('lq_questions_v3', JSON.stringify(gAllQuestions));
+            gAllQuestions = snap.docs.map(d => ({ ...d.data(), id: d.id }));
+            localStorage.setItem('lq_questions_v4', JSON.stringify(gAllQuestions));
           }
         }
       } catch (e) { console.error('Questions load:', e); }
       try {
-        const cachedFrEn = localStorage.getItem('lq_questions_fr_en_v1');
+        const cachedFrEn = localStorage.getItem('lq_questions_fr_en_v2');
         if (cachedFrEn) { gAllQuestionsFrEn = JSON.parse(cachedFrEn); }
         else {
           const snapFrEn = await fs.collection('questions_fr_en').get();
           if (!snapFrEn.empty) {
-            gAllQuestionsFrEn = snapFrEn.docs.map(d => d.data());
-            localStorage.setItem('lq_questions_fr_en_v1', JSON.stringify(gAllQuestionsFrEn));
+            gAllQuestionsFrEn = snapFrEn.docs.map(d => ({ ...d.data(), id: d.id }));
+            localStorage.setItem('lq_questions_fr_en_v2', JSON.stringify(gAllQuestionsFrEn));
           }
         }
       } catch (e) { console.error('Questions FR→EN load:', e); }
@@ -2911,9 +2911,22 @@
 
 
     /* ══ CORRECTION ══ */
+    const _EN_CONTRACTIONS = [
+      [/\bcan't\b/g, 'cannot'], [/\bwon't\b/g, 'will not'], [/\bshan't\b/g, 'shall not'],
+      [/\bi'm\b/g, 'i am'], [/\byou're\b/g, 'you are'], [/\bwe're\b/g, 'we are'], [/\bthey're\b/g, 'they are'],
+      [/\bit's\b/g, 'it is'], [/\bhe's\b/g, 'he is'], [/\bshe's\b/g, 'she is'], [/\bthat's\b/g, 'that is'],
+      [/\blet's\b/g, 'let us'],
+      [/\bn't\b/g, ' not'],
+      [/\bi've\b/g, 'i have'], [/\byou've\b/g, 'you have'], [/\bwe've\b/g, 'we have'], [/\bthey've\b/g, 'they have'],
+      [/\bi'll\b/g, 'i will'], [/\byou'll\b/g, 'you will'], [/\bhe'll\b/g, 'he will'], [/\bshe'll\b/g, 'she will'], [/\bwe'll\b/g, 'we will'], [/\bthey'll\b/g, 'they will'],
+      [/\bi'd\b/g, 'i would'], [/\byou'd\b/g, 'you would'], [/\bhe'd\b/g, 'he would'], [/\bshe'd\b/g, 'she would'], [/\bwe'd\b/g, 'we would'], [/\bthey'd\b/g, 'they would'],
+    ];
     function norm(s) {
-      return s.toLowerCase()
-        .replace(/[''`´]/g, "'")
+      let r = s.toLowerCase().replace(/[''`´]/g, "'");
+      if (gSettings.direction === 'fr-en') {
+        for (const [re, rep] of _EN_CONTRACTIONS) r = r.replace(re, rep);
+      }
+      return r
         .replace(/œ/g, 'oe').replace(/æ/g, 'ae')
         .normalize('NFD').replace(/[\u0300-\u036F]/g, '')
         .replace(/[.,!?;:…\-]+$/, '').replace(/[.,!?;:…\-]+/g, ' ')
@@ -2931,11 +2944,11 @@
       if (!maxLen) return 1;
       return 1 - lev(a, b) / maxLen;
     }
-    const _PN = {
+    const _PN_FR = {
       'je':'_P_','j':'_P_','tu':'_P_','il':'_P_','elle':'_P_','on':'_P_',
       'nous':'_P_','vous':'_P_','ils':'_P_','elles':'_P_'
     };
-    const _PV = {
+    const _PV_FR = {
       'suis':'_E_','es':'_E_','est':'_E_','sommes':'_E_','etes':'_E_','sont':'_E_','etait':'_E_','etaient':'_E_',
       'ai':'_A_','as':'_A_','a':'_A_','avons':'_A_','avez':'_A_','ont':'_A_','avait':'_A_','avaient':'_A_',
       'peux':'_PV_','peut':'_PV_','pouvons':'_PV_','pouvez':'_PV_','peuvent':'_PV_',
@@ -2943,22 +2956,40 @@
       'vais':'_AL_','vas':'_AL_','va':'_AL_','allons':'_AL_','allez':'_AL_','vont':'_AL_',
       'fais':'_FA_','fait':'_FA_','faisons':'_FA_','faites':'_FA_','font':'_FA_',
     };
-    const _SW = new Set([
+    const _SW_FR = new Set([
       'le','la','les','l','un','une','des','du','de','d','en','au','aux',
       'a','et','ou','car','que','qui','se','ne','y','c','ca','cet','cette','ces',
       'm','t','s','me','te','lui','leur',
       'je','j','tu','il','elle','on','nous','vous','ils','elles'
     ]);
+    const _PN_EN = { 'i':'_P_','you':'_P_','he':'_P_','she':'_P_','it':'_P_','we':'_P_','they':'_P_' };
+    const _PV_EN = {
+      'am':'_E_','is':'_E_','are':'_E_','was':'_E_','were':'_E_',
+      'have':'_A_','has':'_A_','had':'_A_',
+      'do':'_DO_','does':'_DO_','did':'_DO_',
+      'can':'_PV_','could':'_PV_','will':'_AL_','would':'_PV_','shall':'_AL_','should':'_DV_','must':'_DV_',
+    };
+    const _SW_EN = new Set([
+      'the','a','an','to','of','in','on','at','and','or','but','with','for','as','not','so','this','that'
+    ]);
+    function _tables() {
+      return gSettings.direction === 'fr-en'
+        ? { PN: _PN_EN, PV: _PV_EN, SW: _SW_EN }
+        : { PN: _PN_FR, PV: _PV_FR, SW: _SW_FR };
+    }
     function _normPV(s) {
-      return s.split(' ').map(w => _PN[w] || _PV[w] || w).join(' ');
+      const { PN, PV } = _tables();
+      return s.split(' ').map(w => PN[w] || PV[w] || w).join(' ');
     }
     function _normContent(s) {
-      return s.split(' ').filter(w => w.length > 2 && !_SW.has(w) && !_PV[w]).sort().join(' ');
+      const { PV, SW } = _tables();
+      return s.split(' ').filter(w => w.length > 2 && !SW.has(w) && !PV[w]).sort().join(' ');
     }
     function _normQ(s) {
-      s = s.replace(/^est ce qu?e? /, '');
+      const { PN, PV } = _tables();
+      if (gSettings.direction !== 'fr-en') s = s.replace(/^est ce qu?e? /, '');
       const w = s.split(' ');
-      return (w.length >= 2 && _PV[w[0]] && _PN[w[1]]) ? [w[1], w[0], ...w.slice(2)].join(' ') : s;
+      return (w.length >= 2 && PV[w[0]] && PN[w[1]]) ? [w[1], w[0], ...w.slice(2)].join(' ') : s;
     }
     function isCorrect(raw, phrase, lenient = false) {
       const u = _normQ(norm(raw)); if (!u) return false;
@@ -3552,6 +3583,7 @@
     syncModeInputs();
     /* load from localStorage on startup */
     applySettingsToUI(JSON.parse(localStorage.getItem(SETTINGS_KEY) || 'null'));
+    tryResumeGame();
     /* auto-select content on focus pour taper directement */
     ['set-count', 'set-duration'].forEach(id => {
       document.getElementById(id).addEventListener('focus', function () { this.select(); });
@@ -3571,22 +3603,48 @@
       }
       return a;
     }
+    const SEEN_KEY = 'lq_seen_v1';
+    function getSeen(direction) {
+      try { return new Set(JSON.parse(localStorage.getItem(SEEN_KEY) || '{}')[direction] || []); }
+      catch { return new Set(); }
+    }
+    function markSeen(ids, direction) {
+      let store; try { store = JSON.parse(localStorage.getItem(SEEN_KEY) || '{}'); } catch { store = {}; }
+      const merged = new Set([...(store[direction] || []), ...ids]);
+      store[direction] = [...merged];
+      localStorage.setItem(SEEN_KEY, JSON.stringify(store));
+    }
+    /* Retire du pool filtré les phrases déjà vues lors de parties précédentes ; ne réinitialise
+       que les entrées "vues" de CE pool (pas tout l'historique de la direction) quand il est épuisé. */
+    function unseenPool(pool, direction) {
+      const seen = getSeen(direction);
+      let available = pool.filter(p => p.id && !seen.has(p.id));
+      if (available.length < Math.min(10, pool.length)) {
+        let store; try { store = JSON.parse(localStorage.getItem(SEEN_KEY) || '{}'); } catch { store = {}; }
+        const poolIds = new Set(pool.map(p => p.id));
+        store[direction] = (store[direction] || []).filter(id => !poolIds.has(id));
+        localStorage.setItem(SEEN_KEY, JSON.stringify(store));
+        available = pool;
+      }
+      return available;
+    }
     function getPhrasesForGame() {
       const pool = getActiveQuestions().filter(p => p.level <= gSettings.level);
       if (!pool.length) return [];
+      const available = unseenPool(pool, gSettings.direction);
       if (gSettings.mode === 'time') {
         /* Fenêtre anti-répétition : une question ne revient qu'après 70% du pool */
-        const win = Math.min(pool.length - 1, Math.max(1, Math.floor(pool.length * 0.7)));
+        const win = Math.min(available.length - 1, Math.max(1, Math.floor(available.length * 0.7)));
         const big = [];
         while (big.length < 400) {
           const recent = new Set(big.slice(-win));
-          const cands = pool.filter(p => !recent.has(p));
-          const src = cands.length ? cands : pool;
+          const cands = available.filter(p => !recent.has(p));
+          const src = cands.length ? cands : available;
           big.push(src[Math.floor(Math.random() * src.length)]);
         }
         return big;
       }
-      return shuffle(pool).slice(0, Math.min(gSettings.count, pool.length));
+      return shuffle(available).slice(0, Math.min(gSettings.count, available.length));
     }
 
     /* ══ GAME ══ */
@@ -3604,11 +3662,54 @@
     let gStart = 0, gTimer = null, gCountdown = null, gTimeLeft = 0, gTotalSecs = 0, gWaiting = false, gStreak = 0, gStreakMax = 0, gCompletedStreaks = 0;
     const STREAK_FULL = 10;
 
+    const ACTIVE_GAME_KEY = 'lq_active_game';
+    function saveGameSnapshot() {
+      try {
+        localStorage.setItem(ACTIVE_GAME_KEY, JSON.stringify({
+          gPhrases, gIdx, gCorrect, gScore, gResults, gAnswers,
+          gStreak, gStreakMax, gCompletedStreaks, gSettings,
+          gStart, gTimeLeft, ts: Date.now()
+        }));
+      } catch {}
+    }
+    function clearGameSnapshot() { localStorage.removeItem(ACTIVE_GAME_KEY); }
+    function tryResumeGame() {
+      let snap;
+      try { snap = JSON.parse(localStorage.getItem(ACTIVE_GAME_KEY) || 'null'); } catch { snap = null; }
+      if (!snap || !snap.gPhrases || !snap.gPhrases.length || snap.gIdx >= snap.gPhrases.length) { clearGameSnapshot(); return; }
+      gPhrases = snap.gPhrases; gIdx = snap.gIdx; gCorrect = snap.gCorrect; gScore = snap.gScore;
+      gResults = snap.gResults; gAnswers = snap.gAnswers; gStreak = snap.gStreak; gStreakMax = snap.gStreakMax;
+      gCompletedStreaks = snap.gCompletedStreaks; gSettings = snap.gSettings; gWaiting = false;
+      clearInterval(gTimer); clearInterval(gCountdown);
+      showScreen('s-game');
+      document.getElementById('p-lbl').textContent = gSettings.direction === 'fr-en' ? 'Traduisez en anglais' : 'Traduisez en français';
+      const mulEl = document.getElementById('g-streak-mul'); if (mulEl) mulEl.style.display = 'none';
+      if (gSettings.mode === 'time') {
+        const elapsedSec = Math.floor((Date.now() - snap.ts) / 1000);
+        gTimeLeft = Math.max(0, snap.gTimeLeft - elapsedSec);
+        if (gTimeLeft <= 0) { endGame(); return; }
+        setPbar(gSettings.duration - gTimeLeft, gSettings.duration);
+        document.getElementById('g-time').textContent = fmtTime(gTimeLeft);
+        gStart = Date.now() - (gSettings.duration - gTimeLeft) * 1000;
+        gCountdown = setInterval(() => {
+          gTimeLeft--; document.getElementById('g-time').textContent = fmtTime(gTimeLeft);
+          setPbar(gSettings.duration - gTimeLeft, gSettings.duration);
+          if (gTimeLeft <= 0) { clearInterval(gCountdown); endGame(); }
+        }, 1000);
+      } else {
+        setPbar(gIdx, gPhrases.length);
+        gStart = Date.now();
+        gTimer = setInterval(() => { document.getElementById('g-time').textContent = fmtTime(Math.floor((Date.now() - gStart) / 1000)); }, 500);
+      }
+      loadPhrase(gIdx);
+    }
+
     function startGame() {
       gSettings = { ...settings };
       document.getElementById('p-lbl').textContent = gSettings.direction === 'fr-en' ? 'Traduisez en anglais' : 'Traduisez en français';
       destroyCharts();
       gPhrases = getPhrasesForGame(); gIdx = 0; gCorrect = 0; gScore = 0; gResults = []; gAnswers = []; gWaiting = false; gStreak = 0; gStreakMax = 0; gCompletedStreaks = 0;
+      markSeen(gPhrases.map(p => p.id).filter(Boolean), gSettings.direction);
       const mulEl = document.getElementById('g-streak-mul'); if (mulEl) mulEl.style.display = 'none';
       clearInterval(gTimer); clearInterval(gCountdown);
       showScreen('s-game');
@@ -3663,6 +3764,7 @@
       document.getElementById('btn-val-ico').innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
       gWaiting = false;
       gQuestionStart = Date.now();
+      saveGameSnapshot();
     }
 
     async function aiCheck(en, correct, userAnswer, direction) {
@@ -3719,6 +3821,7 @@
       } else { gStreak = 0; var effectiveStreak = 0; }
       gResults.push(ok);
       gAnswers.push({ en: phrase.en, userAnswer: raw, correct: ok, hint: phrase.hint });
+      saveGameSnapshot();
       playBip(ok, effectiveStreak);
       const ptxt = document.getElementById('p-txt');
       const card = document.getElementById('phrase-card');
@@ -3759,6 +3862,7 @@
     }
 
     async function endGame() {
+      clearGameSnapshot();
       clearTimeout(autoNextTimer); autoNextTimer = null;
       clearInterval(gTimer); clearInterval(gCountdown);
       gTotalSecs = gSettings.mode === 'time' ? gSettings.duration - gTimeLeft : Math.floor((Date.now() - gStart) / 1000);
